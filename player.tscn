@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cllphvbw15xk0"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_snvmr"]
+[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://icon.svg" id="2_lrq1j"]
+[ext_resource type="PackedScene" uid="uid://pvicm6snj1j1" path="res://projectile.tscn" id="2_y0a7b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_voe78"]
+size = Vector2(64, 64)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_snvmr")
+projectile_scene = ExtResource("2_y0a7b")
+metadata/_edit_horizontal_guides_ = [-32.0]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_lrq1j")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_voe78")
+
+[node name="Gun" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(58, 0)
+scale = Vector2(0.390625, 0.109863)
+texture = ExtResource("2_lrq1j")
+
+[node name="Marker2D" type="Marker2D" parent="Gun"]
+position = Vector2(68, 0)
