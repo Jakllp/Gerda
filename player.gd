@@ -11,9 +11,7 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	#velocity = speed * Input.get_vector("left","right","up","down")					# normal
-	velocity = speed * Input.get_vector("left","right","up","down").rotated(PI/4) 		# W =
-	#velocity = speed * Input.get_vector("left","right","up","down").rotated(-PI/4) 	#normal
+	velocity = speed * Input.get_vector("left","right","up","down")
 	move_and_slide()
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
@@ -22,7 +20,7 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	var mousePos := get_local_mouse_position()
 	gun.rotation = mousePos.angle()
-	gun.position = mousePos.normalized() * $CollisionShape2D.shape.get_rect().size.x/2
+	gun.position = mousePos.normalized() * $Environment_collision.shape.get_rect().size.x/2
 	return
 	
 
