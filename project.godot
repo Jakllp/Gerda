@@ -52,3 +52,7 @@ LMB={
 
 2d_physics/layer_1="wall-object"
 2d_physics/layer_2="player"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
