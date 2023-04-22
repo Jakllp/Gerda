@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cn61t6q4dhuip"]
+
+[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/actor/icon.svg" id="1_pd8rx"]
+[ext_resource type="Script" path="res://script/gun.gd" id="2_neuf1"]
+[ext_resource type="PackedScene" uid="uid://bhcnujurwhng2" path="res://scene/projectile.tscn" id="3_wg4yj"]
+
+[node name="Gun" type="Sprite2D"]
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(0.737415, 0.109863)
+texture = ExtResource("1_pd8rx")
+script = ExtResource("2_neuf1")
+projectile_scene = ExtResource("3_wg4yj")
+
+[node name="ProjectileSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(68, 0)
+
+[node name="AnglePoint" type="Marker2D" parent="."]
+position = Vector2(-30, 0)

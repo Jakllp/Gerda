@@ -1,0 +1,24 @@
+extends Area2D
+
+@export var speed: int = 800
+@export var range: int = 400
+@export var infinite_range: bool = false
+	
+func _physics_process(delta: float) -> void:
+	var distance := speed * delta
+	var direction = Vector2.RIGHT.rotated(rotation)
+	position += distance * direction
+	
+	if(not infinite_range):
+		range -= distance
+		print(range)
+		if(range <= 0):
+			print("dead")
+			queue_free()
+	
+	if(is_out_of_bounds()):
+		queue_free()
+
+func is_out_of_bounds() -> bool:
+	#TODO: implement me
+	return false

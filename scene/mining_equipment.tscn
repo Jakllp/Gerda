@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy5g0knlptp2v"]
+
+[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/actor/icon.svg" id="1_auyiq"]
+[ext_resource type="Script" path="res://script/MiningEquipment.gd" id="2_rvwx2"]
+
+[node name="MiningEquipment" type="Sprite2D"]
+scale = Vector2(1, 0.078125)
+texture = ExtResource("1_auyiq")
+script = ExtResource("2_rvwx2")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(64, 0)
+
+[node name="AnglePoint" type="Marker2D" parent="."]
+position = Vector2(-30, 0)
