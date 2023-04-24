@@ -1,18 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cn61t6q4dhuip"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/actor/icon.svg" id="1_pd8rx"]
-[ext_resource type="Script" path="res://script/gun.gd" id="2_neuf1"]
-[ext_resource type="PackedScene" uid="uid://bhcnujurwhng2" path="res://scene/projectile.tscn" id="3_wg4yj"]
+[ext_resource type="Script" path="res://script/gun.gd" id="1_2e5dt"]
+[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="1_pd8rx"]
+[ext_resource type="PackedScene" uid="uid://dpeb5amtf8xs0" path="res://scene/component/wearableComponent.tscn" id="2_17cav"]
+[ext_resource type="PackedScene" uid="uid://brv5bkf52i24d" path="res://scene/component/shooterComponent.tscn" id="3_qtyp6"]
 
-[node name="Gun" type="Sprite2D"]
+[node name="Gun" type="Node2D"]
+script = ExtResource("1_2e5dt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 1, 0, 1)
 scale = Vector2(0.737415, 0.109863)
 texture = ExtResource("1_pd8rx")
-script = ExtResource("2_neuf1")
-projectile_scene = ExtResource("3_wg4yj")
 
-[node name="ProjectileSpawnPoint" type="Marker2D" parent="."]
-position = Vector2(68, 0)
-
-[node name="AnglePoint" type="Marker2D" parent="."]
+[node name="Anglepoint" parent="." instance=ExtResource("2_17cav")]
 position = Vector2(-30, 0)
+
+[node name="Shooter" parent="." instance=ExtResource("3_qtyp6")]

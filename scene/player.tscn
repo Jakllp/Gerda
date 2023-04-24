@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://x1qqcto4dku0"]
+[gd_scene load_steps=7 format=3 uid="uid://doq5cte61quup"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_37ll6"]
-[ext_resource type="PackedScene" uid="uid://cn61t6q4dhuip" path="res://scene/gun.tscn" id="3_5bv2s"]
-[ext_resource type="PackedScene" uid="uid://dy5g0knlptp2v" path="res://scene/mining_equipment.tscn" id="3_ikfsq"]
-[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/actor/icon.svg" id="3_qnos2"]
+[ext_resource type="PackedScene" uid="uid://b56taxvgwjswi" path="res://scene/gun.tscn" id="3_5bv2s"]
+[ext_resource type="PackedScene" uid="uid://dunqtwt1qaru7" path="res://scene/mining_equipment.tscn" id="3_ikfsq"]
+[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="3_qnos2"]
+[ext_resource type="PackedScene" uid="uid://bhcnujurwhng2" path="res://scene/projectile.tscn" id="4_w8iq5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_voe78"]
 size = Vector2(64, 32)
@@ -12,8 +13,9 @@ size = Vector2(64, 32)
 scale = Vector2(0.45, 0.45)
 collision_layer = 2
 script = ExtResource("1_37ll6")
-gun_scene = ExtResource("3_5bv2s")
+weapon_scene = ExtResource("3_5bv2s")
 mining_equipment_scene = ExtResource("3_ikfsq")
+projectile_scene = ExtResource("4_w8iq5")
 metadata/_edit_horizontal_guides_ = [-16.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -28,7 +30,7 @@ position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_voe78")
 
 [node name="EquipmentAnglePoint" type="Marker2D" parent="."]
-position = Vector2(0, 10)
+position = Vector2(0, 15)
 scale = Vector2(1.28733, 0.109863)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

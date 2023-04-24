@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Projectile
+
 @export var speed: int = 800
 @export var range: int = 400
 @export var infinite_range: bool = false
@@ -11,9 +13,7 @@ func _physics_process(delta: float) -> void:
 	
 	if(not infinite_range):
 		range -= distance
-		print(range)
 		if(range <= 0):
-			print("dead")
 			queue_free()
 	
 	if(is_out_of_bounds()):

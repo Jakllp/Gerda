@@ -1,31 +1,41 @@
-extends Actor
+extends CharacterBody2D
+
+class_name Player
 
 @export var speed := 500.0
-@export var gun_scene :PackedScene
+@export var weapon_scene :PackedScene
 @export var mining_equipment_scene :PackedScene
+@export var projectile_scene :PackedScene
 
-@onready var gun := gun_scene.instantiate()
+@onready var equipment_angle_point :Vector2 = $EquipmentAnglePoint.position
+@onready var gun := weapon_scene.instantiate()
 @onready var mining_equipment := mining_equipment_scene.instantiate()
 
-var current_equipment
+@onready var inputComponent = PlayerInputComponent.new()
+
+var current_equipment: Equipment
 
 func _ready() -> void:
-	#gun.position = $EquipmentAnglePoint.position
-	#add_child(gun)
+	gun.position = $EquipmentAnglePoint.position
+	add_child(gun)
+	mining_equipment.position = $EquipmentAnglePoint.position
 	add_child(mining_equipment)
-	current_equipment = mining_equipment
+	mining_equipment.set_physics_process(false)
+	mining_equipment.visible = false
+	
+	current_equipment = gun
+
 
 func _physics_process(delta: float) -> void:
 	velocity = speed * Input.get_vector("left","right","up","down")
+	inputComponent.update(self)
+	current_equipment.update(self)
+			
 	move_and_slide()
-	rotate_equipment()
 
-func rotate_equipment() -> void:
-	var mousePos := get_local_mouse_position()
-	current_equipment.rotation = mousePos.angle()	
-	current_equipment.position = 	mousePos.normalized() \
-					* abs(current_equipment.get_node("AnglePoint").position.x) \
-					+ $EquipmentAnglePoint.position
 
-#TODO change equipment
+func change_equipment(equipment) -> void:
+	current_equipment = equipment
 
+func use_equipment() -> void:
+	current_equipment.act(self)
