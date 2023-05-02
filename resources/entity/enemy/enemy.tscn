@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://jcoh5f75ac31"]
+[gd_scene load_steps=8 format=3 uid="uid://jcoh5f75ac31"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/enemy.gd" id="1_dw5yq"]
+[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="2_iwwip"]
+[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_rynaa"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/hurtbox.tscn" id="4_5vtrk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qye2k"]
+radius = 92.1792
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_difal"]
+size = Vector2(126, 127)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_54hej"]
+size = Vector2(128, 64)
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -8,6 +20,29 @@ collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_dw5yq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_iwwip")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_rynaa")]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_qye2k")
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_5vtrk")]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_difal")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_54hej")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="Hitbox"]
+[editable path="Hurtbox"]

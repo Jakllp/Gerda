@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://6n7nq0utwop6"]
+[gd_scene load_steps=8 format=3 uid="uid://6n7nq0utwop6"]
 
 [ext_resource type="Texture2D" uid="uid://6g623pyu53g0" path="res://asset/visual/map/Ballsy_AssetsPack_v1.0.0/Dungeon_3/Dungeon_3.png" id="1_s73ic"]
 [ext_resource type="Texture2D" uid="uid://b58ronnkyc2m7" path="res://asset/visual/map/TopDownDungeonPack.png" id="2_2p4mh"]
 [ext_resource type="PackedScene" uid="uid://6jpb1ke88l01" path="res://resources/entity/player/player.tscn" id="3_rhs2s"]
+[ext_resource type="PackedScene" uid="uid://jcoh5f75ac31" path="res://resources/entity/enemy/enemy.tscn" id="4_8m504"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yjmv2"]
 texture = ExtResource("1_s73ic")
@@ -235,3 +236,6 @@ layer_1/tile_data = PackedInt32Array(-196592, 655360, 0, -196591, 655360, 0, -19
 z_index = 1
 position = Vector2(-97, -48)
 metadata/_edit_horizontal_guides_ = [-14.0]
+
+[node name="Enemy" parent="." instance=ExtResource("4_8m504")]
+position = Vector2(-244, 174)

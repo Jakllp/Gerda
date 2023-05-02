@@ -1,14 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx8hi1wpd875d"]
+[gd_scene load_steps=5 format=3 uid="uid://bx8hi1wpd875d"]
 
 [ext_resource type="Script" path="res://resources/equipment/weapon/projectile.gd" id="1_ibm6r"]
 [ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="2_8wx5t"]
+[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_hxq0p"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pujv"]
-size = Vector2(28, 28)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djmju"]
+size = Vector2(58, 58)
 
-[node name="Area2D" type="Area2D"]
-collision_layer = 0
-collision_mask = 0
+[node name="Node2D" type="Node2D"]
 script = ExtResource("1_ibm6r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -16,5 +15,9 @@ modulate = Color(0.964706, 0, 0, 1)
 scale = Vector2(0.46875, 0.46875)
 texture = ExtResource("2_8wx5t")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_8pujv")
+[node name="Hitbox" parent="." instance=ExtResource("3_hxq0p")]
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_djmju")
+
+[editable path="Hitbox"]

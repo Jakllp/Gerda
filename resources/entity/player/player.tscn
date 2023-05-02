@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://6jpb1ke88l01"]
+[gd_scene load_steps=8 format=3 uid="uid://6jpb1ke88l01"]
 
 [ext_resource type="Script" path="res://resources/entity/player/player.gd" id="1_u110p"]
 [ext_resource type="PackedScene" uid="uid://cnprtm2i3wtid" path="res://resources/equipment/weapon/gun.tscn" id="2_7fuq5"]
 [ext_resource type="PackedScene" uid="uid://cnav323nopbns" path="res://resources/equipment/mining/mining_equipment.tscn" id="3_fchbn"]
 [ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="3_qnos2"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/hurtbox.tscn" id="5_mlb2y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6b62"]
+size = Vector2(66.6667, 64.4445)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_voe78"]
 size = Vector2(64, 32)
@@ -11,7 +15,6 @@ size = Vector2(64, 32)
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.45, 0.45)
 collision_layer = 2
-collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_u110p")
 weapon_scene = ExtResource("2_7fuq5")
@@ -25,6 +28,14 @@ texture = ExtResource("3_qnos2")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
 
+[node name="Hurtbox" parent="." instance=ExtResource("5_mlb2y")]
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, 1.11111)
+shape = SubResource("RectangleShape2D_f6b62")
+
 [node name="CollisonShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_voe78")
@@ -34,3 +45,6 @@ position = Vector2(0, 15)
 scale = Vector2(1.28733, 0.109863)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="Hurtbox"]

@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 class_name Projectile
 
@@ -8,7 +8,7 @@ class_name Projectile
 	
 func _physics_process(delta: float) -> void:
 	var distance := speed * delta
-	var direction = Vector2.RIGHT.rotated(rotation)
+	var direction := Vector2.RIGHT.rotated(rotation)
 	position += distance * direction
 	
 	if(not infinite_range):
