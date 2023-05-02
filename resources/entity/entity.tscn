@@ -1,10 +1,16 @@
-[gd_scene format=3 uid="uid://b8fjfwr56itnl"]
+[gd_scene load_steps=3 format=3 uid="uid://b8fjfwr56itnl"]
+
+[ext_resource type="Script" path="res://resources/entity/entity.gd" id="1_8er2l"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/hurtbox.tscn" id="2_gf2ns"]
 
 [node name="Entity" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 0
 motion_mode = 1
+script = ExtResource("1_8er2l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_gf2ns")]
