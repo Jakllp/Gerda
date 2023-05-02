@@ -2,6 +2,8 @@ extends Weapon
 
 class_name Gun
 
+@export var projectile_scene :PackedScene
+
 func update(player: Player) -> void:
 	for child in get_children():
 		if child.has_method("update"):
@@ -9,4 +11,4 @@ func update(player: Player) -> void:
 			
 
 func act(player: Player) -> void:
-	$Shooter.shoot(player.projectile_scene.instantiate())
+	$Shooter.shoot(projectile_scene.instantiate())

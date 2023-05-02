@@ -234,5 +234,4 @@ layer_1/tile_data = PackedInt32Array(-196592, 655360, 0, -196591, 655360, 0, -19
 [node name="Player" parent="." instance=ExtResource("3_rhs2s")]
 z_index = 1
 position = Vector2(-97, -48)
-speed = 300.0
 metadata/_edit_horizontal_guides_ = [-14.0]
