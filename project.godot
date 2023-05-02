@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Gerda"
-run/main_scene="res://scene/level.tscn"
+run/main_scene="res://resources/levels/level.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://asset/visual/actor/icon.svg"
 
@@ -52,6 +52,7 @@ RMB={
 
 2d_physics/layer_1="wall-object"
 2d_physics/layer_2="player"
+2d_physics/layer_3="Enemy"
 
 [rendering]
 

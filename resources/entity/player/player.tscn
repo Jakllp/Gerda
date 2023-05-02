@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://doq5cte61quup"]
+[gd_scene load_steps=7 format=3 uid="uid://6jpb1ke88l01"]
 
-[ext_resource type="Script" path="res://script/player.gd" id="1_37ll6"]
-[ext_resource type="PackedScene" uid="uid://b56taxvgwjswi" path="res://scene/gun.tscn" id="3_5bv2s"]
-[ext_resource type="PackedScene" uid="uid://dunqtwt1qaru7" path="res://scene/mining_equipment.tscn" id="3_ikfsq"]
+[ext_resource type="Script" path="res://resources/entity/player/player.gd" id="1_u110p"]
+[ext_resource type="PackedScene" uid="uid://cnprtm2i3wtid" path="res://resources/equipment/weapon/gun.tscn" id="2_7fuq5"]
+[ext_resource type="PackedScene" uid="uid://cnav323nopbns" path="res://resources/equipment/mining/mining_equipment.tscn" id="3_fchbn"]
 [ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="3_qnos2"]
-[ext_resource type="PackedScene" uid="uid://bhcnujurwhng2" path="res://scene/projectile.tscn" id="4_w8iq5"]
+[ext_resource type="PackedScene" uid="uid://bx8hi1wpd875d" path="res://resources/equipment/weapon/projectile.tscn" id="4_n7xud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_voe78"]
 size = Vector2(64, 32)
@@ -12,10 +12,10 @@ size = Vector2(64, 32)
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.45, 0.45)
 collision_layer = 2
-script = ExtResource("1_37ll6")
-weapon_scene = ExtResource("3_5bv2s")
-mining_equipment_scene = ExtResource("3_ikfsq")
-projectile_scene = ExtResource("4_w8iq5")
+script = ExtResource("1_u110p")
+weapon_scene = ExtResource("2_7fuq5")
+mining_equipment_scene = ExtResource("3_fchbn")
+projectile_scene = ExtResource("4_n7xud")
 metadata/_edit_horizontal_guides_ = [-16.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

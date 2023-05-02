@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c42jo43v7boji"]
+[gd_scene load_steps=7 format=3 uid="uid://6n7nq0utwop6"]
 
 [ext_resource type="Texture2D" uid="uid://6g623pyu53g0" path="res://asset/visual/map/Ballsy_AssetsPack_v1.0.0/Dungeon_3/Dungeon_3.png" id="1_s73ic"]
 [ext_resource type="Texture2D" uid="uid://b58ronnkyc2m7" path="res://asset/visual/map/TopDownDungeonPack.png" id="2_2p4mh"]
-[ext_resource type="PackedScene" uid="uid://doq5cte61quup" path="res://scene/player.tscn" id="3_rhs2s"]
+[ext_resource type="PackedScene" uid="uid://6jpb1ke88l01" path="res://resources/entity/player/player.tscn" id="3_rhs2s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yjmv2"]
 texture = ExtResource("1_s73ic")

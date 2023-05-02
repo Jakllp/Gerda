@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnprtm2i3wtid"]
+
+[ext_resource type="Script" path="res://resources/equipment/weapon/gun.gd" id="1_2e5dt"]
+[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="1_pd8rx"]
+[ext_resource type="PackedScene" uid="uid://dp7femcfr44sh" path="res://resources/components/shooterComponent.tscn" id="3_sxqrj"]
+[ext_resource type="PackedScene" uid="uid://mk5hgsurw2rv" path="res://resources/components/wearableComponent.tscn" id="4_rerad"]
+
+[node name="Gun" type="Node2D"]
+script = ExtResource("1_2e5dt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(0.737415, 0.109863)
+texture = ExtResource("1_pd8rx")
+
+[node name="Shooter" parent="." instance=ExtResource("3_sxqrj")]
+
+[node name="Anglepoint" parent="." instance=ExtResource("4_rerad")]
+position = Vector2(-30, 0)
