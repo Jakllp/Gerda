@@ -10,5 +10,6 @@ func update(player: Player) -> void:
 			child.update(player)
 			
 
-func act(player: Player) -> void:
+func act(player: Player, delta: float) -> bool:
 	$Shooter.shoot(projectile_scene.instantiate())
+	return true

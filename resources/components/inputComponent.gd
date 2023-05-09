@@ -2,7 +2,7 @@ extends RefCounted
 
 class_name InputComponent
 
-func update(entity: Entity) -> void:
+func update(entity: Entity, delta: float) -> void:
 	entity.direction = getEntitydirection()
 	
 func getEntitydirection() -> Vector2:

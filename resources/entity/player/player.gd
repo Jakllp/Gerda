@@ -25,8 +25,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	inputComponent.update(self)
+	inputComponent.update(self, delta)
 	current_equipment.update(self)
+	mining_equipment.update(self)
 
 
 func change_equipment(equipment) -> void:
@@ -35,5 +36,8 @@ func change_equipment(equipment) -> void:
 	current_equipment.visible = true
 
 
-func use_equipment() -> void:
-	current_equipment.act(self)
+func use_equipment(delta: float) -> void:
+	current_equipment.act(self, delta)
+
+func try_mine(delta: float) -> bool:
+	return mining_equipment.act(self, delta)

@@ -6,16 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://beimjtwnqa8pw" path="res://resources/components/miningComponent.tscn" id="3_n7kpg"]
 
 [node name="MinigEquipment" type="Node2D"]
+position = Vector2(20, 0)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_0fe76")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-scale = Vector2(1, 0.078125)
+scale = Vector2(1, 0.078)
 texture = ExtResource("2_g7dde")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 scale = Vector2(1, 0.078125)
-target_position = Vector2(64, 0)
+target_position = Vector2(64, 64)
+hit_from_inside = true
 
 [node name="Anglepoint" parent="." instance=ExtResource("2_fgbv7")]
 position = Vector2(-27, 0)
