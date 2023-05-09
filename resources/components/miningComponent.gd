@@ -69,10 +69,10 @@ func mineOverlay(cell: Vector2i, map: TileMap, cellHardness: int) -> void:
 	print(cellHardness)
 	print(remainingHardness)
 	print(cellHardness/remainingHardness)
-	var redEffect :float = 0.5 - (remainingHardness / cellHardness)
-	print("redEffect: " + str(redEffect))
+	var alpha :float = 0.45 - (remainingHardness / cellHardness) * 0.45
+	print("alpha: " + str(alpha))
 
-	map.set_layer_modulate(2,Color(1.0,0.0,0.0,redEffect))
+	map.set_layer_modulate(2,Color(1.0,0.0,0.0,alpha))
 	
 func clearCell(cell: Vector2i, map: TileMap, onlyOverlay: bool) -> void:
 	map.erase_cell(2, cell)
