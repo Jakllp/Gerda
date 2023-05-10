@@ -12,9 +12,10 @@ radius = 92.1792
 size = Vector2(126, 127)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_54hej"]
-size = Vector2(128, 64)
+size = Vector2(106.667, 64)
 
 [node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(0.15, 0.15)
 collision_layer = 4
 collision_mask = 7
 motion_mode = 1
@@ -39,8 +40,10 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_difal")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 32)
 shape = SubResource("RectangleShape2D_54hej")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 

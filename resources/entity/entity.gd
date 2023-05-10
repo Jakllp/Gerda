@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Entity
 
-@export var speed: int = 400
+@export var speed: int = 200
 @export var hp_max: int = 100:
 	set(value):
 		if value != hp_max:
@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 
 
 func move() -> void:
-	velocity = speed * direction
+	velocity = speed * direction.normalized()
 	move_and_slide()
 
 
