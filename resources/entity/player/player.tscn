@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://resources/entity/player/player.gd" id="1_u110p"]
 [ext_resource type="PackedScene" uid="uid://cnprtm2i3wtid" path="res://resources/equipment/weapon/gun.tscn" id="2_7fuq5"]
 [ext_resource type="PackedScene" uid="uid://cnav323nopbns" path="res://resources/equipment/mining/mining_equipment.tscn" id="3_fchbn"]
-[ext_resource type="Texture2D" uid="uid://end8r2gomrl0" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="4_c5bp1"]
-[ext_resource type="Texture2D" uid="uid://juv2mw58jxll" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="5_d0kin"]
+[ext_resource type="Texture2D" uid="uid://bf1l361vh5xmh" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="4_c5bp1"]
+[ext_resource type="Texture2D" uid="uid://dwbt144aq1y1r" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="5_d0kin"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e0ita"]
 animations = [{
@@ -21,7 +21,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ml73s"]
-size = Vector2(16, 8)
+size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -40,6 +40,7 @@ animation = &"walk"
 zoom = Vector2(3, 3)
 
 [node name="CollisonShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_ml73s")
 
 [node name="EquipmentAnglePoint" type="Marker2D" parent="."]
