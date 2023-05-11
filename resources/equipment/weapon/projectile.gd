@@ -22,3 +22,8 @@ func _physics_process(delta: float) -> void:
 func is_out_of_bounds() -> bool:
 	#TODO: implement me
 	return false
+
+
+func _on_hitbox_body_entered(body):
+	if body is TileMap:
+		queue_free()

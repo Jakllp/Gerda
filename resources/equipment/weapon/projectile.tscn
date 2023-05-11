@@ -16,8 +16,12 @@ scale = Vector2(0.063, 0.063)
 texture = ExtResource("2_8wx5t")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_hxq0p")]
+collision_mask = 7
+monitoring = true
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_djmju")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 
 [editable path="Hitbox"]
