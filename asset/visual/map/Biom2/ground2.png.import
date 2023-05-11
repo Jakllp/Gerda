@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5vtqsltoe4fe"
-path="res://.godot/imported/mineableSide.png-e8af1a773d162f6045c7070f10b2aa15.ctex"
+uid="uid://bk8jjb60iwpb7"
+path="res://.godot/imported/ground2.png-0e171b74ecaf12e7fd4ac8c89d77be00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/visual/map/Biom1/mineableSide.png"
-dest_files=["res://.godot/imported/mineableSide.png-e8af1a773d162f6045c7070f10b2aa15.ctex"]
+source_file="res://asset/visual/map/Biom2/ground2.png"
+dest_files=["res://.godot/imported/ground2.png-0e171b74ecaf12e7fd4ac8c89d77be00.ctex"]
 
 [params]
 

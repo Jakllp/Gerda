@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc63ul6iw0yt4"
-path="res://.godot/imported/minebleTop.png-5276af300b5bb7402fb45972f7ffb8d2.ctex"
+uid="uid://cng30gjj7y26b"
+path="res://.godot/imported/solidSide2.png-ed1b94efe403de0f7dc0f0abb2ca287e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/visual/map/Biom1/minebleTop.png"
-dest_files=["res://.godot/imported/minebleTop.png-5276af300b5bb7402fb45972f7ffb8d2.ctex"]
+source_file="res://asset/visual/map/Biom2/solidSide2.png"
+dest_files=["res://.godot/imported/solidSide2.png-ed1b94efe403de0f7dc0f0abb2ca287e.ctex"]
 
 [params]
 

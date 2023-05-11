@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bntrqmwbokpev"
-path="res://.godot/imported/oreTop.png-f2dcb23dfb74cf5f14697a1e8ec8ab8f.ctex"
+uid="uid://ekvaywawlgrm"
+path="res://.godot/imported/oreSide.png-2804a8f02c06c5658dff9712d33ba7c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/visual/map/Biom1/oreTop.png"
-dest_files=["res://.godot/imported/oreTop.png-f2dcb23dfb74cf5f14697a1e8ec8ab8f.ctex"]
+source_file="res://asset/visual/map/Biom2/oreSide.png"
+dest_files=["res://.godot/imported/oreSide.png-2804a8f02c06c5658dff9712d33ba7c9.ctex"]
 
 [params]
 

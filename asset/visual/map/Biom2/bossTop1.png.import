@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfubyyk77n68n"
-path="res://.godot/imported/solidTop.png-acffcfb523c8f6bb1983783deb4f74e5.ctex"
+uid="uid://bbgtaxhgv0xm7"
+path="res://.godot/imported/bossTop1.png-e4df38434c78715981c5b94105c7b376.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/visual/map/Biom1/solidTop.png"
-dest_files=["res://.godot/imported/solidTop.png-acffcfb523c8f6bb1983783deb4f74e5.ctex"]
+source_file="res://asset/visual/map/Biom2/bossTop1.png"
+dest_files=["res://.godot/imported/bossTop1.png-e4df38434c78715981c5b94105c7b376.ctex"]
 
 [params]
 

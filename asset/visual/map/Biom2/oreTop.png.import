@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5k1sifdlgxfe"
-path="res://.godot/imported/ground.png-2beb1ae8bad7b9f54ecf2702eaef9364.ctex"
+uid="uid://46r8oegy7owy"
+path="res://.godot/imported/oreTop.png-2d958e57017cc473d12a36d6493c7ac7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/visual/map/Biom1/ground.png"
-dest_files=["res://.godot/imported/ground.png-2beb1ae8bad7b9f54ecf2702eaef9364.ctex"]
+source_file="res://asset/visual/map/Biom2/oreTop.png"
+dest_files=["res://.godot/imported/oreTop.png-2d958e57017cc473d12a36d6493c7ac7.ctex"]
 
 [params]
 

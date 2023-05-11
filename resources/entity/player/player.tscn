@@ -1,15 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://6jpb1ke88l01"]
+[gd_scene load_steps=8 format=3 uid="uid://6jpb1ke88l01"]
 
 [ext_resource type="Script" path="res://resources/entity/player/player.gd" id="1_u110p"]
 [ext_resource type="PackedScene" uid="uid://cnprtm2i3wtid" path="res://resources/equipment/weapon/gun.tscn" id="2_7fuq5"]
 [ext_resource type="PackedScene" uid="uid://cnav323nopbns" path="res://resources/equipment/mining/mining_equipment.tscn" id="3_fchbn"]
-[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="3_qnos2"]
+[ext_resource type="Texture2D" uid="uid://end8r2gomrl0" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="4_c5bp1"]
+[ext_resource type="Texture2D" uid="uid://juv2mw58jxll" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="5_d0kin"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_voe78"]
-size = Vector2(64, 32)
+[sub_resource type="SpriteFrames" id="SpriteFrames_e0ita"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_c5bp1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_d0kin")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ml73s"]
+size = Vector2(16, 8)
 
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(0.45, 0.45)
 collision_layer = 2
 collision_mask = 5
 motion_mode = 1
@@ -18,19 +32,18 @@ weapon_scene = ExtResource("2_7fuq5")
 mining_equipment_scene = ExtResource("3_fchbn")
 metadata/_edit_horizontal_guides_ = [-16.0]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_qnos2")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e0ita")
+animation = &"walk"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(3, 3)
 
 [node name="CollisonShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 16)
-shape = SubResource("RectangleShape2D_voe78")
+shape = SubResource("RectangleShape2D_ml73s")
 
 [node name="EquipmentAnglePoint" type="Marker2D" parent="."]
-position = Vector2(0, 15)
+position = Vector2(-2, 2)
 scale = Vector2(1.28733, 0.109863)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
