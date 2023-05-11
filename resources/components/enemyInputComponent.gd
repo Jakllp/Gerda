@@ -2,9 +2,11 @@ extends InputComponent
 
 class_name EnemyInputComponent
 
-
-func update(entity: Entity) -> void:
-	entity.direction = getEntitydirection()
+func update(enemy: Entity) -> void:
+	enemy.direction = get_enemy_direction(enemy)
 	
-func getEntitydirection() -> Vector2:
-	return Vector2.ZERO
+func get_enemy_direction(enemy: Enemy) -> Vector2:
+	
+	var path := NavigationServer2D.map_get_path(enemy.nav_map, enemy.global_position, enemy.player.global_position, false)
+	
+	return path[1]

@@ -12,19 +12,23 @@ radius = 92.1792
 size = Vector2(126, 127)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_54hej"]
-size = Vector2(106.667, 64)
+size = Vector2(66.6667, 40)
 
 [node name="Enemy" type="CharacterBody2D"]
+position = Vector2(0, -5)
 scale = Vector2(0.15, 0.15)
 collision_layer = 4
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_dw5yq")
+metadata/_edit_vertical_guides_ = []
+metadata/_edit_horizontal_guides_ = []
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_iwwip")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_rynaa")]
+visible = false
 collision_layer = 16
 collision_mask = 0
 
@@ -32,6 +36,7 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_qye2k")
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_5vtrk")]
+visible = false
 collision_layer = 4
 collision_mask = 8
 
@@ -40,10 +45,8 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_difal")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -33.3333)
 shape = SubResource("RectangleShape2D_54hej")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 

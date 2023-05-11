@@ -2,38 +2,30 @@ extends Entity
 
 class_name Enemy
 
-@onready var inputComponent = EnemyInputComponent.new()
-@onready var navi = $NavigationAgent2D
-
-var query_parameters = NavigationPathQueryParameters2D.new()
-var query_result  = NavigationPathQueryResult2D.new()
-
+@onready var input_component = EnemyInputComponent.new()
+var nav_map: RID
 
 var player: Player
+var path :PackedVector2Array
 
 func _ready() -> void:
-	navi.debug_enabled = true
+	#navi.debug_enabled = true
+	var map: TileMap
 	
 	var tree := get_tree()
 	if tree.has_group("player"):
 		player = tree.get_first_node_in_group("player")
+	if tree.has_group("map"):
+		map = tree.get_first_node_in_group("map")
+	if map:
+		nav_map = map.get_navigation_map(0)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	#inputComponent.update(self)
-	var pp = player.global_position
-
-	navi.target_position = pp
-	var target = navi.get_next_path_position()
-
-	direction = position.direction_to(target)
-
-	if Input.is_action_just_pressed("LMB"):
-		print("pp: ",pp)
-		print("tapos: ",navi.target_position)
-		print("pos: ",position)
-		print("ta: ", target)
-		print("dir: ", rad_to_deg(direction.angle()))#
-		print()
+	path = NavigationServer2D.map_get_path(nav_map, global_position, player.global_position, false)
+	
+	if path.size() > 1:
+		direction = global_position.direction_to(path[1])
+		
+		
 	super._physics_process(delta)
