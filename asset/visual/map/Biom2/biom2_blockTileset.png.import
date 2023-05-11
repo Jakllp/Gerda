@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk8jjb60iwpb7"
-path="res://.godot/imported/ground2.png-0e171b74ecaf12e7fd4ac8c89d77be00.ctex"
+uid="uid://yc03uk8t75a7"
+path="res://.godot/imported/biom2_blockTileset.png-d9c0b68132fead318c5386c0e8c91675.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/visual/map/Biom2/ground2.png"
-dest_files=["res://.godot/imported/ground2.png-0e171b74ecaf12e7fd4ac8c89d77be00.ctex"]
+source_file="res://asset/visual/map/Biom2/biom2_blockTileset.png"
+dest_files=["res://.godot/imported/biom2_blockTileset.png-d9c0b68132fead318c5386c0e8c91675.ctex"]
 
 [params]
 

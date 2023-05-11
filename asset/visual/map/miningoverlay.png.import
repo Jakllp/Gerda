@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3w46ga7thil"
-path="res://.godot/imported/ground1.png-bedd94e9ef6307fa342c7e48d8c2f2f9.ctex"
+uid="uid://cwj3jcktywn4c"
+path="res://.godot/imported/miningoverlay.png-24e9678512c89e90d2f162b4b65eb351.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/visual/map/Biom2/ground1.png"
-dest_files=["res://.godot/imported/ground1.png-bedd94e9ef6307fa342c7e48d8c2f2f9.ctex"]
+source_file="res://asset/visual/map/miningoverlay.png"
+dest_files=["res://.godot/imported/miningoverlay.png-24e9678512c89e90d2f162b4b65eb351.ctex"]
 
 [params]
 

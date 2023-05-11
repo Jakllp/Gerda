@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx8bo5vqunq8r"
-path="res://.godot/imported/solidTop1.png-e1bc431d9d4df4aeee4ffaa1c2625220.ctex"
+uid="uid://b5k1sifdlgxfe"
+path="res://.godot/imported/ground.png-2beb1ae8bad7b9f54ecf2702eaef9364.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/visual/map/Biom2/solidTop1.png"
-dest_files=["res://.godot/imported/solidTop1.png-e1bc431d9d4df4aeee4ffaa1c2625220.ctex"]
+source_file="res://asset/visual/map/Biom1/ground.png"
+dest_files=["res://.godot/imported/ground.png-2beb1ae8bad7b9f54ecf2702eaef9364.ctex"]
 
 [params]
 

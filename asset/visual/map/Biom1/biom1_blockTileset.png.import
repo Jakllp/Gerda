@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cng30gjj7y26b"
-path="res://.godot/imported/solidSide2.png-ed1b94efe403de0f7dc0f0abb2ca287e.ctex"
+uid="uid://bjo4qihuuqbq8"
+path="res://.godot/imported/biom1_blockTileset.png-8d71d6d4480881dd0cf443be1bd185d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/visual/map/Biom2/solidSide2.png"
-dest_files=["res://.godot/imported/solidSide2.png-ed1b94efe403de0f7dc0f0abb2ca287e.ctex"]
+source_file="res://asset/visual/map/Biom1/biom1_blockTileset.png"
+dest_files=["res://.godot/imported/biom1_blockTileset.png-8d71d6d4480881dd0cf443be1bd185d7.ctex"]
 
 [params]
 
