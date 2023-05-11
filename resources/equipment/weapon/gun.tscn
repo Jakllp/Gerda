@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://resources/equipment/weapon/gun.gd" id="1_2e5dt"]
 [ext_resource type="PackedScene" uid="uid://bx8hi1wpd875d" path="res://resources/equipment/weapon/projectile.tscn" id="2_ja0id"]
 [ext_resource type="PackedScene" uid="uid://dp7femcfr44sh" path="res://resources/components/shooterComponent.tscn" id="3_sxqrj"]
-[ext_resource type="Texture2D" uid="uid://el8e7wfgj7ea" path="res://asset/visual/actor/char/mole/mole_weapon.png" id="3_t7dgh"]
+[ext_resource type="Texture2D" uid="uid://calp5g02iee7o" path="res://asset/visual/actor/char/mole/mole_weapon.png" id="3_t7dgh"]
 [ext_resource type="PackedScene" uid="uid://mk5hgsurw2rv" path="res://resources/components/wearableComponent.tscn" id="4_rerad"]
 
 [node name="Gun" type="Node2D"]

@@ -18,7 +18,7 @@ func _ready() -> void:
 	add_child(weapon)
 	mining_equipment.position = $EquipmentAnglePoint.position
 	add_child(mining_equipment)
-	mining_equipment.visible = false
+	weapon.visible = false
 	
 	current_equipment = weapon
 

@@ -45,6 +45,9 @@ func mine(delta: float, collision: RayCast2D) -> bool:
 		
 		var cellHardness = map.get_cell_tile_data(1, cell).get_custom_data("hardness")
 		
+		if cellHardness == -1:
+			return false
+		
 		# Actually mine (aka reduce health of that point)
 		if cell != currentCell or currentMap == null:
 			# Remove other cell if direct connect
@@ -65,7 +68,7 @@ func mine(delta: float, collision: RayCast2D) -> bool:
 	return false
 
 func mineOverlay(cell: Vector2i, map: TileMap, cellHardness: int) -> void:
-	map.set_cell(2,cell,0, Vector2i(10,1), 0)
+	map.set_cell(2,cell,1, Vector2i(0,0), 0)
 	print(cellHardness)
 	print(remainingHardness)
 	print(cellHardness/remainingHardness)
@@ -80,4 +83,4 @@ func clearCell(cell: Vector2i, map: TileMap, onlyOverlay: bool) -> void:
 	currentMap = null
 	if not onlyOverlay:
 		map.erase_cell(1, cell)
-		map.set_cell(0, cell, 0, Vector2i(0,0), 0)
+		map.set_cell(0, cell, 2, Vector2i(0,0), 0)
