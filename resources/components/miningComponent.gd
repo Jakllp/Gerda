@@ -16,7 +16,7 @@ func update(player: Player) -> void:
 	if not shouldClear:
 		shouldClear = true
 
-func mine(delta: float, collision: RayCast2D) -> bool:
+func mine(delta: float, collision: RayCast2D) -> void:
 	if collision.is_colliding() and collision.get_collider() is TileMap:
 		var damage = delta * miningSpeed
 		shouldClear = false
@@ -41,12 +41,12 @@ func mine(delta: float, collision: RayCast2D) -> bool:
 		
 		#Sometimes this update and the cell breaking don't align properly
 		if(map.get_cell_tile_data(1, cell) == null):
-			return false
+			return
 		
 		var cellHardness = map.get_cell_tile_data(1, cell).get_custom_data("hardness")
 		
 		if cellHardness == -1:
-			return false
+			return
 		
 		# Actually mine (aka reduce health of that point)
 		if cell != currentCell or currentMap == null:
@@ -64,8 +64,7 @@ func mine(delta: float, collision: RayCast2D) -> bool:
 		# Remove the tile when done
 		if remainingHardness < 0:
 			clearCell(cell, map, false)
-		return true
-	return false
+
 
 func mineOverlay(cell: Vector2i, map: TileMap, cellHardness: int) -> void:
 	map.set_cell(2,cell,1, Vector2i(0,0), 0)
@@ -76,7 +75,8 @@ func mineOverlay(cell: Vector2i, map: TileMap, cellHardness: int) -> void:
 	print("alpha: " + str(alpha))
 
 	map.set_layer_modulate(2,Color(1.0,0.0,0.0,alpha))
-	
+
+
 func clearCell(cell: Vector2i, map: TileMap, onlyOverlay: bool) -> void:
 	map.erase_cell(2, cell)
 	remainingHardness = 0.0

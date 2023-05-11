@@ -14,11 +14,11 @@ class_name Player
 var current_equipment: Equipment
 
 func _ready() -> void:	
-	weapon.position = $EquipmentAnglePoint.position
+	weapon.position = equipment_angle_point
 	add_child(weapon)
-	mining_equipment.position = $EquipmentAnglePoint.position
+	mining_equipment.position = equipment_angle_point
 	add_child(mining_equipment)
-	weapon.visible = false
+	mining_equipment.visible = false
 	
 	current_equipment = weapon
 
@@ -27,7 +27,6 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	inputComponent.update(self, delta)
 	current_equipment.update(self)
-	mining_equipment.update(self)
 
 
 func change_equipment(equipment) -> void:
@@ -38,6 +37,3 @@ func change_equipment(equipment) -> void:
 
 func use_equipment(delta: float) -> void:
 	current_equipment.act(self, delta)
-
-func try_mine(delta: float) -> bool:
-	return mining_equipment.act(self, delta)

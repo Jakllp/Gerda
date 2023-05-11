@@ -21,7 +21,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ml73s"]
-size = Vector2(16, 16)
+size = Vector2(17.015, 16)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -40,11 +40,11 @@ animation = &"walk"
 zoom = Vector2(3, 3)
 
 [node name="CollisonShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0.0119472, 4)
 shape = SubResource("RectangleShape2D_ml73s")
 
 [node name="EquipmentAnglePoint" type="Marker2D" parent="."]
-position = Vector2(-2, 2)
+position = Vector2(-2, 2.5)
 scale = Vector2(1.28733, 0.109863)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

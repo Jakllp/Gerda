@@ -10,6 +10,6 @@ func update(player: Player) -> void:
 		if child.has_method("update"):
 			child.update(player)
 
-func act(player: Player, delta: float) -> bool:
+func act(player: Player, delta: float) -> void:
 	var collision :RayCast2D = $RayCast2D
-	return miningComponent.mine(delta, collision)
+	miningComponent.mine(delta, collision)
