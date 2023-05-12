@@ -1,34 +1,44 @@
-[gd_scene load_steps=8 format=3 uid="uid://jcoh5f75ac31"]
+[gd_scene load_steps=9 format=3 uid="uid://jcoh5f75ac31"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/enemy.gd" id="1_dw5yq"]
 [ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="2_iwwip"]
 [ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_rynaa"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/hurtbox.tscn" id="4_5vtrk"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_k3svk"]
+radius = 51.0098
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_qye2k"]
-radius = 92.1792
+radius = 12.0416
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_difal"]
-size = Vector2(126, 127)
+size = Vector2(18, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_54hej"]
-size = Vector2(66.6667, 40)
+size = Vector2(8, 4.6666)
 
 [node name="Enemy" type="CharacterBody2D"]
-position = Vector2(0, -5)
-scale = Vector2(0.15, 0.15)
 collision_layer = 4
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_dw5yq")
-metadata/_edit_vertical_guides_ = []
+metadata/_edit_vertical_guides_ = [-51.0, 51.0]
 metadata/_edit_horizontal_guides_ = []
 
+[node name="AcitvationRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AcitvationRange"]
+modulate = Color(0.301961, 0.419608, 0.188235, 1)
+shape = SubResource("CircleShape2D_k3svk")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_iwwip")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_rynaa")]
-visible = false
 collision_layer = 16
 collision_mask = 0
 
@@ -36,7 +46,6 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_qye2k")
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_5vtrk")]
-visible = false
 collision_layer = 4
 collision_mask = 8
 
@@ -45,9 +54,10 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_difal")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -33.3333)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_54hej")
 
+[connection signal="body_entered" from="AcitvationRange" to="." method="_on_acitvation_range_body_entered"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 
 [editable path="Hitbox"]

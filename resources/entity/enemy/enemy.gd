@@ -6,6 +6,7 @@ class_name Enemy
 var nav_map: RID
 
 var player: Player
+var active: bool = false
 
 #only for debugging and testing purposes to see the navigation path
 var path :PackedVector2Array
@@ -22,3 +23,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	input_component.update(self)
 	super._physics_process(delta)
+
+
+func _on_acitvation_range_body_entered(body):
+	if body is Player:
+		active = true

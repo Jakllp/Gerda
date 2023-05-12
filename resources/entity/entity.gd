@@ -21,7 +21,7 @@ class_name Entity
 			if hp == 0:
 				die()
 
-var direction := Vector2.from_angle(rotation)
+var direction := Vector2.ZERO
 
 
 func _physics_process(delta: float) -> void:
