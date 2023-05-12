@@ -11,6 +11,9 @@ func update(player: Player) -> void:
 
 func act(Player: Player) -> void:
 	miningComponent.mine()
+	
+func do_rotation(player: Player) -> void:
+	$Anglepoint.aim_at_mouse_basic(player)
 
 #	wage idea/direction how mining could be done from the erly tests
 
