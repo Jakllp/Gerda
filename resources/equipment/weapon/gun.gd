@@ -12,3 +12,6 @@ func update(player: Player) -> void:
 
 func act(player: Player, delta: float) -> void:
 	$Shooter.shoot(projectile_scene.instantiate())
+
+func do_rotation(player: Player):
+	$Anglepoint.aim_at_mouse_with_right_angled_grip(player)

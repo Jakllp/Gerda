@@ -11,10 +11,11 @@ script = ExtResource("1_2e5dt")
 projectile_scene = ExtResource("2_ja0id")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5, 1.5)
 texture = ExtResource("3_t7dgh")
 
 [node name="Shooter" parent="." instance=ExtResource("3_sxqrj")]
-position = Vector2(12, -2)
+position = Vector2(17, 0)
 
 [node name="Anglepoint" parent="." instance=ExtResource("4_rerad")]
-position = Vector2(-5, -3)
+position = Vector2(0, -1)

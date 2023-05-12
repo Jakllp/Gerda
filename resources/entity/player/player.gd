@@ -9,7 +9,7 @@ class_name Player
 @onready var weapon := weapon_scene.instantiate()
 @onready var mining_equipment := mining_equipment_scene.instantiate()
 
-@onready var inputComponent = PlayerInputComponent.new()
+@onready var input_component = PlayerInputComponent.new()
 
 var current_equipment: Equipment
 
