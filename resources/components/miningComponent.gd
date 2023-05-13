@@ -8,24 +8,11 @@ var mining_speed = 10
 
 
 func mine(delta: float, collision: RayCast2D) -> void:
-	if collision.is_colliding() and collision.get_collider() is TileMap:		
-		# Get map and point
-		var point := collision.get_collision_point()
-		print("point" + str(point))
+	if collision.is_colliding() and collision.get_collider() is TileMap:
+		# Get the cell on the map
+		var cell_rid = collision.get_collider_rid()
 		var map :TileMap = collision.get_collider()
-		var scale := map.scale
-		print("scale: " + str(scale))
-		point /= map.scale
-
-		var normal = collision.get_collision_normal()
-		print("normal: " + str(normal))
-		point -= normal
-		print("point modified: " + str(point))
-
-		# Convert to actual tilemap-point
-		var cell = map.local_to_map(point)
-		print(cell)
-		print("\n")
+		var cell = map.get_coords_for_body_rid(cell_rid)
 		
 		#Sometimes this update and the cell breaking don't align properly
 		if(map.get_cell_tile_data(map.get("block_layer"), cell) == null):
