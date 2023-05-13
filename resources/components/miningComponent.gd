@@ -28,10 +28,10 @@ func mine(delta: float, collision: RayCast2D) -> void:
 		print("\n")
 		
 		#Sometimes this update and the cell breaking don't align properly
-		if(map.get_cell_tile_data(1, cell) == null):
+		if(map.get_cell_tile_data(map.get("block_layer"), cell) == null):
 			return
 		
-		var cell_hardness = map.get_cell_tile_data(1, cell).get_custom_data("hardness")
+		var cell_hardness = map.get_cell_tile_data(map.get("block_layer"), cell).get_custom_data("hardness")
 		# These cells are impossible to mine
 		if cell_hardness == -1:
 			return
@@ -40,4 +40,4 @@ func mine(delta: float, collision: RayCast2D) -> void:
 		if(map.damage_cell(cell, delta * mining_speed)):
 			# In this case we actually destroyed an ore
 			# TODO implement ore logic
-			pass
+			print("ORE")
