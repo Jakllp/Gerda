@@ -10,7 +10,7 @@ func update(player: Player) -> void:
 
 
 func check_for_flip(player: Player):
-	var mousePos := player.get_local_mouse_position() - player.equipment_angle_point
+	var mousePos := player.get_local_mouse_position()
 	# Check if flip is needed, if so -> Flip (also tell the player to flip)
 	if mousePos.normalized().x < 0:
 		if player.scale.x > 0:
