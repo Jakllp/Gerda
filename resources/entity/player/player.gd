@@ -11,7 +11,8 @@ class_name Player
 
 @onready var input_component = PlayerInputComponent.new()
 
-var current_equipment: Equipment
+var current_equipment :Equipment
+var ore_pouch := 0
 
 func _ready() -> void:	
 	weapon.position = equipment_angle_point

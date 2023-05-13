@@ -2,12 +2,15 @@ extends Node
 
 class_name MiningComponent
 
+var rng = RandomNumberGenerator.new()
+var min_ore_from_ore := 1
+var max_ore_from_ore := 4
 
 # Aka how many damage it deals per second
 var mining_speed = 10
 
 
-func mine(delta: float, collision: RayCast2D) -> void:
+func mine(delta: float, player: Player, collision: RayCast2D) -> void:
 	if collision.is_colliding() and collision.get_collider() is TileMap:
 		# Get the cell on the map
 		var cell_rid = collision.get_collider_rid()
@@ -27,4 +30,6 @@ func mine(delta: float, collision: RayCast2D) -> void:
 		if(map.damage_cell(cell, delta * mining_speed)):
 			# In this case we actually destroyed an ore
 			# TODO implement ore logic
-			print("ORE")
+			var new_ore := rng.randi_range(min_ore_from_ore, max_ore_from_ore)
+			player.ore_pouch += new_ore
+			print("+"+str(new_ore)+" ORE: "+str(player.ore_pouch))

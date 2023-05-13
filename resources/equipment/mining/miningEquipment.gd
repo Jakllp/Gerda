@@ -11,7 +11,7 @@ func update(player: Player) -> void:
 
 func act(player: Player, delta: float) -> void:
 	var collision :RayCast2D = $RayCast2D
-	miningComponent.mine(delta, collision)
+	miningComponent.mine(delta, player, collision)
 	
 func do_rotation(player: Player) -> void:
 	$Anglepoint.aim_at_mouse_basic(player)
