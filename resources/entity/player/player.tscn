@@ -44,7 +44,7 @@ position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_ml73s")
 
 [node name="EquipmentAnglePoint" type="Marker2D" parent="."]
-position = Vector2(-2, 2)
+position = Vector2(-2, 2.5)
 scale = Vector2(1.28733, 0.109863)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

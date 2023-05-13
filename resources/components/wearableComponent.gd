@@ -33,7 +33,7 @@ func aim_at_mouse_with_right_angled_grip(player: Player):
 	# Calculate some angles
 	var mouse_distance := mouse_pos.length()
 	# Don't know why the /3 is needed, but it is
-	var rot_radius := (position - player.equipment_angle_point).length() / 3
+	var rot_radius := position.length()
 	
 	# Just to spite Lea (angle between rotRadius and mouse)
 	var hans := acos(rot_radius/mouse_distance)
@@ -42,9 +42,12 @@ func aim_at_mouse_with_right_angled_grip(player: Player):
 	var is_above_AP := mouse_pos.y < 0
 	var is_above_center := (mouse_pos+position).y < 0
 	var beta
+	var sigma
 	if is_above_AP:
+		sigma = hans - mouse_angle
 		beta = (PI/2) - hans + mouse_angle
 	else:
+		sigma = hans + mouse_angle 
 		if is_above_center:
 			beta = (PI/2) - hans - mouse_angle
 		else:
@@ -60,4 +63,4 @@ func aim_at_mouse_with_right_angled_grip(player: Player):
 	owner.rotation = alpha
 	
 	# The position of the equipment adjusted for the rotation
-	owner.position = player.equipment_angle_point - position
+	get_parent().position = player.equipment_angle_point + (Vector2.from_angle(sigma) * rot_radius)
