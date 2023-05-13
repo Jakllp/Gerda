@@ -26,8 +26,8 @@ func _process(delta):
 
 
 # Logic of damaging cells
-func damage_cell(cell: Vector2i, damage: float) -> bool:
-		var was_ore :bool
+func damage_cell(cell: Vector2i, damage: float):
+		var was_ore = false
 		
 		if remaining_hardness_dict.has(cell):
 			# We know the cell -> Further reduce damage
@@ -38,19 +38,28 @@ func damage_cell(cell: Vector2i, damage: float) -> bool:
 		self.mine_overlay(cell)
 		
 		var attached_cell = null
+		var cell_was_top :bool
 		# Gotta check if cell itself is a wall
 		if self.get_cell_atlas_coords(block_layer,cell,false).y == 1:
 			attached_cell = self.get_neighbor_cell(cell,TileSet.CELL_NEIGHBOR_TOP_SIDE)
+			cell_was_top = false
 		# Same goes for it being the top of a wall
-		if self.get_cell_atlas_coords(block_layer,self.get_neighbor_cell(cell,TileSet.CELL_NEIGHBOR_BOTTOM_SIDE),false).y == 1:
+		elif self.get_cell_atlas_coords(block_layer,self.get_neighbor_cell(cell,TileSet.CELL_NEIGHBOR_BOTTOM_SIDE),false).y == 1:
 			attached_cell = self.get_neighbor_cell(cell,TileSet.CELL_NEIGHBOR_BOTTOM_SIDE)
+			cell_was_top = true
+		else:
+			cell_was_top = true
 		if attached_cell != null:
 			remaining_hardness_dict[attached_cell] = remaining_hardness_dict[cell]
 			self.mine_overlay(attached_cell)
 		
 		# Remove the tile when it's destroyed
 		if remaining_hardness_dict[cell] < 0:
-			was_ore = self.get_cell_tile_data(block_layer, cell).get_custom_data("is_ore")
+			if self.get_cell_tile_data(block_layer, cell).get_custom_data("is_ore"):
+				if cell_was_top:
+					was_ore = cell
+				else: 
+					was_ore = attached_cell
 			self.clear_cell(cell, attached_cell)
 		return was_ore
 

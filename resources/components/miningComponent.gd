@@ -2,6 +2,8 @@ extends Node
 
 class_name MiningComponent
 
+@export var ore_text_scene = preload("res://resources/other/ore_text.tscn")
+
 var rng = RandomNumberGenerator.new()
 var min_ore_from_ore := 1
 var max_ore_from_ore := 4
@@ -27,9 +29,14 @@ func mine(delta: float, player: Player, collision: RayCast2D) -> void:
 			return
 		
 		# Actually mine (aka reduce health of that point)
-		if(map.damage_cell(cell, delta * mining_speed)):
+		var ore_pos = map.damage_cell(cell, delta * mining_speed)
+		
+		if ore_pos is Vector2i:
 			# In this case we actually destroyed an ore
-			# TODO implement ore logic
 			var new_ore := rng.randi_range(min_ore_from_ore, max_ore_from_ore)
 			player.ore_pouch += new_ore
+			var ore_text := ore_text_scene.instantiate()
+			ore_text.get_child(0,false).set_text("+"+str(new_ore))
+			ore_text.position = map.map_to_local(ore_pos)
+			map.add_child(ore_text)
 			print("+"+str(new_ore)+" ORE: "+str(player.ore_pouch))
