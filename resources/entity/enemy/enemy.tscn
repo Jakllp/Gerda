@@ -1,9 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://jcoh5f75ac31"]
+[gd_scene load_steps=22 format=3 uid="uid://coohrx8561t5b"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/enemy.gd" id="1_dw5yq"]
 [ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="2_iwwip"]
 [ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_rynaa"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/hurtbox.tscn" id="4_5vtrk"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="5_0ox2b"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="5_ls15v"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSelector.gd" id="7_jqbb3"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Decorators/BTInverter.gd" id="8_72amm"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Decorators/BTFailure.gd" id="8_ytxop"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSequence.gd" id="8_yu713"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Leaves/BTActionBlackboardSet.gd" id="9_f0n2e"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/isPlayerVisible.gd" id="11_n00pu"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/loadMovePath.gd" id="12_7a0b8"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/isPathRefreshTimerOut.gd" id="14_7a8fv"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/isPathOver.gd" id="15_6tk65"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/loadWanderPos.gd" id="16_f5xnt"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/followPath.gd" id="17_7pmn8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k3svk"]
 radius = 51.0098
@@ -56,6 +69,96 @@ shape = SubResource("RectangleShape2D_difal")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_54hej")
+
+[node name="PathRefreshTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="BTBlackboard" type="Node" parent="."]
+script = ExtResource("5_0ox2b")
+
+[node name="BTRoot" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
+script = ExtResource("5_ls15v")
+actor_path = NodePath("..")
+blackboard = NodePath("../BTBlackboard")
+
+[node name="BTSelector" type="Node" parent="BTRoot"]
+script = ExtResource("7_jqbb3")
+
+[node name="MoveEnemy" type="Node" parent="BTRoot/BTSelector"]
+script = ExtResource("7_jqbb3")
+
+[node name="BTFailure" type="Node" parent="BTRoot/BTSelector/MoveEnemy"]
+script = ExtResource("8_ytxop")
+
+[node name="RefreshPath" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure"]
+script = ExtResource("7_jqbb3")
+
+[node name="FollowPlayer" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath"]
+script = ExtResource("8_yu713")
+
+[node name="BTActionBlackboardSet" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/FollowPlayer"]
+script = ExtResource("9_f0n2e")
+blackboard_key = "player_pos"
+expression = "actor.get_tree().get_first_node_in_group(\"player\").global_position"
+can_overwrite_value = true
+
+[node name="IsPlayerVisible" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/FollowPlayer"]
+script = ExtResource("11_n00pu")
+player_pos_key = "player_pos"
+
+[node name="LoadMovePath" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/FollowPlayer"]
+script = ExtResource("12_7a0b8")
+target_pos_key = "player_pos"
+move_path_key = "move_path"
+
+[node name="ResetPathIndex2" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/FollowPlayer"]
+script = ExtResource("9_f0n2e")
+blackboard_key = "path_index"
+expression = "1"
+can_overwrite_value = true
+
+[node name="BTInverter" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath"]
+script = ExtResource("8_72amm")
+
+[node name="ShouldPathRefresh" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/BTInverter"]
+script = ExtResource("7_jqbb3")
+
+[node name="IsPathRefreshTimerOut" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/BTInverter/ShouldPathRefresh"]
+script = ExtResource("14_7a8fv")
+refresh_timer_path = "PathRefreshTimer"
+
+[node name="IsPathOver" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/BTInverter/ShouldPathRefresh"]
+script = ExtResource("15_6tk65")
+move_path_key = "move_path"
+path_index_key = "path_index"
+
+[node name="BTInverter2" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath"]
+script = ExtResource("8_72amm")
+
+[node name="ResetPathIndex" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/BTInverter2"]
+script = ExtResource("9_f0n2e")
+blackboard_key = "path_index"
+expression = "1"
+can_overwrite_value = true
+
+[node name="Wander" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath"]
+script = ExtResource("8_yu713")
+
+[node name="LoadWanderPos" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/Wander"]
+script = ExtResource("16_f5xnt")
+wander_pos_key = "wander_pos"
+
+[node name="LoadMovePath" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/Wander"]
+script = ExtResource("12_7a0b8")
+target_pos_key = "wander_pos"
+move_path_key = "move_path"
+
+[node name="FollowPath" type="Node" parent="BTRoot/BTSelector/MoveEnemy"]
+script = ExtResource("17_7pmn8")
+path_index_key = "path_index"
+move_path_key = "move_path"
+point_reached_margin = 5
 
 [connection signal="body_entered" from="AcitvationRange" to="." method="_on_acitvation_range_body_entered"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

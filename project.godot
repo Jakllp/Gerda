@@ -15,6 +15,10 @@ run/main_scene="res://resources/levels/level.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://asset/visual/actor/icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/yet_another_behavior_tree/plugin.cfg")
+
 [input]
 
 up={
