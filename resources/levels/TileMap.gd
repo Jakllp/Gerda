@@ -66,16 +66,12 @@ func mine_overlay(cell: Vector2i) -> void:
 	var percent = 1 - remaining_hardness_dict[cell] / self.get_cell_tile_data(block_layer, cell).get_custom_data("hardness")
 	if percent < 0.25:
 		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(0,0), 0)
-		return
 	elif percent < 0.5:
 		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(1,0), 0)
-		return
 	elif percent < 0.75:
 		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(2,0), 0)
-		return
 	elif percent < 1:
 		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(3,0), 0)
-		return
 
 
 # Clears the cell - TODO NAV-UPDATES
