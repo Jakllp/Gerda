@@ -12,7 +12,7 @@ func update(player: Player) -> void:
 
 func act(player: Player, delta: float) -> void:
 	var collision :RayCast2D = $RayCast2D
-	var mined_ore = mining_component.mine(delta, collision, true)
+	var mined_ore = mining_component.mine(delta, collision)
 	if mined_ore != 0:
 		owner.ore_pouch += mined_ore
 	

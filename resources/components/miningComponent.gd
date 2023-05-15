@@ -10,7 +10,7 @@ var rng = RandomNumberGenerator.new()
 var mining_speed = 10
 
 
-func mine(delta: float, collision: RayCast2D, mined_by_player: bool) -> int:
+func mine(delta: float, collision: RayCast2D) -> int:
 	if collision.is_colliding() and collision.get_collider() is TileMap:
 		# Get the cell on the map
 		var cell_rid = collision.get_collider_rid()
