@@ -116,7 +116,7 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 				self.erase_cell(mine_overlay_layer, top_cell)
 				remaining_hardness_dict.erase(top_cell)
 			# Get the x-atlas-coords of the cell ABOVE the top_cell -> we need the correct wall
-			var top_atlas_coords_x = self.get_cell_atlas_coords(block_layer,self.get_neighbor_cell(cell, TileSet.CELL_NEIGHBOR_TOP_SIDE),false).x
+			var top_atlas_coords_x = self.get_cell_atlas_coords(block_layer,cell_above_everything,false).x
 			self.set_cell(block_layer, top_cell, block_atlas,Vector2i(top_atlas_coords_x,1), 0)
 			self.set_cell(ground_layer, cell, ground_atlas,Vector2i(0,0), 0)
 			return
