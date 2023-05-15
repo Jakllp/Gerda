@@ -9,8 +9,6 @@ var rng = RandomNumberGenerator.new()
 # Aka how many damage it deals per second
 var mining_speed = 10
 
-signal ore_mined(mined_by_player, amount, position)
-
 
 func mine(delta: float, collision: RayCast2D, mined_by_player: bool) -> int:
 	if collision.is_colliding() and collision.get_collider() is TileMap:
@@ -33,7 +31,6 @@ func mine(delta: float, collision: RayCast2D, mined_by_player: bool) -> int:
 		
 		if ore_pos is Vector2i:
 			# In this case we actually destroyed an ore
-			var new_ore := rng.randi_range(min_ore_from_ore, max_ore_from_ore)
-			return new_ore
-			#ore_mined.emit(mined_by_player, new_ore, ore_pos)
+			var ore_amount := rng.randi_range(min_ore_from_ore, max_ore_from_ore)
+			return ore_amount
 	return 0
