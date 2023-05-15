@@ -80,8 +80,8 @@ func mine_overlay(cell: Vector2i) -> void:
 
 # Clears the cell - TODO NAV-UPDATES
 func clear_cell(cell: Vector2i, attached_cell) -> void:
-	# If it's just a random Block
 	# TODO Nav-updates!
+	# If it's just a random Block
 	if(attached_cell == null):
 		# Gotta check for layer ontop
 		var top_cell = self.get_neighbor_cell(cell, TileSet.CELL_NEIGHBOR_TOP_SIDE)
@@ -89,22 +89,27 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 			# There's something on top of it -> let's see if it is a top or a wall
 			if self.get_cell_atlas_coords(block_layer,top_cell,false).y == 0:
 				# It's a top -> Gotta make a wall
-				self.erase_cell(mine_overlay_layer, cell)
-				remaining_hardness_dict.erase(cell)
+				# Let's see if the block above is damaged and handle it accordingly
+				if remaining_hardness_dict.has(top_cell):
+					remaining_hardness_dict[cell] = remaining_hardness_dict[top_cell]
+					mine_overlay(cell)
+				else:
+					self.erase_cell(mine_overlay_layer, cell)
+					remaining_hardness_dict.erase(cell)
 				# Get the x-atlas-coords of the cell ABOVE the top_cell -> we need the correct wall
 				var top_atlas_coords_x = self.get_cell_atlas_coords(block_layer,self.get_neighbor_cell(cell, TileSet.CELL_NEIGHBOR_TOP_SIDE),false).x
 				self.set_cell(block_layer, cell, block_atlas,Vector2i(top_atlas_coords_x,1), 0)
 				self.set_cell(ground_layer, cell, ground_atlas,Vector2i(0,0), 0)
 				return
 		
-		# Nothing on top of it/it's a wall -> delete it
+		# Nothing/wall on top of it -> delete it
 		self.erase_cell(mine_overlay_layer, cell)
 		remaining_hardness_dict.erase(cell)
 		self.erase_cell(block_layer, cell)
 		self.set_cell(ground_layer, cell, 2, Vector2i(0,0), 0)
 		
 		
-	# We have a wall!
+	# We have a wall-block!
 	else:
 		var top_cell :Vector2i
 		var wall_cell :Vector2i
@@ -127,8 +132,13 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 			# There's something on top of it -> let's see if it is a top or a wall
 			if self.get_cell_atlas_coords(block_layer,top_top_cell,false).y == 0:
 				# It's NOT a wall!
-				self.erase_cell(mine_overlay_layer, top_cell)
-				remaining_hardness_dict.erase(top_cell)
+				# Let's see if the block above is damaged and handle it accordingly
+				if remaining_hardness_dict.has(top_top_cell):
+					remaining_hardness_dict[top_cell] = remaining_hardness_dict[top_top_cell]
+					mine_overlay(top_cell)
+				else:
+					self.erase_cell(mine_overlay_layer, top_cell)
+					remaining_hardness_dict.erase(top_cell)
 				# Get the x-atlas-coords of the cell ABOVE the top_cell -> we need the correct wall
 				var top_atlas_coords_x = self.get_cell_atlas_coords(block_layer,self.get_neighbor_cell(top_cell, TileSet.CELL_NEIGHBOR_TOP_SIDE),false).x
 				self.set_cell(block_layer, top_cell, block_atlas,Vector2i(top_atlas_coords_x,1), 0)
