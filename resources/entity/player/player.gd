@@ -9,24 +9,29 @@ class_name Player
 @onready var weapon := weapon_scene.instantiate()
 @onready var mining_equipment := mining_equipment_scene.instantiate()
 
-@onready var input_component = PlayerInputComponent.new()
+var input_component = PlayerInputComponent.new()
 
 var current_equipment :Equipment
-var ore_pouch := 0
+var ore_pouch := 0:
+	set(value):
+		if ore_pouch != value:
+			print("+"+str(value-ore_pouch)+" Ore! We now have: "+str(value))
+			ore_received.emit(value-ore_pouch, Vector2(global_position.x,global_position.y-20))
+			ore_pouch = value
 
-signal ore_received(amount, ore_pos)
+signal ore_received(amount, pos)
 
 
 func _ready() -> void:	
 	weapon.position = equipment_angle_point
 	add_child(weapon)
+	weapon.owner = self
 	mining_equipment.position = equipment_angle_point
 	add_child(mining_equipment)
+	mining_equipment.owner = self
 	mining_equipment.visible = false
 	
 	current_equipment = weapon
-	
-	mining_equipment.get("mining_component").ore_mined.connect(_on_ore_mined)
 
 
 func _physics_process(delta: float) -> void:
@@ -43,10 +48,3 @@ func change_equipment(equipment) -> void:
 
 func use_equipment(delta: float) -> void:
 	current_equipment.act(self, delta)
-
-
-func _on_ore_mined(mined_by_player: bool, amount: int, ore_pos: Vector2i) -> void:
-	if mined_by_player:
-		ore_pouch += amount
-		ore_received.emit(amount, ore_pos)
-		print("+"+str(amount)+" Ore! We now have: "+str(ore_pouch))
