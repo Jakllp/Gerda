@@ -1,6 +1,8 @@
 extends TileMap
 
 
+@export var ore_text_scene = preload("res://resources/other/ore_text.tscn")
+
 # Damage-Map -> Stores the remaining hardness of cells
 var remaining_hardness_dict = {}
 
@@ -138,3 +140,11 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 		remaining_hardness_dict.erase(top_cell)
 		self.erase_cell(block_layer, top_cell)
 		self.set_cell(ground_layer, top_cell, ground_atlas,Vector2i(0,0), 0)
+
+
+# Handles the pop-up when the player receives ore
+func _on_player_ore_received(amount: int, ore_pos: Vector2i) -> void:
+	var ore_text := ore_text_scene.instantiate()
+	ore_text.get_child(0,false).set_text("+"+str(amount))
+	ore_text.position = self.map_to_local(ore_pos)
+	self.add_child(ore_text)

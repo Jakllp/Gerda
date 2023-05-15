@@ -14,6 +14,9 @@ class_name Player
 var current_equipment :Equipment
 var ore_pouch := 0
 
+signal ore_received(amount, ore_pos)
+
+
 func _ready() -> void:	
 	weapon.position = equipment_angle_point
 	add_child(weapon)
@@ -22,6 +25,8 @@ func _ready() -> void:
 	mining_equipment.visible = false
 	
 	current_equipment = weapon
+	
+	mining_equipment.get("mining_component").ore_mined.connect(_on_ore_mined)
 
 
 func _physics_process(delta: float) -> void:
@@ -38,3 +43,10 @@ func change_equipment(equipment) -> void:
 
 func use_equipment(delta: float) -> void:
 	current_equipment.act(self, delta)
+
+
+func _on_ore_mined(mined_by_player: bool, amount: int, ore_pos: Vector2i) -> void:
+	if mined_by_player:
+		ore_pouch += amount
+		ore_received.emit(amount, ore_pos)
+		print("+"+str(amount)+" Ore! We now have: "+str(ore_pouch))

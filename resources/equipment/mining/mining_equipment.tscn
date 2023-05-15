@@ -26,3 +26,5 @@ hit_from_inside = true
 position = Vector2(0.00012207, 0)
 
 [node name="MiningComponent" parent="." instance=ExtResource("3_n7kpg")]
+
+[connection signal="ore_mined" from="MiningComponent" to="." method="_on_mining_component_ore_mined"]

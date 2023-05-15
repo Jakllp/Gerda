@@ -2,7 +2,7 @@ extends Equipment
 
 class_name MiningEquipment
 
-@onready var miningComponent :MiningComponent = MiningComponent.new()
+@onready var mining_component :MiningComponent = MiningComponent.new()
 
 func update(player: Player) -> void:
 	for child in get_children():
@@ -11,7 +11,7 @@ func update(player: Player) -> void:
 
 func act(player: Player, delta: float) -> void:
 	var collision :RayCast2D = $RayCast2D
-	miningComponent.mine(delta, player, collision)
+	mining_component.mine(delta, collision, true)
 	
 func do_rotation(player: Player) -> void:
 	$Anglepoint.aim_at_mouse_basic(player)

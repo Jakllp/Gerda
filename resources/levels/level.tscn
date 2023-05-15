@@ -166,3 +166,5 @@ script = ExtResource("4_j5mb2")
 [node name="Player" parent="." instance=ExtResource("3_rhs2s")]
 z_index = 1
 position = Vector2(23, 50)
+
+[connection signal="ore_received" from="Player" to="TileMap" method="_on_player_ore_received"]
