@@ -129,8 +129,8 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 
 
 # Handles the pop-up when the player receives ore
-func _on_player_ore_received(amount: int, ore_pos: Vector2i) -> void:
+func _on_player_ore_received(amount: int, pos: Vector2) -> void:
 	var ore_text := ore_text_scene.instantiate()
 	ore_text.get_child(0,false).set_text("+"+str(amount))
-	ore_text.position = self.map_to_local(ore_pos)
+	ore_text.global_position = pos
 	self.add_child(ore_text)

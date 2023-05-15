@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://beimjtwnqa8pw"]
-
-[ext_resource type="Script" path="res://resources/components/miningComponent.gd" id="1_c785u"]
-
-[node name="MiningComponent" type="Node"]
-script = ExtResource("1_c785u")
