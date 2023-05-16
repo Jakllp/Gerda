@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 
-func _on_acitvation_range_body_entered(body):
+func _on_activation_range_body_entered(body: Node2D) -> void:
 	if body is Player:
 		if not is_physics_processing():
 			set_physics_process(true)

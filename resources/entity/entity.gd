@@ -42,6 +42,6 @@ func recieve_damage(damage: int) -> void:
 	self.hp -= damage
 
 
-func _on_hurtbox_area_entered(area: Area2D) -> void:
+func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
 		recieve_damage(area.damage)
