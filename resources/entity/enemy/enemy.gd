@@ -16,8 +16,18 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 
+func attack() -> void:
+	pass
+
+
 func _on_activation_range_body_entered(body: Node2D) -> void:
 	if body is Player:
 		if not is_physics_processing():
 			set_physics_process(true)
 			$BTRoot.enabled = true
+			$ActivationRange.process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func _on_attack_range_body_entered(body: Node2D) -> void:
+	if body is Player:
+		attack()
