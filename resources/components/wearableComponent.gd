@@ -22,7 +22,7 @@ func check_for_flip(player: Player):
 
 # Just point the item in hand towards the mouse
 func aim_at_mouse_basic(player: Player):
-	var mouse_pos := player.get_local_mouse_position()
+	var mouse_pos := player.get_local_mouse_position() - player.equipment_angle_point
 	owner.rotation = mouse_pos.angle()
 	owner.position = mouse_pos.normalized() * position.length() + player.equipment_angle_point
 

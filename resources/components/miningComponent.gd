@@ -1,34 +1,36 @@
-extends Node
+extends RefCounted
 
 class_name MiningComponent
 
-func mine() -> void:
-	pass
+var rng = RandomNumberGenerator.new()
+@export var min_ore_from_ore := 1
+@export var max_ore_from_ore := 4
 
-#	wage idea/direction how mining could be done from the erly tests
+# Aka how many damage it deals per second
+var mining_speed = 10
 
-#func _unhandled_input(event: InputEvent) -> void:
-#	if event.is_action_pressed("LMB"):
-#		get_viewport().set_input_as_handled()
-#		var collision :RayCast2D = $RayCast2D
-#		print("Colliding with: " + str(collision.get_collider()))
-#		if collision.is_colliding() and collision.get_collider() is TileMap:
-#			var point := collision.get_collision_point()
-#			print("point" + str(point))
-#			var map :TileMap = collision.get_collider()
-#
-#			var scale := map.scale
-#			print("scale: " + str(scale))
-#			point /= map.scale
-#
-#			var normal = collision.get_collision_normal()
-#			print("normal: " + str(normal))
-#			point -= normal
-#
-#			print("point modified: " + str(point))
-#
-#			var point2 = map.local_to_map(point)
-#			print(point2)
-#			print("\n")
-#			map.erase_cell(1, point2)
-#			map.set_cell(0, point2, 0, Vector2i(0,0), 0)
+
+func mine(delta: float, collision: RayCast2D) -> int:
+	if collision.is_colliding() and collision.get_collider() is TileMap:
+		# Get the cell on the map
+		var cell_rid = collision.get_collider_rid()
+		var map :TileMap = collision.get_collider()
+		var cell = map.get_coords_for_body_rid(cell_rid)
+		
+		#Sometimes this update and the cell breaking don't align properly
+		if(map.get_cell_tile_data(map.get("block_layer"), cell) == null):
+			return 0
+		
+		var cell_hardness = map.get_cell_tile_data(map.get("block_layer"), cell).get_custom_data("hardness")
+		# These cells are impossible to mine
+		if cell_hardness == -1:
+			return 0
+		
+		# Actually mine (aka reduce health of that point)
+		var ore_pos = map.damage_cell(cell, delta * mining_speed)
+		
+		if ore_pos is Vector2i:
+			# In this case we actually destroyed an ore
+			var ore_amount := rng.randi_range(min_ore_from_ore, max_ore_from_ore)
+			return ore_amount
+	return 0
