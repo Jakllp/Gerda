@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://cciqco58oleb0"]
 
 [ext_resource type="Script" path="res://resources/entity/entity.gd" id="1_8er2l"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="2_gccfy"]
@@ -14,6 +14,7 @@ script = ExtResource("1_8er2l")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="HurtBox" parent="." instance=ExtResource("2_gccfy")]
+collision_mask = 0
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 

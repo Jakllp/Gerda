@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=10 format=3 uid="uid://g2f1usyuuxsu"]
 
 [ext_resource type="Script" path="res://resources/entity/player/player.gd" id="1_u110p"]
 [ext_resource type="PackedScene" uid="uid://cnprtm2i3wtid" path="res://resources/equipment/weapon/gun.tscn" id="2_7fuq5"]
@@ -51,13 +51,12 @@ position = Vector2(-2.22222, 2.22223)
 scale = Vector2(1.28733, 0.109863)
 
 [node name="HurtBox" parent="." instance=ExtResource("6_hfx4t")]
-collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(-1, 1)
 shape = SubResource("CapsuleShape2D_qqoc6")
 
-[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 
 [editable path="HurtBox"]

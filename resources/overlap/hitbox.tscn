@@ -3,7 +3,8 @@
 [ext_resource type="Script" path="res://resources/overlap/hitbox.gd" id="1_gewaq"]
 
 [node name="Hitbox" type="Area2D"]
-modulate = Color(1, 0, 0, 1)
+collision_mask = 0
+input_pickable = false
 monitoring = false
 script = ExtResource("1_gewaq")
 

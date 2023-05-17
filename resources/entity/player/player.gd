@@ -13,7 +13,8 @@ class_name Player
 
 var current_equipment: Equipment
 
-func _ready() -> void:	
+func _ready() -> void:
+	super._ready()
 	weapon.position = $EquipmentAnglePoint.position
 	add_child(weapon)
 	mining_equipment.position = $EquipmentAnglePoint.position

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3]
+[gd_scene load_steps=23 format=3 uid="uid://cihuspxrnaoja"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/enemy.gd" id="1_dw5yq"]
 [ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="2_iwwip"]
@@ -46,7 +46,7 @@ texture = ExtResource("2_iwwip")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_rynaa")]
 collision_layer = 16
-collision_mask = 0
+damage = 5
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_qye2k")
@@ -69,7 +69,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" parent="AttackRange" index="0"]
 shape = SubResource("CircleShape2D_55xr7")
-debug_color = Color(0.803922, 0.12549, 0.133333, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
@@ -165,6 +164,7 @@ path_index_key = "path_index"
 move_path_key = "move_path"
 point_reached_margin = 5
 
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="ActivationRange" to="." method="_on_activation_range_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 
