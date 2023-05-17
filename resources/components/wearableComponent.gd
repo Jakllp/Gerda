@@ -22,14 +22,14 @@ func check_for_flip(player: Player):
 
 # Just point the item in hand towards the mouse
 func aim_at_mouse_basic(player: Player):
-	var mouse_pos := player.get_local_mouse_position() - player.equipment_angle_point
+	var mouse_pos := player.get_local_mouse_position() - player.equipment_angle_point.position
 	owner.rotation = mouse_pos.angle()
-	owner.position = mouse_pos.normalized() * position.length() + player.equipment_angle_point
+	owner.position = mouse_pos.normalized() * position.length() + player.equipment_angle_point.position
 
 
 # If you want to point something towards the mouse that is held at a right angle
 func aim_at_mouse_with_right_angled_grip(player: Player):
-	var mouse_pos := player.get_local_mouse_position() - player.equipment_angle_point
+	var mouse_pos := player.get_local_mouse_position() - player.equipment_angle_point.position
 	# Calculate some angles
 	var mouse_distance := mouse_pos.length()
 	# Don't know why the /3 is needed, but it is
@@ -63,4 +63,4 @@ func aim_at_mouse_with_right_angled_grip(player: Player):
 	owner.rotation = alpha
 	
 	# The position of the equipment adjusted for the rotation
-	get_parent().position = player.equipment_angle_point + (Vector2.from_angle(sigma) * rot_radius)
+	get_parent().position = player.equipment_angle_point.position + (Vector2.from_angle(sigma) * rot_radius)
