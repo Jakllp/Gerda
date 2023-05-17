@@ -5,7 +5,7 @@ class_name Player
 @export var weapon_scene :PackedScene
 @export var mining_equipment_scene :PackedScene
 
-@onready var equipment_angle_point :Vector2 = $EquipmentAnglePoint.position
+@onready var equipment_angle_point :Marker2D = $EquipmentAnglePoint
 @onready var weapon := weapon_scene.instantiate()
 @onready var mining_equipment := mining_equipment_scene.instantiate()
 
@@ -22,11 +22,11 @@ var ore_pouch := 0:
 signal ore_received(amount, pos)
 
 
-func _ready() -> void:	
-	weapon.position = equipment_angle_point
+func _ready() -> void:
+	weapon.position = equipment_angle_point.position
 	add_child(weapon)
 	weapon.owner = self
-	mining_equipment.position = equipment_angle_point
+	mining_equipment.position = equipment_angle_point.position
 	add_child(mining_equipment)
 	mining_equipment.owner = self
 	mining_equipment.visible = false
@@ -36,7 +36,14 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	input_component.update(self, delta)
+	input_component.update(self, delta)	
+	# Animate
+	if self.direction.length() > 0:
+		if not $AnimationPlayer.is_playing():
+			$AnimationPlayer.play("angle_point")
+	else:
+		if $AnimationPlayer.is_playing():
+			$AnimationPlayer.stop(false)
 	current_equipment.update(self)
 
 
