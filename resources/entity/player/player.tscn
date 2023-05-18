@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://6jpb1ke88l01"]
+[gd_scene load_steps=16 format=3 uid="uid://6jpb1ke88l01"]
 
 [ext_resource type="Script" path="res://resources/entity/player/player.gd" id="1_u110p"]
 [ext_resource type="PackedScene" uid="uid://cnprtm2i3wtid" path="res://resources/equipment/weapon/gun.tscn" id="2_7fuq5"]
@@ -8,20 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="6_hfx4t"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="6_41oyr"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="7_bed8w"]
-
-[sub_resource type="GDScript" id="GDScript_6yges"]
-script/source = "extends SubViewport
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k01cd"]
 animations = [{
@@ -87,7 +73,6 @@ canvas_cull_mask = 4294966273
 size = Vector2i(32, 32)
 size_2d_override = Vector2i(32, 32)
 render_target_update_mode = 4
-script = SubResource("GDScript_6yges")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
 position = Vector2(16, 16)
