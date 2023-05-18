@@ -56,9 +56,9 @@ RMB={
 
 2d_physics/layer_1="Environment"
 2d_navigation/layer_1="floor"
-2d_physics/layer_2="player"
+2d_physics/layer_2="Player Collision"
 2d_navigation/layer_2="wall"
-2d_physics/layer_3="Enemy"
+2d_physics/layer_3="Enemy Collision"
 2d_physics/layer_4="Player Attack"
 2d_physics/layer_5="Enemy Attack"
 <<<<<<<Updatedupstream2d_physics/layer_1="wall-object"

@@ -9,5 +9,5 @@ script = ExtResource("1_0hy6a")
 projectile_scene = ExtResource("2_nu8o5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.256, 0.256)
+scale = Vector2(0.256, 0.09375)
 texture = ExtResource("3_g51g0")
