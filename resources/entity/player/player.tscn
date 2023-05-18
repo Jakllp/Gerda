@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cnav323nopbns" path="res://resources/equipment/mining/mining_equipment.tscn" id="3_fchbn"]
 [ext_resource type="Texture2D" uid="uid://end8r2gomrl0" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="4_xwvyu"]
 [ext_resource type="Texture2D" uid="uid://juv2mw58jxll" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="5_lhuaa"]
-[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/hurtbox.tscn" id="5_mlb2y"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="6_hfx4t"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="6_41oyr"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="7_bed8w"]
 
@@ -56,6 +56,10 @@ height = 24.4444
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsxsu"]
 size = Vector2(17.7778, 8.88889)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqoc6"]
+radius = 7.0
+height = 24.0
+
 [node name="Mole" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 motion_mode = 1
@@ -102,14 +106,6 @@ texture = SubResource("ViewportTexture_o6p7u")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
-[node name="Hurtbox" parent="." instance=ExtResource("5_mlb2y")]
-collision_layer = 2
-collision_mask = 16
-
-[node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_w6xqt")
-
 [node name="CollisonShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xsxsu")
 
@@ -117,7 +113,13 @@ shape = SubResource("RectangleShape2D_xsxsu")
 position = Vector2(-2.5, 2.5)
 scale = Vector2(1.28733, 0.109863)
 
-[connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[node name="HurtBox" parent="." instance=ExtResource("6_hfx4t")]
+collision_mask = 16
 
-[editable path="Hurtbox"]
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(-1, 1)
+shape = SubResource("CapsuleShape2D_qqoc6")
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+
+[editable path="HurtBox"]

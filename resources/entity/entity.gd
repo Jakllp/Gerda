@@ -18,11 +18,15 @@ class_name Entity
 	set(value):
 		if value != hp:
 			hp = clamp(value, 0, hp_max)
+			print("Health of ", self.name, " changed to: ", hp)
 			if hp == 0:
 				die()
 
 var direction := Vector2.ZERO
 
+func _ready() -> void:
+	pass
+	#$HurtBox.area_entered.connect(_on_hurt_box_area_entered)
 
 func _physics_process(delta: float) -> void:
 	move()
@@ -42,6 +46,6 @@ func recieve_damage(damage: int) -> void:
 	self.hp -= damage
 
 
-func _on_hurtbox_area_entered(area: Area2D) -> void:
+func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
 		recieve_damage(area.damage)

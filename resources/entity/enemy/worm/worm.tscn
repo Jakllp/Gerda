@@ -1,0 +1,174 @@
+[gd_scene load_steps=23 format=3 uid="uid://b8nnm34mnf4xp"]
+
+[ext_resource type="Script" path="res://resources/entity/enemy/worm/worm.gd" id="1_345t2"]
+[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="2_yhmht"]
+[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_0jjfe"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="4_avp0l"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="5_362i1"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="6_2f2e4"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSelector.gd" id="7_qs2pc"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Decorators/BTFailure.gd" id="8_jt4rg"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSequence.gd" id="9_17nkw"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Leaves/BTActionBlackboardSet.gd" id="10_marik"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/isPlayerVisible.gd" id="11_rtj0s"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/loadMovePath.gd" id="12_l0pos"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Decorators/BTInverter.gd" id="13_4ojex"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/isPathRefreshTimerOut.gd" id="14_nypjh"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/isPathOver.gd" id="15_tm8sg"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/loadWanderPos.gd" id="16_15n1v"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/followPath.gd" id="17_yrnce"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qye2k"]
+radius = 12.0416
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkdua"]
+size = Vector2(18, 18)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7aaps"]
+radius = 60.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_55xr7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_54hej"]
+size = Vector2(8, 4.6666)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_345t2")
+metadata/_edit_vertical_guides_ = [-51.0, 51.0]
+metadata/_edit_horizontal_guides_ = []
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_yhmht")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_0jjfe")]
+collision_layer = 16
+damage = 5
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_qye2k")
+
+[node name="HurtBox" parent="." instance=ExtResource("4_avp0l")]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("RectangleShape2D_tkdua")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="ActivationRange" parent="." instance=ExtResource("4_avp0l")]
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="ActivationRange" index="0"]
+shape = SubResource("CircleShape2D_7aaps")
+
+[node name="AttackRange" parent="." instance=ExtResource("4_avp0l")]
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="AttackRange" index="0"]
+shape = SubResource("CircleShape2D_55xr7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_54hej")
+
+[node name="PathRefreshTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="BTBlackboard" type="Node" parent="."]
+script = ExtResource("5_362i1")
+
+[node name="BTRoot" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
+script = ExtResource("6_2f2e4")
+actor_path = NodePath("..")
+blackboard = NodePath("../BTBlackboard")
+
+[node name="BTSelector" type="Node" parent="BTRoot"]
+script = ExtResource("7_qs2pc")
+
+[node name="MoveEnemy" type="Node" parent="BTRoot/BTSelector"]
+script = ExtResource("7_qs2pc")
+
+[node name="BTFailure" type="Node" parent="BTRoot/BTSelector/MoveEnemy"]
+script = ExtResource("8_jt4rg")
+
+[node name="RefreshPath" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure"]
+script = ExtResource("7_qs2pc")
+
+[node name="FollowPlayer" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath"]
+script = ExtResource("9_17nkw")
+
+[node name="BTActionBlackboardSet" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/FollowPlayer"]
+script = ExtResource("10_marik")
+blackboard_key = "player_pos"
+expression = "actor.get_tree().get_first_node_in_group(\"player\").global_position"
+can_overwrite_value = true
+
+[node name="IsPlayerVisible" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/FollowPlayer"]
+script = ExtResource("11_rtj0s")
+player_pos_key = "player_pos"
+
+[node name="LoadMovePath" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/FollowPlayer"]
+script = ExtResource("12_l0pos")
+target_pos_key = "player_pos"
+move_path_key = "move_path"
+
+[node name="ResetPathIndex2" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/FollowPlayer"]
+script = ExtResource("10_marik")
+blackboard_key = "path_index"
+expression = "1"
+can_overwrite_value = true
+
+[node name="BTInverter" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath"]
+script = ExtResource("13_4ojex")
+
+[node name="ShouldPathRefresh" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/BTInverter"]
+script = ExtResource("7_qs2pc")
+
+[node name="IsPathRefreshTimerOut" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/BTInverter/ShouldPathRefresh"]
+script = ExtResource("14_nypjh")
+refresh_timer_path = "PathRefreshTimer"
+
+[node name="IsPathOver" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/BTInverter/ShouldPathRefresh"]
+script = ExtResource("15_tm8sg")
+move_path_key = "move_path"
+path_index_key = "path_index"
+
+[node name="BTInverter2" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath"]
+script = ExtResource("13_4ojex")
+
+[node name="ResetPathIndex" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/BTInverter2"]
+script = ExtResource("10_marik")
+blackboard_key = "path_index"
+expression = "1"
+can_overwrite_value = true
+
+[node name="Wander" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath"]
+script = ExtResource("9_17nkw")
+
+[node name="LoadWanderPos" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/Wander"]
+script = ExtResource("16_15n1v")
+wander_pos_key = "wander_pos"
+
+[node name="LoadMovePath" type="Node" parent="BTRoot/BTSelector/MoveEnemy/BTFailure/RefreshPath/Wander"]
+script = ExtResource("12_l0pos")
+target_pos_key = "wander_pos"
+move_path_key = "move_path"
+
+[node name="FollowPath" type="Node" parent="BTRoot/BTSelector/MoveEnemy"]
+script = ExtResource("17_yrnce")
+path_index_key = "path_index"
+move_path_key = "move_path"
+point_reached_margin = 5
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="body_entered" from="ActivationRange" to="." method="_on_activation_range_body_entered"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+
+[editable path="Hitbox"]
+[editable path="HurtBox"]
+[editable path="ActivationRange"]
+[editable path="AttackRange"]
