@@ -18,7 +18,7 @@ texture = ExtResource("2_g7dde")
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(290.322, 0)
 target_position = Vector2(193.549, 0)
-collision_mask = 16
+collision_mask = 32
 hit_from_inside = true
 
 [node name="Anglepoint" parent="." instance=ExtResource("2_fgbv7")]

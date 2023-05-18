@@ -54,6 +54,7 @@ RMB={
 2d_physics/layer_2="player"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Attack"
+2d_physics/layer_6="Block Layer"
 <<<<<<<Updatedupstream2d_physics/layer_1="wall-object"
 
 [rendering]
