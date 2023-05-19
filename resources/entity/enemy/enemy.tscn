@@ -1,9 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://cihuspxrnaoja"]
+[gd_scene load_steps=29 format=3 uid="uid://coohrx8561t5b"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/enemy.gd" id="1_dw5yq"]
 [ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="2_iwwip"]
+[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="3_7m77o"]
 [ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_rynaa"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="4_uo85l"]
+[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="4_shmr4"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="5_0ox2b"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="5_ls15v"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSelector.gd" id="7_jqbb3"]
@@ -17,6 +19,35 @@
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/isPathOver.gd" id="15_6tk65"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/loadWanderPos.gd" id="16_f5xnt"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/followPath.gd" id="17_7pmn8"]
+
+[sub_resource type="GDScript" id="GDScript_gsxeq"]
+script/source = "extends SubViewport
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q8kyo"]
+shader = ExtResource("3_7m77o")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v0fon"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hu231"]
+shader = ExtResource("4_shmr4")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yaned"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k3svk"]
+radius = 51.0098
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qye2k"]
 radius = 12.0416
@@ -40,9 +71,49 @@ script = ExtResource("1_dw5yq")
 metadata/_edit_vertical_guides_ = [-51.0, 51.0]
 metadata/_edit_horizontal_guides_ = []
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 1904.0
+offset_bottom = 1064.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4294966273
+size = Vector2i(32, 32)
+size_2d_override = Vector2i(32, 32)
+render_target_update_mode = 4
+script = SubResource("GDScript_gsxeq")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(16, 16)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_iwwip")
+
+[node name="Mask" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_q8kyo")
+texture = SubResource("ViewportTexture_v0fon")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 100
+material = SubResource("ShaderMaterial_hu231")
+texture = SubResource("ViewportTexture_yaned")
+
+[node name="AcitvationRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AcitvationRange"]
+modulate = Color(0.301961, 0.419608, 0.188235, 1)
+shape = SubResource("CircleShape2D_k3svk")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_rynaa")]
 collision_layer = 16
