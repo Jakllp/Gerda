@@ -14,16 +14,16 @@ point_count = 3
 size = Vector2(8, 8)
 
 [node name="Path2D" type="Path2D"]
-z_index = 1
 curve = SubResource("Curve2D_71tw4")
 script = ExtResource("1_w2uv8")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
+cubic_interp = false
 loop = false
 
 [node name="Sprite2D" type="Sprite2D" parent="PathFollow2D"]
 modulate = Color(0.964706, 0, 0, 1)
-scale = Vector2(0.241, 0.241)
+scale = Vector2(0.149, 0.149)
 texture = ExtResource("2_lbv5f")
 
 [node name="Hitbox" parent="PathFollow2D" instance=ExtResource("3_ukbnu")]

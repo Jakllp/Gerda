@@ -2,46 +2,44 @@ extends Marker2D
 
 class_name ParabolicShooter
 
+## The projectile to shoot
 @export var projectile_scene: PackedScene
+## manipulate the height of the peak point
+@export var peak_factor: float = 2
+## Number of points the Path2D curve gets fed
 var number_of_points = 50.0
+## The targeted position
 var target: Vector2
-var velocity: float = 20
+## velocity for curve calculations
+var velocity: float
+## gravity for curve calculations
 var gravity: float = 10.0
-
-#at which point of the track is the maximum height reached
-var peak_ratio
-
-#angle from x axis to starting velocity vector
+## Shooting angle relative to Vector2.RIGHT
 var alpha
 
 func shoot(target: Vector2) -> void:
-	print("target: ", target)
 	self.target = target
 	var p: ParabolicProjectile = projectile_scene.instantiate()
-	p.curve = calculate_trajectory2()
-	p.peak_ratio = peak_ratio
-	add_child(p)
+	p.transform = global_transform
+	p.curve = calculate_trajectory()
+	p.alpha = alpha
+	get_node("/root").add_child(p)
 	
-func calculate_trajectory2() -> Curve2D:
+func calculate_trajectory() -> Curve2D:
 	var dot = Vector2.RIGHT.dot(target.normalized())
-	alpha = PI/2 - PI/4 * dot	
+	alpha = PI/2 - PI/(4+peak_factor) * dot
 	
 	velocity = sqrt((gravity * pow(target.x,2)) / (2 * pow(cos(alpha),2) * (tan(alpha) * target.x + target.y)))
-
-	var help = sqrt(velocity*velocity*sin(alpha) + 2*gravity*abs(target.y)) / (velocity * sin(alpha))
-	peak_ratio = 1/(1+help)
 	
 	var curve = Curve2D.new()
 	
 	var x: float = 0
 	var y: float = 0
 	var point = Vector2(x, y)
-	curve.add_point(point)
 	for p in number_of_points:
 		x = p/number_of_points * target.x
 		y = y_of_x(x)
 		point = Vector2(x,y)
-		
 		curve.add_point(point)
 	
 	return curve
