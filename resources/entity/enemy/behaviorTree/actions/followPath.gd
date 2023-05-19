@@ -7,6 +7,9 @@ extends BTAction
 func tick(actor:Node, blackboard:BTBlackboard):
 	var path:PackedVector2Array = blackboard.get_data(move_path_key)
 	var index:int = blackboard.get_data(path_index_key, 0)
+	if path == null or index >= path.size():
+		return BTTickResult.FAILURE
+		
 	if actor.global_position.distance_to(path[index]) < point_reached_margin:
 		if index + 1 >= path.size():
 			actor.direction = Vector2.ZERO

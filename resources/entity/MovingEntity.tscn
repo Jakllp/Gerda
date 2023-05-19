@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c30hosb1vsi56"]
+
+[ext_resource type="Script" path="res://resources/entity/MovingEntity.gd" id="1_gifeo"]
+[ext_resource type="PackedScene" uid="uid://dy57tnv6s4twt" path="res://resources/components/HealthComponent.tscn" id="2_tgv08"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="3_qadwa"]
+
+[node name="MovingEntity" type="CharacterBody2D"]
+script = ExtResource("1_gifeo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_tgv08")]
+
+[node name="HurtBox" parent="." instance=ExtResource("3_qadwa")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
+
+[editable path="HurtBox"]

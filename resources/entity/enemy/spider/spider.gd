@@ -1,4 +1,4 @@
-extends Enemy
+extends MovingEnemy
 
 class_name Spider
 
@@ -9,10 +9,11 @@ var attack_tween: Tween
 func _ready() -> void:
 	super._ready()
 
+
 func attack() -> void:
 	var jump_to: Vector2 = position + direction * attack_range
 	var jump_back_to: Vector2 = position - direction * 5
-	
+
 	if attack_tween:
 		attack_tween.kill()
 	attack_tween = self.create_tween()

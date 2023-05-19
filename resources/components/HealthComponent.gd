@@ -1,8 +1,7 @@
-extends CharacterBody2D
+extends Node
 
-class_name Entity
+class_name HealthComponent
 
-@export var speed: int = 200
 @export var hp_max: int = 100:
 	set(value):
 		if value != hp_max:
@@ -18,29 +17,14 @@ class_name Entity
 	set(value):
 		if value != hp:
 			hp = clamp(value, 0, hp_max)
-			print("Health of ", self.name, " changed to: ", hp)
+			print("Health of ", owner.name, " changed to: ", hp)
 			if hp == 0:
 				die()
 
-var direction := Vector2.ZERO
-
-func _ready() -> void:
-	pass
-	#$HurtBox.area_entered.connect(_on_hurt_box_area_entered)
-
-func _physics_process(delta: float) -> void:
-	move()
-
-
-func move() -> void:
-	velocity = speed * direction.normalized()
-	move_and_slide()
-
 
 func die() -> void:
-	queue_free()
+	owner.queue_free()
 	
-
 
 func recieve_damage(damage: int) -> void:
 	self.hp -= damage

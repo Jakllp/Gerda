@@ -1,8 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://6n7nq0utwop6"]
+[gd_scene load_steps=27 format=3 uid="uid://6n7nq0utwop6"]
 
 [ext_resource type="Script" path="res://resources/levels/level.gd" id="1_6suci"]
-[ext_resource type="PackedScene" uid="uid://6jpb1ke88l01" path="res://resources/entity/player/player.tscn" id="3_rhs2s"]
-[ext_resource type="PackedScene" uid="uid://coohrx8561t5b" path="res://resources/entity/enemy/enemy.tscn" id="4_8m504"]
+[ext_resource type="PackedScene" uid="uid://beja0le4jwgci" path="res://resources/entity/player/player.tscn" id="3_rhs2s"]
 [ext_resource type="Texture2D" uid="uid://cl6humuyjw1y6" path="res://asset/visual/map/Biom1/bossSide.png" id="5_i1b7p"]
 [ext_resource type="Texture2D" uid="uid://uoytuknrdrgj" path="res://asset/visual/map/Biom1/bossTop1.png" id="6_tsrku"]
 [ext_resource type="Texture2D" uid="uid://c8qs1awxo3xrf" path="res://asset/visual/map/Biom1/bossTop2.png" id="7_cpc0s"]
@@ -11,9 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://baapkxstvs0k4" path="res://asset/visual/map/Biom1/minebleTop.png" id="10_g7tho"]
 [ext_resource type="Texture2D" uid="uid://4bvmfdevc2gg" path="res://asset/visual/map/Biom1/oreSide.png" id="11_6rlmt"]
 [ext_resource type="Texture2D" uid="uid://c6o85u7v8lri6" path="res://asset/visual/map/Biom1/oreTop.png" id="12_a86mb"]
+[ext_resource type="PackedScene" uid="uid://c1pt1ussh36ya" path="res://resources/entity/enemy/spider/spider.tscn" id="13_a3wyg"]
 [ext_resource type="Texture2D" uid="uid://cf4ax4gh2fe8c" path="res://asset/visual/map/Biom1/solidSide.png" id="13_x7lok"]
 [ext_resource type="Texture2D" uid="uid://maaofsjiojky" path="res://asset/visual/map/Biom1/solidTop.png" id="14_murhq"]
-[ext_resource type="PackedScene" uid="uid://c1pt1ussh36ya" path="res://resources/entity/enemy/spider/spider.tscn" id="14_x48lp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ci0nd"]
 texture = ExtResource("5_i1b7p")
@@ -147,15 +146,7 @@ z_index = 1
 position = Vector2(-97, -48)
 metadata/_edit_horizontal_guides_ = [-14.0]
 
-[node name="Enemy" parent="." instance=ExtResource("4_8m504")]
-position = Vector2(-244, 174)
-speed = 50
-metadata/_edit_vertical_guides_ = []
-
-[node name="Spider" parent="." instance=ExtResource("14_x48lp")]
-position = Vector2(-85.4973, 90.6626)
-attack_speed = 0.2
-attack_cooldown = 1.0
-speed = 60
+[node name="Spider" parent="." instance=ExtResource("13_a3wyg")]
+position = Vector2(-90, 100)
 
 [node name="Line2D" type="Line2D" parent="."]

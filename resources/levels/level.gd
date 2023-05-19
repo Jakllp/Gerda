@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var line := $Line2D
-@onready var enemy := $Enemy
+@onready var enemy := $Spider
 
 func _ready() -> void:
 	line.width = 3

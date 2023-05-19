@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://uek4jppvomxi"]
+
+[ext_resource type="Script" path="res://resources/entity/enemy/StaticEnemy.gd" id="1_8r3ho"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="1_ywxbt"]
+[ext_resource type="PackedScene" path="res://resources/components/HealthComponent.tscn" id="2_b622b"]
+[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_ucx4i"]
+
+[node name="StaticEnemy" type="StaticBody2D"]
+collision_layer = 0
+script = ExtResource("1_8r3ho")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_b622b")]
+
+[node name="HurtBox" parent="." instance=ExtResource("1_ywxbt")]
+collision_mask = 8
+
+[node name="Hitbox" parent="." instance=ExtResource("3_ucx4i")]
+collision_layer = 16
+
+[node name="AttackRange" parent="." instance=ExtResource("1_ywxbt")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]

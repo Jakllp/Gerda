@@ -33,8 +33,8 @@ extends BTDecorator
 #------------------------------------------
 
 func tick(actor:Node, blackboard:BTBlackboard) -> int:
-    _children[0]._execute(actor, blackboard)
-    return BTTickResult.FAILURE
+	_children[0]._execute(actor, blackboard)
+	return BTTickResult.FAILURE
 
 #------------------------------------------
 # Fonctions privées

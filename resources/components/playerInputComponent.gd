@@ -1,8 +1,8 @@
-extends InputComponent
+extends RefCounted
 
 class_name PlayerInputComponent
 
-func update(player: Entity) -> void:
+func update(player: Player) -> void:
 	player.direction = get_player_direction()
 	if Input.is_action_just_pressed("LMB"):
 		player.use_equipment()

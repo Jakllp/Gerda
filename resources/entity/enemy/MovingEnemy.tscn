@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3d34gk37dquv"]
+
+[ext_resource type="Script" path="res://resources/entity/enemy/MovingEnemy.gd" id="1_bu6l0"]
+[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_expxs"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="4_f3fdk"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="4_w5hcy"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="5_t611u"]
+[ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="6_r71gy"]
+
+[node name="MovingEnemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_bu6l0")
+speed = 69
+metadata/_edit_vertical_guides_ = [-51.0, 51.0]
+metadata/_edit_horizontal_guides_ = []
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("6_r71gy")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_expxs")]
+collision_layer = 16
+
+[node name="HurtBox" parent="." instance=ExtResource("4_w5hcy")]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="AttackRange" parent="." instance=ExtResource("4_w5hcy")]
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+
+[node name="BTBlackboard" type="Node" parent="."]
+script = ExtResource("4_f3fdk")
+data = {
+"move_path": PackedVector2Array(),
+"path_index": 0
+}
+
+[node name="BTRoot" type="Node" parent="."]
+script = ExtResource("5_t611u")
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+
+[editable path="Hitbox"]
+[editable path="HurtBox"]
+[editable path="AttackRange"]
