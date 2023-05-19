@@ -1,7 +1,7 @@
 extends TileMap
 
 
-@export var ore_text_scene :PackedScene
+@export var ore_text_scene = preload("res://resources/other/ore_text.tscn")
 
 # Damage-Map -> Stores the remaining hardness of cells
 var remaining_hardness_dict = {}
