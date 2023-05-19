@@ -1,13 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbotoxu744vlj"]
+[gd_scene load_steps=3 format=3 uid="uid://cbotoxu744vlj"]
 
 [ext_resource type="Script" path="res://resources/components/parabolicShooterComponent.gd" id="1_0hy6a"]
 [ext_resource type="PackedScene" uid="uid://bknfw6xwpevhb" path="res://resources/equipment/weapon/parabolicProjectile.tscn" id="2_nu8o5"]
-[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="3_g51g0"]
 
 [node name="ParabolicShooter" type="Marker2D"]
 script = ExtResource("1_0hy6a")
 projectile_scene = ExtResource("2_nu8o5")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.256, 0.256)
-texture = ExtResource("3_g51g0")
