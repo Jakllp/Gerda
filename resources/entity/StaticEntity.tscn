@@ -1,17 +1,62 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4564kctsu60c"]
+[gd_scene load_steps=9 format=3 uid="uid://b4564kctsu60c"]
 
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="1_bhyfc"]
-[ext_resource type="PackedScene" uid="uid://dy57tnv6s4twt" path="res://resources/components/HealthComponent.tscn" id="2_cdbxo"]
+[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="1_k4xuq"]
+[ext_resource type="PackedScene" path="res://resources/components/HealthComponent.tscn" id="2_cdbxo"]
+[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="2_sfrs2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xmp46"]
+shader = ExtResource("1_k4xuq")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1w6do"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6ml1"]
+shader = ExtResource("2_sfrs2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gfbew"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="StaticEntity" type="StaticBody2D"]
 collision_layer = 0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 1904.0
+offset_bottom = 1064.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4294966273
+size = Vector2i(32, 32)
+size_2d_override = Vector2i(32, 32)
+render_target_update_mode = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(16, 16)
+animation = &""
+
+[node name="Mask" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_xmp46")
+texture = SubResource("ViewportTexture_1w6do")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 100
+material = SubResource("ShaderMaterial_w6ml1")
+texture = SubResource("ViewportTexture_gfbew")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="HurtBox" parent="." instance=ExtResource("1_bhyfc")]
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_cdbxo")]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]

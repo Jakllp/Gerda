@@ -1,16 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://6jpb1ke88l01"]
+[gd_scene load_steps=17 format=3 uid="uid://6jpb1ke88l01"]
 
 [ext_resource type="Script" path="res://resources/entity/player/player.gd" id="1_u110p"]
 [ext_resource type="PackedScene" uid="uid://cnprtm2i3wtid" path="res://resources/equipment/weapon/gun.tscn" id="2_7fuq5"]
 [ext_resource type="PackedScene" uid="uid://cnav323nopbns" path="res://resources/equipment/mining/mining_equipment.tscn" id="3_fchbn"]
 [ext_resource type="Texture2D" uid="uid://end8r2gomrl0" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="4_xwvyu"]
 [ext_resource type="Texture2D" uid="uid://juv2mw58jxll" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="5_lhuaa"]
-[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="6_hfx4t"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="6_41oyr"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="6_hfx4t"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="7_bed8w"]
 [ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="7_rhl1x"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_k01cd"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_4p0wo"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -21,13 +21,13 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 12.0
+"speed": 5.0
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xence"]
 shader = ExtResource("6_41oyr")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_vc8sa"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_by0eu"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6wbvd"]
@@ -35,10 +35,6 @@ shader = ExtResource("7_bed8w")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_o6p7u"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w6xqt"]
-radius = 8.88889
-height = 24.4444
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsxsu"]
 size = Vector2(17.7778, 8.88889)
@@ -77,21 +73,20 @@ render_target_update_mode = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
 position = Vector2(16, 16)
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("7_rhl1x")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_k01cd")
+sprite_frames = SubResource("SpriteFrames_4p0wo")
 animation = &"walk"
 
 [node name="Mask" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_xence")
-texture = SubResource("ViewportTexture_vc8sa")
+texture = SubResource("ViewportTexture_by0eu")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = 100
 material = SubResource("ShaderMaterial_6wbvd")
 texture = SubResource("ViewportTexture_o6p7u")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("7_rhl1x")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

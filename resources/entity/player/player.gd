@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	
 	if direction.length() > 0 and not $SubViewportContainer/SubViewport/AnimatedSprite2D.is_playing():
 		$SubViewportContainer/SubViewport/AnimatedSprite2D.play("walk")
-	else:
+	elif direction.length() == 0 and $SubViewportContainer/SubViewport/AnimatedSprite2D.is_playing():
 		$SubViewportContainer/SubViewport/AnimatedSprite2D.stop()
 	
 	current_equipment.update(self)

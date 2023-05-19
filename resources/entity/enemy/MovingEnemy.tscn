@@ -1,11 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3d34gk37dquv"]
+[gd_scene load_steps=13 format=3 uid="uid://c3d34gk37dquv"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/MovingEnemy.gd" id="1_bu6l0"]
+[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="2_7bibu"]
+[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="3_1dqhf"]
 [ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_expxs"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="4_f3fdk"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="4_w5hcy"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="5_t611u"]
 [ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="6_r71gy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hie24"]
+shader = ExtResource("2_7bibu")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5sh23"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jomdt"]
+shader = ExtResource("3_1dqhf")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8x6ln"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="MovingEnemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
@@ -15,6 +29,39 @@ script = ExtResource("1_bu6l0")
 speed = 69
 metadata/_edit_vertical_guides_ = [-51.0, 51.0]
 metadata/_edit_horizontal_guides_ = []
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 1904.0
+offset_bottom = 1064.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4294966273
+size = Vector2i(32, 32)
+size_2d_override = Vector2i(32, 32)
+render_target_update_mode = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(16, 16)
+animation = &""
+
+[node name="Mask" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_hie24")
+texture = SubResource("ViewportTexture_5sh23")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 100
+material = SubResource("ShaderMaterial_jomdt")
+texture = SubResource("ViewportTexture_8x6ln")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
@@ -33,9 +80,6 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="AttackRange" parent="." instance=ExtResource("4_w5hcy")]
 collision_mask = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.15, 0.15)
 
 [node name="BTBlackboard" type="Node" parent="."]
 script = ExtResource("4_f3fdk")

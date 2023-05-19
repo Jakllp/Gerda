@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://6n7nq0utwop6"]
 
 [ext_resource type="Script" path="res://resources/levels/level.gd" id="1_6suci"]
-[ext_resource type="PackedScene" uid="uid://beja0le4jwgci" path="res://resources/entity/player/player.tscn" id="3_rhs2s"]
+[ext_resource type="PackedScene" uid="uid://6jpb1ke88l01" path="res://resources/entity/player/player.tscn" id="3_rhs2s"]
 [ext_resource type="Texture2D" uid="uid://cl6humuyjw1y6" path="res://asset/visual/map/Biom1/bossSide.png" id="5_i1b7p"]
 [ext_resource type="Texture2D" uid="uid://uoytuknrdrgj" path="res://asset/visual/map/Biom1/bossTop1.png" id="6_tsrku"]
 [ext_resource type="Texture2D" uid="uid://c8qs1awxo3xrf" path="res://asset/visual/map/Biom1/bossTop2.png" id="7_cpc0s"]
