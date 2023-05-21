@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cnprtm2i3wtid"]
 
 [ext_resource type="Script" path="res://resources/equipment/weapon/gun.gd" id="1_2e5dt"]
-[ext_resource type="Texture2D" uid="uid://el8e7wfgj7ea" path="res://asset/visual/actor/char/mole/mole_weapon.png" id="2_6o6pg"]
+[ext_resource type="Texture2D" uid="uid://calp5g02iee7o" path="res://asset/visual/actor/char/mole/mole_weapon.png" id="2_6o6pg"]
 [ext_resource type="PackedScene" uid="uid://bx8hi1wpd875d" path="res://resources/equipment/weapon/projectile.tscn" id="2_ja0id"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="3_87bh6"]
 [ext_resource type="PackedScene" uid="uid://dp7femcfr44sh" path="res://resources/components/shooterComponent.tscn" id="3_sxqrj"]
@@ -38,10 +38,10 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 script = ExtResource("1_2e5dt")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 1904.0
-offset_bottom = 1064.0
+offset_left = -11.0
+offset_top = -15.0
+offset_right = 21.0
+offset_bottom = 17.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
@@ -64,16 +64,18 @@ offset = Vector2(16, 16)
 
 [node name="Mask" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_fdr6l")
+position = Vector2(5, 1)
 texture = SubResource("ViewportTexture_x2co5")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = 100
 material = SubResource("ShaderMaterial_gce8s")
+position = Vector2(5, 1)
 texture = SubResource("ViewportTexture_p3sec")
 
 [node name="Shooter" parent="." instance=ExtResource("3_sxqrj")]
-position = Vector2(11, -2)
+position = Vector2(17, 0)
 projectile_scene = ExtResource("2_ja0id")
 
 [node name="Anglepoint" parent="." instance=ExtResource("4_rerad")]
-position = Vector2(-5, -1)
+position = Vector2(0, -1)

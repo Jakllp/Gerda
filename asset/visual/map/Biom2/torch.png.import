@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cldrkvjgqiiay"
-path="res://.godot/imported/badger_weapon.png-64f5e0e5666209e1a8cb5d1ec27b6820.ctex"
+uid="uid://tv347ixhvtuj"
+path="res://.godot/imported/torch.png-7c751c80a0ac2f48b3924b669434f700.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/visual/actor/char/bagder/badger_weapon.png"
-dest_files=["res://.godot/imported/badger_weapon.png-64f5e0e5666209e1a8cb5d1ec27b6820.ctex"]
+source_file="res://asset/visual/map/Biom2/torch.png"
+dest_files=["res://.godot/imported/torch.png-7c751c80a0ac2f48b3924b669434f700.ctex"]
 
 [params]
 
