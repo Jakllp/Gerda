@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://den3piytupk7s"]
+
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSelector.gd" id="1_mp3kr"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Decorators/BTFailure.gd" id="2_raiy8"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSequence.gd" id="3_wmr16"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Leaves/BTActionBlackboardSet.gd" id="4_73xwg"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/isPlayerVisible.gd" id="5_b1jxn"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/loadMovePath.gd" id="6_fb78o"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/isPathOver.gd" id="8_2xrnm"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/loadWanderPos.gd" id="9_ixdye"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/followPath.gd" id="10_epna5"]
+
+[node name="Move" type="Node"]
+script = ExtResource("1_mp3kr")
+
+[node name="BTFailure" type="Node" parent="."]
+script = ExtResource("2_raiy8")
+
+[node name="BTSelector" type="Node" parent="BTFailure"]
+script = ExtResource("1_mp3kr")
+
+[node name="FollowPlayer" type="Node" parent="BTFailure/BTSelector"]
+script = ExtResource("3_wmr16")
+
+[node name="BTActionBlackboardSet" type="Node" parent="BTFailure/BTSelector/FollowPlayer"]
+script = ExtResource("4_73xwg")
+blackboard_key = "player_pos"
+expression = "actor.get_tree().get_first_node_in_group(\"player\").global_position"
+can_overwrite_value = true
+
+[node name="IsPlayerVisible" type="Node" parent="BTFailure/BTSelector/FollowPlayer"]
+script = ExtResource("5_b1jxn")
+player_pos_key = "player_pos"
+
+[node name="LoadMovePath" type="Node" parent="BTFailure/BTSelector/FollowPlayer"]
+script = ExtResource("6_fb78o")
+target_pos_key = "player_pos"
+move_path_key = "move_path"
+
+[node name="ResetPathIndex2" type="Node" parent="BTFailure/BTSelector/FollowPlayer"]
+script = ExtResource("4_73xwg")
+blackboard_key = "path_index"
+expression = "1"
+can_overwrite_value = true
+
+[node name="Wander" type="Node" parent="BTFailure/BTSelector"]
+script = ExtResource("3_wmr16")
+
+[node name="IsPathOver" type="Node" parent="BTFailure/BTSelector/Wander"]
+script = ExtResource("8_2xrnm")
+move_path_key = "move_path"
+path_index_key = "path_index"
+
+[node name="CalculatePath" type="Node" parent="BTFailure/BTSelector/Wander"]
+script = ExtResource("3_wmr16")
+
+[node name="LoadWanderPos" type="Node" parent="BTFailure/BTSelector/Wander/CalculatePath"]
+script = ExtResource("9_ixdye")
+wander_pos_key = "wander_pos"
+
+[node name="LoadMovePath" type="Node" parent="BTFailure/BTSelector/Wander/CalculatePath"]
+script = ExtResource("6_fb78o")
+target_pos_key = "wander_pos"
+move_path_key = "move_path"
+
+[node name="ResetPathIndex" type="Node" parent="BTFailure/BTSelector/Wander"]
+script = ExtResource("4_73xwg")
+blackboard_key = "path_index"
+expression = "1"
+can_overwrite_value = true
+
+[node name="FollowPath" type="Node" parent="."]
+script = ExtResource("10_epna5")
+path_index_key = "path_index"
+move_path_key = "move_path"
+point_reached_margin = 5

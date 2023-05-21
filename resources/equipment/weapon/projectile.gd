@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 class_name Projectile
 
@@ -8,7 +8,7 @@ class_name Projectile
 	
 func _physics_process(delta: float) -> void:
 	var distance := speed * delta
-	var direction = Vector2.RIGHT.rotated(rotation)
+	var direction := Vector2.RIGHT.rotated(rotation)
 	position += distance * direction
 	
 	if(not infinite_range):
@@ -22,3 +22,8 @@ func _physics_process(delta: float) -> void:
 func is_out_of_bounds() -> bool:
 	#TODO: implement me
 	return false
+
+
+func _on_hitbox_body_entered(body):
+	if body is TileMap:
+		queue_free()

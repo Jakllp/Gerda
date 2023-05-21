@@ -1,4 +1,4 @@
-extends Entity
+extends MovingEnity
 
 class_name Player
 
@@ -36,14 +36,12 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	input_component.update(self, delta)	
+	input_component.update(self, delta)
 	# Animate
 	if self.direction.length() > 0:
-		if not $AnimationPlayer.is_playing():
-			$AnimationPlayer.play("angle_point")
-	else:
-		if $AnimationPlayer.is_playing():
-			$AnimationPlayer.stop(false)
+		$AnimationPlayer.play("walk")
+	elif $AnimationPlayer.is_playing():
+		$AnimationPlayer.stop(false)
 	current_equipment.update(self)
 
 

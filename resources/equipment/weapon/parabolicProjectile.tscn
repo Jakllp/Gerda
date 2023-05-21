@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bknfw6xwpevhb"]
+
+[ext_resource type="Script" path="res://resources/equipment/weapon/parabolicProjectile.gd" id="1_w2uv8"]
+[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="2_lbv5f"]
+[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_ukbnu"]
+
+[sub_resource type="Curve2D" id="Curve2D_71tw4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 31, -16, 0, 0, 0, 0, 31, -16, 0, 0, 0, 0, 31, -16)
+}
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djmju"]
+size = Vector2(8, 8)
+
+[node name="Path2D" type="Path2D"]
+curve = SubResource("Curve2D_71tw4")
+script = ExtResource("1_w2uv8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+cubic_interp = false
+loop = false
+
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D"]
+modulate = Color(0.964706, 0, 0, 1)
+scale = Vector2(0.149, 0.149)
+texture = ExtResource("2_lbv5f")
+
+[node name="Hitbox" parent="PathFollow2D" instance=ExtResource("3_ukbnu")]
+collision_mask = 7
+monitoring = true
+
+[node name="CollisionShape2D" parent="PathFollow2D/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_djmju")
+
+[editable path="PathFollow2D/Hitbox"]

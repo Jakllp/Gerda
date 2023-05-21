@@ -1,15 +1,15 @@
-extends InputComponent
+extends RefCounted
 
 class_name PlayerInputComponent
 
 
-func update(player: Entity, delta: float) -> void:
-	super.update(player, delta)
+func update(player: Player, delta: float) -> void:
+	player.direction = get_player_direction()
 	check_for_equip_switch(player)
 	check_for_equip_use(player, delta)
 
 
-func getEntitydirection() -> Vector2:
+func get_player_direction() -> Vector2:
 	return Input.get_vector("left","right","up","down")
 
 

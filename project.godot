@@ -15,6 +15,10 @@ run/main_scene="res://resources/levels/level.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://asset/visual/actor/icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/yet_another_behavior_tree/plugin.cfg")
+
 [input]
 
 up={
@@ -51,11 +55,13 @@ RMB={
 [layer_names]
 
 2d_physics/layer_1="Environment"
-2d_physics/layer_2="player"
-2d_physics/layer_3="Enemy"
-2d_physics/layer_4="Attack"
+2d_navigation/layer_1="floor"
+2d_physics/layer_2="Player Collision"
+2d_navigation/layer_2="wall"
+2d_physics/layer_3="Enemy Collision"
+2d_physics/layer_4="Player Attack"
+2d_physics/layer_5="Enemy Attack"
 2d_physics/layer_6="Block Layer"
-<<<<<<<Updatedupstream2d_physics/layer_1="wall-object"
 
 [rendering]
 

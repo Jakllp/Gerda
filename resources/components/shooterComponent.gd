@@ -2,6 +2,9 @@ extends Node2D
 
 class_name ShooterComponent
 
-func shoot(projectile: Projectile) -> void:
+@export var projectile_scene :PackedScene
+
+func shoot() -> void:
+	var projectile = projectile_scene.instantiate()
 	projectile.transform = global_transform
 	get_node("/root").add_child(projectile)
