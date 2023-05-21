@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://6jpb1ke88l01"]
+[gd_scene load_steps=19 format=3 uid="uid://6jpb1ke88l01"]
 
 [ext_resource type="Script" path="res://resources/entity/player/player.gd" id="1_u110p"]
 [ext_resource type="PackedScene" uid="uid://cnprtm2i3wtid" path="res://resources/equipment/weapon/gun.tscn" id="2_7fuq5"]
-[ext_resource type="PackedScene" uid="uid://cnav323nopbns" path="res://resources/equipment/mining/mining_equipment.tscn" id="3_fchbn"]
-[ext_resource type="Texture2D" uid="uid://end8r2gomrl0" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="4_xwvyu"]
-[ext_resource type="Texture2D" uid="uid://juv2mw58jxll" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="5_lhuaa"]
+[ext_resource type="PackedScene" uid="uid://bsoh0y7sn64be" path="res://resources/equipment/mining/mining_equipment.tscn" id="3_fchbn"]
+[ext_resource type="Texture2D" uid="uid://bf1l361vh5xmh" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="4_xwvyu"]
+[ext_resource type="Texture2D" uid="uid://dwbt144aq1y1r" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="5_lhuaa"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="6_41oyr"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="6_hfx4t"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="7_bed8w"]
@@ -21,7 +21,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xence"]
@@ -37,11 +37,46 @@ shader = ExtResource("7_bed8w")
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsxsu"]
-size = Vector2(17.7778, 8.88889)
+size = Vector2(17, 16)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqoc6"]
 radius = 7.0
 height = 24.0
+
+[sub_resource type="Animation" id="Animation_xfjvt"]
+resource_name = "walk"
+length = 0.166675
+loop_mode = 1
+step = 0.0909091
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0909091, 0.181818),
+"transitions": PackedFloat32Array(1e-05, 1.07896e-05, 7.77929e-05),
+"update": 0,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EquipmentAnglePoint:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0803106, 0.170181),
+"transitions": PackedFloat32Array(1e-05, 1e-05, 1.6354e-05),
+"update": 0,
+"values": [Vector2(-2.5, 2.5), Vector2(-2.5, 1.5), Vector2(-2.5, 2.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ek0ot"]
+_data = {
+"walk": SubResource("Animation_xfjvt")
+}
 
 [node name="Mole" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -89,9 +124,12 @@ texture = SubResource("ViewportTexture_o6p7u")
 script = ExtResource("7_rhl1x")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+visible = false
+zoom = Vector2(3.5, 3.5)
 
 [node name="CollisonShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_xsxsu")
 
 [node name="EquipmentAnglePoint" type="Marker2D" parent="."]
@@ -99,11 +137,17 @@ position = Vector2(-2.5, 2.5)
 scale = Vector2(1.28733, 0.109863)
 
 [node name="HurtBox" parent="." instance=ExtResource("6_hfx4t")]
+visible = false
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(-1, 1)
 shape = SubResource("CapsuleShape2D_qqoc6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ek0ot")
+}
 
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 

@@ -62,5 +62,5 @@ func aim_at_mouse_with_right_angled_grip(player: Player):
 	#  Actually rotate the equipment around it's origin
 	owner.rotation = alpha
 	
-	# The position of the equipment adjusted for the rotation
-	get_parent().position = player.equipment_angle_point.position + (Vector2.from_angle(sigma) * rot_radius)
+	# The position of the equipment adjusted for the rotation (The Vector is for the Offset bc of Viewports)
+	get_parent().position = player.equipment_angle_point.position + (Vector2.from_angle(sigma) * rot_radius) + Vector2(0.5,0.5)

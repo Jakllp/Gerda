@@ -46,6 +46,7 @@ radius = 25.0
 size = Vector2(8, 4.6666)
 
 [node name="Spider" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 4
 collision_mask = 7
 motion_mode = 1
