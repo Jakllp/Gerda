@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://resources/levels/level.gd" id="1_6suci"]
 [ext_resource type="Texture2D" uid="uid://bjo4qihuuqbq8" path="res://asset/visual/map/Biom1/biom1_blockTileset.png" id="1_raajn"]
-[ext_resource type="Texture2D" uid="uid://btguyhrho2r2g" path="res://asset/visual/map/miningoverlay.png" id="2_udwy7"]
+[ext_resource type="Texture2D" uid="uid://bs2qq00uj5g8i" path="res://asset/visual/map/miningoverlay.png" id="2_udwy7"]
 [ext_resource type="PackedScene" uid="uid://6jpb1ke88l01" path="res://resources/entity/player/player.tscn" id="3_rhs2s"]
 [ext_resource type="Script" path="res://resources/levels/TileMap.gd" id="4_j5mb2"]
 [ext_resource type="Texture2D" uid="uid://r7i65elbeq4u" path="res://asset/visual/map/Biom1/ground.png" id="8_fmxk1"]
@@ -116,6 +116,30 @@ texture_region_size = Vector2i(22, 22)
 3:0/0/physics_layer_0/angular_velocity = 0.0
 3:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_1/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/z_index = -2
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_1/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/z_index = -2
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_1/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/z_index = -2
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_1/angular_velocity = 0.0
+3:1/0 = 0
+3:1/0/z_index = -2
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1ty73"]
 vertices = PackedVector2Array(-11, -11, 11, -11, 11, 11, -11, 11)

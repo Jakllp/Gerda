@@ -63,15 +63,16 @@ func mine_overlay(cell: Vector2i) -> void:
 	if(self.get_cell_tile_data(block_layer, cell) == null):
 			return
 	
+	var origin_atlas_y = self.get_cell_atlas_coords(block_layer,cell,false).y
 	var percent = 1 - remaining_hardness_dict[cell] / self.get_cell_tile_data(block_layer, cell).get_custom_data("hardness")
 	if percent < 0.25:
-		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(0,0), 0)
+		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(0,origin_atlas_y), 0)
 	elif percent < 0.5:
-		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(1,0), 0)
+		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(1,origin_atlas_y), 0)
 	elif percent < 0.75:
-		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(2,0), 0)
+		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(2,origin_atlas_y), 0)
 	elif percent < 1:
-		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(3,0), 0)
+		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(3,origin_atlas_y), 0)
 
 
 # Clears the cell - TODO NAV-UPDATES
@@ -108,6 +109,10 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 		# There's something on top of it -> let's see if it is a top or a wall
 		if self.get_cell_atlas_coords(block_layer,cell_above_everything,false).y == 0:
 			# It's a top -> Gotta make a wall
+			# Get the x-atlas-coords of the cell ABOVE the top_cell -> we need the correct wall
+			var top_atlas_coords_x = self.get_cell_atlas_coords(block_layer,cell_above_everything,false).x
+			self.set_cell(block_layer, top_cell, block_atlas,Vector2i(top_atlas_coords_x,1), 0)
+			
 			# Let's see if the block above is damaged and handle it accordingly
 			if remaining_hardness_dict.has(cell_above_everything):
 				remaining_hardness_dict[top_cell] = remaining_hardness_dict[cell_above_everything]
@@ -115,9 +120,7 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 			else:
 				self.erase_cell(mine_overlay_layer, top_cell)
 				remaining_hardness_dict.erase(top_cell)
-			# Get the x-atlas-coords of the cell ABOVE the top_cell -> we need the correct wall
-			var top_atlas_coords_x = self.get_cell_atlas_coords(block_layer,cell_above_everything,false).x
-			self.set_cell(block_layer, top_cell, block_atlas,Vector2i(top_atlas_coords_x,1), 0)
+			
 			self.set_cell(ground_layer, cell, ground_atlas,Vector2i(0,0), 0)
 			return
 	
