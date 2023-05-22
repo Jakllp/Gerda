@@ -12,7 +12,6 @@ offset_left = -9.33333
 offset_top = -6.66667
 offset_right = 30.6667
 offset_bottom = 19.3333
-text = "+1"
 
 [node name="DespawnTimer" type="Timer" parent="."]
 wait_time = 0.35
