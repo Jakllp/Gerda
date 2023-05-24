@@ -26,10 +26,12 @@ func die() -> void:
 	owner.queue_free()
 	
 
-func recieve_damage(damage: int) -> void:
+func receive_damage(damage: int) -> void:
 	self.hp -= damage
+	owner.flash()
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
-		recieve_damage(area.damage)
+		if owner.has_node("Dash") and owner.dash.is_dashing(): return
+		receive_damage(area.damage)

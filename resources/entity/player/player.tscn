@@ -1,14 +1,23 @@
-[gd_scene load_steps=19 format=3 uid="uid://6jpb1ke88l01"]
+[gd_scene load_steps=23 format=3 uid="uid://b1fjv37yfto5d"]
 
 [ext_resource type="Script" path="res://resources/entity/player/player.gd" id="1_u110p"]
 [ext_resource type="PackedScene" uid="uid://cnprtm2i3wtid" path="res://resources/equipment/weapon/gun.tscn" id="2_7fuq5"]
 [ext_resource type="PackedScene" uid="uid://bsoh0y7sn64be" path="res://resources/equipment/mining/mining_equipment.tscn" id="3_fchbn"]
-[ext_resource type="Texture2D" uid="uid://bf1l361vh5xmh" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="4_xwvyu"]
-[ext_resource type="Texture2D" uid="uid://dwbt144aq1y1r" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="5_lhuaa"]
+[ext_resource type="Shader" path="res://resources/shaders/flash.gdshader" id="4_07x2k"]
+[ext_resource type="Texture2D" uid="uid://dx3qnu570p8hx" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="4_xwvyu"]
+[ext_resource type="Texture2D" uid="uid://n855g5htet0y" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="5_lhuaa"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="6_41oyr"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="6_hfx4t"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="7_bed8w"]
 [ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="7_rhl1x"]
+[ext_resource type="PackedScene" uid="uid://b2krhq43q3awp" path="res://resources/components/DashComponent.tscn" id="10_ykqoh"]
+[ext_resource type="PackedScene" uid="uid://dbp5fhvrf7ggb" path="res://resources/particles/DashEffect.tscn" id="12_n5e8w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_koq83"]
+resource_local_to_scene = true
+shader = ExtResource("4_07x2k")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4p0wo"]
 animations = [{
@@ -101,12 +110,14 @@ handle_input_locally = false
 snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
 canvas_item_default_texture_filter = 0
+canvas_item_default_texture_repeat = 1
 canvas_cull_mask = 4294966273
 size = Vector2i(32, 32)
 size_2d_override = Vector2i(32, 32)
 render_target_update_mode = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_koq83")
 position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_4p0wo")
 animation = &"walk"
@@ -148,6 +159,16 @@ shape = SubResource("CapsuleShape2D_qqoc6")
 libraries = {
 "": SubResource("AnimationLibrary_ek0ot")
 }
+
+[node name="Dash" parent="." instance=ExtResource("10_ykqoh")]
+
+[node name="DashEffect" parent="." instance=ExtResource("12_n5e8w")]
+z_index = -1
+material = null
+amount = 30
+texture = ExtResource("4_xwvyu")
+lifetime = 0.5
+fixed_fps = 60
 
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 
