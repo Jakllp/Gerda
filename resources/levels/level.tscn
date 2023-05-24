@@ -204,6 +204,7 @@ metadata/_edit_horizontal_guides_ = [-14.0]
 [node name="Spider" parent="." instance=ExtResource("13_a3wyg")]
 z_index = 0
 position = Vector2(-5, 207)
+attack_cooldown = 0.8
 
 [node name="Line2D" type="Line2D" parent="."]
 

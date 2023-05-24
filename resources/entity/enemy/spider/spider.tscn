@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c1pt1ussh36ya"]
+[gd_scene load_steps=20 format=3 uid="uid://c1pt1ussh36ya"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/spider/spider.gd" id="1_aawk4"]
 [ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="3_7bj6w"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="4_lieus"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="4_uo85l"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="5_lr3uh"]
+[ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="5_ras38"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="6_53m54"]
 [ext_resource type="PackedScene" uid="uid://den3piytupk7s" path="res://resources/entity/enemy/behaviorTree/movement/NormalEnemyMovement.tscn" id="7_l4mod"]
 
@@ -45,13 +46,13 @@ radius = 25.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_54hej"]
 size = Vector2(8, 4.6666)
 
-[node name="Spider" type="CharacterBody2D"]
+[node name="Spider" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
 collision_layer = 4
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_aawk4")
-attack_speed = 0.3
+attack_speed = 7.0
 attack_cooldown = 1.0
 speed = 69
 metadata/_edit_vertical_guides_ = [-51.0, 51.0]
@@ -91,6 +92,9 @@ z_index = 100
 material = SubResource("ShaderMaterial_ops3y")
 texture = SubResource("ViewportTexture_lxteo")
 
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("5_ras38")
+
 [node name="Hitbox" parent="." instance=ExtResource("3_rynaa")]
 collision_layer = 16
 damage = 10
@@ -129,7 +133,7 @@ blackboard = NodePath("../BTBlackboard")
 
 [node name="Move" parent="BTRoot" instance=ExtResource("7_l4mod")]
 
-[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 
 [editable path="Hitbox"]
