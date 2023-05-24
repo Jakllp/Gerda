@@ -12,9 +12,9 @@ class_name Player
 
 const dash_speed = 300
 const dash_duration = 0.1
-const dash_max_amount = 5
+const dash_max_amount = 2
 var dashes_left = dash_max_amount
-var dash_refill_speed = 0.8
+var dash_refill_speed = 1.0
 
 var input_component = PlayerInputComponent.new()
 
@@ -72,7 +72,8 @@ func use_equipment(delta: float) -> void:
 
 
 func try_dash() -> void:
-	if dashes_left > 0 && !dash.is_dashing() && direction.length() > 0:
+	print(str(dash.allowed_to_dash()))
+	if dashes_left > 0 && dash.allowed_to_dash() && direction.length() > 0:
 		dash.start_dash(dash_duration, dash_refill_speed)
 		$DashEffect.emitting = true
 		dashes_left -= 1
@@ -81,7 +82,7 @@ func try_dash() -> void:
 	
 func _on_dash_refill() -> void:
 	if dashes_left < dash_max_amount:
-		print("Refilled Dash - Dashes left: "+str(dashes_left)+"/"+str(dash_max_amount))
 		dashes_left+=1
+		print("Refilled Dash - Dashes left: "+str(dashes_left)+"/"+str(dash_max_amount))
 		if dashes_left == dash_max_amount:
 			dash.stop_refill()

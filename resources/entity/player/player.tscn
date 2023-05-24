@@ -167,7 +167,7 @@ z_index = -1
 material = null
 amount = 30
 texture = ExtResource("4_xwvyu")
-lifetime = 0.5
+lifetime = 0.25
 fixed_fps = 60
 
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]

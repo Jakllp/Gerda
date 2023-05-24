@@ -11,3 +11,7 @@ script = ExtResource("1_oj748")
 one_shot = true
 
 [node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="DurationTimer" to="." method="end_dash"]

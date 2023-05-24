@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var duration_timer = $DurationTimer
 @onready var refill_timer = $RefillTimer
+@onready var cooldown_timer = $CooldownTimer
+
 
 func start_dash(duration, dash_refill_speed):
 	duration_timer.wait_time = duration
@@ -11,8 +13,17 @@ func start_dash(duration, dash_refill_speed):
 		refill_timer.start()
 
 
+func end_dash():
+	cooldown_timer.start()
+
+
 func is_dashing() -> bool:
 	return !duration_timer.is_stopped()
+
+
+# Checks if a new dash can be executed from a timing-perspective
+func allowed_to_dash() -> bool:
+	return cooldown_timer.is_stopped() and !is_dashing()
 
 
 func stop_refill() -> void:
