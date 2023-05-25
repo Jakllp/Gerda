@@ -73,7 +73,7 @@ motion_mode = 1
 script = ExtResource("1_aawk4")
 attack_speed = 7.0
 attack_cooldown = 0.8
-base_speed = 100
+base_speed = 69
 metadata/_edit_vertical_guides_ = [-51.0, 51.0]
 metadata/_edit_horizontal_guides_ = []
 
@@ -98,12 +98,15 @@ size_2d_override = Vector2i(36, 32)
 render_target_update_mode = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_5hvuo")
 position = Vector2(19, 16)
 sprite_frames = SubResource("SpriteFrames_chory")
 animation = &"walk"
 
 [node name="Mask" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_getsk")
 texture = SubResource("ViewportTexture_qao34")
 

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5yqxkxsg6xo4"]
+
+[ext_resource type="Script" path="res://resources/interactables/InteractableBase.gd" id="1_i74gk"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="2_dnwhi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_534wy"]
+radius = 24.0
+
+[node name="InteractableBase" type="StaticBody2D"]
+script = ExtResource("1_i74gk")
+
+[node name="DetectionArea" parent="." instance=ExtResource("2_dnwhi")]
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_534wy")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+
+[editable path="DetectionArea"]
