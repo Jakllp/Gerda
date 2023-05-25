@@ -10,7 +10,7 @@ class_name Gun
 @onready var ammo_stored :int = max_ammo_stored
 @onready var reload_time :int = base_reload_time
 
-@onready var reload_timer = $ReloadTimer
+@onready var reload_timer :Timer = $ReloadTimer
 
 func update(player: Player) -> void:
 	for child in get_children():
@@ -35,7 +35,7 @@ func do_rotation(player: Player):
 
 # Starts the Reload-Timer
 func trigger_reload():
-	if ammo_stored > 0:
+	if ammo_stored > 0 and reload_timer.is_stopped():
 		print("Reloading...")
 		reload_timer.wait_time = reload_time
 		reload_timer.start()
@@ -53,3 +53,14 @@ func reload() -> void:
 		mag_contents += ammo_stored
 		ammo_stored = 0
 	print("Reloaded! "+str(mag_contents)+"/"+str(ammo_stored))
+
+
+func needs_crafting() -> bool:
+	if max_ammo_stored - ammo_stored > restore_per_craft:
+		return true
+	return false
+
+
+func crafted() -> void:
+	ammo_stored += restore_per_craft
+	print("Ammo replenished: "+str(mag_contents)+"/"+str(ammo_stored))

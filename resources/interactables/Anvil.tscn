@@ -1,8 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://wjy5j6y0rb8h"]
+[gd_scene load_steps=7 format=3 uid="uid://wjy5j6y0rb8h"]
 
 [ext_resource type="Script" path="res://resources/interactables/Anvil.gd" id="1_5cphj"]
 [ext_resource type="PackedScene" uid="uid://b5yqxkxsg6xo4" path="res://resources/interactables/InteractableBase.tscn" id="2_v6lbt"]
 [ext_resource type="Texture2D" uid="uid://bumwjioq3qj11" path="res://asset/visual/map/Biom1/anvil.png" id="2_vf1wx"]
+[ext_resource type="Shader" path="res://resources/shaders/flash.gdshader" id="3_jbsjy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o68up"]
+resource_local_to_scene = true
+shader = ExtResource("3_jbsjy")
+shader_parameter/flash_color = Color(0.992157, 1, 0.52549, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dygx7"]
 size = Vector2(18, 2)
@@ -10,12 +17,14 @@ size = Vector2(18, 2)
 [node name="Anvil" type="StaticBody2D"]
 collision_mask = 0
 script = ExtResource("1_5cphj")
+crafting_time = 0.5
 
 [node name="InteractableBase" parent="." instance=ExtResource("2_v6lbt")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_o68up")
 texture = ExtResource("2_vf1wx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
