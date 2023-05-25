@@ -73,7 +73,7 @@ motion_mode = 1
 script = ExtResource("1_aawk4")
 attack_speed = 7.0
 attack_cooldown = 0.8
-base_speed = 100
+base_speed = 69
 metadata/_edit_vertical_guides_ = [-51.0, 51.0]
 metadata/_edit_horizontal_guides_ = []
 
