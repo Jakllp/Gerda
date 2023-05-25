@@ -93,6 +93,7 @@ motion_mode = 1
 script = ExtResource("1_u110p")
 weapon_scene = ExtResource("2_7fuq5")
 mining_equipment_scene = ExtResource("3_fchbn")
+base_speed = 100
 metadata/_edit_horizontal_guides_ = [-16.0]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]

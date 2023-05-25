@@ -75,9 +75,8 @@ func mine_overlay(cell: Vector2i) -> void:
 		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(3,origin_atlas_y), 0)
 
 
-# Clears the cell - TODO NAV-UPDATES
+# Clears the cell
 func clear_cell(cell: Vector2i, attached_cell) -> void:
-	# TODO Nav-updates!
 	# The cell above the current cell AND an attached_cell if present
 	var cell_above_everything :Vector2i
 	# Cell that has a top-texture
@@ -86,6 +85,9 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 	if(attached_cell == null):
 		cell_above_everything = self.get_neighbor_cell(cell, TileSet.CELL_NEIGHBOR_TOP_SIDE)
 		top_cell = cell
+		var bottom_cell = self.get_neighbor_cell(cell,TileSet.CELL_NEIGHBOR_BOTTOM_SIDE)
+		if self.get_cell_source_id(block_layer, bottom_cell, false) != -1:
+			self.set_cell(ground_layer, bottom_cell, ground_atlas, Vector2i(0,0), 1)
 	# We have a wall-block!
 	else:
 		var wall_cell :Vector2i
@@ -100,6 +102,7 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 		self.erase_cell(mine_overlay_layer, wall_cell)
 		remaining_hardness_dict.erase(wall_cell)
 		self.erase_cell(block_layer, wall_cell)
+		# Ground underneath now gone wall -> Full Navigation
 		self.set_cell(ground_layer, wall_cell, ground_atlas,Vector2i(0,0), 0)
 		
 		cell_above_everything = self.get_neighbor_cell(top_cell, TileSet.CELL_NEIGHBOR_TOP_SIDE)
@@ -120,8 +123,8 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 			else:
 				self.erase_cell(mine_overlay_layer, top_cell)
 				remaining_hardness_dict.erase(top_cell)
-			
-			self.set_cell(ground_layer, cell, ground_atlas,Vector2i(0,0), 0)
+			# It is now a wall -> Update ground with a bit of navigation
+			self.set_cell(ground_layer, top_cell, ground_atlas,Vector2i(0,0), 2)
 			return
 	
 	# Nothing/wall on top of it -> delete it
