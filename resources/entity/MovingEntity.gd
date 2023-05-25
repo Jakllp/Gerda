@@ -26,8 +26,8 @@ func move():
 
 func flash():
 	var shader_mat = get_node("SubViewportContainer/SubViewport/AnimatedSprite2D").material
-	shader_mat.set_shader_parameter("flash_modifier",0.7)
-	await get_tree().create_timer(0.1).timeout
+	shader_mat.set_shader_parameter("flash_modifier",0.4)
+	await get_tree().create_timer(0.05).timeout
 	shader_mat.set_shader_parameter("flash_modifier",0)
 
 

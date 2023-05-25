@@ -22,9 +22,10 @@ var current_equipment :Equipment
 var ore_pouch := 0:
 	set(value):
 		if ore_pouch != value:
-			print("+"+str(value-ore_pouch)+" Ore! We now have: "+str(value))
-			ore_received.emit(value-ore_pouch, Vector2(global_position.x,global_position.y-20))
 			ore_pouch = value
+			print("+"+str(value-ore_pouch)+" Ore! We now have: "+str(value))
+			if value > ore_pouch:
+				ore_received.emit(value-ore_pouch, Vector2(global_position.x,global_position.y-20))
 
 signal ore_received(amount, pos)
 
@@ -76,9 +77,18 @@ func try_dash() -> void:
 	print(str(dash.allowed_to_dash()))
 	if dashes_left > 0 && dash.allowed_to_dash() && direction.length() > 0:
 		dash.start_dash(dash_duration, dash_refill_speed)
+		
 		$DashEffect.emitting = true
+		var dash_flash_tween = self.create_tween()
+		dash_flash_tween.tween_method(set_shader_value, 0.8, 0.0, dash_duration)
+		dash_flash_tween.play()
+		
 		dashes_left -= 1
 		print("Dashed - Dashes left: "+str(dashes_left)+"/"+str(dash_max_amount))
+
+
+func set_shader_value(value: float):
+	$SubViewportContainer/SubViewport/AnimatedSprite2D.material.set_shader_parameter("flash_modifier", value)
 	
 	
 func _on_dash_refill() -> void:
