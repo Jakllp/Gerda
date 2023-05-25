@@ -7,6 +7,7 @@ func update(player: Player, delta: float) -> void:
 	player.direction = get_player_direction()
 	check_for_equip_switch(player)
 	check_for_equip_use(player, delta)
+	check_dash(player)
 
 
 func get_player_direction() -> Vector2:
@@ -25,3 +26,9 @@ func check_for_equip_switch(player: Player) -> void:
 func check_for_equip_use(player: Player, delta: float) -> void:
 	if Input.is_action_just_pressed("LMB") or Input.is_action_pressed("RMB"):
 		player.use_equipment(delta)
+
+
+# Dashes
+func check_dash(player: Player) -> void:
+	if Input.is_action_just_pressed("dash"):
+		player.try_dash()
