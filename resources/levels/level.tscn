@@ -239,3 +239,6 @@ position = Vector2(20, 202)
 z_index = 1
 y_sort_enabled = true
 position = Vector2(121, 2)
+
+[connection signal="ore_received" from="Player" to="TileMap" method="_on_player_ore_received"]
+
