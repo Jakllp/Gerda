@@ -25,5 +25,5 @@ func is_out_of_bounds() -> bool:
 
 
 func _on_hitbox_body_entered(body):
-	if body is TileMap or body is MovingEnemy or body is StaticEnemy:
+	if body is TileMap:
 		queue_free()

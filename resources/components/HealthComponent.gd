@@ -33,5 +33,6 @@ func receive_damage(damage: int) -> void:
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
+		if area.owner is Projectile: area.owner.queue_free()
 		if owner.has_node("Dash") and owner.dash.is_dashing(): return
 		receive_damage(area.damage)
