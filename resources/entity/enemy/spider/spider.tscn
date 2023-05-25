@@ -68,7 +68,7 @@ size = Vector2(17.5, 8.3333)
 [node name="Spider" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
 collision_layer = 4
-collision_mask = 7
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_aawk4")
 attack_speed = 7.0
@@ -105,7 +105,6 @@ sprite_frames = SubResource("SpriteFrames_chory")
 animation = &"walk"
 
 [node name="Mask" type="Sprite2D" parent="."]
-z_index = 1
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_getsk")
 texture = SubResource("ViewportTexture_qao34")
