@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b1fjv37yfto5d"]
+[gd_scene load_steps=24 format=3 uid="uid://b1fjv37yfto5d"]
 
 [ext_resource type="Script" path="res://resources/entity/player/player.gd" id="1_u110p"]
 [ext_resource type="PackedScene" uid="uid://cnprtm2i3wtid" path="res://resources/equipment/weapon/gun.tscn" id="2_7fuq5"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="7_rhl1x"]
 [ext_resource type="PackedScene" uid="uid://b2krhq43q3awp" path="res://resources/components/DashComponent.tscn" id="10_ykqoh"]
 [ext_resource type="PackedScene" uid="uid://dbp5fhvrf7ggb" path="res://resources/particles/DashEffect.tscn" id="12_n5e8w"]
+[ext_resource type="Texture2D" uid="uid://bxi2qkwchgo7a" path="res://asset/visual/actor/char/mole/dash3.png" id="13_a6mrj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_koq83"]
 resource_local_to_scene = true
@@ -167,7 +168,7 @@ libraries = {
 z_index = -1
 material = null
 amount = 30
-texture = ExtResource("4_xwvyu")
+texture = ExtResource("13_a6mrj")
 lifetime = 0.25
 fixed_fps = 60
 
