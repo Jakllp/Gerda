@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://resources/other/ore_text.gd" id="1_1wsvj"]
 
 [node name="ore_text" type="Node2D"]
-z_index = 5
+z_index = 200
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_1wsvj")
 
