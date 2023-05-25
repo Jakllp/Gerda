@@ -33,4 +33,5 @@ func attack() -> void:
 
 
 func flip() -> void:
+	# TODO: It's ugly. Should flip whole enemy -> But something flips it back.
 	$SubViewportContainer/SubViewport/AnimatedSprite2D.scale.x *= -1

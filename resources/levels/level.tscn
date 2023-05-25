@@ -228,3 +228,5 @@ metadata/_edit_horizontal_guides_ = [-14.0]
 position = Vector2(20, 202)
 
 [node name="Line2D" type="Line2D" parent="."]
+
+[connection signal="ore_received" from="Player" to="TileMap" method="_on_player_ore_received"]
