@@ -63,4 +63,4 @@ func needs_crafting() -> bool:
 
 func crafted() -> void:
 	ammo_stored += restore_per_craft
-	print("Ammo replenished: "+str(mag_contents)+"/"+str(ammo_stored))
+	print("Total ammo replenished: "+str(mag_contents)+"/"+str(ammo_stored))

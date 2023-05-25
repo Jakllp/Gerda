@@ -8,10 +8,12 @@
 size = Vector2(2, 1)
 
 [node name="Projectile" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_ibm6r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 2
+y_sort_enabled = true
 scale = Vector2(1.00685, 1)
 texture = ExtResource("2_730l4")
 

@@ -19,7 +19,6 @@ func do_interaction() -> void:
 	if player == null:
 		player = $InteractableBase.player
 	if !crafting_tween.is_running() and player.ore_pouch > 0 and player.weapon.needs_crafting():
-		print(player.ore_pouch)
 		crafting_tween.tween_method(set_shader_value, 0.0, 0.7, crafting_time)
 		crafting_tween.tween_callback(craft)
 		crafting_tween.play()
@@ -35,7 +34,6 @@ func stop_interaction() -> void:
 
 
 func craft() -> void:
-	print("Crafting!")
 	player.weapon.crafted()
 	player.ore_pouch -= 1
 	set_shader_value(0.0)

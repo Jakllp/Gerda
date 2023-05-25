@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://b1fjv37yfto5d"]
 
 [ext_resource type="Script" path="res://resources/entity/player/player.gd" id="1_u110p"]
-[ext_resource type="PackedScene" path="res://resources/equipment/weapon/rifle.tscn" id="2_8xjit"]
+[ext_resource type="PackedScene" uid="uid://8486tdmus75m" path="res://resources/equipment/weapon/rifle.tscn" id="2_8xjit"]
 [ext_resource type="PackedScene" uid="uid://bsoh0y7sn64be" path="res://resources/equipment/mining/mining_equipment.tscn" id="3_fchbn"]
 [ext_resource type="Shader" path="res://resources/shaders/flash.gdshader" id="4_07x2k"]
 [ext_resource type="Texture2D" uid="uid://dx3qnu570p8hx" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="4_xwvyu"]
