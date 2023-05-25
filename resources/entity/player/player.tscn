@@ -88,6 +88,7 @@ _data = {
 }
 
 [node name="Mole" type="CharacterBody2D" groups=["player"]]
+z_index = 1
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_u110p")
@@ -118,12 +119,24 @@ size_2d_override = Vector2i(32, 32)
 render_target_update_mode = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_koq83")
 position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_4p0wo")
 animation = &"walk"
 
+[node name="DashEffect" parent="." instance=ExtResource("12_n5e8w")]
+z_index = 1
+y_sort_enabled = true
+material = null
+amount = 30
+texture = ExtResource("4_xwvyu")
+lifetime = 0.25
+fixed_fps = 60
+
 [node name="Mask" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_xence")
 texture = SubResource("ViewportTexture_by0eu")
 
@@ -136,11 +149,9 @@ texture = SubResource("ViewportTexture_o6p7u")
 script = ExtResource("7_rhl1x")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 zoom = Vector2(3.5, 3.5)
 
 [node name="CollisonShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_xsxsu")
 
@@ -149,7 +160,6 @@ position = Vector2(-2.5, 2.5)
 scale = Vector2(1.28733, 0.109863)
 
 [node name="HurtBox" parent="." instance=ExtResource("6_hfx4t")]
-visible = false
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
@@ -162,14 +172,7 @@ libraries = {
 }
 
 [node name="Dash" parent="." instance=ExtResource("10_ykqoh")]
-
-[node name="DashEffect" parent="." instance=ExtResource("12_n5e8w")]
-z_index = -1
-material = null
-amount = 30
-texture = ExtResource("4_xwvyu")
-lifetime = 0.25
-fixed_fps = 60
+y_sort_enabled = true
 
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 
