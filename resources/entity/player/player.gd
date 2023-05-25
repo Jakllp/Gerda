@@ -39,7 +39,8 @@ func _physics_process(delta: float) -> void:
 	input_component.update(self, delta)
 	# Animate
 	if self.direction.length() > 0:
-		$AnimationPlayer.play("walk")
+		if !$AnimationPlayer.is_playing():
+			$AnimationPlayer.play("walk")
 	elif $AnimationPlayer.is_playing():
 		$AnimationPlayer.stop(false)
 	current_equipment.update(self)

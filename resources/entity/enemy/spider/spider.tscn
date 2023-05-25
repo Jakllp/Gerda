@@ -1,11 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://c1pt1ussh36ya"]
+[gd_scene load_steps=23 format=3 uid="uid://c1pt1ussh36ya"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/spider/spider.gd" id="1_aawk4"]
-[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="3_7bj6w"]
+[ext_resource type="Texture2D" uid="uid://ry4w8xt4hdw7" path="res://asset/visual/actor/enemy/spider/spider_frame1.png" id="2_v7u1e"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="3_cssy3"]
+[ext_resource type="Texture2D" uid="uid://cdomgfgihv102" path="res://asset/visual/actor/enemy/spider/spider_frame2.png" id="3_hunbe"]
 [ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_rynaa"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="4_lieus"]
+[ext_resource type="Texture2D" uid="uid://cc4l2oq5y7vse" path="res://asset/visual/actor/enemy/spider/spider_frame3.png" id="4_ra0ne"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="4_uo85l"]
+[ext_resource type="Texture2D" uid="uid://qmej8xpve0gn" path="res://asset/visual/actor/enemy/spider/spider_frame4.png" id="5_avrct"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="5_lr3uh"]
 [ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="5_ras38"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="6_53m54"]
@@ -15,11 +18,20 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_7bj6w")
+"texture": ExtResource("2_v7u1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hunbe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ra0ne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_avrct")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 20.0
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_getsk"]
@@ -38,13 +50,13 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 radius = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkdua"]
-size = Vector2(18, 18)
+size = Vector2(28, 18)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_55xr7"]
 radius = 25.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_54hej"]
-size = Vector2(8, 4.6666)
+size = Vector2(17.5, 8.3333)
 
 [node name="Spider" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
@@ -59,10 +71,10 @@ metadata/_edit_vertical_guides_ = [-51.0, 51.0]
 metadata/_edit_horizontal_guides_ = []
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_left = -16.0
+offset_left = -19.0
 offset_top = -16.0
-offset_right = 1904.0
-offset_bottom = 1064.0
+offset_right = 19.0
+offset_bottom = 16.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
@@ -74,22 +86,24 @@ snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
 canvas_item_default_texture_filter = 0
 canvas_cull_mask = 4294966273
-size = Vector2i(32, 32)
-size_2d_override = Vector2i(32, 32)
+size = Vector2i(36, 32)
+size_2d_override = Vector2i(36, 32)
 render_target_update_mode = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(16, 16)
+position = Vector2(18, 16)
 sprite_frames = SubResource("SpriteFrames_chory")
 animation = &"walk"
 
 [node name="Mask" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_getsk")
+position = Vector2(-1, 0)
 texture = SubResource("ViewportTexture_qao34")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = 100
 material = SubResource("ShaderMaterial_ops3y")
+position = Vector2(-1, 0)
 texture = SubResource("ViewportTexture_lxteo")
 
 [node name="HealthComponent" type="Node" parent="."]
@@ -106,6 +120,7 @@ shape = SubResource("CircleShape2D_qye2k")
 collision_mask = 8
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_tkdua")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
@@ -116,7 +131,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_55xr7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_54hej")
 
 [node name="BTBlackboard" type="Node" parent="."]
