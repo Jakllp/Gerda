@@ -1,0 +1,188 @@
+[gd_scene load_steps=24 format=3 uid="uid://b1fjv37yfto5d"]
+
+[ext_resource type="Script" path="res://resources/entity/player/player.gd" id="1_u110p"]
+[ext_resource type="PackedScene" uid="uid://8486tdmus75m" path="res://resources/equipment/weapon/rifle.tscn" id="2_8xjit"]
+[ext_resource type="PackedScene" uid="uid://bsoh0y7sn64be" path="res://resources/equipment/mining/mining_equipment.tscn" id="3_fchbn"]
+[ext_resource type="Shader" path="res://resources/shaders/flash.gdshader" id="4_07x2k"]
+[ext_resource type="Texture2D" uid="uid://dx3qnu570p8hx" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="4_xwvyu"]
+[ext_resource type="Texture2D" uid="uid://n855g5htet0y" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="5_lhuaa"]
+[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="6_41oyr"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="6_hfx4t"]
+[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="7_bed8w"]
+[ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="7_rhl1x"]
+[ext_resource type="Texture2D" uid="uid://bxi2qkwchgo7a" path="res://asset/visual/actor/char/mole/dash_frame.png" id="8_rjfgy"]
+[ext_resource type="PackedScene" uid="uid://b2krhq43q3awp" path="res://resources/components/DashComponent.tscn" id="10_ykqoh"]
+[ext_resource type="PackedScene" uid="uid://dbp5fhvrf7ggb" path="res://resources/particles/DashEffect.tscn" id="12_n5e8w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_koq83"]
+resource_local_to_scene = true
+shader = ExtResource("4_07x2k")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4p0wo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_xwvyu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lhuaa")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xence"]
+shader = ExtResource("6_41oyr")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_by0eu"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wbvd"]
+shader = ExtResource("7_bed8w")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_o6p7u"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsxsu"]
+size = Vector2(17, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqoc6"]
+radius = 7.0
+height = 24.0
+
+[sub_resource type="Animation" id="Animation_xfjvt"]
+resource_name = "walk"
+length = 0.166675
+loop_mode = 1
+step = 0.0909091
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0909091, 0.181818),
+"transitions": PackedFloat32Array(1e-05, 1.07896e-05, 7.77929e-05),
+"update": 0,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EquipmentAnglePoint:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0803106, 0.170181),
+"transitions": PackedFloat32Array(1e-05, 1e-05, 1.6354e-05),
+"update": 0,
+"values": [Vector2(-2.5, 2.5), Vector2(-2.5, 1.5), Vector2(-2.5, 2.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ek0ot"]
+_data = {
+"walk": SubResource("Animation_xfjvt")
+}
+
+[node name="Mole" type="CharacterBody2D" groups=["player"]]
+z_index = 1
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_u110p")
+weapon_scene = ExtResource("2_8xjit")
+mining_equipment_scene = ExtResource("3_fchbn")
+base_speed = 100
+metadata/_edit_horizontal_guides_ = [-16.0]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 1904.0
+offset_bottom = 1064.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+canvas_item_default_texture_repeat = 1
+canvas_cull_mask = 4294966273
+size = Vector2i(32, 32)
+size_2d_override = Vector2i(32, 32)
+render_target_update_mode = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_koq83")
+position = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_4p0wo")
+animation = &"walk"
+
+[node name="DashEffect" parent="." instance=ExtResource("12_n5e8w")]
+z_index = 1
+y_sort_enabled = true
+material = null
+amount = 30
+texture = ExtResource("8_rjfgy")
+lifetime = 0.25
+fixed_fps = 60
+
+[node name="Mask" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_xence")
+texture = SubResource("ViewportTexture_by0eu")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 100
+material = SubResource("ShaderMaterial_6wbvd")
+texture = SubResource("ViewportTexture_o6p7u")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("7_rhl1x")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3.5, 3.5)
+
+[node name="CollisonShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_xsxsu")
+
+[node name="EquipmentAnglePoint" type="Marker2D" parent="."]
+position = Vector2(-2.5, 2.5)
+scale = Vector2(1.28733, 0.109863)
+
+[node name="HurtBox" parent="." instance=ExtResource("6_hfx4t")]
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(-1, 1)
+shape = SubResource("CapsuleShape2D_qqoc6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ek0ot")
+}
+
+[node name="Dash" parent="." instance=ExtResource("10_ykqoh")]
+
+[node name="DashEffect" parent="." instance=ExtResource("12_n5e8w")]
+z_index = -1
+y_sort_enabled = true
+material = null
+amount = 30
+texture = ExtResource("8_rjfgy")
+lifetime = 0.25
+fixed_fps = 60
+
+[connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
+
+[editable path="HurtBox"]

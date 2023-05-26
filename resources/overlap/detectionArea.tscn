@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dovx62msjlv1e"]
+
+[node name="DetectionArea" type="Area2D"]
+collision_layer = 0
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

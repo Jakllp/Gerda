@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0xe5n06rxj2e"]
+
+[ext_resource type="Script" path="res://resources/entity/enemy/worm/Worm.gd" id="1_n8ov6"]
+[ext_resource type="PackedScene" path="res://resources/components/HealthComponent.tscn" id="2_8ix1j"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="3_jlrhr"]
+[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="4_8a8sa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rhuya"]
+
+[node name="Worm" type="StaticBody2D"]
+collision_layer = 0
+script = ExtResource("1_n8ov6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rhuya")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_8ix1j")]
+
+[node name="HurtBox" parent="." instance=ExtResource("3_jlrhr")]
+collision_mask = 8
+
+[node name="Hitbox" parent="." instance=ExtResource("4_8a8sa")]
+collision_layer = 16
+
+[node name="AttackRange" parent="." instance=ExtResource("3_jlrhr")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]

@@ -1,0 +1,165 @@
+[gd_scene load_steps=25 format=3 uid="uid://c1pt1ussh36ya"]
+
+[ext_resource type="Script" path="res://resources/entity/enemy/spider/spider.gd" id="1_aawk4"]
+[ext_resource type="Shader" path="res://resources/shaders/flash.gdshader" id="2_8ay3l"]
+[ext_resource type="Texture2D" uid="uid://ry4w8xt4hdw7" path="res://asset/visual/actor/enemy/spider/spider_frame1.png" id="2_v7u1e"]
+[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="3_cssy3"]
+[ext_resource type="Texture2D" uid="uid://cdomgfgihv102" path="res://asset/visual/actor/enemy/spider/spider_frame2.png" id="3_hunbe"]
+[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_rynaa"]
+[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="4_lieus"]
+[ext_resource type="Texture2D" uid="uid://cc4l2oq5y7vse" path="res://asset/visual/actor/enemy/spider/spider_frame3.png" id="4_ra0ne"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="4_uo85l"]
+[ext_resource type="Texture2D" uid="uid://qmej8xpve0gn" path="res://asset/visual/actor/enemy/spider/spider_frame4.png" id="5_avrct"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="5_lr3uh"]
+[ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="5_ras38"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="6_53m54"]
+[ext_resource type="PackedScene" uid="uid://den3piytupk7s" path="res://resources/entity/enemy/behaviorTree/movement/NormalEnemyMovement.tscn" id="7_l4mod"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5hvuo"]
+resource_local_to_scene = true
+shader = ExtResource("2_8ay3l")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_chory"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_v7u1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hunbe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ra0ne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_avrct")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 20.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_getsk"]
+shader = ExtResource("3_cssy3")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qao34"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ops3y"]
+shader = ExtResource("4_lieus")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lxteo"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qye2k"]
+radius = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkdua"]
+size = Vector2(28, 18)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_55xr7"]
+radius = 25.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_54hej"]
+size = Vector2(14, 7.16665)
+
+[node name="Spider" type="CharacterBody2D" groups=["enemy"]]
+z_index = 1
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_aawk4")
+attack_speed = 7.0
+attack_cooldown = 0.8
+base_speed = 69
+metadata/_edit_vertical_guides_ = [-51.0, 51.0]
+metadata/_edit_horizontal_guides_ = []
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -19.0
+offset_top = -16.0
+offset_right = 19.0
+offset_bottom = 16.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4294966273
+size = Vector2i(38, 32)
+size_2d_override = Vector2i(36, 32)
+render_target_update_mode = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_5hvuo")
+position = Vector2(19, 16)
+sprite_frames = SubResource("SpriteFrames_chory")
+animation = &"walk"
+
+[node name="Mask" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_getsk")
+texture = SubResource("ViewportTexture_qao34")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 100
+material = SubResource("ShaderMaterial_ops3y")
+texture = SubResource("ViewportTexture_lxteo")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("5_ras38")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_rynaa")]
+collision_layer = 16
+damage = 10
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_qye2k")
+
+[node name="HurtBox" parent="." instance=ExtResource("4_uo85l")]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_tkdua")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="AttackRange" parent="." instance=ExtResource("4_uo85l")]
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="AttackRange" index="0"]
+shape = SubResource("CircleShape2D_55xr7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -0.583325)
+shape = SubResource("RectangleShape2D_54hej")
+
+[node name="BTBlackboard" type="Node" parent="."]
+script = ExtResource("5_lr3uh")
+data = {
+"move_path": PackedVector2Array(),
+"path_index": 0
+}
+
+[node name="BTRoot" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
+script = ExtResource("6_53m54")
+actor_path = NodePath("..")
+blackboard = NodePath("../BTBlackboard")
+
+[node name="Move" parent="BTRoot" instance=ExtResource("7_l4mod")]
+
+[connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+
+[editable path="Hitbox"]
+[editable path="HurtBox"]
+[editable path="AttackRange"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://e8ly4cmfj1or"]
+
+[ext_resource type="Script" path="res://resources/other/ore_text.gd" id="1_1wsvj"]
+
+[node name="ore_text" type="Node2D"]
+z_index = 200
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_1wsvj")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -9.33333
+offset_top = -6.66667
+offset_right = 30.6667
+offset_bottom = 19.3333
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 0.35
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_timer_timeout"]
