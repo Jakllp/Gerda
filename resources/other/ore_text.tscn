@@ -3,11 +3,13 @@
 [ext_resource type="Script" path="res://resources/other/ore_text.gd" id="1_1wsvj"]
 
 [node name="ore_text" type="Node2D"]
+light_mask = 0
 z_index = 200
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_1wsvj")
 
 [node name="Label" type="Label" parent="."]
+light_mask = 0
 offset_left = -9.33333
 offset_top = -6.66667
 offset_right = 30.6667
