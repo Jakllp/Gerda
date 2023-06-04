@@ -26,7 +26,6 @@ collision_layer = 4
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_bu6l0")
-speed = 69
 metadata/_edit_vertical_guides_ = [-51.0, 51.0]
 metadata/_edit_horizontal_guides_ = []
 

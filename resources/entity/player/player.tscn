@@ -1,9 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://b1fjv37yfto5d"]
+[gd_scene load_steps=26 format=3 uid="uid://b1fjv37yfto5d"]
 
 [ext_resource type="Script" path="res://resources/entity/player/player.gd" id="1_u110p"]
 [ext_resource type="PackedScene" uid="uid://8486tdmus75m" path="res://resources/equipment/weapon/rifle.tscn" id="2_8xjit"]
 [ext_resource type="PackedScene" uid="uid://bsoh0y7sn64be" path="res://resources/equipment/mining/mining_equipment.tscn" id="3_fchbn"]
 [ext_resource type="Shader" path="res://resources/shaders/flash.gdshader" id="4_07x2k"]
+[ext_resource type="Texture2D" uid="uid://s7xq82s8pmpt" path="res://asset/visual/pointedLight.png" id="4_227ec"]
+[ext_resource type="Texture2D" uid="uid://ca8r7v224uay4" path="res://asset/visual/light.png" id="4_k6jsw"]
 [ext_resource type="Texture2D" uid="uid://dx3qnu570p8hx" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="4_xwvyu"]
 [ext_resource type="Texture2D" uid="uid://n855g5htet0y" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="5_lhuaa"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="6_41oyr"]
@@ -82,6 +84,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(-2.5, 2.5), Vector2(-2.5, 1.5), Vector2(-2.5, 2.5)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShadowLight:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0909, 0.1818),
+"transitions": PackedFloat32Array(1e-05, 1e-05, 2.39436e-05),
+"update": 0,
+"values": [Vector2(2.5, -8.5), Vector2(2.5, -9.5), Vector2(2.5, -8.5)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ek0ot"]
 _data = {
@@ -97,6 +111,26 @@ weapon_scene = ExtResource("2_8xjit")
 mining_equipment_scene = ExtResource("3_fchbn")
 base_speed = 100
 metadata/_edit_horizontal_guides_ = [-16.0]
+
+[node name="ShadowLight" type="PointLight2D" parent="."]
+light_mask = 9
+position = Vector2(2.5, -9.5)
+color = Color(0.717647, 0.717647, 0.717647, 1)
+energy = 0.4
+shadow_enabled = true
+shadow_color = Color(0.427451, 0.427451, 0.427451, 0)
+texture = ExtResource("4_227ec")
+
+[node name="GeneralLight" type="PointLight2D" parent="."]
+light_mask = 9
+position = Vector2(2.5, -8.5)
+energy = 0.2
+range_item_cull_mask = 2
+shadow_color = Color(0.427451, 0.427451, 0.427451, 0)
+shadow_filter_smooth = 64.0
+shadow_item_cull_mask = 0
+texture = ExtResource("4_k6jsw")
+texture_scale = 1.5
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_left = -16.0
@@ -125,9 +159,10 @@ material = SubResource("ShaderMaterial_koq83")
 position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_4p0wo")
 animation = &"walk"
+frame = 1
 
 [node name="DashEffect" parent="." instance=ExtResource("12_n5e8w")]
-z_index = 1
+z_index = -1
 y_sort_enabled = true
 material = null
 amount = 30
@@ -157,7 +192,7 @@ position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_xsxsu")
 
 [node name="EquipmentAnglePoint" type="Marker2D" parent="."]
-position = Vector2(-2.5, 2.5)
+position = Vector2(-2.5, 1.5)
 scale = Vector2(1.28733, 0.109863)
 
 [node name="HurtBox" parent="." instance=ExtResource("6_hfx4t")]
@@ -173,15 +208,6 @@ libraries = {
 }
 
 [node name="Dash" parent="." instance=ExtResource("10_ykqoh")]
-
-[node name="DashEffect" parent="." instance=ExtResource("12_n5e8w")]
-z_index = -1
-y_sort_enabled = true
-material = null
-amount = 30
-texture = ExtResource("8_rjfgy")
-lifetime = 0.25
-fixed_fps = 60
 
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 
