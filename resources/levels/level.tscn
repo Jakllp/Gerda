@@ -306,4 +306,7 @@ position = Vector2(-376, 332)
 y_sort_enabled = true
 position = Vector2(-350, 360)
 
+[node name="Unshaded" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
 [connection signal="ore_received" from="Player" to="TileMap" method="_on_player_ore_received"]
