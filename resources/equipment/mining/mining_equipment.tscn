@@ -2,24 +2,23 @@
 
 [ext_resource type="Script" path="res://resources/equipment/mining/miningEquipment.gd" id="1_0fe76"]
 [ext_resource type="PackedScene" uid="uid://mk5hgsurw2rv" path="res://resources/components/wearableComponent.tscn" id="2_fgbv7"]
-[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="2_g7dde"]
+[ext_resource type="Texture2D" uid="uid://8p0qsfkd8qap" path="res://asset/visual/actor/char/mole/miningEquipment/mole_hand1.png" id="2_xn6lq"]
 
 [node name="MinigEquipment" type="Node2D"]
 position = Vector2(-1.90735e-06, 0)
-scale = Vector2(0.031, 0.01)
 script = ExtResource("1_0fe76")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
 z_index = 1
 y_sort_enabled = true
-position = Vector2(242.194, 0)
-scale = Vector2(3.776, 3.125)
-texture = ExtResource("2_g7dde")
+position = Vector2(4.194, 1)
+scale = Vector2(1.00337, 0.958395)
+texture = ExtResource("2_xn6lq")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(290.322, 0)
-target_position = Vector2(193.549, 0)
+position = Vector2(6, 0)
+scale = Vector2(1.0079, 1)
+target_position = Vector2(11, 0)
 collision_mask = 32
 hit_from_inside = true
 
