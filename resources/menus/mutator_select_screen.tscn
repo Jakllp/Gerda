@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://drt5gc5wf3gcr"]
+
+[ext_resource type="Script" path="res://resources/menus/mutator_select_screen.gd" id="1_ivbmo"]
+
+[node name="MutatorSelectScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ivbmo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -50.5
+offset_right = 106.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Mutator1" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Ich bin der erste Mutator"
+
+[node name="Mutator2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Ich bin der zweite Mutator"
+
+[node name="Mutator3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Ich bin der dritte Mutator"
+
+[connection signal="pressed" from="VBoxContainer/Mutator1" to="." method="_on_mutator_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/Mutator2" to="." method="_on_mutator_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Mutator3" to="." method="_on_mutator_3_pressed"]

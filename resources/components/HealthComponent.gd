@@ -23,7 +23,10 @@ class_name HealthComponent
 
 
 func die() -> void:
-	get_tree().change_scene_to_file("res://resources/menus/game_over_screen.tscn")
+	if owner is Player:
+		get_tree().change_scene_to_file("res://resources/menus/game_over_screen.tscn")
+	else:
+		owner.queue_free()
 	
 
 func receive_damage(damage: int) -> void:
