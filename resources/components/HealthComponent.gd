@@ -23,7 +23,7 @@ class_name HealthComponent
 
 
 func die() -> void:
-	owner.queue_free()
+	get_tree().change_scene_to_file("res://resources/menus/game_over_screen.tscn")
 	
 
 func receive_damage(damage: int) -> void:
