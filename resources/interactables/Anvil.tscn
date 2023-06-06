@@ -15,7 +15,6 @@ shader_parameter/flash_modifier = 0.0
 size = Vector2(18, 2)
 
 [node name="Anvil" type="StaticBody2D"]
-collision_mask = 0
 script = ExtResource("1_5cphj")
 crafting_time = 0.5
 
@@ -30,6 +29,9 @@ texture = ExtResource("2_vf1wx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_dygx7")
+
+[connection signal="start_interaction" from="InteractableBase" to="." method="do_interaction"]
+[connection signal="stop_interaction" from="InteractableBase" to="." method="stop_interaction"]
 
 [editable path="InteractableBase"]
 [editable path="InteractableBase/DetectionArea"]

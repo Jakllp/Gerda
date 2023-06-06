@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bi8qb888nd5bg"]
+[gd_scene load_steps=16 format=3 uid="uid://bi8qb888nd5bg"]
 
 [ext_resource type="Script" path="res://resources/levels/level.gd" id="1_6suci"]
 [ext_resource type="Texture2D" uid="uid://bjo4qihuuqbq8" path="res://asset/visual/map/Biom1/biom1_blockTileset.png" id="1_raajn"]
 [ext_resource type="Texture2D" uid="uid://bs2qq00uj5g8i" path="res://asset/visual/map/miningoverlay.png" id="2_udwy7"]
 [ext_resource type="PackedScene" uid="uid://b1fjv37yfto5d" path="res://resources/entity/player/player.tscn" id="3_rhs2s"]
 [ext_resource type="Script" path="res://resources/levels/TileMap.gd" id="4_j5mb2"]
+[ext_resource type="PackedScene" uid="uid://4xeglkt7befu" path="res://resources/interactables/Chest.tscn" id="8_72uln"]
 [ext_resource type="Texture2D" uid="uid://r7i65elbeq4u" path="res://asset/visual/map/Biom1/ground.png" id="8_fmxk1"]
 [ext_resource type="PackedScene" uid="uid://wjy5j6y0rb8h" path="res://resources/interactables/Anvil.tscn" id="8_ha8vl"]
 [ext_resource type="PackedScene" uid="uid://c1pt1ussh36ya" path="res://resources/entity/enemy/spider/spider.tscn" id="13_a3wyg"]
@@ -240,6 +241,9 @@ visible = false
 z_index = 1
 y_sort_enabled = true
 position = Vector2(-275, -82)
+
+[node name="Chest" parent="." instance=ExtResource("8_72uln")]
+position = Vector2(-12, -57)
 
 [node name="Enemies" type="Node" parent="."]
 
