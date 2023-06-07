@@ -11,8 +11,6 @@ collision_layer = 64
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_y3tqq")
-min_ore_from_ore = 1
-max_ore_from_ore = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_efyfb")

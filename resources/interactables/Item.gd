@@ -4,19 +4,21 @@ class_name Item
 
 enum Item_Type {
 	ORE,
-	HEALTH
+	HEALTH,
+	PLAYER_UPGRADE,
+	WEAPON_UPGRADE
 }
 
-var rng = RandomNumberGenerator.new()
-@export var min_ore_from_ore :int
-@export var max_ore_from_ore :int
-
 var type
+var item_data = null
 
 
-func _ready() -> void:
-	self.type = Item_Type.ORE
-	
+# Constructor for an item
+# Needs type, does not need item_data
+func init(set_type:int, set_item_data):
+	self.type = set_type
+	self.item_data = set_item_data
+	print(str(self.type)+" "+str(self.item_data))
 	skin_item()
 	
 
@@ -26,23 +28,50 @@ func skin_item() -> void:
 			$Sprite2D.frame = 3
 		Item_Type.HEALTH:
 			$Sprite2D.frame = 0
+		Item_Type.PLAYER_UPGRADE:
+			match self.item_data:
+				Upgrade.Player_Upgrade.WALK_SPEED:
+					$Sprite2D.frame = 2
+				Upgrade.Player_Upgrade.DASH_COOLDOWN:
+					$Sprite2D.frame = 6
+				Upgrade.Player_Upgrade.MINING_SPEED:
+					$Sprite2D.frame = 10
+				_:
+					pass
+		Item_Type.WEAPON_UPGRADE:
+			match self.item_data:
+				Upgrade.Weapon_Upgrade.DAMAGE:
+					$Sprite2D.frame = 1
+				Upgrade.Weapon_Upgrade.RATE:
+					$Sprite2D.frame = 5
+				Upgrade.Weapon_Upgrade.SPEED:
+					$Sprite2D.frame = 9
+				_:
+					pass
 		_:
 			pass
 
 
 # Player is on the item
 func _on_body_entered(body :Node2D):
-	print("ENTERED")
-	if body is Player:
+	if body is Player and item_data != null:
 		var player :Player = body
-		print("PLAYER ENTERED")
 		match self.type:
 			# Handle what the Item actually does
 			Item_Type.ORE:
-				var ore_amount := rng.randi_range(min_ore_from_ore, max_ore_from_ore)
-				player.ore_pouch += ore_amount
+				player.ore_pouch += item_data
 				queue_free()
 			Item_Type.HEALTH:
-				pass
+				#TODO what if it no work?
+				player.add_health(item_data)
+				queue_free()
+			Item_Type.PLAYER_UPGRADE:
+				#TODO
+				print("Player Upgrade")
+				queue_free()
+			Item_Type.WEAPON_UPGRADE:
+				#TODO
+				print("Weapon Upgrade")
+				queue_free()
 			_:
 				pass

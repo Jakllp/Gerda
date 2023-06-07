@@ -89,8 +89,12 @@ func try_dash() -> void:
 
 func set_shader_value(value: float):
 	$SubViewportContainer/SubViewport/AnimatedSprite2D.material.set_shader_parameter("flash_modifier", value)
-	
-	
+
+
+func add_health(amount: int):
+	$HealthComponent.hp += amount
+
+
 func _on_dash_refill() -> void:
 	if dashes_left < dash_max_amount:
 		dashes_left+=1
