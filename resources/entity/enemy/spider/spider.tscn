@@ -62,18 +62,19 @@ size = Vector2(28, 18)
 [sub_resource type="CircleShape2D" id="CircleShape2D_55xr7"]
 radius = 25.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_54hej"]
-size = Vector2(14, 7.16665)
+[sub_resource type="CircleShape2D" id="CircleShape2D_tkay6"]
+radius = 6.0
 
 [node name="Spider" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
 collision_layer = 4
 collision_mask = 3
 motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_aawk4")
+speed = 112
 attack_speed = 7.0
 attack_cooldown = 0.8
-base_speed = 69
 metadata/_edit_vertical_guides_ = [-51.0, 51.0]
 metadata/_edit_horizontal_guides_ = []
 
@@ -105,12 +106,14 @@ sprite_frames = SubResource("SpriteFrames_chory")
 animation = &"walk"
 
 [node name="Mask" type="Sprite2D" parent="."]
+visible = false
 z_index = 1
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_getsk")
 texture = SubResource("ViewportTexture_qao34")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_ops3y")
 texture = SubResource("ViewportTexture_lxteo")
@@ -119,6 +122,7 @@ texture = SubResource("ViewportTexture_lxteo")
 script = ExtResource("5_ras38")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_rynaa")]
+visible = false
 collision_layer = 16
 damage = 10
 
@@ -126,6 +130,7 @@ damage = 10
 shape = SubResource("CircleShape2D_qye2k")
 
 [node name="HurtBox" parent="." instance=ExtResource("4_uo85l")]
+visible = false
 collision_mask = 8
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
@@ -134,14 +139,15 @@ shape = SubResource("RectangleShape2D_tkdua")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="AttackRange" parent="." instance=ExtResource("4_uo85l")]
+visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="AttackRange" index="0"]
 shape = SubResource("CircleShape2D_55xr7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -0.583325)
-shape = SubResource("RectangleShape2D_54hej")
+rotation = 1.57079
+shape = SubResource("CircleShape2D_tkay6")
 
 [node name="BTBlackboard" type="Node" parent="."]
 script = ExtResource("5_lr3uh")
@@ -157,8 +163,14 @@ blackboard = NodePath("../BTBlackboard")
 
 [node name="Move" parent="BTRoot" instance=ExtResource("7_l4mod")]
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 20.0
+avoidance_enabled = true
+debug_enabled = true
+
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 
 [editable path="Hitbox"]
 [editable path="HurtBox"]
