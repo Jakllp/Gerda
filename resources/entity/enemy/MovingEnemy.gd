@@ -29,6 +29,13 @@ func attack() -> void:
 func flip() -> void:
 	# TODO: It's ugly. Should flip whole enemy -> But something flips it back.
 	$SubViewportContainer/SubViewport/AnimatedSprite2D.scale.x *= -1
+	
+
+func flash():
+	var shader_mat = get_node("SubViewportContainer/SubViewport/AnimatedSprite2D").material
+	shader_mat.set_shader_parameter("flash_modifier",0.4)
+	await get_tree().create_timer(0.05).timeout
+	shader_mat.set_shader_parameter("flash_modifier",0)
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body is Player:

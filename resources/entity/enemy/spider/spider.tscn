@@ -72,11 +72,10 @@ collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_aawk4")
-speed = 112
 attack_speed = 7.0
 attack_cooldown = 0.8
-metadata/_edit_vertical_guides_ = [-51.0, 51.0]
 metadata/_edit_horizontal_guides_ = []
+metadata/_edit_vertical_guides_ = [-10.0]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_left = -19.0
