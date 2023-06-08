@@ -5,7 +5,8 @@ class_name Projectile
 @export var speed: int = 800
 @export var range: int = 400
 @export var infinite_range: bool = false
-	
+@export var pierce: int = 0
+
 func _physics_process(delta: float) -> void:
 	var distance := speed * delta
 	var direction := Vector2.RIGHT.rotated(rotation)
@@ -16,13 +17,6 @@ func _physics_process(delta: float) -> void:
 		if(range <= 0):
 			queue_free()
 	
-	if(is_out_of_bounds()):
-		queue_free()
-
-func is_out_of_bounds() -> bool:
-	#TODO: implement me
-	return false
-
 
 func _on_hitbox_body_entered(body):
 	if body is TileMap:
