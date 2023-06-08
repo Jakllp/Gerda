@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name MovingEnemy
 
-##speed of the enemy
+## speed of the enemy
 @export var speed: int = 70
 ## For melee attacks the time it takes to execute the actual attack
 ## For ranged attacks the velocity of the projectile
@@ -15,7 +15,7 @@ class_name MovingEnemy
 
 func _ready() -> void:
 	sprite.play()
-	nav_agent.radius = ShapeHandler.get_shape_radius($CollisionShape2D.shape)
+	nav_agent.radius = ShapeHelper.get_shape_radius($CollisionShape2D.shape)
 	
 
 func _physics_process(delta: float) -> void:
@@ -36,11 +36,12 @@ func flash():
 	shader_mat.set_shader_parameter("flash_modifier",0.4)
 	await get_tree().create_timer(0.05).timeout
 	shader_mat.set_shader_parameter("flash_modifier",0)
+	
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body is Player:
 		attack()
-
+	
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity

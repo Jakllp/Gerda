@@ -293,18 +293,27 @@ position = Vector2(-56, 206)
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Spider" parent="Enemies" instance=ExtResource("13_a3wyg")]
-position = Vector2(-201, 126)
+position = Vector2(-27, 8)
 
 [node name="Spider2" parent="Enemies" instance=ExtResource("13_a3wyg")]
-position = Vector2(-186, 151)
+position = Vector2(9, 5)
 
 [node name="Spider3" parent="Enemies" instance=ExtResource("13_a3wyg")]
-position = Vector2(-160, 201)
+position = Vector2(11, 74)
 
 [node name="Spider4" parent="Enemies" instance=ExtResource("13_a3wyg")]
-position = Vector2(-164, 169)
+position = Vector2(9, 57)
 
 [node name="Spider5" parent="Enemies" instance=ExtResource("13_a3wyg")]
-position = Vector2(-158, 133)
+position = Vector2(8, 32)
+
+[node name="Spider6" parent="Enemies" instance=ExtResource("13_a3wyg")]
+position = Vector2(-24, 78)
+
+[node name="Spider7" parent="Enemies" instance=ExtResource("13_a3wyg")]
+position = Vector2(-24, 53)
+
+[node name="Spider8" parent="Enemies" instance=ExtResource("13_a3wyg")]
+position = Vector2(-25, 29)
 
 [connection signal="ore_received" from="Mole" to="TileMap" method="_on_player_ore_received"]

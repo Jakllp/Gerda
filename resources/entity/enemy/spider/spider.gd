@@ -4,7 +4,7 @@ class_name Spider
 
 var attack_tween: Tween
 
-@onready var attack_range = $AttackRange/CollisionShape2D.shape.radius
+@onready var attack_range = ShapeHelper.get_shape_radius($AttackRange/CollisionShape2D.shape) 
 
 func _ready() -> void:
 	super._ready()

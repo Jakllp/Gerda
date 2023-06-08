@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="5_lr3uh"]
 [ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="5_ras38"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="6_53m54"]
-[ext_resource type="PackedScene" uid="uid://den3piytupk7s" path="res://resources/entity/enemy/behaviorTree/movement/NormalEnemyMovement.tscn" id="7_l4mod"]
+[ext_resource type="PackedScene" uid="uid://csqtjpx8yahan" path="res://resources/entity/enemy/behaviorTree/movement/NormalEnemyMovement.tscn" id="7_l4mod"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5hvuo"]
 resource_local_to_scene = true

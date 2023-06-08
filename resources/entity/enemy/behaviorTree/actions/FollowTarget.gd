@@ -6,8 +6,6 @@ extends BTAction
 var flag = true
 
 func tick(actor:Node, blackboard:BTBlackboard):
-#	if actor.nav_agent.is_target_reached():
-#		return BTTickResult.SUCCESS
 	var target = actor.nav_agent.get_next_path_position()
 	var velocity = (target - actor.global_position).normalized() * actor.speed
 

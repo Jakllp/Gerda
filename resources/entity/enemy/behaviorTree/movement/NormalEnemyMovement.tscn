@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://den3piytupk7s"]
+[gd_scene load_steps=11 format=3 uid="uid://csqtjpx8yahan"]
 
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSelector.gd" id="1_mp3kr"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Decorators/BTFailure.gd" id="2_raiy8"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/LimitedAlways.gd" id="3_ccuas"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSequence.gd" id="3_wmr16"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/GetPlayerPosition.gd" id="4_fryry"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/isPlayerVisible.gd" id="5_b1jxn"]
-[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/loadMovePath.gd" id="6_fb78o"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/SetNavigationTarget.gd" id="6_dq1yf"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/IsTargetReached.gd" id="8_dxmhk"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/FollowTarget.gd" id="9_2mvaj"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/loadWanderPos.gd" id="9_ixdye"]
-[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/followPath.gd" id="10_epna5"]
 
 [node name="Move" type="Node"]
 script = ExtResource("1_mp3kr")
@@ -16,44 +17,53 @@ script = ExtResource("1_mp3kr")
 [node name="BTFailure" type="Node" parent="."]
 script = ExtResource("2_raiy8")
 
-[node name="BTSelector" type="Node" parent="BTFailure"]
+[node name="SelectTarget" type="Node" parent="BTFailure"]
 script = ExtResource("1_mp3kr")
 
-[node name="FollowPlayer" type="Node" parent="BTFailure/BTSelector"]
+[node name="FollowPlayer" type="Node" parent="BTFailure/SelectTarget"]
 script = ExtResource("3_wmr16")
 
-[node name="GetPlayerPos" type="Node" parent="BTFailure/BTSelector/FollowPlayer"]
+[node name="LimitedAlways" type="Node" parent="BTFailure/SelectTarget/FollowPlayer"]
+script = ExtResource("3_ccuas")
+result = 2
+
+[node name="GetPlayerPos" type="Node" parent="BTFailure/SelectTarget/FollowPlayer"]
 script = ExtResource("4_fryry")
 player_pos_key = "player_pos"
 player_group_name = "player"
 
-[node name="IsPlayerVisible" type="Node" parent="BTFailure/BTSelector/FollowPlayer"]
+[node name="IsPlayerVisible" type="Node" parent="BTFailure/SelectTarget/FollowPlayer"]
 script = ExtResource("5_b1jxn")
 player_pos_key = "player_pos"
 collision_mask = 32
 
-[node name="LoadMovePath" type="Node" parent="BTFailure/BTSelector/FollowPlayer"]
-script = ExtResource("6_fb78o")
+[node name="SetNavigationTargetPlayer" type="Node" parent="BTFailure/SelectTarget/FollowPlayer"]
+script = ExtResource("6_dq1yf")
 target_pos_key = "player_pos"
-move_path_key = "move_path"
 
-[node name="Wander" type="Node" parent="BTFailure/BTSelector"]
+[node name="Wander" type="Node" parent="BTFailure/SelectTarget"]
 script = ExtResource("3_wmr16")
 
-[node name="IsTargetReached" type="Node" parent="BTFailure/BTSelector/Wander"]
+[node name="BTSelector" type="Node" parent="BTFailure/SelectTarget/Wander"]
+script = ExtResource("1_mp3kr")
+
+[node name="LimitedAlways" type="Node" parent="BTFailure/SelectTarget/Wander/BTSelector"]
+script = ExtResource("3_ccuas")
+
+[node name="IsTargetReached" type="Node" parent="BTFailure/SelectTarget/Wander/BTSelector"]
 script = ExtResource("8_dxmhk")
 
-[node name="LoadWanderPos" type="Node" parent="BTFailure/BTSelector/Wander"]
+[node name="LoadWanderPos" type="Node" parent="BTFailure/SelectTarget/Wander"]
 script = ExtResource("9_ixdye")
 wander_pos_key = "wander_pos"
+collision_mask = 32
 
-[node name="LoadMovePath" type="Node" parent="BTFailure/BTSelector/Wander"]
-script = ExtResource("6_fb78o")
+[node name="SetNavigationTargetWander" type="Node" parent="BTFailure/SelectTarget/Wander"]
+script = ExtResource("6_dq1yf")
 target_pos_key = "wander_pos"
-move_path_key = "move_path"
 
-[node name="FollowPath" type="Node" parent="."]
-script = ExtResource("10_epna5")
+[node name="FollowTarget" type="Node" parent="."]
+script = ExtResource("9_2mvaj")
 path_index_key = "path_index"
 move_path_key = "move_path"
 point_reached_margin = 5
