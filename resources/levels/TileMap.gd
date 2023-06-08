@@ -21,6 +21,7 @@ var ground_atlas := 2
 # Logic of damaging cells
 func damage_cell(cell: Vector2i, damage: float):
 	var was_ore = false
+	print(damage)
 	
 	if remaining_hardness_dict.has(cell):
 		# We know the cell -> Further reduce damage

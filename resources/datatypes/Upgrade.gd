@@ -10,6 +10,6 @@ enum Player_Upgrade{
 
 enum Weapon_Upgrade{
 	DAMAGE,
-	RATE,
-	SPEED
+	ATTACK_RATE,
+	SPEED #Gun: ReloadSpeed, Melee: SwingSpeed
 }

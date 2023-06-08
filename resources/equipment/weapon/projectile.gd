@@ -19,6 +19,9 @@ func _physics_process(delta: float) -> void:
 	if(is_out_of_bounds()):
 		queue_free()
 
+func init(damage: int) -> void:
+	$Hitbox.damage = damage
+
 func is_out_of_bounds() -> bool:
 	#TODO: implement me
 	return false
