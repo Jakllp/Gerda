@@ -15,6 +15,11 @@ run/main_scene="res://resources/menus/start_menu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://asset/visual/actor/icon.svg"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/yet_another_behavior_tree/plugin.cfg")

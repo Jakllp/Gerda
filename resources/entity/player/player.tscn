@@ -150,7 +150,7 @@ texture = SubResource("ViewportTexture_o6p7u")
 script = ExtResource("7_rhl1x")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3.5, 3.5)
+zoom = Vector2(3, 3)
 
 [node name="CollisonShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 4)

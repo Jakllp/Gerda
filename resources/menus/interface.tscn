@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://3nw02h1mploy"]
+[gd_scene load_steps=16 format=3 uid="uid://3nw02h1mploy"]
 
+[ext_resource type="Texture2D" uid="uid://b24p010o47pbo" path="res://asset/visual/UI/HUD_Elements.png" id="1_b65lm"]
 [ext_resource type="Texture2D" uid="uid://1g7wedka6xr7" path="res://asset/visual/UI/heart.png" id="1_s4ql2"]
 [ext_resource type="Texture2D" uid="uid://do62nvv7s6bvg" path="res://asset/visual/UI/line.png" id="2_7242t"]
 [ext_resource type="Texture2D" uid="uid://c1soqoek0ienq" path="res://asset/visual/UI/playerUp1.png" id="3_ttmgg"]
 [ext_resource type="Texture2D" uid="uid://blolyk10isg35" path="res://asset/visual/UI/playerUp2.png" id="4_m4rcf"]
 [ext_resource type="Texture2D" uid="uid://yq88c1pa57pi" path="res://asset/visual/UI/playerUp3.png" id="5_mx70h"]
-[ext_resource type="Texture2D" uid="uid://igxpk3r4hwd1" path="res://asset/visual/UI/ore.png" id="6_letqr"]
 [ext_resource type="Texture2D" uid="uid://dw30bikloxeqa" path="res://asset/visual/UI/mutator2.png" id="7_r7o8r"]
 [ext_resource type="Texture2D" uid="uid://dsiqxnm2jrtfc" path="res://asset/visual/UI/mutator1.png" id="8_kooso"]
 [ext_resource type="Texture2D" uid="uid://b5iddx4epx8ut" path="res://asset/visual/UI/weaponUp1.png" id="9_5vxnb"]
@@ -15,130 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://xkpsmut5oki0" path="res://asset/visual/UI/weaponUp2.png" id="10_pdy6q"]
 [ext_resource type="Texture2D" uid="uid://jbwg1bmlvwlc" path="res://asset/visual/UI/weaponUp3.png" id="11_sow8h"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_benp0"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(24, 0, 8, 8)
+
 [node name="Interface" type="CanvasLayer"]
-
-[node name="Top Left" type="HBoxContainer" parent="."]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 182.0
-offset_bottom = 138.0
-
-[node name="Left" type="HBoxContainer" parent="Top Left"]
-layout_mode = 2
-
-[node name="Health" type="VBoxContainer" parent="Top Left/Left"]
-layout_mode = 2
-
-[node name="heart1" type="TextureRect" parent="Top Left/Left/Health"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture = ExtResource("1_s4ql2")
-
-[node name="heart2" type="TextureRect" parent="Top Left/Left/Health"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture = ExtResource("1_s4ql2")
-
-[node name="heart3" type="TextureRect" parent="Top Left/Left/Health"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture = ExtResource("1_s4ql2")
-
-[node name="line" type="TextureRect" parent="Top Left/Left"]
-custom_minimum_size = Vector2(6, 5)
-layout_mode = 2
-texture = ExtResource("2_7242t")
-
-[node name="Player Upgrades" type="HBoxContainer" parent="Top Left/Left"]
-layout_mode = 2
-
-[node name="upgrade 1" type="VBoxContainer" parent="Top Left/Left/Player Upgrades"]
-layout_mode = 2
-
-[node name="icon" type="TextureRect" parent="Top Left/Left/Player Upgrades/upgrade 1"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture = ExtResource("3_ttmgg")
-
-[node name="anzahl" type="Label" parent="Top Left/Left/Player Upgrades/upgrade 1"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "x 7"
-
-[node name="upgrade 2" type="VBoxContainer" parent="Top Left/Left/Player Upgrades"]
-layout_mode = 2
-
-[node name="icon" type="TextureRect" parent="Top Left/Left/Player Upgrades/upgrade 2"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture = ExtResource("4_m4rcf")
-
-[node name="anzahl" type="Label" parent="Top Left/Left/Player Upgrades/upgrade 2"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "x 1"
-
-[node name="upgrade 3" type="VBoxContainer" parent="Top Left/Left/Player Upgrades"]
-layout_mode = 2
-
-[node name="icon" type="TextureRect" parent="Top Left/Left/Player Upgrades/upgrade 3"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture = ExtResource("5_mx70h")
-
-[node name="anzahl" type="Label" parent="Top Left/Left/Player Upgrades/upgrade 3"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "x 4"
-
-[node name="Top Right" type="HBoxContainer" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -54.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = 80.0
-grow_horizontal = 0
-
-[node name="Right" type="HBoxContainer" parent="Top Right"]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Ore" type="VBoxContainer" parent="Top Right/Right"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="icon" type="TextureRect" parent="Top Right/Right/Ore"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture = ExtResource("6_letqr")
-
-[node name="anzahl" type="Label" parent="Top Right/Right/Ore"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "x 15"
-
-[node name="line" type="TextureRect" parent="Top Right/Right"]
-custom_minimum_size = Vector2(6, 0)
-layout_mode = 2
-texture = ExtResource("2_7242t")
-
-[node name="Mutators" type="VBoxContainer" parent="Top Right/Right"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Top Right/Right/Mutators"]
-custom_minimum_size = Vector2(45, 38)
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("7_r7o8r")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="TextureRect2" type="TextureRect" parent="Top Right/Right/Mutators"]
-custom_minimum_size = Vector2(45, 38)
-layout_mode = 2
-texture = ExtResource("8_kooso")
 
 [node name="Bottom" type="HBoxContainer" parent="."]
 anchors_preset = 7
@@ -262,3 +143,116 @@ texture = ExtResource("11_sow8h")
 layout_mode = 2
 size_flags_horizontal = 4
 text = "x 0"
+
+[node name="Left" type="HBoxContainer" parent="."]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 192.0
+offset_bottom = 138.0
+
+[node name="Health" type="VBoxContainer" parent="Left"]
+layout_mode = 2
+
+[node name="heart1" type="TextureRect" parent="Left/Health"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("1_s4ql2")
+
+[node name="heart2" type="TextureRect" parent="Left/Health"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("1_s4ql2")
+
+[node name="heart3" type="TextureRect" parent="Left/Health"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("1_s4ql2")
+
+[node name="line" type="TextureRect" parent="Left"]
+custom_minimum_size = Vector2(6, 5)
+layout_mode = 2
+texture = ExtResource("2_7242t")
+
+[node name="Player Upgrades" type="HBoxContainer" parent="Left"]
+layout_mode = 2
+
+[node name="upgrade 1" type="VBoxContainer" parent="Left/Player Upgrades"]
+layout_mode = 2
+
+[node name="icon" type="TextureRect" parent="Left/Player Upgrades/upgrade 1"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("3_ttmgg")
+
+[node name="anzahl" type="Label" parent="Left/Player Upgrades/upgrade 1"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "x 7"
+
+[node name="upgrade 2" type="VBoxContainer" parent="Left/Player Upgrades"]
+layout_mode = 2
+
+[node name="icon" type="TextureRect" parent="Left/Player Upgrades/upgrade 2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_m4rcf")
+
+[node name="anzahl" type="Label" parent="Left/Player Upgrades/upgrade 2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "x 1"
+
+[node name="upgrade 3" type="VBoxContainer" parent="Left/Player Upgrades"]
+layout_mode = 2
+
+[node name="icon" type="TextureRect" parent="Left/Player Upgrades/upgrade 3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("5_mx70h")
+
+[node name="anzahl" type="Label" parent="Left/Player Upgrades/upgrade 3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "x 4"
+
+[node name="Right" type="HBoxContainer" parent="."]
+offset_left = 1043.0
+offset_top = 10.0
+offset_right = 1142.0
+offset_bottom = 138.0
+size_flags_horizontal = 0
+
+[node name="Ore" type="VBoxContainer" parent="Right"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="icon" type="TextureRect" parent="Right/Ore"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = SubResource("AtlasTexture_benp0")
+
+[node name="anzahl" type="Label" parent="Right/Ore"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "x 15"
+
+[node name="line" type="TextureRect" parent="Right"]
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 2
+texture = ExtResource("2_7242t")
+
+[node name="Mutators" type="VBoxContainer" parent="Right"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Right/Mutators"]
+custom_minimum_size = Vector2(45, 38)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("7_r7o8r")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="Right/Mutators"]
+custom_minimum_size = Vector2(45, 38)
+layout_mode = 2
+texture = ExtResource("8_kooso")
