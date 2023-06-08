@@ -14,9 +14,9 @@ class_name BTTickResult
 #------------------------------------------
 
 enum {
-    SUCCESS = 0,
-    RUNNING = 1,
-    FAILURE = 2
+	SUCCESS = 0,
+	RUNNING = 1,
+	FAILURE = 2
 }
 
 #------------------------------------------
