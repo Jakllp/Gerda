@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://csqtjpx8yahan"]
+[gd_scene load_steps=13 format=3 uid="uid://csqtjpx8yahan"]
 
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSelector.gd" id="1_mp3kr"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Decorators/BTFailure.gd" id="2_raiy8"]
@@ -7,9 +7,11 @@
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/GetPlayerPosition.gd" id="4_fryry"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/isPlayerVisible.gd" id="5_b1jxn"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/SetNavigationTarget.gd" id="6_dq1yf"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/IsWanderDistanceOver.gd" id="8_2n1d6"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/IsTargetReached.gd" id="8_dxmhk"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/FollowTarget.gd" id="9_2mvaj"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/loadWanderPos.gd" id="9_ixdye"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Leaves/BTActionBlackboardSet.gd" id="11_lmkrx"]
 
 [node name="Move" type="Node"]
 script = ExtResource("1_mp3kr")
@@ -44,11 +46,20 @@ target_pos_key = "player_pos"
 [node name="Wander" type="Node" parent="BTFailure/SelectTarget"]
 script = ExtResource("3_wmr16")
 
+[node name="BTActionBlackboardSet" type="Node" parent="BTFailure/SelectTarget/Wander"]
+script = ExtResource("11_lmkrx")
+blackboard_key = "wander_distance"
+expression = " blackboard.get_data(\"wander_distance\") + actor.velocity.length() * delta"
+can_overwrite_value = true
+
 [node name="BTSelector" type="Node" parent="BTFailure/SelectTarget/Wander"]
 script = ExtResource("1_mp3kr")
 
 [node name="LimitedAlways" type="Node" parent="BTFailure/SelectTarget/Wander/BTSelector"]
 script = ExtResource("3_ccuas")
+
+[node name="IsWanderDistanceOver" type="Node" parent="BTFailure/SelectTarget/Wander/BTSelector"]
+script = ExtResource("8_2n1d6")
 
 [node name="IsTargetReached" type="Node" parent="BTFailure/SelectTarget/Wander/BTSelector"]
 script = ExtResource("8_dxmhk")
@@ -61,6 +72,12 @@ collision_mask = 32
 [node name="SetNavigationTargetWander" type="Node" parent="BTFailure/SelectTarget/Wander"]
 script = ExtResource("6_dq1yf")
 target_pos_key = "wander_pos"
+
+[node name="BTActionBlackboardSet2" type="Node" parent="BTFailure/SelectTarget/Wander"]
+script = ExtResource("11_lmkrx")
+blackboard_key = "wander_distance"
+expression = "0"
+can_overwrite_value = true
 
 [node name="FollowTarget" type="Node" parent="."]
 script = ExtResource("9_2mvaj")
