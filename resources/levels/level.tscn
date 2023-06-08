@@ -238,8 +238,6 @@ metadata/_edit_horizontal_guides_ = [-14.0]
 visible = false
 
 [node name="Anvil" parent="." instance=ExtResource("8_ha8vl")]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(-275, -65)
 
 [node name="Chest" parent="." instance=ExtResource("8_72uln")]

@@ -22,7 +22,7 @@ item_scene = ExtResource("2_7mitl")
 [node name="InteractableBase" parent="." instance=ExtResource("2_yml7l")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
+z_index = 2
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_o68up")
 texture = ExtResource("4_iuafc")
