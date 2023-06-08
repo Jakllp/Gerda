@@ -95,6 +95,8 @@ motion_mode = 1
 script = ExtResource("1_u110p")
 weapon_scene = ExtResource("2_8xjit")
 mining_equipment_scene = ExtResource("3_fchbn")
+walk_speed_upgrade_modifier = 10
+dash_cooldown_upgrade_modifier = 0.1
 base_speed = 100
 metadata/_edit_horizontal_guides_ = [-16.0]
 

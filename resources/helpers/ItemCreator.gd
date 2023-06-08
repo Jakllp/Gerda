@@ -22,4 +22,6 @@ static func create_chest_item(item):
 			wanted_item_data = rng.randi_range(0,Upgrade.Weapon_Upgrade.values().size()-1)
 		_:
 			pass
+	wanted_type = Item.Item_Type.PLAYER_UPGRADE
+	wanted_item_data = Upgrade.Player_Upgrade.MINING_SPEED
 	item.init(wanted_type, wanted_item_data)

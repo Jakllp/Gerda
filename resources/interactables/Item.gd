@@ -18,7 +18,6 @@ var item_data = null
 func init(set_type:int, set_item_data):
 	self.type = set_type
 	self.item_data = set_item_data
-	print(str(self.type)+" "+str(self.item_data))
 	skin_item()
 	
 
@@ -66,12 +65,26 @@ func _on_body_entered(body :Node2D):
 				player.add_health(item_data)
 				queue_free()
 			Item_Type.PLAYER_UPGRADE:
-				#TODO
-				print("Player Upgrade")
+				match self.item_data:
+					Upgrade.Player_Upgrade.WALK_SPEED:
+						player.active_upgrades["WALK_SPEED"] += 1
+					Upgrade.Player_Upgrade.DASH_COOLDOWN:
+						player.active_upgrades["DASH_COOLDOWN"] += 1
+					Upgrade.Player_Upgrade.MINING_SPEED:
+						player.active_upgrades["MINING_SPEED"] += 1
+					_:
+						pass
 				queue_free()
 			Item_Type.WEAPON_UPGRADE:
-				#TODO
-				print("Weapon Upgrade")
+				match self.item_data:
+					Upgrade.Weapon_Upgrade.DAMAGE:
+						player.weapon.active_upgrades["DAMAGE"] += 1
+					Upgrade.Weapon_Upgrade.RATE:
+						player.weapon.active_upgrades["RATE"] += 1
+					Upgrade.Weapon_Upgrade.SPEED:
+						player.weapon.active_upgrades["SPEED"] += 1
+					_:
+						pass
 				queue_free()
 			_:
 				pass

@@ -5,11 +5,11 @@ extends Node2D
 @onready var cooldown_timer = $CooldownTimer
 
 
-func start_dash(duration, dash_refill_speed):
+func start_dash(duration, dash_cooldown):
 	duration_timer.wait_time = duration
 	duration_timer.start()
 	if refill_timer.is_stopped():
-		refill_timer.wait_time = dash_refill_speed
+		refill_timer.wait_time = dash_cooldown
 		refill_timer.start()
 
 

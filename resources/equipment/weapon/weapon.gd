@@ -5,6 +5,13 @@ class_name Weapon
 
 @export var restore_per_craft :int
 
+var active_upgrades = {}
+
+func _ready() -> void:
+	# Fill upgrades
+	for x in Upgrade.Weapon_Upgrade:
+		active_upgrades[x] = 0
+
 
 func update(player: Player) -> void:
 	pass

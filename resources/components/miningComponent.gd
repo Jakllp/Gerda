@@ -3,14 +3,16 @@ extends RefCounted
 class_name MiningComponent
 
 var rng = RandomNumberGenerator.new()
-@export var min_ore_from_ore := 1
-@export var max_ore_from_ore := 4
+var min_ore_from_ore := 1
+var max_ore_from_ore := 4
+## How much percent the mining speed goes up (from the base mining speed)
+var mining_speed_upgrade_modifier := 0.2
 
-# Aka how many damage it deals per second
-var mining_speed = 10
+## How many damage it deals per second
+var base_mining_speed = 10
 
 
-func mine(delta: float, collision: RayCast2D) -> int:
+func mine(delta: float, collision: RayCast2D, player:Player=null) -> int:
 	if collision.is_colliding() and collision.get_collider() is TileMap:
 		# Get the cell on the map
 		var cell_rid = collision.get_collider_rid()
@@ -27,7 +29,12 @@ func mine(delta: float, collision: RayCast2D) -> int:
 			return 0
 		
 		# Actually mine (aka reduce health of that point)
-		var ore_pos = map.damage_cell(cell, delta * mining_speed)
+		var ore_pos
+		if(player!=null):
+			var speedup = (base_mining_speed * mining_speed_upgrade_modifier/100) * player.active_upgrades["MINING_SPEED"]
+			ore_pos = map.damage_cell(cell, delta * base_mining_speed + speedup)
+		else:
+			ore_pos = map.damage_cell(cell, delta * base_mining_speed)
 		
 		if ore_pos is Vector2i:
 			# In this case we actually destroyed an ore

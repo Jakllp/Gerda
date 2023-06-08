@@ -12,6 +12,7 @@ class_name Gun
 
 @onready var reload_timer :Timer = $ReloadTimer
 
+
 func update(player: Player) -> void:
 	for child in get_children():
 		if child.has_method("update"):
