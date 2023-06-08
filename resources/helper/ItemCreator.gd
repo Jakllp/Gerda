@@ -22,6 +22,4 @@ static func create_chest_item(item):
 			wanted_item_data = rng.randi_range(0,Upgrade.Weapon_Upgrade.values().size()-1)
 		_:
 			pass
-	wanted_type = Item.Item_Type.WEAPON_UPGRADE
-	wanted_item_data = Upgrade.Weapon_Upgrade.ATTACK_RATE
 	item.init(wanted_type, wanted_item_data)
