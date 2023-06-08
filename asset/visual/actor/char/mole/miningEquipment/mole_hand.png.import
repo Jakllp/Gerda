@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhdagakpmdic2"
-path="res://.godot/imported/mole_hand4.png-dfc09f1548476a52a937f62fa538e44c.ctex"
+uid="uid://bdfwtpg0jlond"
+path="res://.godot/imported/mole_hand.png-beed213cabb650f7965ece82a6207644.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/visual/actor/char/mole/miningEquipment/mole_hand4.png"
-dest_files=["res://.godot/imported/mole_hand4.png-dfc09f1548476a52a937f62fa538e44c.ctex"]
+source_file="res://asset/visual/actor/char/mole/miningEquipment/mole_hand.png"
+dest_files=["res://.godot/imported/mole_hand.png-beed213cabb650f7965ece82a6207644.ctex"]
 
 [params]
 
