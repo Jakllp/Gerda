@@ -2,7 +2,7 @@ extends BTAction
 
 ## The way it works:
 ## When selecting the next position to wander to the actor will firstly try to hold his current direction.
-## Therefor he looks ahead (distance defined by actor.max_wander_distance) if there is anything he can see (defined by collision_mask).
+## Therefor he looks ahead (distance defined in blackboard as "max_wander_distance") if there is anything he can see (defined by collision_mask).
 ## If there is nothing he keeps going. In case there is something (typically a wall) the distance is calculated (wall_distance).
 ## Afterwards a propability for holding his course is calculated. This probability is depends on the wall_distance.
 ## With great distance comes great probability ;)
@@ -22,7 +22,7 @@ const lambda = 0.005
 
 func tick(actor:Node, blackboard:BTBlackboard):
 	var current_dir = actor.velocity.normalized() if actor.velocity != Vector2.ZERO else Vector2.RIGHT
-	var wander_pos = actor.global_position + current_dir * actor.max_wander_distance
+	var wander_pos = actor.global_position + current_dir * blackboard.get_data("max_wander_distance")
 	
 	var space_state :PhysicsDirectSpaceState2D = actor.get_world_2d().direct_space_state
 	var query = PhysicsRayQueryParameters2D.create(actor.global_position, wander_pos)

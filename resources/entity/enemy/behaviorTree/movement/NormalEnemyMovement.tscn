@@ -1,81 +1,98 @@
-[gd_scene load_steps=13 format=3 uid="uid://csqtjpx8yahan"]
+[gd_scene load_steps=14 format=3 uid="uid://csqtjpx8yahan"]
 
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSelector.gd" id="1_mp3kr"]
-[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Decorators/BTFailure.gd" id="2_raiy8"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/LimitedAlways.gd" id="3_ccuas"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSequence.gd" id="3_wmr16"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/GetPlayerPosition.gd" id="4_fryry"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/isPlayerVisible.gd" id="5_b1jxn"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/SetNavigationTarget.gd" id="6_dq1yf"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Decorators/BTInverter.gd" id="7_4ui76"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/IsWanderDistanceOver.gd" id="8_2n1d6"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/IsTargetReached.gd" id="8_dxmhk"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/Lookaroundgd.gd" id="9_0kycw"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/FollowTarget.gd" id="9_2mvaj"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/loadWanderPos.gd" id="9_ixdye"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Leaves/BTActionBlackboardSet.gd" id="11_lmkrx"]
 
 [node name="Move" type="Node"]
-script = ExtResource("1_mp3kr")
-
-[node name="BTFailure" type="Node" parent="."]
-script = ExtResource("2_raiy8")
-
-[node name="SelectTarget" type="Node" parent="BTFailure"]
-script = ExtResource("1_mp3kr")
-
-[node name="FollowPlayer" type="Node" parent="BTFailure/SelectTarget"]
 script = ExtResource("3_wmr16")
 
-[node name="LimitedAlways" type="Node" parent="BTFailure/SelectTarget/FollowPlayer"]
+[node name="SelectTarget" type="Node" parent="."]
+script = ExtResource("1_mp3kr")
+
+[node name="FollowPlayer" type="Node" parent="SelectTarget"]
+script = ExtResource("3_wmr16")
+
+[node name="LimitedAlways" type="Node" parent="SelectTarget/FollowPlayer"]
 script = ExtResource("3_ccuas")
 result = 2
 
-[node name="GetPlayerPos" type="Node" parent="BTFailure/SelectTarget/FollowPlayer"]
+[node name="GetPlayerPos" type="Node" parent="SelectTarget/FollowPlayer"]
 script = ExtResource("4_fryry")
 player_pos_key = "player_pos"
 player_group_name = "player"
 
-[node name="IsPlayerVisible" type="Node" parent="BTFailure/SelectTarget/FollowPlayer"]
+[node name="IsPlayerVisible" type="Node" parent="SelectTarget/FollowPlayer"]
 script = ExtResource("5_b1jxn")
 player_pos_key = "player_pos"
 collision_mask = 32
 
-[node name="SetNavigationTargetPlayer" type="Node" parent="BTFailure/SelectTarget/FollowPlayer"]
+[node name="SetNavigationTargetPlayer" type="Node" parent="SelectTarget/FollowPlayer"]
 script = ExtResource("6_dq1yf")
 target_pos_key = "player_pos"
 
-[node name="Wander" type="Node" parent="BTFailure/SelectTarget"]
+[node name="BTInverter" type="Node" parent="SelectTarget"]
+script = ExtResource("7_4ui76")
+
+[node name="BTSequence" type="Node" parent="SelectTarget/BTInverter"]
 script = ExtResource("3_wmr16")
 
-[node name="BTActionBlackboardSet" type="Node" parent="BTFailure/SelectTarget/Wander"]
+[node name="BTActionBlackboardSet" type="Node" parent="SelectTarget/BTInverter/BTSequence"]
 script = ExtResource("11_lmkrx")
-blackboard_key = "wander_distance"
-expression = " blackboard.get_data(\"wander_distance\") + actor.velocity.length() * delta"
+blackboard_key = "walked_distance"
+expression = " blackboard.get_data(\"walked_distance\") + actor.velocity.length() * delta"
 can_overwrite_value = true
 
-[node name="BTSelector" type="Node" parent="BTFailure/SelectTarget/Wander"]
+[node name="ShouldStop" type="Node" parent="SelectTarget/BTInverter/BTSequence"]
+script = ExtResource("3_wmr16")
+
+[node name="BTSelector2" type="Node" parent="SelectTarget/BTInverter/BTSequence/ShouldStop"]
 script = ExtResource("1_mp3kr")
 
-[node name="LimitedAlways" type="Node" parent="BTFailure/SelectTarget/Wander/BTSelector"]
+[node name="LimitedAlways2" type="Node" parent="SelectTarget/BTInverter/BTSequence/ShouldStop/BTSelector2"]
 script = ExtResource("3_ccuas")
 
-[node name="IsWanderDistanceOver" type="Node" parent="BTFailure/SelectTarget/Wander/BTSelector"]
+[node name="IsWanderDistanceOver" type="Node" parent="SelectTarget/BTInverter/BTSequence/ShouldStop/BTSelector2"]
 script = ExtResource("8_2n1d6")
 
-[node name="IsTargetReached" type="Node" parent="BTFailure/SelectTarget/Wander/BTSelector"]
+[node name="IsTargetReached" type="Node" parent="SelectTarget/BTInverter/BTSequence/ShouldStop/BTSelector2"]
 script = ExtResource("8_dxmhk")
 
-[node name="LoadWanderPos" type="Node" parent="BTFailure/SelectTarget/Wander"]
+[node name="BTActionWait" type="Node" parent="SelectTarget/BTInverter/BTSequence/ShouldStop"]
+script = ExtResource("9_0kycw")
+wait_time_ms = 500
+random_deviation_ms = 2000
+
+[node name="Wander" type="Node" parent="SelectTarget/BTInverter/BTSequence"]
+script = ExtResource("3_wmr16")
+
+[node name="BTActionBlackboardSet" type="Node" parent="SelectTarget/BTInverter/BTSequence/Wander"]
+script = ExtResource("11_lmkrx")
+blackboard_key = "max_wander_distance"
+expression = "actor.max_wander_distance + randi_range(-1 * actor.wander_distance_deviation, actor.wander_distance_deviation)"
+
+[node name="LoadWanderPos" type="Node" parent="SelectTarget/BTInverter/BTSequence/Wander"]
 script = ExtResource("9_ixdye")
 wander_pos_key = "wander_pos"
 collision_mask = 32
 
-[node name="SetNavigationTargetWander" type="Node" parent="BTFailure/SelectTarget/Wander"]
+[node name="SetNavigationTargetWander" type="Node" parent="SelectTarget/BTInverter/BTSequence/Wander"]
 script = ExtResource("6_dq1yf")
 target_pos_key = "wander_pos"
 
-[node name="BTActionBlackboardSet2" type="Node" parent="BTFailure/SelectTarget/Wander"]
+[node name="BTActionBlackboardSet2" type="Node" parent="SelectTarget/BTInverter/BTSequence/Wander"]
 script = ExtResource("11_lmkrx")
-blackboard_key = "wander_distance"
+blackboard_key = "walked_distance"
 expression = "0"
 can_overwrite_value = true
 

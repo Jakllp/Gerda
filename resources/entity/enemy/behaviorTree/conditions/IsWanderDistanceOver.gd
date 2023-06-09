@@ -1,9 +1,8 @@
 extends BTCondition
 
 func tick(actor:Node, blackboard:BTBlackboard):
-	#print(blackboard.get_data("wander_distance"))
-	if blackboard.has_data("wander_distance") and blackboard.get_data("wander_distance") > actor.max_wander_distance:
-		return BTTickResult.SUCCESS
-	else:
-		return BTTickResult.FAILURE
+	if blackboard.has_data("walked_distance") and blackboard.has_data("max_wander_distance"):
+		if blackboard.get_data("walked_distance") > blackboard.get_data("max_wander_distance"):
+			return BTTickResult.SUCCESS
+	return BTTickResult.FAILURE
 

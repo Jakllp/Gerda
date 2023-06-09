@@ -15,6 +15,8 @@ class_name MovingEnemy
 @export var max_wander_target_radius: int = 200
 ## The maximum distance this enemy walks on the same wander path
 @export var max_wander_distance: int = 200
+## How much the max_wander_distance can vary
+@export var wander_distance_deviation: int = 100
 
 @onready var sprite :AnimatedSprite2D = $SubViewportContainer/SubViewport/AnimatedSprite2D
 @onready var nav_agent:NavigationAgent2D = $NavigationAgent2D
@@ -22,7 +24,7 @@ class_name MovingEnemy
 func _ready() -> void:
 	sprite.play()
 	nav_agent.radius = ShapeHelper.get_shape_radius($CollisionShape2D.shape)
-	
+	$BTBlackboard.set_data("walked_distance", 0)
 
 func _physics_process(delta: float) -> void:
 	pass
