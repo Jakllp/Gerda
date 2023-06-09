@@ -36,7 +36,10 @@ func tick(actor:Node, blackboard:BTBlackboard):
 		if randf() < hold_course_prob:
 			wander_pos = result.get("position")
 		else:
-			for i in point_tries:
+			var i:int = 0
+			var previous_wander_pos = blackboard.get_data(wander_pos_key)
+			while(i < point_tries or wander_pos == previous_wander_pos):
+				i += 1
 				var random_dir = Vector2.from_angle((randf_range(0,1) - randf_range(0,1)) * PI)
 				var random_pos = actor.global_position + random_dir * randi_range(actor.min_wander_target_radius, actor.max_wander_target_radius)
 				wander_pos = NavigationServer2D.map_get_closest_point(actor.get_world_2d().navigation_map,random_pos)

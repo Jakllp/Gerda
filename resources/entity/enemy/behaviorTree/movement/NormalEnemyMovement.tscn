@@ -41,6 +41,12 @@ collision_mask = 32
 script = ExtResource("6_dq1yf")
 target_pos_key = "player_pos"
 
+[node name="BTActionBlackboardSet" type="Node" parent="SelectAction/FollowPlayer"]
+script = ExtResource("11_lmkrx")
+blackboard_key = "is_following_player"
+expression = "true"
+can_overwrite_value = true
+
 [node name="BTInverter" type="Node" parent="SelectAction"]
 script = ExtResource("7_4ui76")
 
@@ -80,6 +86,7 @@ script = ExtResource("3_wmr16")
 script = ExtResource("11_lmkrx")
 blackboard_key = "max_wander_distance"
 expression = "actor.max_wander_distance + randi_range(-1 * actor.wander_distance_deviation, actor.wander_distance_deviation)"
+can_overwrite_value = true
 
 [node name="LoadWanderPos" type="Node" parent="SelectAction/BTInverter/Wander/SelectWanderPosition"]
 script = ExtResource("9_ixdye")
@@ -94,6 +101,12 @@ target_pos_key = "wander_pos"
 script = ExtResource("11_lmkrx")
 blackboard_key = "walked_distance"
 expression = "0"
+can_overwrite_value = true
+
+[node name="BTActionBlackboardSet2" type="Node" parent="SelectAction/BTInverter/Wander/SelectWanderPosition"]
+script = ExtResource("11_lmkrx")
+blackboard_key = "is_following_player"
+expression = "false"
 can_overwrite_value = true
 
 [node name="FollowTarget" type="Node" parent="."]

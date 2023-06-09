@@ -1,6 +1,6 @@
 extends BTAction
 
-## Node which is supposed to be ignored after it is ticked the first time but return once a BTTickResult.
+## Node which returns for the given amount of iterations the result and deletes itself afterwards.
 
 enum BlockResult {SUCCESS, RUNNING, FAILURE}
 @export var result: BlockResult

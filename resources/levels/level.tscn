@@ -283,11 +283,11 @@ y_sort_enabled = true
 position = Vector2(-275, -82)
 
 [node name="Mole" parent="." instance=ExtResource("7_jx722")]
-position = Vector2(61, 137)
+position = Vector2(-75, 226)
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Spider" parent="Enemies" instance=ExtResource("13_a3wyg")]
-position = Vector2(60, 2)
+position = Vector2(-194, 184)
 
 [connection signal="ore_received" from="Mole" to="TileMap" method="_on_player_ore_received"]
