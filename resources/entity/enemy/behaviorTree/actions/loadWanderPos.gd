@@ -40,7 +40,6 @@ func tick(actor:Node, blackboard:BTBlackboard):
 				var random_dir = Vector2.from_angle((randf_range(0,1) - randf_range(0,1)) * PI)
 				var random_pos = actor.global_position + random_dir * randi_range(actor.min_wander_target_radius, actor.max_wander_target_radius)
 				wander_pos = NavigationServer2D.map_get_closest_point(actor.get_world_2d().navigation_map,random_pos)
-				print(i, ".  retry: ", rad_to_deg(actor.velocity.angle_to(wander_pos - actor.global_position)), "  ---  ", "vel: ", actor.velocity, "  ---  ", "wapos: ", wander_pos)
 				if abs(actor.velocity.angle_to(wander_pos - actor.global_position)) < PI/2:
 					break
 			
