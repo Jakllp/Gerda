@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5iddx4epx8ut"
-path="res://.godot/imported/weaponUp1.png-3eed28ab7d88ecbe9717825b378e7c89.ctex"
+uid="uid://d4ijxgpjcoyyw"
+path="res://.godot/imported/Mutators.png-94fc167b525cba568f6ab2622c25ba5c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/visual/UI/weaponUp1.png"
-dest_files=["res://.godot/imported/weaponUp1.png-3eed28ab7d88ecbe9717825b378e7c89.ctex"]
+source_file="res://asset/visual/UI/Mutators.png"
+dest_files=["res://.godot/imported/Mutators.png-94fc167b525cba568f6ab2622c25ba5c.ctex"]
 
 [params]
 

@@ -234,7 +234,7 @@ y_sort_enabled = true
 position = Vector2(8, -13)
 metadata/_edit_horizontal_guides_ = [-14.0]
 
-[node name="Interface2" parent="Player" instance=ExtResource("7_y6o7s")]
+[node name="Interface" parent="Player" instance=ExtResource("7_y6o7s")]
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false

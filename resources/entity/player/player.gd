@@ -22,12 +22,13 @@ var current_equipment :Equipment
 var ore_pouch := 0:
 	set(value):
 		if ore_pouch != value:
-			print("+"+str(value-ore_pouch)+" Ore! We now have: "+str(value))
 			if value > ore_pouch:
 				ore_received.emit(value-ore_pouch, Vector2(global_position.x,global_position.y-20))
 			ore_pouch = value
+			ore_changed.emit(ore_pouch)
 
 signal ore_received(amount, pos)
+signal ore_changed(amount)
 
 
 func _ready() -> void:

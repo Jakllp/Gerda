@@ -1,25 +1,78 @@
-[gd_scene load_steps=16 format=3 uid="uid://3nw02h1mploy"]
+[gd_scene load_steps=22 format=3 uid="uid://3nw02h1mploy"]
 
-[ext_resource type="Texture2D" uid="uid://b24p010o47pbo" path="res://asset/visual/UI/HUD_Elements.png" id="1_b65lm"]
-[ext_resource type="Texture2D" uid="uid://1g7wedka6xr7" path="res://asset/visual/UI/heart.png" id="1_s4ql2"]
-[ext_resource type="Texture2D" uid="uid://do62nvv7s6bvg" path="res://asset/visual/UI/line.png" id="2_7242t"]
-[ext_resource type="Texture2D" uid="uid://c1soqoek0ienq" path="res://asset/visual/UI/playerUp1.png" id="3_ttmgg"]
-[ext_resource type="Texture2D" uid="uid://blolyk10isg35" path="res://asset/visual/UI/playerUp2.png" id="4_m4rcf"]
-[ext_resource type="Texture2D" uid="uid://yq88c1pa57pi" path="res://asset/visual/UI/playerUp3.png" id="5_mx70h"]
-[ext_resource type="Texture2D" uid="uid://dw30bikloxeqa" path="res://asset/visual/UI/mutator2.png" id="7_r7o8r"]
-[ext_resource type="Texture2D" uid="uid://dsiqxnm2jrtfc" path="res://asset/visual/UI/mutator1.png" id="8_kooso"]
-[ext_resource type="Texture2D" uid="uid://b5iddx4epx8ut" path="res://asset/visual/UI/weaponUp1.png" id="9_5vxnb"]
-[ext_resource type="Texture2D" uid="uid://bxksrnbtq2u7j" path="res://asset/visual/UI/weaponBackground.png" id="9_f511u"]
-[ext_resource type="Texture2D" uid="uid://cxu2wgv6m7aqx" path="res://asset/visual/UI/dash.png" id="9_q4rb3"]
+[ext_resource type="Texture2D" uid="uid://dso5mg62dphu3" path="res://asset/visual/UI/HUD_Elements.png" id="1_b65lm"]
+[ext_resource type="Script" path="res://resources/menus/interface.gd" id="1_nrw5u"]
+[ext_resource type="Theme" uid="uid://dcv5nno7k0rpb" path="res://asset/visual/UI/themes/labelHUD.tres" id="2_iwxg6"]
 [ext_resource type="Texture2D" uid="uid://b4ou0oya7s214" path="res://asset/visual/UI/moleWeaponHUD.png" id="10_oaxdx"]
-[ext_resource type="Texture2D" uid="uid://xkpsmut5oki0" path="res://asset/visual/UI/weaponUp2.png" id="10_pdy6q"]
-[ext_resource type="Texture2D" uid="uid://jbwg1bmlvwlc" path="res://asset/visual/UI/weaponUp3.png" id="11_sow8h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afhbj"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(0, 24, 16, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gakfv"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(0, 24, 16, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b26ee"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(0, 32, 32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtje4"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(24, 16, 1, 8)
+
+[sub_resource type="Theme" id="Theme_vo87j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef14t"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_037f2"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tewe"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(8, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frfuo"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p483p"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaj0n"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vctjw"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(24, 16, 1, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxcmx"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyube"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(16, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6wc4"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(16, 16, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_benp0"]
 atlas = ExtResource("1_b65lm")
 region = Rect2(24, 0, 8, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fqpq"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(24, 16, 1, 8)
+
 [node name="Interface" type="CanvasLayer"]
+script = ExtResource("1_nrw5u")
 
 [node name="Bottom" type="HBoxContainer" parent="."]
 anchors_preset = 7
@@ -46,13 +99,13 @@ size_flags_horizontal = 4
 [node name="dash1" type="TextureRect" parent="Bottom/VBoxContainer/dashes"]
 custom_minimum_size = Vector2(106, 25)
 layout_mode = 2
-texture = ExtResource("9_q4rb3")
+texture = SubResource("AtlasTexture_afhbj")
 stretch_mode = 4
 
 [node name="dash2" type="TextureRect" parent="Bottom/VBoxContainer/dashes"]
 custom_minimum_size = Vector2(106, 25)
 layout_mode = 2
-texture = ExtResource("9_q4rb3")
+texture = SubResource("AtlasTexture_gakfv")
 stretch_mode = 4
 
 [node name="Weapon info" type="HBoxContainer" parent="Bottom/VBoxContainer"]
@@ -66,18 +119,19 @@ size_flags_vertical = 4
 [node name="Current Magazine" type="Label" parent="Bottom/VBoxContainer/Weapon info/Ammo"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "20
-"
+theme = ExtResource("2_iwxg6")
+text = "##"
 
 [node name="Remaining ammo" type="Label" parent="Bottom/VBoxContainer/Weapon info/Ammo"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "245"
+theme = ExtResource("2_iwxg6")
+text = "##"
 
 [node name="Weapon  Background" type="TextureRect" parent="Bottom/VBoxContainer/Weapon info"]
 custom_minimum_size = Vector2(166, 0)
 layout_mode = 2
-texture = ExtResource("9_f511u")
+texture = SubResource("AtlasTexture_b26ee")
 stretch_mode = 4
 
 [node name="TextureRect" type="TextureRect" parent="Bottom/VBoxContainer/Weapon info/Weapon  Background"]
@@ -100,10 +154,11 @@ stretch_mode = 4
 [node name="line" type="TextureRect" parent="Bottom/VBoxContainer/Weapon info"]
 custom_minimum_size = Vector2(6, 0)
 layout_mode = 2
-texture = ExtResource("2_7242t")
+texture = SubResource("AtlasTexture_vtje4")
 
 [node name="Weapon Upgrades" type="HBoxContainer" parent="Bottom/VBoxContainer/Weapon info"]
 layout_mode = 2
+theme = SubResource("Theme_vo87j")
 
 [node name="upgrade 1" type="VBoxContainer" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades"]
 layout_mode = 2
@@ -111,12 +166,25 @@ layout_mode = 2
 [node name="icon" type="TextureRect" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 1"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("9_5vxnb")
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_ef14t")
+stretch_mode = 4
 
-[node name="anzahl" type="Label" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 1"]
+[node name="anzahl" type="HBoxContainer" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 1"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "x 30"
+
+[node name="x" type="Label" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 1/anzahl"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "x"
+
+[node name="weapUp1" type="Label" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 1/anzahl"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "0"
 
 [node name="upgrade 2" type="VBoxContainer" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades"]
 layout_mode = 2
@@ -124,12 +192,26 @@ layout_mode = 2
 [node name="icon" type="TextureRect" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 2"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("10_pdy6q")
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_037f2")
+stretch_mode = 4
 
-[node name="anzahl" type="Label" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 2"]
+[node name="anzahl" type="HBoxContainer" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 2"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "x 5"
+size_flags_vertical = 4
+
+[node name="x" type="Label" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 2/anzahl"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "x"
+
+[node name="weapUp2" type="Label" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 2/anzahl"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "0"
 
 [node name="upgrade 3" type="VBoxContainer" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades"]
 layout_mode = 2
@@ -137,12 +219,25 @@ layout_mode = 2
 [node name="icon" type="TextureRect" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 3"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("11_sow8h")
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_4tewe")
+stretch_mode = 4
 
-[node name="anzahl" type="Label" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 3"]
+[node name="anzahl" type="HBoxContainer" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 3"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "x 0"
+
+[node name="x" type="Label" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 3/anzahl"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "x"
+
+[node name="weapUp3" type="Label" parent="Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 3/anzahl"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "0"
 
 [node name="Left" type="HBoxContainer" parent="."]
 offset_left = 10.0
@@ -156,22 +251,23 @@ layout_mode = 2
 [node name="heart1" type="TextureRect" parent="Left/Health"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("1_s4ql2")
+texture = SubResource("AtlasTexture_frfuo")
+stretch_mode = 1
 
 [node name="heart2" type="TextureRect" parent="Left/Health"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("1_s4ql2")
+texture = SubResource("AtlasTexture_p483p")
 
 [node name="heart3" type="TextureRect" parent="Left/Health"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("1_s4ql2")
+texture = SubResource("AtlasTexture_xaj0n")
 
 [node name="line" type="TextureRect" parent="Left"]
 custom_minimum_size = Vector2(6, 5)
 layout_mode = 2
-texture = ExtResource("2_7242t")
+texture = SubResource("AtlasTexture_vctjw")
 
 [node name="Player Upgrades" type="HBoxContainer" parent="Left"]
 layout_mode = 2
@@ -182,12 +278,25 @@ layout_mode = 2
 [node name="icon" type="TextureRect" parent="Left/Player Upgrades/upgrade 1"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("3_ttmgg")
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_pxcmx")
+stretch_mode = 4
 
-[node name="anzahl" type="Label" parent="Left/Player Upgrades/upgrade 1"]
+[node name="anzahl" type="HBoxContainer" parent="Left/Player Upgrades/upgrade 1"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "x 7"
+
+[node name="x" type="Label" parent="Left/Player Upgrades/upgrade 1/anzahl"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "x"
+
+[node name="plUp1" type="Label" parent="Left/Player Upgrades/upgrade 1/anzahl"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "0"
 
 [node name="upgrade 2" type="VBoxContainer" parent="Left/Player Upgrades"]
 layout_mode = 2
@@ -195,12 +304,25 @@ layout_mode = 2
 [node name="icon" type="TextureRect" parent="Left/Player Upgrades/upgrade 2"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("4_m4rcf")
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_gyube")
+stretch_mode = 4
 
-[node name="anzahl" type="Label" parent="Left/Player Upgrades/upgrade 2"]
+[node name="anzahl" type="HBoxContainer" parent="Left/Player Upgrades/upgrade 2"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "x 1"
+
+[node name="x" type="Label" parent="Left/Player Upgrades/upgrade 2/anzahl"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "x"
+
+[node name="plUp2" type="Label" parent="Left/Player Upgrades/upgrade 2/anzahl"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "0"
 
 [node name="upgrade 3" type="VBoxContainer" parent="Left/Player Upgrades"]
 layout_mode = 2
@@ -208,51 +330,70 @@ layout_mode = 2
 [node name="icon" type="TextureRect" parent="Left/Player Upgrades/upgrade 3"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("5_mx70h")
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_c6wc4")
+stretch_mode = 4
 
-[node name="anzahl" type="Label" parent="Left/Player Upgrades/upgrade 3"]
+[node name="anzahl" type="HBoxContainer" parent="Left/Player Upgrades/upgrade 3"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "x 4"
+
+[node name="x" type="Label" parent="Left/Player Upgrades/upgrade 3/anzahl"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "x"
+
+[node name="plUp3" type="Label" parent="Left/Player Upgrades/upgrade 3/anzahl"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "0"
 
 [node name="Right" type="HBoxContainer" parent="."]
-offset_left = 1043.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -109.0
 offset_top = 10.0
-offset_right = 1142.0
-offset_bottom = 138.0
+offset_right = -10.0
+offset_bottom = 90.0
+grow_horizontal = 0
 size_flags_horizontal = 0
 
 [node name="Ore" type="VBoxContainer" parent="Right"]
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 0
 
 [node name="icon" type="TextureRect" parent="Right/Ore"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+size_flags_horizontal = 4
 texture = SubResource("AtlasTexture_benp0")
+stretch_mode = 4
 
-[node name="anzahl" type="Label" parent="Right/Ore"]
+[node name="anzahl" type="HBoxContainer" parent="Right/Ore"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "x 15"
+
+[node name="x" type="Label" parent="Right/Ore/anzahl"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "x"
+
+[node name="ore" type="Label" parent="Right/Ore/anzahl"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "0"
 
 [node name="line" type="TextureRect" parent="Right"]
 custom_minimum_size = Vector2(6, 0)
 layout_mode = 2
-texture = ExtResource("2_7242t")
+texture = SubResource("AtlasTexture_3fqpq")
 
 [node name="Mutators" type="VBoxContainer" parent="Right"]
 layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Right/Mutators"]
-custom_minimum_size = Vector2(45, 38)
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("7_r7o8r")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="TextureRect2" type="TextureRect" parent="Right/Mutators"]
-custom_minimum_size = Vector2(45, 38)
-layout_mode = 2
-texture = ExtResource("8_kooso")
+size_flags_vertical = 0
