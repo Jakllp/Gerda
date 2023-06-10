@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bsoh0y7sn64be"]
+[gd_scene load_steps=14 format=3 uid="uid://c0r4eyfoxc4yg"]
 
-[ext_resource type="Script" path="res://resources/equipment/mining/miningEquipment.gd" id="1_0fe76"]
-[ext_resource type="PackedScene" uid="uid://mk5hgsurw2rv" path="res://resources/components/wearableComponent.tscn" id="2_fgbv7"]
-[ext_resource type="Texture2D" uid="uid://bdfwtpg0jlond" path="res://asset/visual/actor/char/mole/miningEquipment/mole_hand.png" id="2_rwjp0"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="3_6dn5r"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="4_yejed"]
+[ext_resource type="Script" path="res://resources/equipment/mining/MiningEquipment.gd" id="1_1lee5"]
+[ext_resource type="Texture2D" uid="uid://bdfwtpg0jlond" path="res://asset/visual/actor/char/mole/miningEquipment/mole_hand.png" id="2_4k83b"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="3_sruws"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="4_5q5fb"]
+[ext_resource type="PackedScene" path="res://resources/components/wearableComponent.tscn" id="5_qrxuo"]
 
 [sub_resource type="GDScript" id="GDScript_3wsvs"]
 script/source = "extends SubViewport
@@ -21,13 +21,13 @@ func _process(delta):
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aqgfa"]
-shader = ExtResource("3_6dn5r")
+shader = ExtResource("3_sruws")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_wiwyx"]
 viewport_path = NodePath("Visuals/SubViewportContainer/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tnnxv"]
-shader = ExtResource("4_yejed")
+shader = ExtResource("4_5q5fb")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_k3fei"]
 viewport_path = NodePath("Visuals/SubViewportContainer/SubViewport")
@@ -61,7 +61,7 @@ _data = {
 
 [node name="MinigEquipment" type="Node2D"]
 position = Vector2(-1.90735e-06, 0)
-script = ExtResource("1_0fe76")
+script = ExtResource("1_1lee5")
 
 [node name="Visuals" type="Control" parent="."]
 y_sort_enabled = true
@@ -92,7 +92,7 @@ script = SubResource("GDScript_3wsvs")
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals/SubViewportContainer/SubViewport"]
 y_sort_enabled = true
-texture = ExtResource("2_rwjp0")
+texture = ExtResource("2_4k83b")
 offset = Vector2(16, 16)
 
 [node name="Mask" type="Sprite2D" parent="Visuals"]
@@ -115,7 +115,7 @@ target_position = Vector2(11, 0)
 collision_mask = 32
 hit_from_inside = true
 
-[node name="Anglepoint" parent="." instance=ExtResource("2_fgbv7")]
+[node name="Anglepoint" parent="." instance=ExtResource("5_qrxuo")]
 position = Vector2(0.00012207, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

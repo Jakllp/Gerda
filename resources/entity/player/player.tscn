@@ -1,22 +1,22 @@
-[gd_scene load_steps=24 format=3 uid="uid://b1fjv37yfto5d"]
+[gd_scene load_steps=24 format=3 uid="uid://bumgkqge3x8or"]
 
-[ext_resource type="Script" path="res://resources/entity/player/player.gd" id="1_u110p"]
-[ext_resource type="PackedScene" uid="uid://8486tdmus75m" path="res://resources/equipment/weapon/rifle.tscn" id="2_8xjit"]
-[ext_resource type="PackedScene" uid="uid://bsoh0y7sn64be" path="res://resources/equipment/mining/mining_equipment.tscn" id="3_fchbn"]
-[ext_resource type="Shader" path="res://resources/shaders/flash.gdshader" id="4_07x2k"]
-[ext_resource type="Texture2D" uid="uid://dx3qnu570p8hx" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="4_xwvyu"]
-[ext_resource type="Texture2D" uid="uid://n855g5htet0y" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="5_lhuaa"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="6_41oyr"]
-[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="6_hfx4t"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="7_bed8w"]
-[ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="7_rhl1x"]
-[ext_resource type="Texture2D" uid="uid://bxi2qkwchgo7a" path="res://asset/visual/actor/char/mole/dash_frame.png" id="8_rjfgy"]
-[ext_resource type="PackedScene" uid="uid://b2krhq43q3awp" path="res://resources/components/DashComponent.tscn" id="10_ykqoh"]
-[ext_resource type="PackedScene" uid="uid://dbp5fhvrf7ggb" path="res://resources/particles/DashEffect.tscn" id="12_n5e8w"]
+[ext_resource type="Script" path="res://resources/entity/player/Player.gd" id="1_to1al"]
+[ext_resource type="PackedScene" path="res://resources/equipment/weapon/Rifle.tscn" id="2_eu53i"]
+[ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="3_j32ei"]
+[ext_resource type="PackedScene" uid="uid://c0r4eyfoxc4yg" path="res://resources/equipment/mining/MiningEquipment.tscn" id="3_poauc"]
+[ext_resource type="Texture2D" uid="uid://dx3qnu570p8hx" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="5_axsko"]
+[ext_resource type="Texture2D" uid="uid://n855g5htet0y" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="6_lghal"]
+[ext_resource type="PackedScene" path="res://resources/particles/DashEffect.tscn" id="7_aujcr"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="8_5qbo2"]
+[ext_resource type="Texture2D" uid="uid://bxi2qkwchgo7a" path="res://asset/visual/actor/char/mole/dash_frame.png" id="8_58lmm"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="9_tj2ew"]
+[ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="11_36qyq"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="12_ejrhl"]
+[ext_resource type="PackedScene" uid="uid://b2krhq43q3awp" path="res://resources/components/DashComponent.tscn" id="13_27f6q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_koq83"]
 resource_local_to_scene = true
-shader = ExtResource("4_07x2k")
+shader = ExtResource("3_j32ei")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
@@ -24,10 +24,10 @@ shader_parameter/flash_modifier = 0.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_xwvyu")
+"texture": ExtResource("5_axsko")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_lhuaa")
+"texture": ExtResource("6_lghal")
 }],
 "loop": true,
 "name": &"walk",
@@ -35,13 +35,13 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xence"]
-shader = ExtResource("6_41oyr")
+shader = ExtResource("8_5qbo2")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_by0eu"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6wbvd"]
-shader = ExtResource("7_bed8w")
+shader = ExtResource("9_tj2ew")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_o6p7u"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -92,9 +92,9 @@ _data = {
 z_index = 1
 collision_layer = 2
 motion_mode = 1
-script = ExtResource("1_u110p")
-weapon_scene = ExtResource("2_8xjit")
-mining_equipment_scene = ExtResource("3_fchbn")
+script = ExtResource("1_to1al")
+weapon_scene = ExtResource("2_eu53i")
+mining_equipment_scene = ExtResource("3_poauc")
 walk_speed_upgrade_modifier = 10
 dash_cooldown_upgrade_modifier = 0.1
 base_speed = 100
@@ -128,12 +128,12 @@ position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_4p0wo")
 animation = &"walk"
 
-[node name="DashEffect" parent="." instance=ExtResource("12_n5e8w")]
+[node name="DashEffect" parent="." instance=ExtResource("7_aujcr")]
 z_index = 1
 y_sort_enabled = true
 material = null
 amount = 30
-texture = ExtResource("8_rjfgy")
+texture = ExtResource("8_58lmm")
 lifetime = 0.25
 fixed_fps = 60
 
@@ -149,7 +149,7 @@ material = SubResource("ShaderMaterial_6wbvd")
 texture = SubResource("ViewportTexture_o6p7u")
 
 [node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("7_rhl1x")
+script = ExtResource("11_36qyq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3.5, 3.5)
@@ -162,7 +162,7 @@ shape = SubResource("RectangleShape2D_xsxsu")
 position = Vector2(-2.5, 2.5)
 scale = Vector2(1.28733, 0.109863)
 
-[node name="HurtBox" parent="." instance=ExtResource("6_hfx4t")]
+[node name="HurtBox" parent="." instance=ExtResource("12_ejrhl")]
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
@@ -174,14 +174,14 @@ libraries = {
 "": SubResource("AnimationLibrary_ek0ot")
 }
 
-[node name="Dash" parent="." instance=ExtResource("10_ykqoh")]
+[node name="Dash" parent="." instance=ExtResource("13_27f6q")]
 
-[node name="DashEffect" parent="." instance=ExtResource("12_n5e8w")]
+[node name="DashEffect" parent="." instance=ExtResource("7_aujcr")]
 z_index = -1
 y_sort_enabled = true
 material = null
 amount = 30
-texture = ExtResource("8_rjfgy")
+texture = ExtResource("8_58lmm")
 lifetime = 0.25
 fixed_fps = 60
 

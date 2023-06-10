@@ -1,22 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3d34gk37dquv"]
+[gd_scene load_steps=13 format=3 uid="uid://bte716idax32m"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/MovingEnemy.gd" id="1_bu6l0"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="2_7bibu"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="3_1dqhf"]
-[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_expxs"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="2_qfsqc"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="3_5tkhg"]
+[ext_resource type="PackedScene" path="res://resources/overlap/hitbox.tscn" id="3_expxs"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="4_f3fdk"]
-[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="4_w5hcy"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="4_w5hcy"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="5_t611u"]
 [ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="6_r71gy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hie24"]
-shader = ExtResource("2_7bibu")
+shader = ExtResource("2_qfsqc")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5sh23"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jomdt"]
-shader = ExtResource("3_1dqhf")
+shader = ExtResource("3_5tkhg")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_8x6ln"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")

@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0xe5n06rxj2e"]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/worm/Worm.gd" id="1_n8ov6"]
-[ext_resource type="PackedScene" path="res://resources/components/HealthComponent.tscn" id="2_8ix1j"]
-[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="3_jlrhr"]
-[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="4_8a8sa"]
+[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/HealthComponent.tscn" id="2_8ix1j"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="3_jlrhr"]
+[ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="4_8a8sa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rhuya"]
 

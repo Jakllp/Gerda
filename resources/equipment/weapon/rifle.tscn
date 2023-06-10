@@ -1,12 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://8486tdmus75m"]
+[gd_scene load_steps=13 format=3]
 
-[ext_resource type="Script" path="res://resources/equipment/weapon/rifle.gd" id="1_p0rhv"]
+[ext_resource type="Script" path="res://resources/equipment/weapon/Rifle.gd" id="1_p0rhv"]
 [ext_resource type="Texture2D" uid="uid://calp5g02iee7o" path="res://asset/visual/actor/char/mole/mole_weapon.png" id="2_x5l80"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="3_g1832"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="4_7lm84"]
-[ext_resource type="PackedScene" uid="uid://dp7femcfr44sh" path="res://resources/components/shooterComponent.tscn" id="5_hfewx"]
-[ext_resource type="PackedScene" uid="uid://bx8hi1wpd875d" path="res://resources/equipment/weapon/projectile.tscn" id="6_yggun"]
-[ext_resource type="PackedScene" uid="uid://mk5hgsurw2rv" path="res://resources/components/wearableComponent.tscn" id="7_hupc5"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="3_g1832"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="4_7lm84"]
+[ext_resource type="PackedScene" path="res://resources/components/ShooterComponent.tscn" id="5_hfewx"]
+[ext_resource type="PackedScene" uid="uid://bqi7lhci05dr1" path="res://resources/equipment/weapon/Projectile.tscn" id="6_yggun"]
+[ext_resource type="PackedScene" path="res://resources/components/WearableComponent.tscn" id="7_hupc5"]
 
 [sub_resource type="GDScript" id="GDScript_ctalr"]
 script/source = "extends SubViewport

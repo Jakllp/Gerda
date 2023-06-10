@@ -1,23 +1,23 @@
-[gd_scene load_steps=25 format=3 uid="uid://c1pt1ussh36ya"]
+[gd_scene load_steps=25 format=3 uid="uid://c7wsucit56out"]
 
-[ext_resource type="Script" path="res://resources/entity/enemy/spider/spider.gd" id="1_aawk4"]
-[ext_resource type="Shader" path="res://resources/shaders/flash.gdshader" id="2_8ay3l"]
+[ext_resource type="Script" path="res://resources/entity/enemy/spider/Spider.gd" id="1_cqhnd"]
+[ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="2_2dvxs"]
 [ext_resource type="Texture2D" uid="uid://ry4w8xt4hdw7" path="res://asset/visual/actor/enemy/spider/spider_frame1.png" id="2_v7u1e"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="3_cssy3"]
 [ext_resource type="Texture2D" uid="uid://cdomgfgihv102" path="res://asset/visual/actor/enemy/spider/spider_frame2.png" id="3_hunbe"]
-[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_rynaa"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="4_lieus"]
+[ext_resource type="PackedScene" path="res://resources/overlap/hitbox.tscn" id="3_rynaa"]
 [ext_resource type="Texture2D" uid="uid://cc4l2oq5y7vse" path="res://asset/visual/actor/enemy/spider/spider_frame3.png" id="4_ra0ne"]
-[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="4_uo85l"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="4_uo85l"]
 [ext_resource type="Texture2D" uid="uid://qmej8xpve0gn" path="res://asset/visual/actor/enemy/spider/spider_frame4.png" id="5_avrct"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="5_lr3uh"]
 [ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="5_ras38"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="6_53m54"]
-[ext_resource type="PackedScene" uid="uid://csqtjpx8yahan" path="res://resources/entity/enemy/behaviorTree/movement/NormalEnemyMovement.tscn" id="7_l4mod"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="7_kdrew"]
+[ext_resource type="PackedScene" path="res://resources/entity/enemy/behaviorTree/movement/NormalEnemyMovement.tscn" id="7_l4mod"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="8_u5bar"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5hvuo"]
 resource_local_to_scene = true
-shader = ExtResource("2_8ay3l")
+shader = ExtResource("2_2dvxs")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
@@ -42,13 +42,13 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_getsk"]
-shader = ExtResource("3_cssy3")
+shader = ExtResource("7_kdrew")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qao34"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ops3y"]
-shader = ExtResource("4_lieus")
+shader = ExtResource("8_u5bar")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_lxteo"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -71,7 +71,7 @@ collision_layer = 4
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_aawk4")
+script = ExtResource("1_cqhnd")
 attack_speed = 7.0
 attack_cooldown = 0.8
 metadata/_edit_horizontal_guides_ = []

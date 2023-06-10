@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bknfw6xwpevhb"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://resources/equipment/weapon/parabolicProjectile.gd" id="1_w2uv8"]
+[ext_resource type="Script" path="res://resources/equipment/weapon/ParabolicProjectile.gd" id="1_w2uv8"]
 [ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="2_lbv5f"]
-[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_ukbnu"]
+[ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="3_ukbnu"]
 
 [sub_resource type="Curve2D" id="Curve2D_71tw4"]
 _data = {
