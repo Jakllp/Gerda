@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bj67m0e2wspkr"]
+[gd_scene load_steps=18 format=3 uid="uid://bj67m0e2wspkr"]
 
 [ext_resource type="Script" path="res://resources/levels/Level.gd" id="1_27bjh"]
 [ext_resource type="Texture2D" uid="uid://bjo4qihuuqbq8" path="res://asset/visual/map/Biom1/biom1_blockTileset.png" id="2_ohl7o"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" path="res://resources/interactables/Chest.tscn" id="7_ysivo"]
 [ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="8_15nnc"]
 [ext_resource type="PackedScene" uid="uid://c7wsucit56out" path="res://resources/entity/enemy/spider/Spider.tscn" id="9_3tndw"]
+[ext_resource type="PackedScene" uid="uid://bxxlguxjr4g7f" path="res://resources/interactables/Trapdoor.tscn" id="10_s4w4p"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbyfa"]
 bounce = 1.0
@@ -291,5 +292,8 @@ position = Vector2(-75, 226)
 
 [node name="Spider" parent="Enemies" instance=ExtResource("9_3tndw")]
 position = Vector2(-194, 184)
+
+[node name="Trapdoor" parent="." instance=ExtResource("10_s4w4p")]
+position = Vector2(55, 185)
 
 [connection signal="ore_received" from="Mole" to="TileMap" method="_on_player_ore_received"]
