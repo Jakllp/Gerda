@@ -150,10 +150,6 @@ shape = SubResource("CircleShape2D_tkay6")
 
 [node name="BTBlackboard" type="Node" parent="."]
 script = ExtResource("5_lr3uh")
-data = {
-"move_path": PackedVector2Array(),
-"path_index": 0
-}
 
 [node name="BTRoot" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("6_53m54")
