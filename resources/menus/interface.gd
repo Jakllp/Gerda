@@ -1,14 +1,14 @@
 extends CanvasLayer
 
 @onready var ore_label = $Right/Ore/anzahl/ore
-@onready var player_up_1 = $"Left/Player Upgrades/upgrade 1/anzahl/plUp1"
-@onready var player_up_2 = $"Left/Player Upgrades/upgrade 2/anzahl/plUp2"
-@onready var player_up_3 = $"Left/Player Upgrades/upgrade 3/anzahl/plUp3"
-@onready var weapon_up_1 = $"Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 1/anzahl/weapUp1"
-@onready var weapon_up_2 = $"Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 2/anzahl/weapUp2"
-@onready var weapon_up_3 = $"Bottom/VBoxContainer/Weapon info/Weapon Upgrades/upgrade 3/anzahl/weapUp3"
-@onready var magazine = $"Bottom/VBoxContainer/Weapon info/Ammo/Current Magazine"
-@onready var ammo = $"Bottom/VBoxContainer/Weapon info/Ammo/Remaining ammo"
+@onready var mining_speed_label = $Left/PlayerUpgrades/Upgrade1/Amount/MiningSpeed
+@onready var walk_speed_label = $Left/PlayerUpgrades/Upgrade2/Amount/WalkSpeed
+@onready var dash_cooldown_label = $Left/PlayerUpgrades/Upgrade3/Amount/DashCooldown
+@onready var weapon_speed_label = $Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade1/Amount/Speed
+@onready var weapon_damage_label = $Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade2/Amount/Damage
+@onready var weapon_rate_label = $Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade3/Amount/Rate
+@onready var magazine_label = $Bottom/VBoxContainer/WeaponInfo/Ammo/CurrentMagazine
+@onready var ammo_label = $Bottom/VBoxContainer/WeaponInfo/Ammo/RemainingAmmo
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
