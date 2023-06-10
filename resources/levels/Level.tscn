@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bs2qq00uj5g8i" path="res://asset/visual/map/miningoverlay.png" id="3_epmjn"]
 [ext_resource type="Texture2D" uid="uid://r7i65elbeq4u" path="res://asset/visual/map/Biom1/ground.png" id="4_fcxw4"]
 [ext_resource type="Script" path="res://resources/levels/TileMap.gd" id="5_e3myb"]
-[ext_resource type="PackedScene" path="res://resources/interactables/Anvil.tscn" id="6_nlkkx"]
+[ext_resource type="PackedScene" uid="uid://r4clnru4g5qn" path="res://resources/interactables/Anvil.tscn" id="6_nlkkx"]
 [ext_resource type="PackedScene" path="res://resources/interactables/Chest.tscn" id="7_ysivo"]
 [ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="8_15nnc"]
 [ext_resource type="PackedScene" uid="uid://c7wsucit56out" path="res://resources/entity/enemy/spider/Spider.tscn" id="9_3tndw"]
