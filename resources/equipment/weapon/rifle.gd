@@ -16,6 +16,5 @@ func act(player: Player, delta: float) -> void:
 			trigger_reload()
 		else:
 			var fire_delay = base_fire_delay - (base_fire_delay * fire_delay_upgrade_modifier/100) * active_upgrades[Upgrade.Weapon_Upgrade.ATTACK_RATE]
-			print(fire_delay)
 			fire_rate_timer.wait_time = fire_delay
 			fire_rate_timer.start()

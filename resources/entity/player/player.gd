@@ -94,7 +94,6 @@ func try_dash() -> void:
 	if dashes_left > 0 && dash.allowed_to_dash() && direction.length() > 0:
 		var calculated_cooldown = dash_cooldown - dash_cooldown_upgrade_modifier * active_upgrades[Upgrade.Player_Upgrade.DASH_COOLDOWN]
 		if calculated_cooldown < 0.0: calculated_cooldown = 0
-		print(calculated_cooldown)
 		dash.start_dash(dash_duration, calculated_cooldown)
 		
 		$DashEffect.emitting = true
