@@ -26,6 +26,8 @@ func check_for_equip_switch(player: Player) -> void:
 func check_for_equip_use(player: Player, delta: float) -> void:
 	if Input.is_action_just_pressed("LMB") or Input.is_action_pressed("RMB"):
 		player.use_equipment(delta)
+	elif Input.is_action_pressed("LMB"):
+		player.use_equipment(delta, true)
 
 
 # Dashes

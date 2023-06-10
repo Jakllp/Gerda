@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://4xeglkt7befu"]
+
+[ext_resource type="Script" path="res://resources/interactables/Chest.gd" id="1_fsuus"]
+[ext_resource type="PackedScene" uid="uid://di8yh53mxlsb0" path="res://resources/interactables/Item.tscn" id="2_7mitl"]
+[ext_resource type="PackedScene" uid="uid://b5yqxkxsg6xo4" path="res://resources/interactables/InteractableBase.tscn" id="2_yml7l"]
+[ext_resource type="Shader" path="res://resources/shaders/flash.gdshader" id="3_slim1"]
+[ext_resource type="Texture2D" uid="uid://q6gopjwp8d21" path="res://asset/visual/map/Biom1/chest.png" id="4_iuafc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o68up"]
+resource_local_to_scene = true
+shader = ExtResource("3_slim1")
+shader_parameter/flash_color = Color(0.992157, 1, 0.52549, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dygx7"]
+size = Vector2(18, 2)
+
+[node name="Chest" type="StaticBody2D"]
+script = ExtResource("1_fsuus")
+item_scene = ExtResource("2_7mitl")
+
+[node name="InteractableBase" parent="." instance=ExtResource("2_yml7l")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_o68up")
+texture = ExtResource("4_iuafc")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_dygx7")
+
+[connection signal="start_interaction" from="InteractableBase" to="." method="do_interaction"]
+
+[editable path="InteractableBase"]
+[editable path="InteractableBase/DetectionArea"]

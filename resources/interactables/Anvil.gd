@@ -1,12 +1,13 @@
-extends InteractableBase
+extends StaticBody2D
 
 class_name Anvil
 
 @export var crafting_time :float
 @onready var crafting_tween :Tween
 
+var player = null
 
-func _ready():
+func _ready() -> void:
 	new_tween()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cnprtm2i3wtid"]
+[gd_scene load_steps=12 format=3 uid="uid://bdx4tcyncuaha"]
 
 [ext_resource type="Script" path="res://resources/equipment/weapon/gun.gd" id="1_2e5dt"]
 [ext_resource type="PackedScene" uid="uid://bx8hi1wpd875d" path="res://resources/equipment/weapon/projectile.tscn" id="2_ja0id"]
@@ -82,6 +82,9 @@ projectile_scene = ExtResource("2_ja0id")
 position = Vector2(0, -1)
 
 [node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FireRateTimer" type="Timer" parent="."]
 one_shot = true
 
 [connection signal="timeout" from="ReloadTimer" to="." method="reload"]
