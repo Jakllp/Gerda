@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://resources/entity/enemy/StaticEnemy.gd" id="1_8r3ho"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="1_ywxbt"]
-[ext_resource type="PackedScene" path="res://resources/components/HealthComponent.tscn" id="2_b622b"]
+[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/HealthComponent.tscn" id="2_b622b"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="2_cm1mb"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="3_pmtix"]
 [ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_ucx4i"]
@@ -72,3 +72,4 @@ collision_layer = 16
 
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

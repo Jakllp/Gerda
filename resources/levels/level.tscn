@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b1fjv37yfto5d" path="res://resources/entity/player/player.tscn" id="7_jx722"]
 [ext_resource type="Texture2D" uid="uid://r7i65elbeq4u" path="res://asset/visual/map/Biom1/ground.png" id="8_fmxk1"]
 [ext_resource type="PackedScene" uid="uid://wjy5j6y0rb8h" path="res://resources/interactables/Anvil.tscn" id="8_ha8vl"]
-[ext_resource type="PackedScene" uid="uid://c1pt1ussh36ya" path="res://resources/entity/enemy/spider/spider.tscn" id="13_a3wyg"]
+[ext_resource type="PackedScene" uid="uid://dx0jgljsjudkw" path="res://resources/entity/enemy/worm/Worm.tscn" id="9_eo6t6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbyfa"]
 bounce = 1.0
@@ -257,8 +257,6 @@ script = ExtResource("1_6suci")
 y_sort_enabled = true
 tile_set = SubResource("TileSet_4081a")
 cell_quadrant_size = 22
-collision_visibility_mode = 1
-navigation_visibility_mode = 2
 format = 2
 layer_0/name = "ground"
 layer_0/z_index = -1
@@ -292,28 +290,7 @@ position = Vector2(-56, 206)
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Spider" parent="Enemies" instance=ExtResource("13_a3wyg")]
-position = Vector2(-27, 8)
-
-[node name="Spider2" parent="Enemies" instance=ExtResource("13_a3wyg")]
-position = Vector2(9, 5)
-
-[node name="Spider3" parent="Enemies" instance=ExtResource("13_a3wyg")]
-position = Vector2(11, 74)
-
-[node name="Spider4" parent="Enemies" instance=ExtResource("13_a3wyg")]
-position = Vector2(9, 57)
-
-[node name="Spider5" parent="Enemies" instance=ExtResource("13_a3wyg")]
-position = Vector2(8, 32)
-
-[node name="Spider6" parent="Enemies" instance=ExtResource("13_a3wyg")]
-position = Vector2(-24, 78)
-
-[node name="Spider7" parent="Enemies" instance=ExtResource("13_a3wyg")]
-position = Vector2(-24, 53)
-
-[node name="Spider8" parent="Enemies" instance=ExtResource("13_a3wyg")]
-position = Vector2(-25, 29)
+[node name="Worm" parent="Enemies" instance=ExtResource("9_eo6t6")]
+position = Vector2(-56, 58)
 
 [connection signal="ore_received" from="Mole" to="TileMap" method="_on_player_ore_received"]
