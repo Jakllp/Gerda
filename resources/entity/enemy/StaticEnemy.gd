@@ -2,6 +2,9 @@ extends StaticBody2D
 
 class_name StaticEnemy
 
+@onready var flash_component :FlashComponent = FlashComponent.new()
+
+
 func attack() -> void:
 	pass
 
