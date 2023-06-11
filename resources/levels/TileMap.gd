@@ -18,6 +18,10 @@ var block_atlas := 0
 var ground_atlas := 2
 
 
+func _ready() -> void:
+	God.generate_level(self, ground_layer, block_layer, ground_atlas, block_atlas)
+
+
 # Logic of damaging cells
 func damage_cell(cell: Vector2i, damage: float):
 	var was_ore = false
