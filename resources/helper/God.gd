@@ -59,6 +59,8 @@ static func generate_boundaries(map: TileMap, ground_layer :int, block_layer :in
 			if j == 0:
 				# Special-Tops
 				map.set_cell(block_layer,Vector2i(starting_point_x+i,starting_point_y+j),block_atlas, Vector2i(4,0), 1)
+				# Also needs floor below it as a precaution
+				map.set_cell(ground_layer,Vector2i(starting_point_x+i,starting_point_y+j),ground_atlas, Vector2i(0,0), 1)
 			else:
 				#Normal-Tops aka normal boundary
 				map.set_cell(block_layer,Vector2i(starting_point_x+i,starting_point_y+j),block_atlas, Vector2i(4,0), 0)
