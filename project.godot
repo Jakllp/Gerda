@@ -18,7 +18,8 @@ config/icon="res://asset/visual/actor/icon.svg"
 [display]
 
 window/size/mode=3
-window/stretch/scale=1.75
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 
