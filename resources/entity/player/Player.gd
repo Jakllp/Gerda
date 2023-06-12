@@ -15,6 +15,8 @@ class_name Player
 @onready var dash = $Dash
 @onready var active_upgrades := {}
 
+var status_effects: StatusEffectSet = StatusEffectSet.new(self)
+
 ## How much the dash increases the movement speed
 const dash_multiplier = 3
 const dash_duration = 0.1
@@ -74,6 +76,9 @@ func _physics_process(delta: float) -> void:
 		$DashEffect.emitting = false
 	
 	current_equipment.update(self)
+	
+	# this has to be one of the last things in the process
+	status_effects.process(delta)
 
 
 func change_equipment(equipment) -> void:
