@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgkp5q4demlg5"]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://resources/equipment/weapon/Gun.gd" id="1_qsygw"]
 [ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="2_6adi3"]
 [ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="3_vn31w"]
-[ext_resource type="PackedScene" path="res://resources/components/shooterComponent.tscn" id="4_8umhn"]
+[ext_resource type="PackedScene" uid="uid://x7cqfcw0srnq" path="res://resources/components/shooterComponent.tscn" id="4_8umhn"]
 [ext_resource type="PackedScene" uid="uid://bqi7lhci05dr1" path="res://resources/equipment/weapon/Projectile.tscn" id="5_vol24"]
-[ext_resource type="PackedScene" path="res://resources/components/wearableComponent.tscn" id="6_qwiog"]
+[ext_resource type="PackedScene" uid="uid://dqtqcxxtdpnnh" path="res://resources/components/wearableComponent.tscn" id="6_qwiog"]
 
 [sub_resource type="GDScript" id="GDScript_ctalr"]
 script/source = "extends SubViewport
