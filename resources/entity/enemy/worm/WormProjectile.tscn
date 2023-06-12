@@ -5,12 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_x4x2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_djmju"]
-size = Vector2(8, 8)
+size = Vector2(12, 12)
 
 [node name="Path2D" type="Path2D"]
 z_index = 3
 y_sort_enabled = true
 script = ExtResource("1_d84pp")
+speed_factor = 3.0
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 cubic_interp = false
@@ -22,8 +23,8 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_6nb70")
 
 [node name="Hitbox" parent="PathFollow2D" instance=ExtResource("3_x4x2u")]
-collision_mask = 7
-monitoring = true
+collision_layer = 16
+damage = 5
 
 [node name="CollisionShape2D" parent="PathFollow2D/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_djmju")

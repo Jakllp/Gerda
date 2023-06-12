@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dx0jgljsjudkw"]
+[gd_scene load_steps=19 format=3 uid="uid://dx0jgljsjudkw"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/worm/Worm.gd" id="1_edbqo"]
 [ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="2_7mm1y"]
@@ -9,6 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="6_mt3oh"]
 [ext_resource type="PackedScene" uid="uid://cbotoxu744vlj" path="res://resources/components/ParabolicShooterComponent.tscn" id="8_yfduj"]
 [ext_resource type="PackedScene" uid="uid://0pg1nchydlbc" path="res://resources/entity/enemy/worm/WormProjectile.tscn" id="9_pes0a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3uy4k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7mm1y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2j1cv"]
 shader = ExtResource("2_x6g1n")
@@ -22,6 +33,12 @@ shader = ExtResource("3_21vnr")
 [sub_resource type="ViewportTexture" id="ViewportTexture_fxmqo"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_krn4x"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ag5k"]
+size = Vector2(16, 16)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6g1c3"]
 size = Vector2(16, 16)
 
@@ -30,6 +47,7 @@ radius = 150.28
 
 [node name="Worm" type="StaticBody2D"]
 collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_edbqo")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
@@ -54,12 +72,8 @@ render_target_update_mode = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
 position = Vector2(16, 16)
-animation = &""
-
-[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(16, 16)
 scale = Vector2(0.125, 0.125)
-texture = ExtResource("2_7mm1y")
+sprite_frames = SubResource("SpriteFrames_3uy4k")
 
 [node name="Mask" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2j1cv")
@@ -71,11 +85,15 @@ material = SubResource("ShaderMaterial_m1m7j")
 texture = SubResource("ViewportTexture_fxmqo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_krn4x")
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_ghmsk")]
 
 [node name="HurtBox" parent="." instance=ExtResource("5_l8kai")]
 collision_mask = 8
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("RectangleShape2D_5ag5k")
 
 [node name="Hitbox" parent="." instance=ExtResource("6_mt3oh")]
 collision_layer = 16
@@ -95,6 +113,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 [node name="ParabolicShooter" parent="." instance=ExtResource("8_yfduj")]
 position = Vector2(0, -4)
 projectile_scene = ExtResource("9_pes0a")
+peak_factor = 5.0
 
 [node name="AttackTimer" type="Timer" parent="."]
 process_callback = 0
@@ -106,5 +125,6 @@ autostart = true
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 
+[editable path="HurtBox"]
 [editable path="Hitbox"]
 [editable path="AttackRange"]
