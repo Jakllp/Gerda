@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://vjy541wcl5th"]
+
+[ext_resource type="Texture2D" uid="uid://bhhe6rsoqype5" path="res://asset/visual/UI/LoadingRing.png" id="1_x3g3b"]
+
+[node name="LoadingRing" type="TextureProgressBar"]
+z_index = 25
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+fill_mode = 4
+texture_progress = ExtResource("1_x3g3b")
+tint_progress = Color(0.992157, 1, 0.52549, 1)

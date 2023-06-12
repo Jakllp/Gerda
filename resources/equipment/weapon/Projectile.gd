@@ -16,7 +16,10 @@ func _physics_process(delta: float) -> void:
 		range -= distance
 		if(range <= 0):
 			queue_free()
-	
+
+func init(damage: int) -> void:
+	$Hitbox.damage = damage
+
 
 func _on_hitbox_body_entered(body):
 	if body is TileMap:

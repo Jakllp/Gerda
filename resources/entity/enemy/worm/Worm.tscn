@@ -5,8 +5,8 @@
 [ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="2_x6g1n"]
 [ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="3_21vnr"]
 [ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/HealthComponent.tscn" id="4_ghmsk"]
-[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="5_l8kai"]
-[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="6_mt3oh"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="5_l8kai"]
+[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/Hitbox.tscn" id="6_mt3oh"]
 [ext_resource type="PackedScene" uid="uid://cbotoxu744vlj" path="res://resources/components/ParabolicShooterComponent.tscn" id="8_yfduj"]
 [ext_resource type="PackedScene" uid="uid://0pg1nchydlbc" path="res://resources/entity/enemy/worm/WormProjectile.tscn" id="9_pes0a"]
 

@@ -1,9 +1,12 @@
 extends StaticBody2D
 class_name StaticEnemy
 
+@onready var flash_component :FlashComponent = FlashComponent.new()
+
 func _ready() -> void:
 	$AttackRange.process_mode = Node.PROCESS_MODE_ALWAYS
 	process_mode = Node.PROCESS_MODE_DISABLED
+
 
 func attack() -> void:
 	pass

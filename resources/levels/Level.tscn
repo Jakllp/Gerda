@@ -1,19 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://bi8qb888nd5bg"]
+[gd_scene load_steps=18 format=3 uid="uid://bj67m0e2wspkr"]
 
-[ext_resource type="Script" path="res://resources/levels/level.gd" id="1_6suci"]
-[ext_resource type="Texture2D" uid="uid://bjo4qihuuqbq8" path="res://asset/visual/map/Biom1/biom1_blockTileset.png" id="1_raajn"]
-[ext_resource type="Texture2D" uid="uid://bs2qq00uj5g8i" path="res://asset/visual/map/miningoverlay.png" id="2_udwy7"]
-[ext_resource type="Script" path="res://resources/levels/TileMap.gd" id="4_j5mb2"]
-[ext_resource type="PackedScene" uid="uid://b1fjv37yfto5d" path="res://resources/entity/player/player.tscn" id="7_jx722"]
-[ext_resource type="Texture2D" uid="uid://r7i65elbeq4u" path="res://asset/visual/map/Biom1/ground.png" id="8_fmxk1"]
-[ext_resource type="PackedScene" uid="uid://wjy5j6y0rb8h" path="res://resources/interactables/Anvil.tscn" id="8_ha8vl"]
-[ext_resource type="PackedScene" uid="uid://dx0jgljsjudkw" path="res://resources/entity/enemy/worm/Worm.tscn" id="9_eo6t6"]
+[ext_resource type="Script" path="res://resources/levels/Level.gd" id="1_27bjh"]
+[ext_resource type="Texture2D" uid="uid://bjo4qihuuqbq8" path="res://asset/visual/map/Biom1/biom1_blockTileset.png" id="2_ohl7o"]
+[ext_resource type="Texture2D" uid="uid://bs2qq00uj5g8i" path="res://asset/visual/map/miningoverlay.png" id="3_epmjn"]
+[ext_resource type="Texture2D" uid="uid://r7i65elbeq4u" path="res://asset/visual/map/Biom1/ground.png" id="4_fcxw4"]
+[ext_resource type="Script" path="res://resources/levels/TileMap.gd" id="5_e3myb"]
+[ext_resource type="PackedScene" uid="uid://r4clnru4g5qn" path="res://resources/interactables/Anvil.tscn" id="6_nlkkx"]
+[ext_resource type="PackedScene" path="res://resources/interactables/Chest.tscn" id="7_ysivo"]
+[ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="8_15nnc"]
+[ext_resource type="PackedScene" uid="uid://c7wsucit56out" path="res://resources/entity/enemy/spider/Spider.tscn" id="9_3tndw"]
+[ext_resource type="PackedScene" uid="uid://bxxlguxjr4g7f" path="res://resources/interactables/Trapdoor.tscn" id="10_s4w4p"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbyfa"]
 bounce = 1.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pxkrx"]
-texture = ExtResource("1_raajn")
+texture = ExtResource("2_ohl7o")
 texture_region_size = Vector2i(22, 22)
 0:0/next_alternative_id = 2
 0:0/0 = 0
@@ -154,7 +156,7 @@ texture_region_size = Vector2i(22, 22)
 0:1/0/custom_data_0 = 4
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ey7l"]
-texture = ExtResource("2_udwy7")
+texture = ExtResource("3_epmjn")
 texture_region_size = Vector2i(22, 22)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -212,7 +214,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-11, -11, 11, -11, 11, -1, -11, -1)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yk7ub"]
-texture = ExtResource("8_fmxk1")
+texture = ExtResource("4_fcxw4")
 texture_region_size = Vector2i(22, 22)
 0:0/next_alternative_id = 3
 0:0/0 = 0
@@ -251,7 +253,7 @@ sources/1 = SubResource("TileSetAtlasSource_0ey7l")
 
 [node name="Level" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_6suci")
+script = ExtResource("1_27bjh")
 
 [node name="TileMap" type="TileMap" parent="." groups=["map"]]
 y_sort_enabled = true
@@ -275,22 +277,23 @@ layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 3
 layer_2/tile_data = PackedInt32Array()
-script = ExtResource("4_j5mb2")
+script = ExtResource("5_e3myb")
 
-[node name="Line2D" type="Line2D" parent="."]
-visible = false
+[node name="Anvil" parent="." instance=ExtResource("6_nlkkx")]
+position = Vector2(-275, -65)
 
-[node name="Anvil" parent="." instance=ExtResource("8_ha8vl")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(-275, -82)
+[node name="Chest" parent="." instance=ExtResource("7_ysivo")]
+position = Vector2(-12, -57)
 
-[node name="Mole" parent="." instance=ExtResource("7_jx722")]
-position = Vector2(-56, 206)
+[node name="Mole" parent="." instance=ExtResource("8_15nnc")]
+position = Vector2(-75, 226)
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Worm" parent="Enemies" instance=ExtResource("9_eo6t6")]
-position = Vector2(-56, 58)
+[node name="Spider" parent="Enemies" instance=ExtResource("9_3tndw")]
+position = Vector2(-194, 184)
+
+[node name="Trapdoor" parent="." instance=ExtResource("10_s4w4p")]
+position = Vector2(55, 185)
 
 [connection signal="ore_received" from="Mole" to="TileMap" method="_on_player_ore_received"]

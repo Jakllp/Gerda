@@ -4,17 +4,24 @@ class_name Player
 
 @export var weapon_scene :PackedScene
 @export var mining_equipment_scene :PackedScene
+## How much percent of the base speed each upgrade does
+@export var walk_speed_upgrade_modifier :int
+## How much the cooldown goes down with each upgrade
+@export var dash_cooldown_upgrade_modifier :float
 
 @onready var equipment_angle_point :Marker2D = $EquipmentAnglePoint
 @onready var weapon := weapon_scene.instantiate()
 @onready var mining_equipment := mining_equipment_scene.instantiate()
 @onready var dash = $Dash
+@onready var active_upgrades := {}
 
-const dash_speed = 300
+## How much the dash increases the movement speed
+const dash_multiplier = 3
 const dash_duration = 0.1
 const dash_max_amount = 2
 var dashes_left = dash_max_amount
-var dash_refill_speed = 1.0
+## How long it takes for dashes to recharge
+var dash_cooldown = 1.0
 
 var input_component = PlayerInputComponent.new()
 
@@ -41,6 +48,10 @@ func _ready() -> void:
 	
 	current_equipment = weapon
 	
+	# Fill upgrades
+	for x in Upgrade.Player_Upgrade.values():
+		active_upgrades[x] = 0
+	
 	dash.get_node("RefillTimer").timeout.connect(_on_dash_refill)
 
 
@@ -49,7 +60,9 @@ func _physics_process(delta: float) -> void:
 	
 	# Movement-Code
 	input_component.update(self, delta)
-	speed = dash_speed if dash.is_dashing() else base_speed
+	var speedup = (base_speed * walk_speed_upgrade_modifier/100) * active_upgrades[Upgrade.Player_Upgrade.WALK_SPEED]
+	var calculated_speed = base_speed + speedup
+	speed = calculated_speed * dash_multiplier if dash.is_dashing() else calculated_speed 
 	
 	# Animate
 	if self.direction.length() > 0:
@@ -69,14 +82,19 @@ func change_equipment(equipment) -> void:
 	current_equipment.visible = true
 
 
-func use_equipment(delta: float) -> void:
-	current_equipment.act(self, delta)
+func use_equipment(delta: float, try_auto_weapon: bool = false) -> void:
+	if try_auto_weapon and weapon is Gun and weapon.full_auto:
+		current_equipment.act(self, delta)
+	elif not try_auto_weapon:
+		current_equipment.act(self, delta)
 
 
 func try_dash() -> void:
 	print(str(dash.allowed_to_dash()))
 	if dashes_left > 0 && dash.allowed_to_dash() && direction.length() > 0:
-		dash.start_dash(dash_duration, dash_refill_speed)
+		var calculated_cooldown = dash_cooldown - dash_cooldown_upgrade_modifier * active_upgrades[Upgrade.Player_Upgrade.DASH_COOLDOWN]
+		if calculated_cooldown < 0.0: calculated_cooldown = 0
+		dash.start_dash(dash_duration, calculated_cooldown)
 		
 		$DashEffect.emitting = true
 		var dash_flash_tween = self.create_tween()
@@ -89,8 +107,17 @@ func try_dash() -> void:
 
 func set_shader_value(value: float):
 	$SubViewportContainer/SubViewport/AnimatedSprite2D.material.set_shader_parameter("flash_modifier", value)
-	
-	
+
+
+func add_health(amount: int):
+	$HealthComponent.hp += amount
+
+
+func add_upgrade(upgrade :Upgrade.Player_Upgrade):
+	active_upgrades[upgrade] += 1
+	print(str(Upgrade.Player_Upgrade.keys()[upgrade])+" now at "+str(active_upgrades[upgrade]))
+
+
 func _on_dash_refill() -> void:
 	if dashes_left < dash_max_amount:
 		dashes_left+=1

@@ -1,12 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://8486tdmus75m"]
+[gd_scene load_steps=12 format=3 uid="uid://cgkp5q4demlg5"]
 
-[ext_resource type="Script" path="res://resources/equipment/weapon/rifle.gd" id="1_p0rhv"]
-[ext_resource type="Texture2D" uid="uid://calp5g02iee7o" path="res://asset/visual/actor/char/mole/mole_weapon.png" id="2_x5l80"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="3_g1832"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="4_7lm84"]
-[ext_resource type="PackedScene" uid="uid://dp7femcfr44sh" path="res://resources/components/shooterComponent.tscn" id="5_hfewx"]
-[ext_resource type="PackedScene" uid="uid://bx8hi1wpd875d" path="res://resources/equipment/weapon/projectile.tscn" id="6_yggun"]
-[ext_resource type="PackedScene" uid="uid://mk5hgsurw2rv" path="res://resources/components/wearableComponent.tscn" id="7_hupc5"]
+[ext_resource type="Script" path="res://resources/equipment/weapon/Gun.gd" id="1_qsygw"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="2_6adi3"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="3_vn31w"]
+[ext_resource type="PackedScene" path="res://resources/components/shooterComponent.tscn" id="4_8umhn"]
+[ext_resource type="PackedScene" uid="uid://bqi7lhci05dr1" path="res://resources/equipment/weapon/Projectile.tscn" id="5_vol24"]
+[ext_resource type="PackedScene" path="res://resources/components/wearableComponent.tscn" id="6_qwiog"]
 
 [sub_resource type="GDScript" id="GDScript_ctalr"]
 script/source = "extends SubViewport
@@ -22,25 +21,20 @@ func _process(delta):
 	pass
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tuob6"]
-shader = ExtResource("3_g1832")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fdr6l"]
+shader = ExtResource("2_6adi3")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_5p4ka"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_x2co5"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gce8s"]
-shader = ExtResource("4_7lm84")
+shader = ExtResource("3_vn31w")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_p3sec"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[node name="Rifle" type="Node2D"]
-script = ExtResource("1_p0rhv")
-ammo_needed_per_shot = 1
-base_reload_time = 1
-max_ammo_stored = 125
-mag_size = 25
-restore_per_craft = 5
+[node name="Gun" type="Node2D"]
+script = ExtResource("1_qsygw")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_left = -11.0
@@ -65,15 +59,14 @@ script = SubResource("GDScript_ctalr")
 
 [node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
 y_sort_enabled = true
-texture = ExtResource("2_x5l80")
 offset = Vector2(16, 16)
 
 [node name="Mask" type="Sprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
-material = SubResource("ShaderMaterial_tuob6")
+material = SubResource("ShaderMaterial_fdr6l")
 position = Vector2(5, 1)
-texture = SubResource("ViewportTexture_5p4ka")
+texture = SubResource("ViewportTexture_x2co5")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = 100
@@ -81,14 +74,17 @@ material = SubResource("ShaderMaterial_gce8s")
 position = Vector2(5, 1)
 texture = SubResource("ViewportTexture_p3sec")
 
-[node name="Shooter" parent="." instance=ExtResource("5_hfewx")]
-position = Vector2(19, 0)
-projectile_scene = ExtResource("6_yggun")
+[node name="Shooter" parent="." instance=ExtResource("4_8umhn")]
+position = Vector2(17, 0)
+projectile_scene = ExtResource("5_vol24")
 
-[node name="Anglepoint" parent="." instance=ExtResource("7_hupc5")]
+[node name="Anglepoint" parent="." instance=ExtResource("6_qwiog")]
 position = Vector2(0, -1)
 
 [node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FireRateTimer" type="Timer" parent="."]
 one_shot = true
 
 [connection signal="timeout" from="ReloadTimer" to="." method="reload"]

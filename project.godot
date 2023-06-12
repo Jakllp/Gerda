@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Gerda"
-run/main_scene="res://resources/levels/level.tscn"
+run/main_scene="res://resources/levels/Level.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://asset/visual/actor/icon.svg"
 
@@ -78,6 +78,7 @@ interact={
 2d_physics/layer_4="Player Attack"
 2d_physics/layer_5="Enemy Attack"
 2d_physics/layer_6="Block Layer"
+2d_physics/layer_7="Ebene 7"
 
 [rendering]
 
