@@ -22,7 +22,6 @@ var parabolic_factor: float
 ## Minimum velocity of the projectile. Influenced by speed_factor
 var velocity: float
 
-
 func _ready():
 	length = curve.get_baked_length()
 	peak_ratio = get_peak_ratio()
