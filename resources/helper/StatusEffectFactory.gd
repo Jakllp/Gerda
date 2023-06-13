@@ -6,7 +6,7 @@ class_name StatusEffectFactory
 static func create(type: int) -> StatusEffect:
 	match type:
 		StatusEffectType.POISONED:
-			return Poisoned.new(1, 2, 4)
+			return Poisoned.new(1, 2, 2)
 		StatusEffectType.SLOW_DOWN:
 			return SlowDown.new(0.5)
 		_:
