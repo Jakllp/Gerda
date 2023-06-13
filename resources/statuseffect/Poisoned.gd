@@ -1,6 +1,7 @@
 extends StatusEffect
 class_name Poisoned
 
+## Damage per trigger
 var damage: int = 0
 
 func _init(damage: int, trigger_time:float = 0, life_time: float = -1) -> void:
@@ -12,5 +13,6 @@ func process(delta: float, owner) -> void:
 	super.process(delta, owner)
 	
 
+## Damage the owner
 func trigger(owner) -> void:
 	(owner as Player).add_health(-1 * damage)
