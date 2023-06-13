@@ -7,16 +7,18 @@ var containing_bodies: Array
 func apply_effect(body) -> void:
 	body.status_effects.add(StatusEffectType.POISONED)
 
-## If this body is capable of bearing status effects, register him to get effected by this area.
-func _on_body_entered(body):
-	if "status_effects" in body:
-		containing_bodies.append(body)
-		apply_effect(body)
+
+func _on_area_entered(area):
+	## If this body is capable of bearing status effects, register him to get effected by this area.
+	if "status_effects" in area.owner:
+		containing_bodies.append(area.owner)
+		apply_effect(area.owner)
 		$TriggerTimer.start()
 
 
-func _on_body_exited(body):
-	containing_bodies.erase(body)
+func _on_area_exited(area):
+	## unregister the leaving area.
+	containing_bodies.erase(area.owner)
 	if containing_bodies.size() == 0:
 		$TriggerTimer.stop()
 
