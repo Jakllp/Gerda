@@ -13,7 +13,7 @@ static func generate_heightmap() -> FastNoiseLite:
 	heightmap.noise_type = FastNoiseLite.TYPE_PERLIN
 	heightmap.fractal_type = FastNoiseLite.FRACTAL_FBM
 	
-	heightmap.seed = randi_range(0,192928342)
+	heightmap.seed = randi()
 	
 	heightmap.frequency = frequency
 	heightmap.fractal_lacunarity = lacunarity

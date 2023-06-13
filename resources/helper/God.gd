@@ -122,9 +122,6 @@ static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer 
 					map.set_cell(block_layer,cur_cell,block_atlas, Vector2i(1,0), alt)
 				_:
 					pass
-			
-	print(min)
-	print(max)
 
 
 static func get_block_type(height :float) -> BlockType:

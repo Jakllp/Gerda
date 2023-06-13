@@ -254,7 +254,6 @@ script = ExtResource("1_27bjh")
 [node name="TileMap" type="TileMap" parent="." groups=["map"]]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_4081a")
-cell_quadrant_size = 22
 format = 2
 layer_0/name = "ground"
 layer_0/z_index = -1

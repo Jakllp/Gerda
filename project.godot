@@ -80,6 +80,10 @@ interact={
 2d_physics/layer_6="Block Layer"
 2d_physics/layer_7="Ebene 7"
 
+[physics]
+
+2d/run_on_separate_thread=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
