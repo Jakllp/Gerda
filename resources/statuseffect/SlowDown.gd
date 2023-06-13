@@ -15,5 +15,6 @@ func process(delta: float, owner) -> void:
 
 ## Slow the owner.
 func trigger(owner) -> void:
+	assert(owner is Node and "speed" in owner, "SlowDown status effect connected with incompatible type")
 	owner.speed *= multiplier
 	
