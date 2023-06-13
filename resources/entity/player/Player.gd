@@ -114,10 +114,6 @@ func set_shader_value(value: float):
 	$SubViewportContainer/SubViewport/AnimatedSprite2D.material.set_shader_parameter("flash_modifier", value)
 
 
-func add_health(amount: int):
-	$HealthComponent.hp += amount
-
-
 func add_upgrade(upgrade :Upgrade.Player_Upgrade):
 	active_upgrades[upgrade] += 1
 	print(str(Upgrade.Player_Upgrade.keys()[upgrade])+" now at "+str(active_upgrades[upgrade]))
