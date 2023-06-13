@@ -62,7 +62,7 @@ func _on_body_entered(body :Node2D):
 				queue_free()
 			Item_Type.HEALTH:
 				#TODO what if it no work?
-				player.get_node("HealthComponent").hp += item_data
+				player.add_health(item_data)
 				queue_free()
 			Item_Type.PLAYER_UPGRADE:
 				player.add_upgrade(item_data)
