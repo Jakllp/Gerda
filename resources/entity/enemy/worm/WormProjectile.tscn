@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://0pg1nchydlbc"]
 
-[ext_resource type="Script" path="res://resources/equipment/weapon/ParabolicProjectile.gd" id="1_dww52"]
+[ext_resource type="Script" path="res://resources/entity/enemy/worm/WormProjectile.gd" id="1_uqcrx"]
 [ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="2_6nb70"]
 [ext_resource type="PackedScene" path="res://resources/overlap/hitbox.tscn" id="3_x4x2u"]
 
@@ -10,7 +10,7 @@ size = Vector2(12, 12)
 [node name="Path2D" type="Path2D"]
 z_index = 3
 y_sort_enabled = true
-script = ExtResource("1_dww52")
+script = ExtResource("1_uqcrx")
 speed_factor = 3.0
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
