@@ -15,5 +15,5 @@ func process(delta: float, owner) -> void:
 
 ## Damage the owner
 func trigger(owner) -> void:
-	assert(owner is Node and owner.has_node("HealthComponent"), "Poisoned status effect connected with incompatible type")
-	owner.get_node("HealthComponent").hp -= damage
+	assert(owner is Node and owner.has_method("add_health"), "Poisoned status effect connected with incompatible type")
+	owner.add_health(-1 * damage)
