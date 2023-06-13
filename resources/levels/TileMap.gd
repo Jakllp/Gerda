@@ -70,13 +70,17 @@ func mine_overlay(cell: Vector2i) -> void:
 	var origin_atlas_y = self.get_cell_atlas_coords(block_layer,cell,false).y
 	var percent = 1 - remaining_hardness_dict[cell] / self.get_cell_tile_data(block_layer, cell).get_custom_data("hardness")
 	if percent < 0.25:
-		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(0,origin_atlas_y), 0)
+		if self.get_cell_source_id(mine_overlay_atlas, cell, false) != -1 and self.get_cell_atlas_coords(mine_overlay_layer,cell).x != 0:
+			self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(0,origin_atlas_y), 0)
 	elif percent < 0.5:
-		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(1,origin_atlas_y), 0)
+		if self.get_cell_source_id(mine_overlay_atlas, cell, false) != -1 and self.get_cell_atlas_coords(mine_overlay_layer,cell).x != 1:
+			self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(1,origin_atlas_y), 0)
 	elif percent < 0.75:
-		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(2,origin_atlas_y), 0)
+		if self.get_cell_source_id(mine_overlay_atlas, cell, false) != -1 and self.get_cell_atlas_coords(mine_overlay_layer,cell).x != 2:
+			self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(2,origin_atlas_y), 0)
 	elif percent < 1:
-		self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(3,origin_atlas_y), 0)
+		if self.get_cell_source_id(mine_overlay_atlas, cell, false) != -1 and self.get_cell_atlas_coords(mine_overlay_layer,cell).x != 3:
+			self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(3,origin_atlas_y), 0)
 
 
 # Clears the cell
