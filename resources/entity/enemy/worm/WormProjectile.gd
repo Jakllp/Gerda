@@ -13,6 +13,7 @@ func _physics_process(delta):
 
 func release() -> void:
 	var puddle = puddle_scene.instantiate()
-	puddle.transform = follow.global_transform
+	puddle.position = follow.global_position
+	puddle.z_index = -1
 	get_node("/root").add_child(puddle)
 	super.release()
