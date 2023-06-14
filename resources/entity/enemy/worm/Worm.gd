@@ -26,7 +26,7 @@ func check_line_of_sight() -> bool:
 	var space_state :PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 	var query = PhysicsRayQueryParameters2D.create(global_position, player_pos)
 	query.exclude = [self]
-	query.collision_mask = 32
+	query.collision_mask = 1
 	var result := space_state.intersect_ray(query)
 	# if nothing was in the way there is a line of sight
 	if result.is_empty():

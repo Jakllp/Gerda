@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bumgkqge3x8or"]
+[gd_scene load_steps=25 format=3 uid="uid://bumgkqge3x8or"]
 
 [ext_resource type="Script" path="res://resources/entity/player/Player.gd" id="1_to1al"]
 [ext_resource type="PackedScene" path="res://resources/equipment/weapon/Rifle.tscn" id="2_eu53i"]
@@ -87,6 +87,9 @@ tracks/1/keys = {
 _data = {
 "walk": SubResource("Animation_xfjvt")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5g8p7"]
+size = Vector2(12, 4)
 
 [node name="Mole" type="CharacterBody2D" groups=["player"]]
 z_index = 1
@@ -184,6 +187,15 @@ amount = 30
 texture = ExtResource("8_58lmm")
 lifetime = 0.25
 fixed_fps = 60
+
+[node name="Feet" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Feet"]
+position = Vector2(-2, 11)
+shape = SubResource("RectangleShape2D_5g8p7")
+debug_color = Color(0.992157, 0.0901961, 0, 0.419608)
 
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 
