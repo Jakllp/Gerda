@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" path="res://resources/entity/enemy/worm/Worm.gd" id="1_edbqo"]
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="2_635i7"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="2_x6g1n"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="3_21vnr"]
 [ext_resource type="Texture2D" uid="uid://cqdd230tocghb" path="res://asset/visual/actor/enemy/worm/worm_attack2.png" id="3_qcykx"]
 [ext_resource type="Texture2D" uid="uid://bnhm0d7oj6hy7" path="res://asset/visual/actor/enemy/worm/worm_idle1.png" id="3_x1gse"]
 [ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/HealthComponent.tscn" id="4_ghmsk"]
@@ -14,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://bdqlqe3p4d46s" path="res://asset/visual/actor/enemy/worm/worm1.png" id="7_an44i"]
 [ext_resource type="Texture2D" uid="uid://cl3ikykny2aqd" path="res://asset/visual/actor/enemy/worm/worm2.png" id="8_1tqxq"]
 [ext_resource type="PackedScene" uid="uid://m457godntx4l" path="res://resources/components/ParabolicShooterComponent.tscn" id="8_yfduj"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="9_5x6cx"]
 [ext_resource type="PackedScene" uid="uid://0pg1nchydlbc" path="res://resources/entity/enemy/worm/WormProjectile.tscn" id="9_pes0a"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="10_o78o6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l81sl"]
 shader = ExtResource("2_635i7")
@@ -58,15 +58,13 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2j1cv"]
-render_priority = 0
-shader = ExtResource("2_x6g1n")
+shader = ExtResource("9_5x6cx")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1574g"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m1m7j"]
-render_priority = 0
-shader = ExtResource("3_21vnr")
+shader = ExtResource("10_o78o6")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_fxmqo"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -84,15 +82,16 @@ size = Vector2(16, 15)
 radius = 150.28
 
 [node name="Worm" type="StaticBody2D"]
+z_index = 1
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_edbqo")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 1904.0
-offset_bottom = 1064.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 1888.0
+offset_bottom = 1048.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
@@ -104,17 +103,20 @@ snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
 canvas_item_default_texture_filter = 0
 canvas_cull_mask = 4294966273
-size = Vector2i(32, 32)
-size_2d_override = Vector2i(32, 32)
+size = Vector2i(64, 64)
+size_2d_override = Vector2i(64, 64)
 render_target_update_mode = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_l81sl")
-position = Vector2(16, 16)
+position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_3uy4k")
 animation = &"idle"
 
 [node name="Mask" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_2j1cv")
 texture = SubResource("ViewportTexture_1574g")
 

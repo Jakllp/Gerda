@@ -105,14 +105,12 @@ sprite_frames = SubResource("SpriteFrames_chory")
 animation = &"walk"
 
 [node name="Mask" type="Sprite2D" parent="."]
-visible = false
 z_index = 1
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_getsk")
 texture = SubResource("ViewportTexture_qao34")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_ops3y")
 texture = SubResource("ViewportTexture_lxteo")
