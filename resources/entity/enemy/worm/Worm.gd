@@ -3,16 +3,33 @@ class_name Worm
 
 @onready var shooter: ParabolicShooter = $ParabolicShooter
 @onready var attack_timer: Timer = $AttackTimer
+@onready var sprite: AnimatedSprite2D = $SubViewportContainer/SubViewport/AnimatedSprite2D
 
 func _ready() -> void:
+	sprite.process_mode = Node.PROCESS_MODE_ALWAYS
+	sprite.play("idle")
 	super._ready()
 	$AttackTimer.process_mode = Node.PROCESS_MODE_INHERIT
 	
 
 func attack() -> void:
 	var pos: Vector2 = get_tree().get_first_node_in_group("player").global_position
+	sprite.play("attack")
+	await sprite.frame_changed
 	shooter.shoot(pos)
+	sprite.play("stand")
 	
+
+func activate() -> void:
+	super.activate()
+	$HurtBox.get_child(0).shape.size.y += 17
+	sprite.play("stand")
+	
+
+func deactivate() -> void:
+	super.deactivate()
+	$HurtBox.get_child(0).shape.size.y -= 17	
+	sprite.play("idle")
 
 func check_line_of_sight() -> bool:
 	var player = get_tree().get_first_node_in_group("player")
