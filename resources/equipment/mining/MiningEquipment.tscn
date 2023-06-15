@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bdfwtpg0jlond" path="res://asset/visual/actor/char/mole/miningEquipment/mole_hand.png" id="2_4k83b"]
 [ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="3_sruws"]
 [ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="4_5q5fb"]
-[ext_resource type="PackedScene" path="res://resources/components/wearableComponent.tscn" id="5_qrxuo"]
+[ext_resource type="PackedScene" path="res://resources/components/WearableComponent.tscn" id="5_qrxuo"]
 
 [sub_resource type="GDScript" id="GDScript_3wsvs"]
 script/source = "extends SubViewport

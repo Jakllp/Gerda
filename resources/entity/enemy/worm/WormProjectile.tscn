@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://resources/entity/enemy/worm/WormProjectile.gd" id="1_uqcrx"]
 [ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="2_6nb70"]
-[ext_resource type="PackedScene" path="res://resources/overlap/hitbox.tscn" id="3_x4x2u"]
+[ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="3_x4x2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_djmju"]
 size = Vector2(12, 12)
