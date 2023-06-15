@@ -3,10 +3,10 @@ extends Node
 ## Creates the world
 class_name God
 
-const general_width = 200
-const general_height = 200
-const level_width = 150
-const level_height = 150
+const general_width = 150
+const general_height = 150
+const level_width = 100
+const level_height = 100
 # Demo calculation: 200x200 general, 150x150 inner
 # Should result in 0 to 74 to the right and -1 to -75 to the left.
 # Should result in 0 to 74 to the bottom and -1 to -75 to the top.
@@ -20,7 +20,7 @@ enum BlockType {
 
 static func generate_level(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
 	generate_boundaries(map, ground_layer, block_layer, ground_atlas, block_atlas)
-	generate_caves_and_ore(map, ground_layer, block_layer, ground_atlas, block_atlas, PerlinHelper.generate_heightmap())
+	generate_caves_and_ore(map, ground_layer, block_layer, ground_atlas, block_atlas)
 
 static func generate_boundaries(map: TileMap, ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
 	# Let's fill in the sides (already filling the corners)
@@ -71,22 +71,23 @@ static func generate_boundaries(map: TileMap, ground_layer :int, block_layer :in
 				map.set_cell(block_layer,Vector2i(starting_point_x+i,starting_point_y+j),block_atlas, Vector2i(4,0), 0)
 
 
-static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, heightmap :FastNoiseLite) -> void:
+static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
+	var block_heightmap :FastNoiseLite = PerlinHelper.generate_heightmap(0.1, 4, 0.25, 0.5)
+	# Lower gain to get bigger chunks, higher frequency to get... more
+	var ore_heightmap :FastNoiseLite = PerlinHelper.generate_heightmap(0.35, 2, 5.0, 0.3)
+	
 	var start_x = level_width / -2
 	# -1 because of the way we see the map
 	var start_y = level_height / -2 - 1
-	var min = 2.0
-	var max = 0.0
 	
 	for y in range(level_height):
 		for x in range(level_width):
-			var cur_block = heightmap.get_noise_2d(start_x + x, start_y + y)
-			if cur_block < min: min = cur_block
-			if cur_block > max: max = cur_block
+			var cur_block = block_heightmap.get_noise_2d(start_x + x, start_y + y)
+			var cur_block_ore = ore_heightmap.get_noise_2d(start_x + x, start_y + y)
 			
-			var block_above = heightmap.get_noise_2d(start_x+x, start_y + y - 1)
+			var block_above = block_heightmap.get_noise_2d(start_x+x, start_y + y - 1)
 			var cur_cell = Vector2i(start_x + x, start_y + y)
-			match get_block_type(cur_block):
+			match get_block_type(cur_block, cur_block_ore):
 				BlockType.GROUND:
 					if y != 0 and get_block_type(block_above) == BlockType.GROUND:
 						# Just standard ground
@@ -124,12 +125,10 @@ static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer 
 					pass
 
 
-static func get_block_type(height :float) -> BlockType:
+static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 	if height <= -0.15:
 		return BlockType.GROUND
-	elif height <= 0.14 and height >=0.13:
-		# More range -> Bigger chunks
-		# Higher values -> Less in general
+	elif height_ore > 0.425:
 		return BlockType.ORE
 	else:
 		return BlockType.BLOCK
