@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmt4100w0s7tp"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/worm/PoisonPuddle.gd" id="1_tlq0y"]
-[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="2_8yaie"]
+[ext_resource type="Texture2D" uid="uid://b20uu5ukrdd53" path="res://asset/visual/actor/enemy/worm/puddle.png" id="2_pyo46"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_16xre"]
-size = Vector2(18, 18)
+size = Vector2(22, 18)
 
 [node name="PoisonPuddle" type="Area2D"]
 collision_layer = 0
@@ -14,8 +14,7 @@ monitorable = false
 script = ExtResource("1_tlq0y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("2_8yaie")
+texture = ExtResource("2_pyo46")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_16xre")
