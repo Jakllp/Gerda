@@ -38,6 +38,7 @@ var ore_pouch := 0:
 
 signal ore_received(amount, pos)
 signal ore_changed(amount)
+signal player_upgrade_received(type)
 
 
 func _ready() -> void:
@@ -120,6 +121,7 @@ func add_health(amount: int):
 
 
 func add_upgrade(upgrade :Upgrade.Player_Upgrade):
+	player_upgrade_received.emit(upgrade)
 	active_upgrades[upgrade] += 1
 	print(str(Upgrade.Player_Upgrade.keys()[upgrade])+" now at "+str(active_upgrades[upgrade]))
 
