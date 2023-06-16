@@ -1,20 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr8tpgkgfgxkp"]
+[gd_scene load_steps=10 format=3 uid="uid://cr8tpgkgfgxkp"]
 
 [ext_resource type="Texture2D" uid="uid://7xmrgs07i4ax" path="res://asset/visual/actor/enemy/bosses/spider/spider_spit_attack.png" id="1_8ygr1"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="1_bhyfc"]
+[ext_resource type="Texture2D" uid="uid://degtdv32h4l78" path="res://asset/visual/actor/enemy/bosses/spider/spider.png" id="1_p0dbh"]
+[ext_resource type="Script" path="res://resources/entity/boss/SpiderBoss.gd" id="1_yatep"]
 [ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/HealthComponent.tscn" id="2_cdbxo"]
+[ext_resource type="PackedScene" uid="uid://m457godntx4l" path="res://resources/components/ParabolicShooterComponent.tscn" id="5_frlwr"]
+[ext_resource type="PackedScene" uid="uid://cmbvih8i47fer" path="res://resources/entity/boss/WebProjectile.tscn" id="6_eqkwe"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mwnmt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p0dbh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8ygr1")
+}],
+"loop": true,
+"name": &"web_attack",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6rda"]
 size = Vector2(66, 66)
 
-[node name="StaticEntity" type="StaticBody2D"]
+[node name="SpiderBoss" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 2
+script = ExtResource("1_yatep")
 metadata/_edit_horizontal_guides_ = [-33.0, 33.0]
 metadata/_edit_vertical_guides_ = [-33.0, 33.0]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_8ygr1")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mwnmt")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_m6rda")
@@ -23,4 +48,15 @@ shape = SubResource("RectangleShape2D_m6rda")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_cdbxo")]
 
+[node name="ParabolicShooter" parent="." instance=ExtResource("5_frlwr")]
+position = Vector2(0, -33)
+projectile_scene = ExtResource("6_eqkwe")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.415
+autostart = true
+
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="HurtBox"]

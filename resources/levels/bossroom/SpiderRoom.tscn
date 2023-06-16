@@ -32,10 +32,9 @@ metadata/_edit_vertical_guides_ = [330.0, 948.0]
 metadata/_edit_horizontal_guides_ = [220.0, 440.0]
 
 [node name="Mole" parent="." instance=ExtResource("2_a0sfj")]
-visible = false
 position = Vector2(467, 368)
 
-[node name="StaticEntity" parent="." instance=ExtResource("3_fiv68")]
+[node name="SpiderBoss" parent="." instance=ExtResource("3_fiv68")]
 position = Vector2(473, 297)
 
 [node name="StompArea" type="Area2D" parent="."]

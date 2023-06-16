@@ -2,6 +2,8 @@ extends Path2D
 
 class_name ParabolicProjectile
 
+##Damage on contact with target
+@export var damage: int = 1
 ## General speed of the projectile. Influences velocity
 @export var speed_factor: float = 5
 ## How much the projectile slows down at its peak point. Greater value -> more slowdown
@@ -23,6 +25,7 @@ var parabolic_factor: float
 var velocity: float
 
 func _ready():
+	$PathFollow2D/Hitbox.damage = damage
 	length = curve.get_baked_length()
 	peak_ratio = get_peak_ratio()
 	alpha_factor = get_alpha_factor()
