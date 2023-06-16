@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://c30hosb1vsi56"]
 
 [ext_resource type="Script" path="res://resources/entity/MovingEntity.gd" id="1_gifeo"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="2_fi5jc"]
-[ext_resource type="PackedScene" path="res://resources/components/HealthComponent.tscn" id="2_tgv08"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="2_fi5jc"]
+[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/HealthComponent.tscn" id="2_tgv08"]
 [ext_resource type="Shader" path="res://resources/shaders/flash.gdshader" id="2_x3cmw"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="3_63tax"]
-[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="3_qadwa"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="3_63tax"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="3_qadwa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jumne"]
 shader = ExtResource("2_x3cmw")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bx8hi1wpd875d"]
 
-[ext_resource type="Script" path="res://resources/equipment/weapon/projectile.gd" id="1_ibm6r"]
+[ext_resource type="Script" path="res://resources/equipment/weapon/Projectile.gd" id="1_ibm6r"]
 [ext_resource type="Texture2D" uid="uid://i702o00e2lyu" path="res://asset/visual/actor/char/mole/mole_bullet.png" id="2_730l4"]
-[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_hxq0p"]
+[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/Hitbox.tscn" id="3_hxq0p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_djmju"]
 size = Vector2(2, 1)

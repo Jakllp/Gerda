@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://drt5gc5wf3gcr"]
 
-[ext_resource type="Script" path="res://resources/menus/mutator_select_screen.gd" id="1_ivbmo"]
+[ext_resource type="Script" path="res://resources/menus/MutatorSelectScreen.gd" id="1_ivbmo"]
 
 [node name="MutatorSelectScreen" type="Control"]
 layout_mode = 3
