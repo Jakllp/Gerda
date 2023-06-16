@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://bxxlguxjr4g7f"]
+
+[ext_resource type="Script" path="res://resources/interactables/Trapdoor.gd" id="1_eqc4j"]
+[ext_resource type="PackedScene" path="res://resources/interactables/InteractableBase.tscn" id="2_yml7l"]
+[ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="3_slim1"]
+[ext_resource type="Texture2D" uid="uid://xyy2346l77tu" path="res://asset/visual/map/Biom1/trapdoor.png" id="4_4cr8x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o68up"]
+resource_local_to_scene = true
+shader = ExtResource("3_slim1")
+shader_parameter/flash_color = Color(0.992157, 1, 0.52549, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dygx7"]
+size = Vector2(20, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tucq1"]
+size = Vector2(20, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8ukb"]
+
+[node name="Trapdoor" type="StaticBody2D"]
+script = ExtResource("1_eqc4j")
+
+[node name="InteractableBase" parent="." instance=ExtResource("2_yml7l")]
+
+[node name="CollisionShape2D" parent="InteractableBase/DetectionArea" index="0"]
+position = Vector2(0, 12)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_o68up")
+position = Vector2(0, 1)
+texture = ExtResource("4_4cr8x")
+hframes = 2
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11.5)
+shape = SubResource("RectangleShape2D_dygx7")
+
+[node name="Collision2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_tucq1")
+disabled = true
+
+[node name="DroppingIn" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DroppingIn"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_k8ukb")
+
+[connection signal="start_interaction" from="InteractableBase" to="." method="do_interaction"]
+[connection signal="body_entered" from="DroppingIn" to="." method="_on_dropping_in_body_entered"]
+
+[editable path="InteractableBase"]
+[editable path="InteractableBase/DetectionArea"]

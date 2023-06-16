@@ -1,7 +1,7 @@
 extends TileMap
 
 
-@export var ore_text_scene = preload("res://resources/other/ore_text.tscn")
+@export var ore_text_scene = preload("res://resources/other/OreText.tscn")
 
 # Damage-Map -> Stores the remaining hardness of cells
 var remaining_hardness_dict = {}
@@ -87,7 +87,10 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 		top_cell = cell
 		var bottom_cell = self.get_neighbor_cell(cell,TileSet.CELL_NEIGHBOR_BOTTOM_SIDE)
 		if self.get_cell_source_id(block_layer, bottom_cell, false) != -1:
+			# Block below is now top if a wall -> update ground with a bit of navigation and adjust collision
 			self.set_cell(ground_layer, bottom_cell, ground_atlas, Vector2i(0,0), 1)
+			var bottom_cell_atlas_coords = self.get_cell_atlas_coords(block_layer, bottom_cell, false)
+			self.set_cell(block_layer, bottom_cell, block_atlas, bottom_cell_atlas_coords, 1)
 	# We have a wall-block!
 	else:
 		var wall_cell :Vector2i
@@ -123,7 +126,7 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 			else:
 				self.erase_cell(mine_overlay_layer, top_cell)
 				remaining_hardness_dict.erase(top_cell)
-			# It is now a wall -> Update ground with a bit of navigation
+			# It is now a wall -> Update ground with a no navigation
 			self.set_cell(ground_layer, top_cell, ground_atlas,Vector2i(0,0), 2)
 			return
 	

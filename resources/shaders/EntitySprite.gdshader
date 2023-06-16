@@ -14,7 +14,7 @@ void fragment() {
 
 	// If the pixel's value is lower than the Mask's output color, it means the
 	// mask is being occluded, so we draw the silhouette instead.
-	if (screen_color.r < 1.0 && tex_color.a > 0.5){
+	if (screen_color.rgb != vec3(1.0, 0, 0) && tex_color.a > 0.5){
 		COLOR.rgba = vec4(0.53,0.53,0.53,0.75).rgba;
 		
 		// We convert the pixel width we want for our outline in decimal texel size.

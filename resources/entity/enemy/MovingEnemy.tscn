@@ -1,22 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3d34gk37dquv"]
+[gd_scene load_steps=13 format=3 uid="uid://bte716idax32m"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/MovingEnemy.gd" id="1_bu6l0"]
-[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="2_7bibu"]
-[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="3_1dqhf"]
-[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/Hitbox.tscn" id="3_expxs"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="2_qfsqc"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="3_5tkhg"]
+[ext_resource type="PackedScene" path="res://resources/overlap/hitbox.tscn" id="3_expxs"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="4_f3fdk"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="4_w5hcy"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="5_t611u"]
 [ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="6_r71gy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hie24"]
-shader = ExtResource("2_7bibu")
+shader = ExtResource("2_qfsqc")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5sh23"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jomdt"]
-shader = ExtResource("3_1dqhf")
+shader = ExtResource("3_5tkhg")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_8x6ln"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -25,8 +25,8 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 collision_layer = 4
 collision_mask = 7
 motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_bu6l0")
-speed = 69
 metadata/_edit_vertical_guides_ = [-51.0, 51.0]
 metadata/_edit_horizontal_guides_ = []
 
@@ -83,16 +83,17 @@ collision_mask = 2
 
 [node name="BTBlackboard" type="Node" parent="."]
 script = ExtResource("4_f3fdk")
-data = {
-"move_path": PackedVector2Array(),
-"path_index": 0
-}
 
 [node name="BTRoot" type="Node" parent="."]
 script = ExtResource("5_t611u")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 
 [editable path="Hitbox"]
 [editable path="HurtBox"]

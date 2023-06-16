@@ -44,16 +44,16 @@ var _time_to_reach_ms:int
 #------------------------------------------
 
 func tick(actor:Node, blackboard:BTBlackboard) -> int:
-    _current_time_ms += blackboard.get_delta() * 1_000
-    if _current_time_ms <= _time_to_reach_ms:
-        return BTTickResult.RUNNING
-    return BTTickResult.SUCCESS
+	_current_time_ms += blackboard.get_delta() * 1_000
+	if _current_time_ms <= _time_to_reach_ms:
+		return BTTickResult.RUNNING
+	return BTTickResult.SUCCESS
 
 func start(blackboard:BTBlackboard) -> void:
-    _current_time_ms = 0
-    _time_to_reach_ms = wait_time_ms
-    if random_deviation_ms != 0:
-        _time_to_reach_ms += randi_range(0, random_deviation_ms)
+	_current_time_ms = 0
+	_time_to_reach_ms = wait_time_ms
+	if random_deviation_ms != 0:
+		_time_to_reach_ms += randi_range(0, random_deviation_ms)
 
 #------------------------------------------
 # Fonctions privées

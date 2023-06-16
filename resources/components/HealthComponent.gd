@@ -31,11 +31,16 @@ func die() -> void:
 
 func receive_damage(damage: int) -> void:
 	self.hp -= damage
-	owner.flash()
+	owner.flash_component.flash(owner)
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
-		if area.owner is Projectile: area.owner.queue_free()
 		if owner.has_node("Dash") and owner.dash.is_dashing(): return
+		if area.owner is Projectile: 
+			if area.owner.pierce < 1:
+				area.owner.queue_free()
+				if area.owner.pierce < 0:
+					return
+			area.owner.pierce -= 1
 		receive_damage(area.damage)
