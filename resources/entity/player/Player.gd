@@ -18,8 +18,17 @@ var status_effects: StatusEffectSet = StatusEffectSet.new(self)
 ## How much the dash increases the movement speed
 const dash_multiplier = 3
 const dash_duration = 0.1
-const dash_max_amount = 2
-var dashes_left = dash_max_amount
+var dash_max_amount = 2:
+	set(value):
+		assert(value >= 0, "you cannot have a negative amount of dashes!")
+		dash_max_amount_changed.emit(value)
+		dash_max_amount = value
+var dashes_left = dash_max_amount:
+	set(value):
+		assert(value >= 0, "you cannot dash with less than one dash")
+		assert(value <= dash_max_amount, "you cannot have more dashes than your max amount")
+		dashes_left_changed.emit(dashes_left, value - dashes_left)
+		dashes_left = value
 ## How long it takes for dashes to recharge
 var dash_cooldown = 1.0
 
@@ -37,6 +46,9 @@ var ore_pouch := 0:
 signal ore_received(amount, pos)
 signal ore_changed(amount)
 signal player_upgrade_received(type)
+signal health_changed(amount)
+signal dash_max_amount_changed(amount)
+signal dashes_left_changed(previous, diff)
 
 
 func _ready() -> void:
@@ -55,6 +67,7 @@ func _ready() -> void:
 		active_upgrades[x] = 0
 	
 	dash.get_node("RefillTimer").timeout.connect(_on_dash_refill)
+	dash_max_amount_changed.emit(dash_max_amount)
 
 
 func _physics_process(delta: float) -> void:
