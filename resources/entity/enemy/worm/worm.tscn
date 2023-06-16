@@ -1,30 +1,174 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0xe5n06rxj2e"]
+[gd_scene load_steps=26 format=3 uid="uid://dx0jgljsjudkw"]
 
-[ext_resource type="Script" path="res://resources/entity/enemy/worm/Worm.gd" id="1_n8ov6"]
-[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/HealthComponent.tscn" id="2_8ix1j"]
-[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="3_jlrhr"]
-[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/Hitbox.tscn" id="4_8a8sa"]
+[ext_resource type="Script" path="res://resources/entity/enemy/worm/Worm.gd" id="1_edbqo"]
+[ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="2_635i7"]
+[ext_resource type="Texture2D" uid="uid://cqdd230tocghb" path="res://asset/visual/actor/enemy/worm/worm_attack2.png" id="3_qcykx"]
+[ext_resource type="Texture2D" uid="uid://bnhm0d7oj6hy7" path="res://asset/visual/actor/enemy/worm/worm_idle1.png" id="3_x1gse"]
+[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/HealthComponent.tscn" id="4_ghmsk"]
+[ext_resource type="Texture2D" uid="uid://d20eeue555fbj" path="res://asset/visual/actor/enemy/worm/worm_idle2.png" id="4_l73pq"]
+[ext_resource type="Texture2D" uid="uid://dcgkufegix73r" path="res://asset/visual/actor/enemy/worm/worm_attack1.png" id="4_u872y"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="5_l8kai"]
+[ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="6_mt3oh"]
+[ext_resource type="Texture2D" uid="uid://bdqlqe3p4d46s" path="res://asset/visual/actor/enemy/worm/worm1.png" id="7_an44i"]
+[ext_resource type="Texture2D" uid="uid://cl3ikykny2aqd" path="res://asset/visual/actor/enemy/worm/worm2.png" id="8_1tqxq"]
+[ext_resource type="PackedScene" uid="uid://m457godntx4l" path="res://resources/components/ParabolicShooterComponent.tscn" id="8_yfduj"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="9_5x6cx"]
+[ext_resource type="PackedScene" uid="uid://0pg1nchydlbc" path="res://resources/entity/enemy/worm/WormProjectile.tscn" id="9_pes0a"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="10_o78o6"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rhuya"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l81sl"]
+shader = ExtResource("2_635i7")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3uy4k"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("3_qcykx")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_u872y")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("3_x1gse")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_l73pq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("7_an44i")
+}, {
+"duration": 1.5,
+"texture": ExtResource("8_1tqxq")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2j1cv"]
+shader = ExtResource("9_5x6cx")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1574g"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m1m7j"]
+shader = ExtResource("10_o78o6")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fxmqo"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_krn4x"]
+size = Vector2(16, 11.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ag5k"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6g1c3"]
+size = Vector2(16, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ku3ox"]
+radius = 150.28
 
 [node name="Worm" type="StaticBody2D"]
-collision_layer = 0
-script = ExtResource("1_n8ov6")
+z_index = 1
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_edbqo")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 1888.0
+offset_bottom = 1048.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4294966273
+size = Vector2i(64, 64)
+size_2d_override = Vector2i(64, 64)
+render_target_update_mode = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_l81sl")
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_3uy4k")
+animation = &"idle"
+
+[node name="Mask" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_2j1cv")
+texture = SubResource("ViewportTexture_1574g")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 100
+material = SubResource("ShaderMaterial_m1m7j")
+texture = SubResource("ViewportTexture_fxmqo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_rhuya")
+position = Vector2(0, 11.75)
+shape = SubResource("RectangleShape2D_krn4x")
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_8ix1j")]
+[node name="HealthComponent" parent="." instance=ExtResource("4_ghmsk")]
 
-[node name="HurtBox" parent="." instance=ExtResource("3_jlrhr")]
+[node name="HurtBox" parent="." instance=ExtResource("5_l8kai")]
+z_index = 250
 collision_mask = 8
 
-[node name="Hitbox" parent="." instance=ExtResource("4_8a8sa")]
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_5ag5k")
+debug_color = Color(0.188235, 0.639216, 0.207843, 0.419608)
+
+[node name="Hitbox" parent="." instance=ExtResource("6_mt3oh")]
 collision_layer = 16
 
-[node name="AttackRange" parent="." instance=ExtResource("3_jlrhr")]
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_6g1c3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AttackRange" parent="." instance=ExtResource("5_l8kai")]
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="AttackRange" index="0"]
+shape = SubResource("CircleShape2D_ku3ox")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="ParabolicShooter" parent="." instance=ExtResource("8_yfduj")]
+position = Vector2(0, -6)
+projectile_scene = ExtResource("9_pes0a")
+peak_factor = 5.0
+
+[node name="AttackTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+autostart = true
 
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+
+[editable path="HurtBox"]
+[editable path="Hitbox"]
+[editable path="AttackRange"]
