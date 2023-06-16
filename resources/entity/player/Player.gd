@@ -2,19 +2,17 @@ extends MovingEnity
 
 class_name Player
 
-@export var weapon_scene :PackedScene
-@export var mining_equipment_scene :PackedScene
 ## How much percent of the base speed each upgrade does
 @export var walk_speed_upgrade_modifier :int
 ## How much the cooldown goes down with each upgrade
 @export var dash_cooldown_upgrade_modifier :float
 
 @onready var equipment_angle_point :Marker2D = $EquipmentAnglePoint
-@onready var weapon := weapon_scene.instantiate()
-@onready var mining_equipment := mining_equipment_scene.instantiate()
 @onready var dash = $Dash
 @onready var active_upgrades := {}
 
+var weapon: Weapon
+var mining_equipment: MiningEquipment
 var status_effects: StatusEffectSet = StatusEffectSet.new(self)
 
 ## How much the dash increases the movement speed
