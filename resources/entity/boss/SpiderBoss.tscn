@@ -1,18 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://cr8tpgkgfgxkp"]
 
+[ext_resource type="Texture2D" uid="uid://7xmrgs07i4ax" path="res://asset/visual/actor/enemy/bosses/spider/spider_spit_attack.png" id="1_8ygr1"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="1_bhyfc"]
-[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="1_mcwcj"]
 [ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/HealthComponent.tscn" id="2_cdbxo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6rda"]
-size = Vector2(120, 118)
+size = Vector2(66, 66)
 
 [node name="StaticEntity" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 2
+metadata/_edit_horizontal_guides_ = [-33.0, 33.0]
+metadata/_edit_vertical_guides_ = [-33.0, 33.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_mcwcj")
+texture = ExtResource("1_8ygr1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_m6rda")
