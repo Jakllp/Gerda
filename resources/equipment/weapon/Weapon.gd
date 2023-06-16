@@ -9,6 +9,8 @@ class_name Weapon
 @export var damage_upgrade_modifier :int
 @onready var active_upgrades = {}
 
+signal weapon_upgrade_received(type)
+
 func _ready() -> void:
 	# Fill upgrades
 	for x in Upgrade.Weapon_Upgrade.values():
@@ -16,6 +18,7 @@ func _ready() -> void:
 
 
 func add_upgrade(upgrade :Upgrade.Weapon_Upgrade):
+	weapon_upgrade_received.emit(upgrade)
 	active_upgrades[upgrade] += 1
 	print(str(Upgrade.Weapon_Upgrade.keys()[upgrade])+" now at "+str(active_upgrades[upgrade]))
 

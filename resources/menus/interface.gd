@@ -15,6 +15,7 @@ func _ready():
 	var player:Player = get_tree().get_first_node_in_group("player")
 	player.ore_changed.connect(on_ore_changed)
 	player.player_upgrade_received.connect(on_player_upgrade_received)
+	player.weapon.weapon_upgrade_received.connect(on_weapon_upgrade_received)
 
 
 func on_ore_changed(amount:int):
@@ -31,6 +32,16 @@ func on_player_upgrade_received(type: Upgrade.Player_Upgrade) -> void:
 			mining_speed_label.text = str(mining_speed_label.text.to_int() + 1)
 		
 
+func on_weapon_upgrade_received(type: Upgrade.Weapon_Upgrade) -> void:
+	match type:
+		Upgrade.Weapon_Upgrade.DAMAGE:
+			weapon_speed_label.text = str(weapon_speed_label.text.to_int() + 1)
+		Upgrade.Weapon_Upgrade.ATTACK_RATE:
+			weapon_rate_label.text = str(weapon_rate_label.text.to_int() + 1)
+		Upgrade.Weapon_Upgrade.SPEED:
+			weapon_speed_label.text = str(weapon_speed_label.text.to_int() + 1)
+
+	
 #func _process(delta):
 #	if Input.is_action_just_pressed("down"):
 #		on_ore_changed(1)

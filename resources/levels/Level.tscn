@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://fkbk1ubuisa3"]
+[gd_scene load_steps=20 format=3 uid="uid://fkbk1ubuisa3"]
 
 [ext_resource type="Script" path="res://resources/levels/Level.gd" id="1_27bjh"]
 [ext_resource type="Texture2D" uid="uid://bjo4qihuuqbq8" path="res://asset/visual/map/Biom1/biom1_blockTileset.png" id="2_ohl7o"]
@@ -7,8 +7,9 @@
 [ext_resource type="Script" path="res://resources/levels/TileMap.gd" id="5_e3myb"]
 [ext_resource type="PackedScene" uid="uid://r4clnru4g5qn" path="res://resources/interactables/Anvil.tscn" id="6_nlkkx"]
 [ext_resource type="PackedScene" path="res://resources/interactables/Chest.tscn" id="7_ysivo"]
-[ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="8_15nnc"]
+[ext_resource type="PackedScene" uid="uid://epgalkpl1kt7" path="res://resources/entity/player/Mole.tscn" id="8_0gdug"]
 [ext_resource type="PackedScene" uid="uid://c7wsucit56out" path="res://resources/entity/enemy/spider/Spider.tscn" id="9_3tndw"]
+[ext_resource type="PackedScene" uid="uid://3nw02h1mploy" path="res://resources/menus/Interface.tscn" id="9_w0h08"]
 [ext_resource type="PackedScene" uid="uid://dx0jgljsjudkw" path="res://resources/entity/enemy/worm/Worm.tscn" id="10_27mk1"]
 [ext_resource type="PackedScene" uid="uid://bxxlguxjr4g7f" path="res://resources/interactables/Trapdoor.tscn" id="10_s4w4p"]
 
@@ -286,8 +287,9 @@ position = Vector2(-275, -65)
 [node name="Chest" parent="." instance=ExtResource("7_ysivo")]
 position = Vector2(-12, -57)
 
-[node name="Mole" parent="." instance=ExtResource("8_15nnc")]
-position = Vector2(-75, 226)
+[node name="Mole" parent="." instance=ExtResource("8_0gdug")]
+
+[node name="Interface" parent="Mole" instance=ExtResource("9_w0h08")]
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -299,5 +301,3 @@ position = Vector2(-155, 145)
 
 [node name="Trapdoor" parent="." instance=ExtResource("10_s4w4p")]
 position = Vector2(55, 185)
-
-[connection signal="ore_received" from="Mole" to="TileMap" method="_on_player_ore_received"]
