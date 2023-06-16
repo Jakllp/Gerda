@@ -16,9 +16,11 @@ func _ready():
 	player.ore_changed.connect(on_ore_changed)
 	player.player_upgrade_received.connect(on_player_upgrade_received)
 	player.weapon.weapon_upgrade_received.connect(on_weapon_upgrade_received)
+	player.weapon.mag_contents_changed.connect(on_mag_contents_changed)
+	player.weapon.ammo_stored_changed.connect(on_ammo_stored_changed)
+	
 
-
-func on_ore_changed(amount:int):
+func on_ore_changed(amount:int) -> void:
 	ore_label.text = str(amount)
 	
 
@@ -41,6 +43,13 @@ func on_weapon_upgrade_received(type: Upgrade.Weapon_Upgrade) -> void:
 		Upgrade.Weapon_Upgrade.SPEED:
 			weapon_speed_label.text = str(weapon_speed_label.text.to_int() + 1)
 
+
+func on_mag_contents_changed(value: int) -> void:
+	magazine_label.text = str(value)
+
+
+func on_ammo_stored_changed(value: int) -> void:
+	ammo_label.text = str(value)
 	
 #func _process(delta):
 #	if Input.is_action_just_pressed("down"):
