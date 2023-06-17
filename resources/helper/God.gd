@@ -18,14 +18,20 @@ enum BlockType {
 	ORE
 }
 
-
-static func generate_level(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
+# Note: If there ever should be different trapdoor-rooms for different biomes this method would need a new input and we'd need to implement a biome-checker for other functions down the line
+## Delegates the generation of the level
+static func generate_level(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> void:
 	generate_boundaries(map, ground_layer, block_layer, ground_atlas, block_atlas)
 	generate_caves_and_ore(map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
 	# Spawn TrapdoorRoom
-	#TODO: Make it random
-	StructurePlacer.place_structure(StructureHelper.General.TRAPDOOR_B1, Vector2i(0,0), map, ground_layer, block_layer, ground_atlas, block_atlas)
+	spawn_trapdoor_room(map, ground_layer, block_layer, ground_atlas, block_atlas, biome)
+	
+	# Spawn AnvilRooms
+	spawn_anvil_rooms(map, ground_layer, block_layer, ground_atlas, block_atlas, biome)
+	
+	# Spawn dungeons
+	spawn_dungeons(map, ground_layer, block_layer, ground_atlas, block_atlas, biome)
 
 
 static func generate_boundaries(map: TileMap, ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
@@ -140,3 +146,19 @@ static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 		return BlockType.ORE
 	else:
 		return BlockType.BLOCK
+
+
+static func spawn_trapdoor_room(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> void:
+	# TODO make random
+	StructurePlacer.place_structure(StructureHelper.General.get("TRAPDOOR_B"+str(biome)), Vector2i(0,0), map, ground_layer, block_layer, ground_atlas, block_atlas)
+	# TODO make indicator
+
+
+static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> void:
+	# TODO implement
+	pass
+
+
+static func spawn_dungeons(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> void:
+	# TODO implement
+	pass

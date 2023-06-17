@@ -54,6 +54,12 @@ static func get_non_static_things(structure_name, node_name :String):
 	return array
 
 
+static func get_dungeons_for_biome(biome :int):
+	var array = []
+	for val in Dungeons.keys():
+		if val.ends_with(str(biome)): array.append(val)
+	return array
+
 # From here on: Only used internally
 
 static func get_coord_array(top_left :Vector2i, bottom_right :Vector2i, map :TileMap, layer :int):

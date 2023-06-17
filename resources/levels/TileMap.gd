@@ -6,6 +6,7 @@ extends TileMap
 # Damage-Map -> Stores the remaining hardness of cells
 var remaining_hardness_dict = {}
 
+var biome = 1
 # The layers
 var ground_layer := 0
 var block_layer := 1
@@ -19,7 +20,7 @@ var ground_atlas := 2
 
 
 func _ready() -> void:
-	God.generate_level(self, ground_layer, block_layer, ground_atlas, block_atlas)
+	God.generate_level(self, ground_layer, block_layer, ground_atlas, block_atlas, biome)
 
 
 # Logic of damaging cells
