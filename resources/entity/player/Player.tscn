@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" path="res://resources/particles/DashEffect.tscn" id="7_aujcr"]
 [ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="8_5qbo2"]
 [ext_resource type="Texture2D" uid="uid://bxi2qkwchgo7a" path="res://asset/visual/actor/char/mole/dash_frame.png" id="8_58lmm"]
+[ext_resource type="PackedScene" uid="uid://b5fc7mi5vht5l" path="res://resources/components/Health/PlayerHealthComponent.tscn" id="9_e6pu7"]
 [ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="9_tj2ew"]
-[ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="11_36qyq"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="12_ejrhl"]
 [ext_resource type="PackedScene" uid="uid://b2krhq43q3awp" path="res://resources/components/DashComponent.tscn" id="13_27f6q"]
 
@@ -147,8 +147,7 @@ z_index = 100
 material = SubResource("ShaderMaterial_6wbvd")
 texture = SubResource("ViewportTexture_o6p7u")
 
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("11_36qyq")
+[node name="PlayerHealthComponent" parent="." instance=ExtResource("9_e6pu7")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -193,6 +192,6 @@ position = Vector2(-2, 11)
 shape = SubResource("RectangleShape2D_5g8p7")
 debug_color = Color(0.992157, 0.0901961, 0, 0.419608)
 
-[connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
+[connection signal="area_entered" from="HurtBox" to="PlayerHealthComponent" method="_on_hurt_box_area_entered"]
 
 [editable path="HurtBox"]

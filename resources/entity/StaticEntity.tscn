@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="1_bhyfc"]
 [ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="1_k4xuq"]
-[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/HealthComponent.tscn" id="2_cdbxo"]
+[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/Health/HealthComponent.tscn" id="2_cdbxo"]
 [ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="2_sfrs2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xmp46"]

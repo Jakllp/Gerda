@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://resources/entity/MovingEntity.gd" id="1_gifeo"]
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="2_fc6j2"]
-[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/HealthComponent.tscn" id="2_tgv08"]
+[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/Health/HealthComponent.tscn" id="2_tgv08"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="3_qadwa"]
 [ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="3_ruu02"]
 [ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="4_jnlvh"]

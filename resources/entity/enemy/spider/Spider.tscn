@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="4_uo85l"]
 [ext_resource type="Texture2D" uid="uid://qmej8xpve0gn" path="res://asset/visual/actor/enemy/spider/spider_frame4.png" id="5_avrct"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="5_lr3uh"]
-[ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="5_ras38"]
+[ext_resource type="Script" path="res://resources/components/Health/HealthComponent.gd" id="5_ras38"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="6_53m54"]
 [ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="7_kdrew"]
 [ext_resource type="PackedScene" path="res://resources/entity/enemy/behaviorTree/movement/NormalEnemyMovement.tscn" id="7_l4mod"]
