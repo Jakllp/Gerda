@@ -12,6 +12,10 @@ const level_height = 100
 # Should result in 0 to 74 to the bottom and -1 to -75 to the top.
 ## The inner-percentage of the map where the trapdoor-room can spawn
 const trapdoor_range = 0.75
+## The inner-percentage of the map where the anvil-room can spawn
+const inner_anvil_range = 0.5
+## The percentage of how far away from a corner the anvil-room can spawn
+const corner_anvil_range = 0.1
 
 enum BlockType {
 	GROUND,
@@ -25,6 +29,7 @@ static func generate_level(map: TileMap,ground_layer :int, block_layer :int, gro
 	generate_boundaries(map, ground_layer, block_layer, ground_atlas, block_atlas)
 	generate_caves_and_ore(map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
+	# TODO actually use this array (also in random anvil)
 	var positions = []
 	# Spawn TrapdoorRoom
 	positions.append(spawn_trapdoor_room(map, ground_layer, block_layer, ground_atlas, block_atlas, biome))
@@ -143,7 +148,7 @@ static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer 
 static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 	# The lower this number the more blocks you get
 	if height <= -0.075:
-		return BlockType.GROUND
+		return BlockType.BLOCK
 	elif height_ore > 0.425:
 		return BlockType.ORE
 	else:
@@ -151,18 +156,31 @@ static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 
 
 static func spawn_trapdoor_room(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> Vector2i:
-	var x_range = level_width * trapdoor_range
-	var y_range = level_height * trapdoor_range
-	var pos = Vector2i(randi_range(x_range/-2, (x_range/2) - 1), randi_range(y_range/-2, (y_range/2) - 1))
+	var pos = PosHelper.get_random_pos_inner_range(Vector2i(level_width,level_height), trapdoor_range)
 	StructurePlacer.place_structure(StructureHelper.General.get("TRAPDOOR_B"+str(biome)), pos, map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
 	# TODO make indicator
 	return pos
 
 
-static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> void:
-	# TODO implement
-	pass
+static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int):
+	var field_size = Vector2i(level_width,level_height)
+	
+	# Corner-Rooms 0: Top-Left, 1: Top-Right, 2: Bottom-Right, 3: Bottom-Left
+	var corner_1 = randi_range(0, 3)
+	var corner_2 = randi_range(0, 3)
+	while corner_1 == corner_2: corner_2 = randi_range(0, 3)
+	var pos1 = PosHelper.get_corner_pos(corner_1, field_size, corner_anvil_range, 6)
+	StructurePlacer.place_structure(StructureHelper.General.get("ANVIL_B"+str(biome)), pos1, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	var pos2 = PosHelper.get_corner_pos(corner_2, field_size, corner_anvil_range, 6)
+	StructurePlacer.place_structure(StructureHelper.General.get("ANVIL_B"+str(biome)), pos2, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	
+	# Anvilroom in the middle (random)
+	var pos3 = PosHelper.get_random_pos_inner_range(field_size, inner_anvil_range)
+	StructurePlacer.place_structure(StructureHelper.General.get("ANVIL_B"+str(biome)), pos3, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	
+	# Return array of pos to store them
+	return [pos1, pos2, pos3]
 
 
 static func spawn_dungeons(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> void:

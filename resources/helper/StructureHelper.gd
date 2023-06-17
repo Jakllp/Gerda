@@ -23,7 +23,9 @@ static func get_structure_pattern(structure_name, layer :int) -> TileMapPattern:
 	
 	match (structure_name):
 		General.TRAPDOOR_B1:
-			return map.get_pattern(layer, get_coord_array(Vector2i(-4,-5),Vector2i(4,3), map, layer))
+			return map.get_pattern(layer, get_coord_array(Vector2i(-4,-4),Vector2i(4,4), map, layer))
+		General.ANVIL_B1:
+			return map.get_pattern(layer, get_coord_array(Vector2i(-1,-1),Vector2i(1,1), map, layer))
 		_:
 			return null
 
@@ -76,5 +78,7 @@ static func get_map_for_structure(structure_name) -> TileMap:
 	match (structure_name):
 		General.TRAPDOOR_B1:
 			return preload("res://resources/structures/biome1/TrapdoorRoom.tscn").instantiate().get_node(".")
+		General.ANVIL_B1:
+			return preload("res://resources/structures/biome1/AnvilRoom.tscn").instantiate().get_node(".")
 		_:
 			return null
