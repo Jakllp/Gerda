@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cmuriasclhlb0"]
 
-[ext_resource type="Script" path="res://resources/menus/SartMenu.gd" id="1_au8af"]
+[ext_resource type="Script" path="res://resources/menus/StartMenu.gd" id="1_au8af"]
 
 [node name="SartMenu" type="Control"]
 layout_mode = 3
