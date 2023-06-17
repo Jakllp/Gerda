@@ -1,12 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://bj67m0e2wspkr"]
+[gd_scene load_steps=17 format=3 uid="uid://dgr3a0tngksay"]
 
-[ext_resource type="Script" path="res://resources/levels/Level.gd" id="1_27bjh"]
-[ext_resource type="Texture2D" uid="uid://bjo4qihuuqbq8" path="res://asset/visual/map/Biom1/biom1_blockTileset.png" id="2_ohl7o"]
-[ext_resource type="Texture2D" uid="uid://bs2qq00uj5g8i" path="res://asset/visual/map/miningoverlay.png" id="3_epmjn"]
-[ext_resource type="Texture2D" uid="uid://r7i65elbeq4u" path="res://asset/visual/map/Biom1/ground.png" id="4_fcxw4"]
-[ext_resource type="Script" path="res://resources/levels/TileMap.gd" id="5_e3myb"]
-[ext_resource type="Texture2D" uid="uid://dxaavx7yq8ial" path="res://asset/visual/map/nope.png" id="5_jnbg1"]
-[ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="8_15nnc"]
+[ext_resource type="Texture2D" uid="uid://bjo4qihuuqbq8" path="res://asset/visual/map/Biom1/biom1_blockTileset.png" id="1_48rsu"]
+[ext_resource type="Texture2D" uid="uid://bs2qq00uj5g8i" path="res://asset/visual/map/miningoverlay.png" id="2_xxtxq"]
+[ext_resource type="Texture2D" uid="uid://r7i65elbeq4u" path="res://asset/visual/map/Biom1/ground.png" id="3_6lcsk"]
+[ext_resource type="Texture2D" uid="uid://dxaavx7yq8ial" path="res://asset/visual/map/nope.png" id="4_68b48"]
+[ext_resource type="PackedScene" uid="uid://bxxlguxjr4g7f" path="res://resources/interactables/Trapdoor.tscn" id="5_ak845"]
+[ext_resource type="PackedScene" uid="uid://c7wsucit56out" path="res://resources/entity/enemy/spider/Spider.tscn" id="5_oxwlx"]
+[ext_resource type="PackedScene" uid="uid://r4clnru4g5qn" path="res://resources/interactables/Anvil.tscn" id="6_6nnfe"]
+[ext_resource type="PackedScene" uid="uid://ng3ib61x8e5x" path="res://resources/decor/Torch.tscn" id="8_5es6q"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_eugv1"]
 tile_data = PackedInt32Array(196608, 131072, 0, 262144, 131072, 1, 327680, 131072, 65536, 131073, 196608, 0, 196609, 196608, 1, 262145, 3, 0, 327681, 3, 0, 393217, 196608, 65536, 65538, 196608, 0, 131074, 196608, 1, 196610, 3, 0, 262146, 3, 0, 327682, 3, 0, 393218, 3, 0, 458754, 196608, 65536, 3, 131072, 0, 65539, 131072, 1, 131075, 3, 0, 196611, 3, 0, 262147, 3, 0, 327683, 3, 0, 393219, 3, 0, 458755, 3, 0, 524291, 131072, 0, 4, 196608, 0, 65540, 196608, 1, 131076, 3, 0, 196612, 3, 0, 262148, 3, 0, 327684, 3, 0, 393220, 3, 0, 458756, 3, 0, 524292, 3, 0, 5, 131072, 0, 65541, 131072, 1, 131077, 3, 0, 196613, 3, 0, 262149, 3, 0, 327685, 3, 0, 393221, 3, 0, 458757, 3, 0, 524293, 131072, 0, 65542, 196608, 0, 131078, 196608, 1, 196614, 3, 0, 262150, 3, 0, 327686, 3, 0, 393222, 3, 0, 458758, 196608, 65536, 131079, 196608, 0, 196615, 196608, 1, 262151, 3, 0, 327687, 3, 0, 393223, 196608, 65536, 196616, 131072, 0, 262152, 131072, 1, 327688, 131072, 65536)
@@ -18,148 +19,101 @@ tile_data = PackedInt32Array(196608, 3, 0, 262144, 2, 131072, 327680, 2, 65536, 
 bounce = 1.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pxkrx"]
-texture = ExtResource("2_ohl7o")
+texture = ExtResource("1_48rsu")
 texture_region_size = Vector2i(22, 22)
 0:0/next_alternative_id = 2
 0:0/0 = 0
 0:0/0/z_index = 1
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11, -11, 11, -11, 11, 11, -11, 11)
 0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_1/angular_velocity = 0.0
-0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(11, 16, 11, -6, -11, -6, -11, 16)
-0:0/0/custom_data_0 = 4
 0:0/1 = 1
 0:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/1/physics_layer_0/angular_velocity = 0.0
-0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-11, 0, 11, 0, 11, 11, -11, 11)
 0:0/1/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:0/1/physics_layer_1/angular_velocity = 0.0
-0:0/1/physics_layer_1/polygon_0/points = PackedVector2Array(11, 16, 11, -6, -11, -6, -11, 16)
-0:0/1/custom_data_0 = 4
 1:0/next_alternative_id = 2
 1:0/0 = 0
 1:0/0/z_index = 1
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11, -11, 11, -11, 11, 11, -11, 11)
 1:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_1/angular_velocity = 0.0
-1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(11, 16, 11, -6, -11, -6, -11, 16)
-1:0/0/custom_data_0 = 6
-1:0/0/custom_data_1 = true
 1:0/1 = 1
 1:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/1/physics_layer_0/angular_velocity = 0.0
-1:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-11, 0, 11, 0, 11, 11, -11, 11)
 1:0/1/physics_layer_1/linear_velocity = Vector2(0, 0)
 1:0/1/physics_layer_1/angular_velocity = 0.0
-1:0/1/physics_layer_1/polygon_0/points = PackedVector2Array(11, 16, 11, -6, -11, -6, -11, 16)
-1:0/1/custom_data_0 = 6
 2:0/next_alternative_id = 2
 2:0/0 = 0
 2:0/0/z_index = 1
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11, -11, 11, -11, 11, 11, -11, 11)
 2:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_1/angular_velocity = 0.0
-2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(11, 16, 11, -6, -11, -6, -11, 16)
-2:0/0/custom_data_0 = -1
 2:0/1 = 1
 2:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/1/physics_layer_0/angular_velocity = 0.0
-2:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-11, 0, 11, 0, 11, 11, -11, 11)
 2:0/1/physics_layer_1/linear_velocity = Vector2(0, 0)
 2:0/1/physics_layer_1/angular_velocity = 0.0
-2:0/1/physics_layer_1/polygon_0/points = PackedVector2Array(11, 16, 11, -6, -11, -6, -11, 16)
-2:0/1/custom_data_0 = -1
 3:0/next_alternative_id = 2
 3:0/0 = 0
 3:0/0/z_index = 1
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_0/angular_velocity = 0.0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11, -11, 11, -11, 11, 11, -11, 11)
 3:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_1/angular_velocity = 0.0
-3:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(11, 16, 11, -6, -11, -6, -11, 16)
-3:0/0/custom_data_0 = -1
 3:0/1 = 1
 3:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/1/physics_layer_0/angular_velocity = 0.0
-3:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-11, 0, 11, 0, 11, 11, -11, 11)
 3:0/1/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:0/1/physics_layer_1/angular_velocity = 0.0
-3:0/1/physics_layer_1/polygon_0/points = PackedVector2Array(11, 16, 11, -6, -11, -6, -11, 16)
-3:0/1/custom_data_0 = -1
 4:0/next_alternative_id = 2
 4:0/0 = 0
 4:0/0/z_index = 1
 4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:0/0/physics_layer_0/angular_velocity = 0.0
-4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11, -11, 11, -11, 11, 11, -11, 11)
 4:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 4:0/0/physics_layer_1/angular_velocity = 0.0
-4:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(11, 16, 11, -6, -11, -6, -11, 16)
-4:0/0/custom_data_0 = -1
 4:0/1 = 1
 4:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:0/1/physics_layer_0/angular_velocity = 0.0
-4:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-11, 0, 11, 0, 11, 11, -11, 11)
 4:0/1/physics_layer_1/linear_velocity = Vector2(0, 0)
 4:0/1/physics_layer_1/angular_velocity = 0.0
-4:0/1/physics_layer_1/polygon_0/points = PackedVector2Array(11, 16, 11, -6, -11, -6, -11, 16)
-4:0/1/custom_data_0 = -1
 4:1/0 = 0
 4:1/0/z_index = -2
 4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:1/0/physics_layer_0/angular_velocity = 0.0
-4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11, -11, 11, -11, 11, 0, -11, 0)
 4:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 4:1/0/physics_layer_1/angular_velocity = 0.0
-4:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(11, 5, 11, -11, -11, -11, -11, 5)
-4:1/0/custom_data_0 = -1
 3:1/0 = 0
 3:1/0/z_index = -2
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11, -11, 11, -11, 11, 0, -11, 0)
 3:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_1/angular_velocity = 0.0
-3:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(11, 5, 11, -11, -11, -11, -11, 5)
-3:1/0/custom_data_0 = -1
 2:1/0 = 0
 2:1/0/z_index = -2
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_0/angular_velocity = 0.0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11, -11, 11, -11, 11, 0, -11, 0)
 2:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_1/angular_velocity = 0.0
-2:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(11, 5, 11, -11, -11, -11, -11, 5)
-2:1/0/custom_data_0 = -1
 1:1/0 = 0
 1:1/0/z_index = -2
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11, -11, 11, -11, 11, 0, -11, 0)
 1:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_1/angular_velocity = 0.0
-1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(11, 5, 11, -11, -11, -11, -11, 5)
-1:1/0/custom_data_0 = 6
-1:1/0/custom_data_1 = true
 0:1/0 = 0
 0:1/0/z_index = -2
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11, -11, 11, -11, 11, 0, -11, 0)
 0:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_1/angular_velocity = 0.0
-0:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(11, 5, 11, -11, -11, -11, -11, 5)
-0:1/0/custom_data_0 = 4
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ey7l"]
-texture = ExtResource("3_epmjn")
+texture = ExtResource("2_xxtxq")
 texture_region_size = Vector2i(22, 22)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -206,18 +160,8 @@ texture_region_size = Vector2i(22, 22)
 3:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_1/angular_velocity = 0.0
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_1dpto"]
-vertices = PackedVector2Array(-11, -11, 11, -11, 11, 11, -11, 11)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-11, -11, 11, -11, 11, 11, -11, 11)])
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_t33rl"]
-vertices = PackedVector2Array(-11, -11, 11, -11, 11, -1, -11, -1)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-11, -11, 11, -11, 11, -1, -11, -1)])
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yk7ub"]
-texture = ExtResource("4_fcxw4")
+texture = ExtResource("3_6lcsk")
 texture_region_size = Vector2i(22, 22)
 0:0/next_alternative_id = 3
 0:0/0 = 0
@@ -225,13 +169,11 @@ texture_region_size = Vector2i(22, 22)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_1/angular_velocity = 0.0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1dpto")
 0:0/1 = 1
 0:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/1/physics_layer_0/angular_velocity = 0.0
 0:0/1/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:0/1/physics_layer_1/angular_velocity = 0.0
-0:0/1/navigation_layer_0/polygon = SubResource("NavigationPolygon_t33rl")
 0:0/2 = 2
 0:0/2/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/2/physics_layer_0/angular_velocity = 0.0
@@ -239,7 +181,7 @@ texture_region_size = Vector2i(22, 22)
 0:0/2/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ex2jo"]
-texture = ExtResource("5_jnbg1")
+texture = ExtResource("4_68b48")
 texture_region_size = Vector2i(22, 22)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -247,7 +189,7 @@ texture_region_size = Vector2i(22, 22)
 0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_1/angular_velocity = 0.0
 
-[sub_resource type="TileSet" id="TileSet_4081a"]
+[sub_resource type="TileSet" id="TileSet_u0tmd"]
 tile_size = Vector2i(22, 22)
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
@@ -266,24 +208,20 @@ sources/3 = SubResource("TileSetAtlasSource_ex2jo")
 pattern_0 = SubResource("TileMapPattern_eugv1")
 pattern_1 = SubResource("TileMapPattern_5c3ec")
 
-[node name="Level" type="Node2D"]
+[node name="Map" type="TileMap"]
 y_sort_enabled = true
-script = ExtResource("1_27bjh")
-metadata/_edit_horizontal_guides_ = []
-
-[node name="TileMap" type="TileMap" parent="." groups=["map"]]
-y_sort_enabled = true
-tile_set = SubResource("TileSet_4081a")
+tile_set = SubResource("TileSet_u0tmd")
 format = 2
 layer_0/name = "ground"
 layer_0/z_index = -1
+layer_0/tile_data = PackedInt32Array(-65540, 3, 0, -4, 2, 131072, 65532, 2, 65536, -131075, 3, 0, -65539, 2, 131072, -3, 2, 0, 65533, 2, 0, 131069, 2, 65536, -196610, 3, 0, -131074, 2, 131072, -65538, 2, 0, -2, 2, 0, 65534, 2, 0, 131070, 2, 0, 196606, 2, 65536, -262145, 3, 0, -196609, 2, 131072, -131073, 2, 0, -65537, 2, 0, -1, 2, 0, 65535, 2, 0, 131071, 2, 0, 196607, 2, 0, 262143, 2, 65536, -327680, 3, 0, -262144, 2, 131072, -196608, 2, 0, -131072, 2, 0, -65536, 2, 0, 0, 2, 0, 65536, 2, 0, 131072, 2, 0, 196608, 2, 0, -327679, 3, 0, -262143, 2, 131072, -196607, 2, 0, -131071, 2, 0, -65535, 2, 0, 1, 2, 0, 65537, 2, 0, 131073, 2, 0, 196609, 2, 65536, -262142, 3, 0, -196606, 2, 131072, -131070, 2, 0, -65534, 2, 0, 2, 2, 0, 65538, 2, 0, 131074, 2, 65536, -196605, 3, 0, -131069, 2, 131072, -65533, 2, 0, 3, 2, 0, 65539, 2, 65536, -131068, 3, 0, -65532, 2, 131072, 4, 2, 65536)
 layer_1/name = "blocks"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 3
-layer_1/tile_data = PackedInt32Array()
+layer_1/tile_data = PackedInt32Array(-65540, 131072, 0, -4, 131072, 1, 65532, 131072, 65536, -131075, 196608, 0, -65539, 196608, 1, -3, 3, 0, 65533, 3, 0, 131069, 196608, 65536, -196610, 196608, 0, -131074, 196608, 1, -65538, 3, 0, -2, 3, 0, 65534, 3, 0, 131070, 3, 0, 196606, 196608, 65536, -262145, 131072, 0, -196609, 131072, 1, -131073, 3, 0, -65537, 3, 0, -1, 3, 0, 65535, 3, 0, 131071, 3, 0, 196607, 3, 0, 262143, 131072, 0, -327680, 196608, 0, -262144, 196608, 1, -196608, 3, 0, -131072, 3, 0, -65536, 3, 0, 0, 3, 0, 65536, 3, 0, 131072, 3, 0, 196608, 3, 0, -327679, 131072, 0, -262143, 131072, 1, -196607, 3, 0, -131071, 3, 0, -65535, 3, 0, 1, 3, 0, 65537, 3, 0, 131073, 3, 0, 196609, 131072, 0, -262142, 196608, 0, -196606, 196608, 1, -131070, 3, 0, -65534, 3, 0, 2, 3, 0, 65538, 3, 0, 131074, 196608, 65536, -196605, 196608, 0, -131069, 196608, 1, -65533, 3, 0, 3, 3, 0, 65539, 196608, 65536, -131068, 131072, 0, -65532, 131072, 1, 4, 131072, 65536)
 layer_2/name = "miningOverlay"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
@@ -291,16 +229,26 @@ layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 4
 layer_2/tile_data = PackedInt32Array()
-script = ExtResource("5_e3myb")
-
-[node name="Mole" parent="." instance=ExtResource("8_15nnc")]
-y_sort_enabled = true
-position = Vector2(17, -6)
-
-[node name="Interactables" type="Node" parent="."]
-
-[node name="Decor" type="Node" parent="."]
 
 [node name="Enemies" type="Node" parent="."]
 
-[connection signal="ore_received" from="Mole" to="TileMap" method="_on_player_ore_received"]
+[node name="Spider" parent="Enemies" instance=ExtResource("5_oxwlx")]
+position = Vector2(-23, -37)
+
+[node name="Interactables" type="Node" parent="."]
+
+[node name="Trapdoor" parent="Interactables" instance=ExtResource("5_ak845")]
+visible = false
+position = Vector2(11, -12)
+
+[node name="Anvil" parent="Interactables" instance=ExtResource("6_6nnfe")]
+visible = false
+position = Vector2(10, -59)
+
+[node name="Decor" type="Node" parent="."]
+
+[node name="Torch" parent="Decor" instance=ExtResource("8_5es6q")]
+position = Vector2(-10, -66)
+
+[node name="Torch2" parent="Decor" instance=ExtResource("8_5es6q")]
+position = Vector2(32, -65)

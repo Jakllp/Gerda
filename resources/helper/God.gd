@@ -11,7 +11,6 @@ const level_height = 100
 # Should result in 0 to 74 to the right and -1 to -75 to the left.
 # Should result in 0 to 74 to the bottom and -1 to -75 to the top.
 
-const nope_atlas = 3
 
 enum BlockType {
 	GROUND,
@@ -24,8 +23,10 @@ static func generate_level(map: TileMap,ground_layer :int, block_layer :int, gro
 	generate_boundaries(map, ground_layer, block_layer, ground_atlas, block_atlas)
 	generate_caves_and_ore(map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
-	# Spawn trapdoor-room
-	spawn_pattern(0, Vector2i(-2, -2), Vector2i(0, 0), map, ground_layer, block_layer, ground_atlas, block_atlas)
+	# Spawn TrapdoorRoom
+	#TODO: Make it random
+	StructurePlacer.place_structure(StructureHelper.General.TRAPDOOR_B1, Vector2i(0,0), map, ground_layer, block_layer, ground_atlas, block_atlas)
+
 
 static func generate_boundaries(map: TileMap, ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
 	# Let's fill in the sides (already filling the corners)
@@ -139,44 +140,3 @@ static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 		return BlockType.ORE
 	else:
 		return BlockType.BLOCK
-
-
-static func spawn_pattern(pattern_num :int, pos :Vector2i, ground_offset :Vector2i, map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
-	var ground_pos = pos + ground_offset
-	var cleanup_pos = Vector2i(min(pos.x, ground_pos.x),min(pos.y, ground_pos.y))
-	
-	# Spawn in saved pattern
-	map.set_pattern(block_layer,pos, map.tile_set.get_pattern(pattern_num*2))
-	map.set_pattern(ground_layer,ground_pos, map.tile_set.get_pattern(pattern_num*2+1))
-	
-	# Clean-Up Nopes, swap tops, add walls
-	var block_size = map.tile_set.get_pattern(pattern_num).get_size()
-	var ground_size = map.tile_set.get_pattern(pattern_num+1).get_size()
-	var cleanup_size = Vector2i(max(block_size.x, ground_size.x),max(block_size.y, ground_size.y))
-	for y in range(cleanup_size.y + 1):
-		for x in range(cleanup_size.x):
-			var cur_pos = Vector2i(cleanup_pos.x + x, cleanup_pos.y + y)
-			
-			# Nope Cleanup
-			if map.get_cell_source_id(ground_layer, cur_pos) == nope_atlas:
-				map.erase_cell(ground_layer, cur_pos)
-			if map.get_cell_source_id(block_layer,cur_pos) == nope_atlas:
-				map.erase_cell(block_layer, cur_pos)
-			
-			# Swap Tops if necessary
-			if map.get_cell_source_id(block_layer, cur_pos) != -1 and map.get_cell_alternative_tile(block_layer, cur_pos) == 0 and map.get_cell_atlas_coords(block_layer, cur_pos).y == 0:
-				# Standard-Top. Need to check if above is free!
-				if map.get_cell_source_id(block_layer, map.get_neighbor_cell(cur_pos,TileSet.CELL_NEIGHBOR_TOP_SIDE)) == -1:
-					# Nothing above! Swap to different top and new set ground with minimal nav
-					map.set_cell(block_layer, cur_pos, block_atlas, map.get_cell_atlas_coords(block_layer, cur_pos), 1)
-					map.set_cell(ground_layer, cur_pos, ground_atlas, Vector2i(0,0), 1)
-
-			# Place walls if necessary
-			if map.get_cell_source_id(block_layer, cur_pos) != -1 and map.get_cell_atlas_coords(block_layer, cur_pos).y == 0:
-				# It's a top! Let's see if it needs a wall below it
-				var cell_below = map.get_neighbor_cell(cur_pos,TileSet.CELL_NEIGHBOR_BOTTOM_SIDE)
-				if map.get_cell_source_id(block_layer, cell_below) == -1:
-					# Nothing below! Needs wall! And ground with no nav
-					map.set_cell(block_layer, cell_below, block_atlas, Vector2i(map.get_cell_atlas_coords(block_layer, cur_pos).x, 1))
-					map.set_cell(ground_layer, cell_below, ground_atlas, Vector2i(0,0), 2)
-	# TODO: Gotta also place all the things
