@@ -230,7 +230,7 @@ position = Vector2(11, 9)
 [node name="Decor" type="Node" parent="."]
 
 [node name="Torch" parent="Decor" instance=ExtResource("8_ljqbp")]
-position = Vector2(-11, -17)
+position = Vector2(-11, -3)
 
 [node name="Torch2" parent="Decor" instance=ExtResource("8_ljqbp")]
-position = Vector2(33, -17)
+position = Vector2(32, -3)

@@ -225,23 +225,20 @@ layer_2/tile_data = PackedInt32Array()
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Spider" parent="Enemies" instance=ExtResource("5_oxwlx")]
-visible = false
 position = Vector2(-24, -13)
 
 [node name="Interactables" type="Node" parent="."]
 
 [node name="Trapdoor" parent="Interactables" instance=ExtResource("5_ak845")]
-visible = false
 position = Vector2(11, 11)
 
 [node name="Anvil" parent="Interactables" instance=ExtResource("6_6nnfe")]
-visible = false
 position = Vector2(10, -32)
 
 [node name="Decor" type="Node" parent="."]
 
 [node name="Torch" parent="Decor" instance=ExtResource("8_5es6q")]
-position = Vector2(34, -41)
+position = Vector2(33, -30)
 
 [node name="Torch2" parent="Decor" instance=ExtResource("8_5es6q")]
-position = Vector2(-13, -41)
+position = Vector2(-12, -31)
