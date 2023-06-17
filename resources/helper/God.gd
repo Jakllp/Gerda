@@ -10,7 +10,8 @@ const level_height = 100
 # Demo calculation: 200x200 general, 150x150 inner
 # Should result in 0 to 74 to the right and -1 to -75 to the left.
 # Should result in 0 to 74 to the bottom and -1 to -75 to the top.
-
+## The inner-percentage of the map where the trapdoor-room can spawn
+const trapdoor_range = 0.75
 
 enum BlockType {
 	GROUND,
@@ -24,8 +25,9 @@ static func generate_level(map: TileMap,ground_layer :int, block_layer :int, gro
 	generate_boundaries(map, ground_layer, block_layer, ground_atlas, block_atlas)
 	generate_caves_and_ore(map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
+	var positions = []
 	# Spawn TrapdoorRoom
-	spawn_trapdoor_room(map, ground_layer, block_layer, ground_atlas, block_atlas, biome)
+	positions.append(spawn_trapdoor_room(map, ground_layer, block_layer, ground_atlas, block_atlas, biome))
 	
 	# Spawn AnvilRooms
 	spawn_anvil_rooms(map, ground_layer, block_layer, ground_atlas, block_atlas, biome)
@@ -148,10 +150,14 @@ static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 		return BlockType.BLOCK
 
 
-static func spawn_trapdoor_room(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> void:
-	# TODO make random
-	StructurePlacer.place_structure(StructureHelper.General.get("TRAPDOOR_B"+str(biome)), Vector2i(0,0), map, ground_layer, block_layer, ground_atlas, block_atlas)
+static func spawn_trapdoor_room(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> Vector2i:
+	var x_range = level_width * trapdoor_range
+	var y_range = level_height * trapdoor_range
+	var pos = Vector2i(randi_range(x_range/-2, (x_range/2) - 1), randi_range(y_range/-2, (y_range/2) - 1))
+	StructurePlacer.place_structure(StructureHelper.General.get("TRAPDOOR_B"+str(biome)), pos, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	
 	# TODO make indicator
+	return pos
 
 
 static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> void:

@@ -238,11 +238,9 @@ position = Vector2(-23, -37)
 [node name="Interactables" type="Node" parent="."]
 
 [node name="Trapdoor" parent="Interactables" instance=ExtResource("5_ak845")]
-visible = false
 position = Vector2(11, -12)
 
 [node name="Anvil" parent="Interactables" instance=ExtResource("6_6nnfe")]
-visible = false
 position = Vector2(10, -59)
 
 [node name="Decor" type="Node" parent="."]

@@ -26,7 +26,7 @@ static func place_structure(structure_name :StructureHelper.General, pos :Vector
 		spawn_thing_in_scene(decor[0], map.map_to_local(decor[1] + pos), map.owner.get_node("Decor"))
 	# Gotta spawn enemies
 	for enemy in StructureHelper.get_non_static_things(structure_name, "Enemies"):
-		spawn_thing_in_scene(enemy[0], enemy[1], map.owner.get_node("Enemies"))
+		spawn_thing_in_scene(enemy[0], enemy[1] + map.map_to_local(pos), map.owner.get_node("Enemies"))
 
 
 static func spawn_pattern(ground_pattern :TileMapPattern, block_pattern :TileMapPattern, pos :Vector2i, ground_offset :Vector2i, map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
