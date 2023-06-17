@@ -148,7 +148,7 @@ static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer 
 static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 	# The lower this number the more blocks you get
 	if height <= -0.075:
-		return BlockType.BLOCK
+		return BlockType.GROUND
 	elif height_ore > 0.425:
 		return BlockType.ORE
 	else:
