@@ -68,6 +68,8 @@ func _ready() -> void:
 	
 	dash.get_node("RefillTimer").timeout.connect(_on_dash_refill)
 	dash_max_amount_changed.emit(dash_max_amount)
+	
+	$PlayerHealthComponent.max_hp_changed.emit($PlayerHealthComponent.hp_max)
 
 
 func _physics_process(delta: float) -> void:
