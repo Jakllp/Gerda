@@ -1,9 +1,16 @@
 extends CanvasLayer
 
-var atlas := preload("res://asset/visual/UI/HUD_Elements.png")
+const atlas := preload("res://asset/visual/UI/HUD_Elements.png")
+
 var dash_full_tex := AtlasTexture.new()
 var dash_empty_tex := AtlasTexture.new()
 const minimum_dash_size := Vector2(112,21)
+
+var heart_full_tex := AtlasTexture.new()
+var heart_half_tex := AtlasTexture.new()
+var heart_empty_tex := AtlasTexture.new()
+const minimum_heart_size := Vector2(40,40)
+
 @onready var ore_label = $Right/Ore/Amount/Ore
 @onready var mining_speed_label = $Left/PlayerUpgrades/Upgrade1/Amount/MiningSpeed
 @onready var walk_speed_label = $Left/PlayerUpgrades/Upgrade2/Amount/WalkSpeed
@@ -14,6 +21,7 @@ const minimum_dash_size := Vector2(112,21)
 @onready var magazine_label = $Bottom/VBoxContainer/WeaponInfo/Ammo/CurrentMagazine
 @onready var ammo_label = $Bottom/VBoxContainer/WeaponInfo/Ammo/RemainingAmmo
 @onready var dashes = $Bottom/VBoxContainer/Dashes
+@onready var health = $Left/Health
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,6 +33,16 @@ func _ready():
 	dash_empty_tex.region.position = Vector2(16,24)
 	dash_empty_tex.region.size = Vector2(16,3)
 	
+	heart_full_tex.atlas = atlas
+	heart_full_tex.region.position = Vector2.ZERO
+	heart_full_tex.region.size = Vector2(8,8)
+	heart_half_tex.atlas = atlas
+	heart_half_tex.region.position = Vector2(0,8)
+	heart_half_tex.region.size = Vector2(8,8)
+	heart_empty_tex.atlas = atlas
+	heart_empty_tex.region.position = Vector2(0,16)
+	heart_empty_tex.region.size = Vector2(8,8)
+	
 	# connecting signals
 	var player:Player = get_tree().get_first_node_in_group("player")
 	player.ore_changed.connect(on_ore_changed)
@@ -34,6 +52,8 @@ func _ready():
 	player.weapon.ammo_stored_changed.connect(on_ammo_stored_changed)
 	player.dash_max_amount_changed.connect(on_dash_max_amount_changed)
 	player.dashes_left_changed.connect(on_dashes_left_changed)
+	player.get_node("PlayerHealthComponent").max_hp_changed.connect(on_max_hp_changed)
+	player.get_node("PlayerHealthComponent").hp_changed.connect(on_hp_changed)
 	
 
 func on_ore_changed(amount:int) -> void:
@@ -95,11 +115,47 @@ func on_dashes_left_changed(previous: int, diff: int) -> void:
 		for i in range(previous-1, previous + diff - 1, -1):
 			dashes.get_child(i).texture = dash_empty_tex
 	
-#var amount = 2
+
+func on_max_hp_changed(value) -> void:
+	var diff = value/2 - health.get_child_count()
+	
+	if diff > 0:
+			while(health.get_child_count() != value/2):
+				if health.get_child_count() == 0:
+					var health_tex_rec = TextureRect.new()
+					health_tex_rec.texture = heart_full_tex
+					health_tex_rec.custom_minimum_size = minimum_heart_size
+					health.add_child(health_tex_rec)
+				else:
+					health.add_child(health.get_child(0).duplicate())
+	else:
+		while(health.get_child_count() != value/2):
+			var child = health.get_child(0)
+			health.remove_child(child)
+			child.queue_free()
+			
+
+func on_hp_changed(previous, diff) -> void:
+	var start = floor(previous/2)
+	var end = floor((previous+diff) / 2)
+	var half := bool((previous+diff) % 2)
+	
+	if diff > 0:
+		for i in range(start, end):
+			health.get_child(i).texture = heart_full_tex
+	else:
+		for i in range(start - int(previous%2 == 0), end - int(!half), -1):
+			health.get_child(i).texture = heart_empty_tex
+	if half:
+		health.get_child(end).texture = heart_half_tex
+		
+
+#var amount = 8
+#var diff = 4
 #func _process(delta):
 #	if Input.is_action_just_pressed("ui_up"):
-#		on_dashes_left_changed(amount, 1)
-#		amount += 1
+#		on_hp_changed(amount, diff)
+#		amount += diff
 #	elif Input.is_action_just_pressed("ui_down"):
-#		on_dashes_left_changed(amount, -1)
-#		amount -= 1
+#		on_hp_changed(amount, -diff)
+#		amount -= diff

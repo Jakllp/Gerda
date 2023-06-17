@@ -2,7 +2,7 @@ extends Node
 
 class_name HealthComponent
 
-@export var hp_max: int = 100: set = set_max_hp
+@export var hp_max: int = 6: set = set_max_hp
 @export var hp: int = hp_max: set = set_hp
 
 
@@ -29,6 +29,7 @@ func die() -> void:
 	
 
 func receive_damage(damage: int) -> void:
+	if damage == 0: return
 	self.hp -= damage
 	owner.flash_component.flash(owner)
 
