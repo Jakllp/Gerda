@@ -4,43 +4,18 @@ extends Object
 class_name StructureHelper
 
 
-# Not using dictionaries as we want some naming. Basically our own dictionaries.
-# Otherwise we'd have dictionaries AND enums
-enum General {
-	TRAPDOOR_B1,
-	ANVIL_B1
-}
-
-enum Dungeons {
-	BASIC_DUNGEON_B1
-}
-
-
 ## Get's the pattern of a specific layer of a specific structure
 static func get_structure_pattern(structure_name, layer :int) -> TileMapPattern:
-	var map = get_map_for_structure(structure_name)
+	var map = StructureRegistry.get_map_for_structure(structure_name)
 	if map == null: return null
 	
-	match (structure_name):
-		General.TRAPDOOR_B1:
-			return map.get_pattern(layer, get_coord_array(Vector2i(-4,-4),Vector2i(4,4), map, layer))
-		General.ANVIL_B1:
-			return map.get_pattern(layer, get_coord_array(Vector2i(-1,-1),Vector2i(1,1), map, layer))
-		_:
-			return null
-
-
-## Returns the ground_offset of a given pattern aka how much you have to move the ground_pattern for it to align with the block_pattern
-static func get_ground_offset(structure_name) -> Vector2i:
-	match (structure_name):
-		# Only need to point to special cases, default is 0,0
-		_:
-			return Vector2i(0,0)
+	var range = StructureRegistry.get_pattern_range(structure_name)
+	return map.get_pattern(layer, get_coord_array(Vector2i(-4,-4),Vector2i(4,4), map, layer))
 
 
 ## Returns an array of all on-tile things in a structure
 static func get_static_things(structure_name, node_name :String):
-	var map = get_map_for_structure(structure_name)
+	var map = StructureRegistry.get_map_for_structure(structure_name)
 	var array = []
 	for thing in map.get_node(node_name).get_children():
 		array.append([load(thing.scene_file_path), map.local_to_map(thing.position)])
@@ -49,7 +24,7 @@ static func get_static_things(structure_name, node_name :String):
 
 ## Returns an array of all off-tile things in a structure
 static func get_non_static_things(structure_name, node_name :String):
-	var map = get_map_for_structure(structure_name)
+	var map = StructureRegistry.get_map_for_structure(structure_name)
 	var array = []
 	for thing in map.get_node(node_name).get_children():
 		array.append([load(thing.scene_file_path), thing.position])
@@ -58,7 +33,7 @@ static func get_non_static_things(structure_name, node_name :String):
 
 static func get_dungeons_for_biome(biome :int):
 	var array = []
-	for val in Dungeons.keys():
+	for val in StructureRegistry.Dungeons.keys():
 		if val.ends_with(str(biome)): array.append(val)
 	return array
 
@@ -72,13 +47,3 @@ static func get_coord_array(top_left :Vector2i, bottom_right :Vector2i, map :Til
 			if map.get_cell_source_id(layer, cur_pos) != -1:
 				array.append(cur_pos)
 	return array
-
-
-static func get_map_for_structure(structure_name) -> TileMap:
-	match (structure_name):
-		General.TRAPDOOR_B1:
-			return preload("res://resources/structures/biome1/TrapdoorRoom.tscn").instantiate().get_node(".")
-		General.ANVIL_B1:
-			return preload("res://resources/structures/biome1/AnvilRoom.tscn").instantiate().get_node(".")
-		_:
-			return null

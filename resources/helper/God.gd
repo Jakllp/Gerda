@@ -157,7 +157,7 @@ static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 
 static func spawn_trapdoor_room(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> Vector2i:
 	var pos = PosHelper.get_random_pos_inner_range(Vector2i(level_width,level_height), trapdoor_range)
-	StructurePlacer.place_structure(StructureHelper.General.get("TRAPDOOR_B"+str(biome)), pos, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	StructurePlacer.place_structure(StructureRegistry.General.get("TRAPDOOR_B"+str(biome)), pos, map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
 	# TODO make indicator
 	return pos
@@ -171,13 +171,13 @@ static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, 
 	var corner_2 = randi_range(0, 3)
 	while corner_1 == corner_2: corner_2 = randi_range(0, 3)
 	var pos1 = PosHelper.get_corner_pos(corner_1, field_size, corner_anvil_range, 6)
-	StructurePlacer.place_structure(StructureHelper.General.get("ANVIL_B"+str(biome)), pos1, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	StructurePlacer.place_structure(StructureRegistry.General.get("ANVIL_B"+str(biome)), pos1, map, ground_layer, block_layer, ground_atlas, block_atlas)
 	var pos2 = PosHelper.get_corner_pos(corner_2, field_size, corner_anvil_range, 6)
-	StructurePlacer.place_structure(StructureHelper.General.get("ANVIL_B"+str(biome)), pos2, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	StructurePlacer.place_structure(StructureRegistry.General.get("ANVIL_B"+str(biome)), pos2, map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
 	# Anvilroom in the middle (random)
 	var pos3 = PosHelper.get_random_pos_inner_range(field_size, inner_anvil_range)
-	StructurePlacer.place_structure(StructureHelper.General.get("ANVIL_B"+str(biome)), pos3, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	StructurePlacer.place_structure(StructureRegistry.General.get("ANVIL_B"+str(biome)), pos3, map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
 	# Return array of pos to store them
 	return [pos1, pos2, pos3]
