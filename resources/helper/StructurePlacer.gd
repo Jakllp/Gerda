@@ -19,13 +19,13 @@ static func place_structure(structure_name :StructureRegistry.Structures, pos :V
 	spawn_pattern(ground_pattern, block_pattern, new_pos, ground_offset, map, ground_layer, block_layer, ground_atlas, block_atlas)
 	# Gotta spawn in interactables
 	for interactable in StructureHelper.get_static_things(structure_name, "Interactables"):
-		spawn_thing_in_scene(interactable[0], map.map_to_local(interactable[1] + pos), map.owner.get_node("Interactables"))
+		spawn_thing_in_scene(interactable[0], map.map_to_local(interactable[1] + pos), map.get_node("Interactables"))
 	# Gotta spawn decor
 	for decor in StructureHelper.get_static_things(structure_name, "Decor"):
-		spawn_thing_in_scene(decor[0], map.map_to_local(decor[1] + pos), map.owner.get_node("Decor"))
+		spawn_thing_in_scene(decor[0], map.map_to_local(decor[1] + pos), map.get_node("Decor"))
 	# Gotta spawn enemies
 	for enemy in StructureHelper.get_non_static_things(structure_name, "Enemies"):
-		spawn_thing_in_scene(enemy[0], enemy[1] + map.map_to_local(pos), map.owner.get_node("Enemies"))
+		spawn_thing_in_scene(enemy[0], enemy[1] + map.map_to_local(pos), map.get_node("Enemies"))
 
 
 static func spawn_pattern(ground_pattern :TileMapPattern, block_pattern :TileMapPattern, pos :Vector2i, ground_offset :Vector2i, map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:

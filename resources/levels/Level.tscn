@@ -321,14 +321,17 @@ layer_2/z_index = 4
 layer_2/tile_data = PackedInt32Array()
 script = ExtResource("5_e3myb")
 
+[node name="Interactables" type="Node2D" parent="TileMap"]
+y_sort_enabled = true
+
+[node name="Decor" type="Node2D" parent="TileMap"]
+y_sort_enabled = true
+
+[node name="Enemies" type="Node2D" parent="TileMap"]
+y_sort_enabled = true
+
 [node name="Mole" parent="." instance=ExtResource("8_15nnc")]
 y_sort_enabled = true
 position = Vector2(17, -6)
-
-[node name="Interactables" type="Node" parent="."]
-
-[node name="Decor" type="Node" parent="."]
-
-[node name="Enemies" type="Node" parent="."]
 
 [connection signal="ore_received" from="Mole" to="TileMap" method="_on_player_ore_received"]

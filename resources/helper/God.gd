@@ -30,7 +30,7 @@ enum BlockType {
 
 # Note: If there ever should be different trapdoor-rooms for different biomes this method would need a new input and we'd need to implement a biome-checker for other functions down the line
 ## Delegates the generation of the level
-static func generate_level(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> void:
+static func generate_level(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> Vector2i:
 	var dungeon_spawns = default_dungeon_spawns + randi_range(-1, 1)
 	# 2+ as we need 1 Trapdoor-Room and 1 spawn-room
 	print("posis")
@@ -57,6 +57,7 @@ static func generate_level(map: TileMap,ground_layer :int, block_layer :int, gro
 	# Spawn dungeons
 	var spawn_point = spawn_dungeons(map, ground_layer, block_layer, ground_atlas, block_atlas, biome, positions)
 
+	return spawn_point
 
 static func generate_boundaries(map: TileMap, ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
 	# Let's fill in the sides (already filling the corners)
