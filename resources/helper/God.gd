@@ -10,12 +10,14 @@ const level_height = 100
 # Demo calculation: 200x200 general, 150x150 inner
 # Should result in 0 to 74 to the right and -1 to -75 to the left.
 # Should result in 0 to 74 to the bottom and -1 to -75 to the top.
-## The inner-percentage of the map where the trapdoor-room can spawn
-const trapdoor_range = 0.75
-## The inner-percentage of the map where the anvil-room can spawn
-const inner_anvil_range = 0.5
+## The inner-percentage of the map where stuff can spawn
+const inner_spawn_range = 0.7
 ## The percentage of how far away from a corner the anvil-room can spawn
 const corner_anvil_range = 0.1
+
+const inner_anvil_spawns = 1
+const default_dungeon_spawns = 6
+
 
 enum BlockType {
 	GROUND,
@@ -29,16 +31,18 @@ static func generate_level(map: TileMap,ground_layer :int, block_layer :int, gro
 	generate_boundaries(map, ground_layer, block_layer, ground_atlas, block_atlas)
 	generate_caves_and_ore(map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
-	# TODO actually use this array (also in random anvil)
-	var positions = []
+	var dungeon_spawns = default_dungeon_spawns + randi_range(-1, 1)
+	
+	# 2+ as we need 1 Trapdoor-Room and 1 spawn-room
+	var positions = PosHelper.generate_random_positions(2 + inner_anvil_spawns + dungeon_spawns, Vector2i(level_width, level_height), inner_spawn_range, 15)
 	# Spawn TrapdoorRoom
-	positions.append(spawn_trapdoor_room(map, ground_layer, block_layer, ground_atlas, block_atlas, biome))
+	positions = spawn_trapdoor_room(map, ground_layer, block_layer, ground_atlas, block_atlas, biome, positions)
 	
 	# Spawn AnvilRooms
-	spawn_anvil_rooms(map, ground_layer, block_layer, ground_atlas, block_atlas, biome)
+	positions = spawn_anvil_rooms(map, ground_layer, block_layer, ground_atlas, block_atlas, biome, positions)
 	
 	# Spawn dungeons
-	spawn_dungeons(map, ground_layer, block_layer, ground_atlas, block_atlas, biome)
+	positions = spawn_dungeons(map, ground_layer, block_layer, ground_atlas, block_atlas, biome, positions)
 
 
 static func generate_boundaries(map: TileMap, ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
@@ -155,15 +159,16 @@ static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 		return BlockType.BLOCK
 
 
-static func spawn_trapdoor_room(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> Vector2i:
-	var pos = PosHelper.get_random_pos_inner_range(Vector2i(level_width,level_height), trapdoor_range)
+static func spawn_trapdoor_room(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int, pos_list :Array) -> Array:
+	var pos = pos_list[randi_range(0,pos_list.size()-1)]
+	pos_list.erase(pos)
 	StructurePlacer.place_structure(StructureRegistry.General.get("TRAPDOOR_B"+str(biome)), pos, map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
 	# TODO make indicator
-	return pos
+	return pos_list
 
 
-static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int):
+static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int, pos_list :Array) -> Array:
 	var field_size = Vector2i(level_width,level_height)
 	
 	# Corner-Rooms 0: Top-Left, 1: Top-Right, 2: Bottom-Right, 3: Bottom-Left
@@ -176,13 +181,14 @@ static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, 
 	StructurePlacer.place_structure(StructureRegistry.General.get("ANVIL_B"+str(biome)), pos2, map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
 	# Anvilroom in the middle (random)
-	var pos3 = PosHelper.get_random_pos_inner_range(field_size, inner_anvil_range)
+	var pos3 = pos_list[randi_range(0,pos_list.size()-1)]
+	pos_list.erase(pos3)
 	StructurePlacer.place_structure(StructureRegistry.General.get("ANVIL_B"+str(biome)), pos3, map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
 	# Return array of pos to store them
-	return [pos1, pos2, pos3]
+	return pos_list
 
 
-static func spawn_dungeons(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> void:
+static func spawn_dungeons(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int, pos_list :Array) -> Array:
 	# TODO implement
-	pass
+	return []
