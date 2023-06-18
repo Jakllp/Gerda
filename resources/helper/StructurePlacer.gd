@@ -7,7 +7,7 @@ const nope_atlas = 3
 
 
 
-static func place_structure(structure_name :StructureRegistry.General, pos :Vector2i, map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
+static func place_structure(structure_name :StructureRegistry.Structures, pos :Vector2i, map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
 	# First: Gotta get the patterns
 	var ground_pattern = StructureHelper.get_structure_pattern(structure_name, ground_layer)
 	var block_pattern = StructureHelper.get_structure_pattern(structure_name, block_layer)

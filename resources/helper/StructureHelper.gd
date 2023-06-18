@@ -33,8 +33,8 @@ static func get_non_static_things(structure_name, node_name :String):
 
 static func get_dungeons_for_biome(biome :int):
 	var array = []
-	for val in StructureRegistry.Dungeons.keys():
-		if val.ends_with(str(biome)): array.append(val)
+	for val in StructureRegistry.Structures.keys():
+		if val.ends_with(str(biome)) and val.begins_with("DUNGEON"): array.append(val)
 	return array
 
 # From here on: Only used internally
