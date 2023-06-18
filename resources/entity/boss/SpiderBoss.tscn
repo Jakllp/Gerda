@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cr8tpgkgfgxkp"]
+[gd_scene load_steps=11 format=3 uid="uid://cr8tpgkgfgxkp"]
 
 [ext_resource type="Texture2D" uid="uid://7xmrgs07i4ax" path="res://asset/visual/actor/enemy/bosses/spider/spider_spit_attack.png" id="1_8ygr1"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="1_bhyfc"]
@@ -30,6 +30,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6rda"]
 size = Vector2(66, 66)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyr4w"]
+
 [node name="SpiderBoss" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 2
@@ -45,6 +47,10 @@ animation = &"idle"
 shape = SubResource("RectangleShape2D_m6rda")
 
 [node name="HurtBox" parent="." instance=ExtResource("1_bhyfc")]
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("RectangleShape2D_tyr4w")
+debug_color = Color(0.180392, 0.545098, 0, 0.419608)
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_cdbxo")]
 
