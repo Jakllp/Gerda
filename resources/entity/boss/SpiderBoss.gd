@@ -11,9 +11,11 @@ extends StaticBody2D
 @onready var landing_zone_left: CollisionShape2D = $LandingZoneLeft/CollisionShape2D
 @onready var landing_zone_right: CollisionShape2D = $LandingZoneRight/CollisionShape2D
 
-func _ready():
-	pass # Replace with function body.
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+func _ready():
+	sprite.play("idle")
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -26,8 +28,10 @@ func shoot_web() -> void:
 	
 
 func _on_timer_timeout():
+	sprite.play("web_attack")
+	await sprite.animation_finished
 	shoot_web()
-	
+	sprite.play("idle")
 
 func stomp(is_left: bool) -> void:
 	var rand_pos_shift := Vector2(randf_range(-0.5, 0.5), randf_range(-0.5, 0.5))
