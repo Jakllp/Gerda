@@ -38,9 +38,13 @@ func stomp(is_left: bool) -> void:
 	var target_location: Vector2
 	if is_left:
 		target_location = landing_zone_left.global_position + ShapeHelper.get_enclosing_box_size(landing_zone_left.shape) * rand_pos_shift
+		sprite.play("stomp_left")
 	else:
 		target_location = landing_zone_right.global_position + ShapeHelper.get_enclosing_box_size(landing_zone_right.shape) * rand_pos_shift
-		
+		sprite.play("stomp_right")
+	
+	await sprite.animation_finished
+	sprite.play("idle")
 	var tween := create_tween()
 	tween.tween_property(player, "global_position", target_location, 0.4)
 	tween.parallel().tween_property(player, "scale", player.scale * 1.35, 0.2)
