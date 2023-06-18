@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhxfyscshg1vc"]
+[gd_scene load_steps=3 format=3 uid="uid://bhxfyscshg1vc"]
 
 [ext_resource type="Script" path="res://resources/menus/CreditsScreen.gd" id="1_uq5b0"]
+[ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="2_7gn3e"]
 
 [node name="CreditsScreen" type="Control"]
 layout_mode = 3
@@ -27,18 +28,23 @@ grow_vertical = 2
 
 [node name="Henry" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_7gn3e")
 text = "Henry"
 
 [node name="Janno" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_7gn3e")
 text = "Janno"
 
 [node name="Lea" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_7gn3e")
 text = "Lea"
 
 [node name="BackButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_7gn3e")
+theme_override_font_sizes/font_size = 30
 text = "Back"
 
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

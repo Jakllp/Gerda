@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://drt5gc5wf3gcr"]
+[gd_scene load_steps=3 format=3 uid="uid://drt5gc5wf3gcr"]
 
 [ext_resource type="Script" path="res://resources/menus/MutatorSelectScreen.gd" id="1_ivbmo"]
+[ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="2_rfg5h"]
 
 [node name="MutatorSelectScreen" type="Control"]
 layout_mode = 3
@@ -27,14 +28,17 @@ grow_vertical = 2
 
 [node name="Mutator1" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_rfg5h")
 text = "Ich bin der erste Mutator"
 
 [node name="Mutator2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_rfg5h")
 text = "Ich bin der zweite Mutator"
 
 [node name="Mutator3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_rfg5h")
 text = "Ich bin der dritte Mutator"
 
 [connection signal="pressed" from="VBoxContainer/Mutator1" to="." method="_on_mutator_1_pressed"]
