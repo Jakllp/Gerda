@@ -17,6 +17,9 @@ const corner_anvil_range = 0.1
 
 const inner_anvil_spawns = 1
 const default_dungeon_spawns = 6
+const min_spawn_distance = 20
+
+const special_ground_amount = 650
 
 
 enum BlockType {
@@ -28,15 +31,25 @@ enum BlockType {
 # Note: If there ever should be different trapdoor-rooms for different biomes this method would need a new input and we'd need to implement a biome-checker for other functions down the line
 ## Delegates the generation of the level
 static func generate_level(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> void:
+	var dungeon_spawns = default_dungeon_spawns + randi_range(-1, 1)
+	# 2+ as we need 1 Trapdoor-Room and 1 spawn-room
+	print("posis")
+	var positions = PosHelper.generate_random_positions(2 + inner_anvil_spawns + dungeon_spawns, Vector2i(level_width, level_height), inner_spawn_range, min_spawn_distance)
+	
+	var trapdoor_pos = positions[randi_range(0,positions.size()-1)]
+	positions.erase(trapdoor_pos)
+	
+	print("special")
+	map.special_ground = PosHelper.generate_points_with_increasing_density(level_width, level_height, trapdoor_pos, special_ground_amount)
+	print("end special "+str(map.special_ground.size()))
+	
+	print("bound")
 	generate_boundaries(map, ground_layer, block_layer, ground_atlas, block_atlas)
+	print("general")
 	generate_caves_and_ore(map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
-	var dungeon_spawns = default_dungeon_spawns + randi_range(-1, 1)
-	
-	# 2+ as we need 1 Trapdoor-Room and 1 spawn-room
-	var positions = PosHelper.generate_random_positions(2 + inner_anvil_spawns + dungeon_spawns, Vector2i(level_width, level_height), inner_spawn_range, 25)
 	# Spawn TrapdoorRoom
-	positions = spawn_trapdoor_room(map, ground_layer, block_layer, ground_atlas, block_atlas, biome, positions)
+	StructurePlacer.place_structure(StructureRegistry.Structures.get("TRAPDOOR_B"+str(biome)), trapdoor_pos, map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
 	# Spawn AnvilRooms
 	positions = spawn_anvil_rooms(map, ground_layer, block_layer, ground_atlas, block_atlas, biome, positions)
@@ -72,7 +85,7 @@ static func generate_boundaries(map: TileMap, ground_layer :int, block_layer :in
 				# Last run needs to put wall-blocks down
 				map.set_cell(block_layer,Vector2i(starting_point_x+i,starting_point_y+j),block_atlas, Vector2i(4,1), 0)
 				# Also needs floor below it as a precaution
-				map.set_cell(ground_layer,Vector2i(starting_point_x+i,starting_point_y+j),ground_atlas, Vector2i(0,0), 2)
+				map.set_ground(Vector2i(starting_point_x+i,starting_point_y+j) ,2)
 			else:
 				map.set_cell(block_layer,Vector2i(starting_point_x+i,starting_point_y+j),block_atlas, Vector2i(4,0), 0)
 		# Bottom - starts at 74 even tho 74 is actually the 75th block into that direction so should still be clear.
@@ -88,7 +101,7 @@ static func generate_boundaries(map: TileMap, ground_layer :int, block_layer :in
 				# Special-Tops
 				map.set_cell(block_layer,Vector2i(starting_point_x+i,starting_point_y+j),block_atlas, Vector2i(4,0), 1)
 				# Also needs floor below it as a precaution
-				map.set_cell(ground_layer,Vector2i(starting_point_x+i,starting_point_y+j),ground_atlas, Vector2i(0,0), 1)
+				map.set_ground(Vector2i(starting_point_x+i,starting_point_y+j), 1)
 			else:
 				#Normal-Tops aka normal boundary
 				map.set_cell(block_layer,Vector2i(starting_point_x+i,starting_point_y+j),block_atlas, Vector2i(4,0), 0)
@@ -114,14 +127,15 @@ static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer 
 				BlockType.GROUND:
 					if y != 0 and get_block_type(block_above) == BlockType.GROUND:
 						# Just standard ground
-						map.set_cell(ground_layer,cur_cell,ground_atlas, Vector2i(0,0), 0)
+						map.set_ground(cur_cell, 0)
 					else:
 						# There is some type of Block (So BlockType.GROUND or BlockType.ORE) above
 						# Need to make a wall AND ground without nav
 						var above_cell := map.get_neighbor_cell(cur_cell,TileSet.CELL_NEIGHBOR_TOP_SIDE)
 						var above_atlas_x := map.get_cell_atlas_coords(block_layer,above_cell).x
 						map.set_cell(block_layer,cur_cell,block_atlas, Vector2i(above_atlas_x,1), 0)
-						map.set_cell(ground_layer,cur_cell,ground_atlas, Vector2i(0,0), 2)
+						
+						map.set_ground(cur_cell, 0)
 				BlockType.BLOCK:
 					var alt = 0
 					if y == 0:
@@ -130,7 +144,7 @@ static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer 
 					elif get_block_type(block_above) == BlockType.GROUND:
 						# It's a Top-Block -> Needs special Hitbox (alt) and Ground
 						alt = 1
-						map.set_cell(ground_layer,cur_cell,ground_atlas, Vector2i(0,0), 1)
+						map.set_ground(cur_cell, 1)
 					# Set the block with the needed alternative
 					map.set_cell(block_layer,cur_cell,block_atlas, Vector2i(0,0), alt)
 				BlockType.ORE:
@@ -141,7 +155,7 @@ static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer 
 					elif get_block_type(block_above) == BlockType.GROUND:
 						# It's a Top-Block -> Needs special Hitbox (alt) and Ground
 						alt = 1
-						map.set_cell(ground_layer,cur_cell,ground_atlas, Vector2i(1,0), 1)
+						map.set_ground(cur_cell, 1)
 					# Set the block with the needed alternative
 					map.set_cell(block_layer,cur_cell,block_atlas, Vector2i(1,0), alt)
 				_:
@@ -157,15 +171,6 @@ static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 		return BlockType.ORE
 	else:
 		return BlockType.BLOCK
-
-
-static func spawn_trapdoor_room(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int, pos_list :Array) -> Array:
-	var pos = pos_list[randi_range(0,pos_list.size()-1)]
-	pos_list.erase(pos)
-	StructurePlacer.place_structure(StructureRegistry.Structures.get("TRAPDOOR_B"+str(biome)), pos, map, ground_layer, block_layer, ground_atlas, block_atlas)
-	
-	# TODO make indicator
-	return pos_list
 
 
 static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int, pos_list :Array) -> Array:
@@ -190,7 +195,6 @@ static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, 
 
 
 static func spawn_dungeons(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int, pos_list :Array) -> Vector2i:
-	# TODO implement
 	# -1 to still have a spawn-point
 	for i in range(pos_list.size()-1):
 		var pos = pos_list[randi_range(0,pos_list.size()-1)]

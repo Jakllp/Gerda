@@ -40,6 +40,7 @@ static func generate_random_positions(amount :int, field_size :Vector2i, inner_r
 	var grid = []
 	var output = []
 	var active_list =  []
+	print(amount)
 
 	var cells_x = int(new_field.x / cell_size) + 1
 	var cells_y = int(new_field.y / cell_size) + 1
@@ -58,6 +59,7 @@ static func generate_random_positions(amount :int, field_size :Vector2i, inner_r
 	grid[first_grid_x][first_grid_y] = output.size()
 	output.append(first_point)
 	active_list.append(first_point)
+	print("got")
 	
 	# Generate additional points
 	while active_list.size() > 0 and output.size() < amount:
@@ -65,6 +67,7 @@ static func generate_random_positions(amount :int, field_size :Vector2i, inner_r
 		var sample = active_list[random_index]
 		
 		var found_valid_point = false
+		print("droppin in")
 		# 30 -> max_attempts
 		for ign in range(30):
 			var valid_point = generate_random_point_around(sample, radius)
@@ -90,6 +93,7 @@ static func generate_random_positions(amount :int, field_size :Vector2i, inner_r
 					break
 
 			if is_valid and point_in_range(valid_point, new_field):
+				print("got")
 				found_valid_point = true
 				grid[valid_grid_x][valid_grid_y] = output.size()
 				output.append(valid_point)
@@ -122,3 +126,23 @@ static func point_in_range(point :Vector2i, range :Vector2i) -> bool:
 	if point.x >= 0 and point.x < range.x and point.y >= 0 and point.y < range.y:
 		return true
 	return false
+
+
+## Returns a dict of points increasing in density towarsd the epicenter
+## Dict because of lookup-efficiency (better than a list and gdscript does not have sets)
+static func generate_points_with_increasing_density(width :int, height :int, epicenter: Vector2i, amount: int) -> Dictionary:
+	var max_distance = Vector2i(width, height).length()  # Maximum distance from the desired point
+	var generated_points = {}
+
+	# Generate points until the desired number is reached
+	while generated_points.size() < amount:
+		var random_point = Vector2i(randi_range(width/-2, width/2 - 1), randi_range(height/-2, height/2 - 1))  # Generate a random point within the area
+
+		var distance = Vector2(epicenter).distance_to(Vector2(random_point))
+		var weight = (1.0 / (distance + 1.0)) * 50.0
+		var random_weight = randf_range(0, max_distance)
+
+		if random_weight <= weight:
+			generated_points[random_point] = null
+
+	return generated_points

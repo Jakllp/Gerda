@@ -18,9 +18,14 @@ var mine_overlay_atlas := 1
 var block_atlas := 0
 var ground_atlas := 2
 
+## Stores the dict with all points that need special ground
+var special_ground :Dictionary
+
 
 func _ready() -> void:
+	print("start god")
 	God.generate_level(self, ground_layer, block_layer, ground_atlas, block_atlas, biome)
+	print("end god")
 
 
 # Logic of damaging cells
@@ -97,7 +102,7 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 		var bottom_cell = self.get_neighbor_cell(cell,TileSet.CELL_NEIGHBOR_BOTTOM_SIDE)
 		if self.get_cell_source_id(block_layer, bottom_cell, false) != -1:
 			# Block below is now top if a wall -> update ground with a bit of navigation and adjust collision
-			self.set_cell(ground_layer, bottom_cell, ground_atlas, Vector2i(0,0), 1)
+			self.set_ground(bottom_cell, 1)
 			var bottom_cell_atlas_coords = self.get_cell_atlas_coords(block_layer, bottom_cell, false)
 			self.set_cell(block_layer, bottom_cell, block_atlas, bottom_cell_atlas_coords, 1)
 	# We have a wall-block!
@@ -115,7 +120,7 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 		remaining_hardness_dict.erase(wall_cell)
 		self.erase_cell(block_layer, wall_cell)
 		# Ground underneath now gone wall -> Full Navigation
-		self.set_cell(ground_layer, wall_cell, ground_atlas,Vector2i(0,0), 0)
+		self.set_ground(wall_cell, 0)
 		
 		cell_above_everything = self.get_neighbor_cell(top_cell, TileSet.CELL_NEIGHBOR_TOP_SIDE)
 	
@@ -136,14 +141,22 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 				self.erase_cell(mine_overlay_layer, top_cell)
 				remaining_hardness_dict.erase(top_cell)
 			# It is now a wall -> Update ground with a no navigation
-			self.set_cell(ground_layer, top_cell, ground_atlas,Vector2i(0,0), 2)
+			self.set_ground(top_cell, 2)
 			return
 	
 	# Nothing/wall on top of it -> delete it
 	self.erase_cell(mine_overlay_layer, top_cell)
 	remaining_hardness_dict.erase(top_cell)
 	self.erase_cell(block_layer, top_cell)
-	self.set_cell(ground_layer, top_cell, ground_atlas, Vector2i(0,0), 0)
+	self.set_ground(top_cell, 0)
+
+
+## Sets the ground on a cell - with regard to special ground
+func set_ground(cell :Vector2i, alt :int) -> void:
+	if self.special_ground.has(cell):
+		self.set_cell(ground_layer,cell,ground_atlas, Vector2i(1,0), alt)
+	else:
+		self.set_cell(ground_layer,cell,ground_atlas, Vector2i(0,0), alt)
 
 
 # Handles the pop-up when the player receives ore

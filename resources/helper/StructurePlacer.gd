@@ -59,14 +59,14 @@ static func spawn_pattern(ground_pattern :TileMapPattern, block_pattern :TileMap
 				if map.get_cell_source_id(block_layer, cell_above) == -1:
 					# Nothing above! Swap to different top and new set ground with minimal nav
 					map.set_cell(block_layer, cur_cell, block_atlas, map.get_cell_atlas_coords(block_layer, cur_cell), 1)
-					map.set_cell(ground_layer, cur_cell, ground_atlas, Vector2i(0,0), 1)
+					map.set_ground(cur_cell, 1)
 
 			# Eliminate unnecessary walls
 			if map.get_cell_source_id(block_layer, cur_cell) != -1 and map.get_cell_atlas_coords(block_layer, cur_cell).y == 1:
 				if map.get_cell_source_id(block_layer, cell_above) == -1:
 					# No block above wall! Kill wall
 					map.erase_cell(block_layer, cur_cell)
-					map.set_cell(ground_layer, cur_cell, ground_atlas, Vector2i(0,0), 0)
+					map.set_ground(cur_cell, 0)
 
 
 			# Place walls if necessary
@@ -76,7 +76,7 @@ static func spawn_pattern(ground_pattern :TileMapPattern, block_pattern :TileMap
 				if map.get_cell_source_id(block_layer, cell_below) == -1:
 					# Nothing below! Needs wall! And ground with no nav
 					map.set_cell(block_layer, cell_below, block_atlas, Vector2i(map.get_cell_atlas_coords(block_layer, cur_cell).x, 1))
-					map.set_cell(ground_layer, cell_below, ground_atlas, Vector2i(0,0), 2)
+					map.set_ground(cell_below, 2)
 				elif map.get_cell_source_id(block_layer, cell_below) == block_atlas and map.get_cell_atlas_coords(block_layer,cell_below).y == 1:
 					# Already a wall below! Let's make sure it's the right one!
 					map.set_cell(block_layer, cell_below, block_atlas, Vector2i(map.get_cell_atlas_coords(block_layer, cur_cell).x, 1))
@@ -86,7 +86,7 @@ static func spawn_pattern(ground_pattern :TileMapPattern, block_pattern :TileMap
 					if map.get_cell_source_id(block_layer, cell_above) != -1:
 						# Something above -> Change to wall!
 						map.set_cell(block_layer, cur_cell, block_atlas, Vector2i(map.get_cell_atlas_coords(block_layer, cell_above).x, 1))
-						map.set_cell(ground_layer, cur_cell, ground_atlas, Vector2i(0,0), 2)
+						map.set_ground(cur_cell, 2)
 					else:
 						map.erase_cell(block_layer, cur_cell)
 
