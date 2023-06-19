@@ -285,8 +285,6 @@ sources/0 = SubResource("TileSetAtlasSource_pxkrx")
 sources/1 = SubResource("TileSetAtlasSource_0ey7l")
 sources/3 = SubResource("TileSetAtlasSource_ex2jo")
 sources/2 = SubResource("TileSetAtlasSource_ixcf5")
-pattern_0 = SubResource("TileMapPattern_eugv1")
-pattern_1 = SubResource("TileMapPattern_5c3ec")
 
 [node name="Level" type="Node2D"]
 y_sort_enabled = true
