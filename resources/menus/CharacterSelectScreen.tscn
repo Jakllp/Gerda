@@ -73,10 +73,10 @@ theme_override_constants/margin_bottom = 0
 [node name="Back" type="Button" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("2_lkgno")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 32
 text = "Back"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/MoleButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MoleButton" to="." method="_on_mole_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/MoleButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/BadgerButton" to="." method="_on_badger_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/Back" to="." method="_on_back_pressed"]

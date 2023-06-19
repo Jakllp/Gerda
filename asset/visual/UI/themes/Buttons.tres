@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://2d7ldniq7dpi"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://2d7ldniq7dpi"]
 
-[ext_resource type="FontFile" uid="uid://cvqq70ut8uax1" path="res://asset/visual/UI/fonts/Godot-Fontpack/fonts/xolonium/xolonium-fonts-4.1/ttf/Xolonium-Regular.ttf" id="1_jw3k3"]
+[ext_resource type="FontFile" uid="uid://ctyh6au0bbvto" path="res://asset/visual/UI/fonts/BitPap/BitPap.ttf" id="1_hqhny"]
+[ext_resource type="FontFile" uid="uid://x3rx5gjd7dfb" path="res://asset/visual/UI/fonts/Godot-Fontpack/fonts/connection_ii/ConnectionII.otf" id="1_msvwm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jm6mf"]
 border_width_left = 5
@@ -18,9 +19,9 @@ border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
 
 [resource]
-Button/font_sizes/font_size = 35
-Button/fonts/font = ExtResource("1_jw3k3")
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_hqhny")
 Button/styles/hover = SubResource("StyleBoxFlat_jm6mf")
 Button/styles/normal = SubResource("StyleBoxFlat_v8j4w")
-Label/font_sizes/font_size = 25
-Label/fonts/font = ExtResource("1_jw3k3")
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_msvwm")
