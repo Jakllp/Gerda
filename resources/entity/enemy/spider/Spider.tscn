@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="2_2dvxs"]
 [ext_resource type="Texture2D" uid="uid://ry4w8xt4hdw7" path="res://asset/visual/actor/enemy/spider/spider_frame1.png" id="2_v7u1e"]
 [ext_resource type="Texture2D" uid="uid://cdomgfgihv102" path="res://asset/visual/actor/enemy/spider/spider_frame2.png" id="3_hunbe"]
-[ext_resource type="PackedScene" path="res://resources/overlap/hitbox.tscn" id="3_rynaa"]
+[ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="3_rynaa"]
 [ext_resource type="Texture2D" uid="uid://cc4l2oq5y7vse" path="res://asset/visual/actor/enemy/spider/spider_frame3.png" id="4_ra0ne"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="4_uo85l"]
 [ext_resource type="Texture2D" uid="uid://qmej8xpve0gn" path="res://asset/visual/actor/enemy/spider/spider_frame4.png" id="5_avrct"]
@@ -105,14 +105,12 @@ sprite_frames = SubResource("SpriteFrames_chory")
 animation = &"walk"
 
 [node name="Mask" type="Sprite2D" parent="."]
-visible = false
 z_index = 1
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_getsk")
 texture = SubResource("ViewportTexture_qao34")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_ops3y")
 texture = SubResource("ViewportTexture_lxteo")

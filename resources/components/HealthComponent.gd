@@ -28,7 +28,7 @@ func die() -> void:
 
 func receive_damage(damage: int) -> void:
 	self.hp -= damage
-	owner.flash()
+	owner.flash_component.flash(owner)
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:

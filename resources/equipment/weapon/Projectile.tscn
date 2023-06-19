@@ -1,20 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://bqi7lhci05dr1"]
 
-[ext_resource type="Script" path="res://resources/equipment/weapon/Projectile.gd" id="1_6rd6o"]
-[ext_resource type="Texture2D" uid="uid://i702o00e2lyu" path="res://asset/visual/actor/char/mole/mole_bullet.png" id="2_bantv"]
-[ext_resource type="PackedScene" path="res://resources/overlap/hitbox.tscn" id="3_05ri5"]
+[ext_resource type="Script" path="res://resources/equipment/weapon/Projectile.gd" id="1_qxbx0"]
+[ext_resource type="Texture2D" uid="uid://i702o00e2lyu" path="res://asset/visual/actor/char/mole/mole_bullet.png" id="2_lbnin"]
+[ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="3_cbfaj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_djmju"]
 size = Vector2(2, 1)
 
 [node name="Projectile" type="Node2D"]
-script = ExtResource("1_6rd6o")
+script = ExtResource("1_qxbx0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.00685, 1)
-texture = ExtResource("2_bantv")
+texture = ExtResource("2_lbnin")
 
-[node name="Hitbox" parent="." instance=ExtResource("3_05ri5")]
+[node name="Hitbox" parent="." instance=ExtResource("3_cbfaj")]
 collision_layer = 8
 collision_mask = 36
 monitoring = true

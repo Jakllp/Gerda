@@ -12,8 +12,7 @@ func do_interaction() -> void:
 		open = true
 		$Sprite2D.frame = 1
 		$Collision.queue_free()
-
-
-func _on_dropping_in_body_entered(body):
-	if body is Player:
-		print("BOSS-TIME!")
+		$Collision2.disabled = false
+	else:
+		if Input.is_action_just_pressed("interact"):
+			print("BOSS-TIME!")

@@ -18,7 +18,8 @@ var gravity: float = 10.0
 var alpha
 
 func shoot(target: Vector2) -> void:
-	self.target = target
+	# add some spacing (18) to target the players feet
+	self.target = target - global_position + Vector2(0,18)
 	var p: ParabolicProjectile = projectile_scene.instantiate()
 	p.transform = global_transform
 	p.curve = calculate_trajectory()
@@ -38,7 +39,7 @@ func calculate_trajectory() -> Curve2D:
 	var point = Vector2(x, y)
 	for p in number_of_points:
 		x = p/number_of_points * target.x
-		y = y_of_x(x)
+		y = y_of_x(x) if target.x != 0 else p/number_of_points * target.y
 		point = Vector2(x,y)
 		curve.add_point(point)
 	

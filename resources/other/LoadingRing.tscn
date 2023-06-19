@@ -10,4 +10,3 @@ offset_right = 7.0
 offset_bottom = 7.0
 fill_mode = 4
 texture_progress = ExtResource("1_x3g3b")
-tint_progress = Color(0.992157, 1, 0.52549, 1)
