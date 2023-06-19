@@ -56,7 +56,8 @@ static func generate_level(map: TileMap,ground_layer :int, block_layer :int, gro
 	
 	# Spawn dungeons
 	var spawn_point = spawn_dungeons(map, ground_layer, block_layer, ground_atlas, block_atlas, biome, positions)
-
+	StructurePlacer.place_structure(StructureRegistry.Structures.get("SPAWNROOM_B"+str(biome)), spawn_point, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	
 	return spawn_point
 
 static func generate_boundaries(map: TileMap, ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
