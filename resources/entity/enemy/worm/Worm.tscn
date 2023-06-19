@@ -17,6 +17,7 @@
 [ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="10_o78o6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l81sl"]
+resource_local_to_scene = true
 shader = ExtResource("2_635i7")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0

@@ -30,9 +30,9 @@ static func get_map_for_structure(structure_name) -> TileMap:
 static func get_pattern_range(structure_name):
 	match (structure_name):
 		Structures.TRAPDOOR_B1:
-			return [Vector2i(-4,-4),Vector2i(4,4)]
+			return [Vector2i(-5,-5),Vector2i(4,4)]
 		Structures.ANVIL_B1:
-			return [Vector2i(-1,-1),Vector2i(1,1)]
+			return [Vector2i(-2,-3),Vector2i(2,2)]
 		Structures.DUNGEON_1_B1:
 			return [Vector2i(-1,-1),Vector2i(1,1)]
 		Structures.SPAWNROOM_B1:
