@@ -18,12 +18,12 @@ class_name Player
 var status_effects: StatusEffectSet = StatusEffectSet.new(self)
 
 ## How much the dash increases the movement speed
-const dash_multiplier = 20
-const dash_duration = 0.5
-const dash_max_amount = 50
+const dash_multiplier = 3
+const dash_duration = 0.1
+const dash_max_amount = 2
 var dashes_left = dash_max_amount
 ## How long it takes for dashes to recharge
-var dash_cooldown = 0.1
+var dash_cooldown = 1.0
 
 var input_component = PlayerInputComponent.new()
 
