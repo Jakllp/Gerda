@@ -228,14 +228,12 @@ layer_2/tile_data = PackedInt32Array()
 position = Vector2(52, 4)
 
 [node name="Worm" parent="Enemies" instance=ExtResource("6_cbl04")]
-visible = false
 position = Vector2(-33, 25)
 
 [node name="Spider2" parent="Enemies" instance=ExtResource("5_oxwlx")]
 position = Vector2(-56, 2)
 
 [node name="Worm2" parent="Enemies" instance=ExtResource("6_cbl04")]
-visible = false
 position = Vector2(33, 26)
 
 [node name="Interactables" type="Node" parent="."]
