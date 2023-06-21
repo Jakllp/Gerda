@@ -67,7 +67,6 @@ static func generate_random_positions(amount :int, field_size :Vector2i, inner_r
 		var sample = active_list[random_index]
 		
 		var found_valid_point = false
-		print("droppin in")
 		# 30 -> max_attempts
 		for ign in range(30):
 			var valid_point = generate_random_point_around(sample, radius)

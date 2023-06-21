@@ -62,7 +62,7 @@ func reload() -> void:
 
 
 func needs_crafting() -> bool:
-	if max_ammo_stored - ammo_stored > restore_per_craft:
+	if max_ammo_stored - ammo_stored >= restore_per_craft:
 		return true
 	return false
 

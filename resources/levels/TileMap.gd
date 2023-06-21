@@ -30,9 +30,7 @@ func _ready() -> void:
 
 
 # Logic of damaging cells
-func damage_cell(cell: Vector2i, damage: float):
-	var was_ore = false
-	
+func damage_cell(cell: Vector2i, damage: float) -> bool:
 	if remaining_hardness_dict.has(cell):
 		# We know the cell -> Further reduce damage
 		remaining_hardness_dict[cell] = remaining_hardness_dict[cell] - damage
@@ -52,18 +50,16 @@ func damage_cell(cell: Vector2i, damage: float):
 		attached_cell = self.get_neighbor_cell(cell,TileSet.CELL_NEIGHBOR_BOTTOM_SIDE)
 		cell_was_top = true
 	else:
+		# Just a random cell minding it's own business
 		cell_was_top = true
 	if attached_cell != null:
 		remaining_hardness_dict[attached_cell] = remaining_hardness_dict[cell]
 		self.mine_overlay(attached_cell)
 	
+	var was_ore :bool
 	# Remove the tile when it's destroyed
 	if remaining_hardness_dict[cell] < 0:
-		if self.get_cell_tile_data(block_layer, cell).get_custom_data("is_ore"):
-			if cell_was_top:
-				was_ore = cell
-			else: 
-				was_ore = attached_cell
+		was_ore = self.get_cell_tile_data(block_layer, cell).get_custom_data("is_ore")
 		self.clear_cell(cell, attached_cell)
 	return was_ore
 
@@ -74,19 +70,19 @@ func mine_overlay(cell: Vector2i) -> void:
 	if(self.get_cell_tile_data(block_layer, cell) == null):
 			return
 	
-	var origin_atlas_y = self.get_cell_atlas_coords(block_layer,cell,false).y
+	var origin_atlas_y = self.get_cell_atlas_coords(block_layer,cell).y
 	var percent = 1 - remaining_hardness_dict[cell] / self.get_cell_tile_data(block_layer, cell).get_custom_data("hardness")
 	if percent < 0.25:
-		if self.get_cell_source_id(mine_overlay_atlas, cell, false) != -1 and self.get_cell_atlas_coords(mine_overlay_layer,cell).x != 0:
+		if self.get_cell_source_id(mine_overlay_atlas, cell) != -1 and self.get_cell_atlas_coords(mine_overlay_layer,cell).x != 0:
 			self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(0,origin_atlas_y), 0)
 	elif percent < 0.5:
-		if self.get_cell_source_id(mine_overlay_atlas, cell, false) != -1 and self.get_cell_atlas_coords(mine_overlay_layer,cell).x != 1:
+		if self.get_cell_source_id(mine_overlay_atlas, cell) != -1 and self.get_cell_atlas_coords(mine_overlay_layer,cell).x != 1:
 			self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(1,origin_atlas_y), 0)
 	elif percent < 0.75:
-		if self.get_cell_source_id(mine_overlay_atlas, cell, false) != -1 and self.get_cell_atlas_coords(mine_overlay_layer,cell).x != 2:
+		if self.get_cell_source_id(mine_overlay_atlas, cell) != -1 and self.get_cell_atlas_coords(mine_overlay_layer,cell).x != 2:
 			self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(2,origin_atlas_y), 0)
 	elif percent < 1:
-		if self.get_cell_source_id(mine_overlay_atlas, cell, false) != -1 and self.get_cell_atlas_coords(mine_overlay_layer,cell).x != 3:
+		if self.get_cell_source_id(mine_overlay_atlas, cell) != -1 and self.get_cell_atlas_coords(mine_overlay_layer,cell).x != 3:
 			self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(3,origin_atlas_y), 0)
 
 
@@ -137,6 +133,8 @@ func clear_cell(cell: Vector2i, attached_cell) -> void:
 			# Let's see if the block above is damaged and handle it accordingly
 			if remaining_hardness_dict.has(cell_above_everything):
 				remaining_hardness_dict[top_cell] = remaining_hardness_dict[cell_above_everything]
+				# Need to erase to still work with performance improvements of mine_overlay()
+				self.erase_cell(mine_overlay_layer, top_cell)
 				mine_overlay(top_cell)
 			else:
 				self.erase_cell(mine_overlay_layer, top_cell)
