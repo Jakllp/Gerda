@@ -1,4 +1,4 @@
-extends Node
+extends Object
 
 ## Creates the world
 class_name God
