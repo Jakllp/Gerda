@@ -59,7 +59,6 @@ static func generate_random_positions(amount :int, field_size :Vector2i, inner_r
 	grid[first_grid_x][first_grid_y] = output.size()
 	output.append(first_point)
 	active_list.append(first_point)
-	print("got")
 	
 	# Generate additional points
 	while active_list.size() > 0 and output.size() < amount:
@@ -92,7 +91,6 @@ static func generate_random_positions(amount :int, field_size :Vector2i, inner_r
 					break
 
 			if is_valid and point_in_range(valid_point, new_field):
-				print("got")
 				found_valid_point = true
 				grid[valid_grid_x][valid_grid_y] = output.size()
 				output.append(valid_point)
