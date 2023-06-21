@@ -1,7 +1,6 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://2d7ldniq7dpi"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://2d7ldniq7dpi"]
 
-[ext_resource type="FontFile" uid="uid://ctyh6au0bbvto" path="res://asset/visual/UI/fonts/BitPap/BitPap.ttf" id="1_hqhny"]
-[ext_resource type="FontFile" uid="uid://x3rx5gjd7dfb" path="res://asset/visual/UI/fonts/Godot-Fontpack/fonts/connection_ii/ConnectionII.otf" id="1_msvwm"]
+[ext_resource type="FontFile" uid="uid://wyeefsp4lhim" path="res://asset/visual/UI/fonts/PressStart/press-start.k.ttf" id="1_arqy4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jm6mf"]
 border_width_left = 5
@@ -20,8 +19,8 @@ border_color = Color(0, 0, 0, 1)
 
 [resource]
 Button/font_sizes/font_size = 32
-Button/fonts/font = ExtResource("1_hqhny")
+Button/fonts/font = ExtResource("1_arqy4")
 Button/styles/hover = SubResource("StyleBoxFlat_jm6mf")
 Button/styles/normal = SubResource("StyleBoxFlat_v8j4w")
-Label/font_sizes/font_size = 32
-Label/fonts/font = ExtResource("1_msvwm")
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_arqy4")

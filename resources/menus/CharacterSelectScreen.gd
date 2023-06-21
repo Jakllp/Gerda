@@ -16,7 +16,3 @@ func _on_mole_button_pressed():
 
 func _on_badger_button_pressed():
 	get_tree().change_scene_to_file("res://resources/menus/MutatorSelectScreen.tscn")
-
-
-
-
