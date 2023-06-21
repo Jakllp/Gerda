@@ -93,6 +93,7 @@ size = Vector2(12, 4)
 
 [node name="Mole" type="CharacterBody2D" groups=["player"]]
 z_index = 1
+y_sort_enabled = true
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_f8iwc")
@@ -171,7 +172,6 @@ libraries = {
 [node name="Dash" parent="." instance=ExtResource("11_gkexl")]
 
 [node name="DashEffect" parent="." instance=ExtResource("12_v4axt")]
-z_index = -1
 y_sort_enabled = true
 material = null
 amount = 30
