@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dso5mg62dphu3" path="res://asset/visual/UI/HUD_Elements.png" id="1_b65lm"]
 [ext_resource type="Script" path="res://resources/menus/Interface.gd" id="1_nrw5u"]
 [ext_resource type="Theme" uid="uid://dcv5nno7k0rpb" path="res://asset/visual/UI/themes/labelHUD.tres" id="2_iwxg6"]
-[ext_resource type="Texture2D" uid="uid://b4ou0oya7s214" path="res://asset/visual/UI/moleWeaponHUD.png" id="10_oaxdx"]
+[ext_resource type="Texture2D" path="res://asset/visual/UI/moleWeaponHUD.png" id="10_oaxdx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b26ee"]
 atlas = ExtResource("1_b65lm")

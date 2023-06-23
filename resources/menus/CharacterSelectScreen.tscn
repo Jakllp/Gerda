@@ -41,7 +41,7 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_lkgno")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 32
 text = "choose a character"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -76,7 +76,7 @@ layout_mode = 2
 theme = ExtResource("2_lkgno")
 text = "Back"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/MoleButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MoleButton" to="." method="_on_mole_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/MoleButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/BadgerButton" to="." method="_on_badger_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/Back" to="." method="_on_back_pressed"]

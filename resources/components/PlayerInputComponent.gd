@@ -2,12 +2,14 @@ extends RefCounted
 
 class_name PlayerInputComponent
 
+signal pause
 
 func update(player: Player, delta: float) -> void:
 	player.direction = get_player_direction()
 	check_for_equip_switch(player)
 	check_for_equip_use(player, delta)
 	check_dash(player)
+	check_pause()
 
 
 func get_player_direction() -> Vector2:
@@ -34,3 +36,8 @@ func check_for_equip_use(player: Player, delta: float) -> void:
 func check_dash(player: Player) -> void:
 	if Input.is_action_just_pressed("dash"):
 		player.try_dash()
+		
+
+func check_pause() -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		pause.emit()
