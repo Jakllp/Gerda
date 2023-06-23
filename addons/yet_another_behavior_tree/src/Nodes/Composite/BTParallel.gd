@@ -30,25 +30,25 @@ extends BTComposite
 #------------------------------------------
 
 func tick(actor:Node, blackboard:BTBlackboard) -> int:
-    var at_least_one_child_running:bool = false
-    var at_least_one_child_success:bool = false
+	var at_least_one_child_running:bool = false
+	var at_least_one_child_success:bool = false
 
-    for child in _children:
-        if child.process_mode != PROCESS_MODE_DISABLED:
-            var result:int = child._execute(actor, blackboard)
-            if result == BTTickResult.SUCCESS:
-                at_least_one_child_success = true
-            if result == BTTickResult.RUNNING:
-                at_least_one_child_running = true
+	for child in _children:
+		if child.process_mode != PROCESS_MODE_DISABLED:
+			var result:int = child._execute(actor, blackboard)
+			if result == BTTickResult.SUCCESS:
+				at_least_one_child_success = true
+			if result == BTTickResult.RUNNING:
+				at_least_one_child_running = true
 
-    # At least one running : this is still running !
-    if at_least_one_child_running:
-        return BTTickResult.RUNNING
-    # No one is running, so, at least one success > success, else failure
-    elif at_least_one_child_success:
-        return BTTickResult.SUCCESS
-    else:
-        return BTTickResult.FAILURE
+	# At least one running : this is still running !
+	if at_least_one_child_running:
+		return BTTickResult.RUNNING
+	# No one is running, so, at least one success > success, else failure
+	elif at_least_one_child_success:
+		return BTTickResult.SUCCESS
+	else:
+		return BTTickResult.FAILURE
 
 #------------------------------------------
 # Fonctions publiques

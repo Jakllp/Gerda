@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://caa16pr0rha8w"]
+[gd_scene load_steps=6 format=3 uid="uid://caa16pr0rha8w"]
 
 [ext_resource type="TileSet" uid="uid://botvhodjv237t" path="res://asset/visual/map/Biom1/Tileset-biom1.tres" id="1_fgap1"]
 [ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="2_a0sfj"]
-[ext_resource type="PackedScene" uid="uid://cr8tpgkgfgxkp" path="res://resources/entity/boss/SpiderBoss.tscn" id="3_fiv68"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l140e"]
 size = Vector2(64, 55)
@@ -33,55 +32,48 @@ layer_1/tile_data = PackedInt32Array(0, 196608, 0, 65536, 131072, 0, 131072, 196
 metadata/_edit_vertical_guides_ = [330.0, 948.0]
 metadata/_edit_horizontal_guides_ = [220.0, 440.0]
 
-[node name="SpiderBoss" parent="SpiderRoom" instance=ExtResource("3_fiv68")]
-position = Vector2(473, 297)
-collision_mask = 0
-
-[node name="StompAreaLeft" type="Area2D" parent="SpiderRoom/SpiderBoss"]
-position = Vector2(-67, -36)
+[node name="StompAreaLeft" type="Area2D" parent="SpiderRoom"]
+position = Vector2(406, 261)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/SpiderBoss/StompAreaLeft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/StompAreaLeft"]
 shape = SubResource("RectangleShape2D_l140e")
 debug_color = Color(0.513726, 0.576471, 0.0196078, 0.419608)
 
-[node name="StompAreaRight" type="Area2D" parent="SpiderRoom/SpiderBoss"]
-position = Vector2(67, -36)
+[node name="StompAreaRight" type="Area2D" parent="SpiderRoom"]
+position = Vector2(540, 261)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/SpiderBoss/StompAreaRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/StompAreaRight"]
 shape = SubResource("RectangleShape2D_l140e")
 debug_color = Color(0.513726, 0.576471, 0.0196078, 0.419608)
 
-[node name="SweepArea" type="Area2D" parent="SpiderRoom/SpiderBoss"]
-position = Vector2(0, 51)
+[node name="SweepArea" type="Area2D" parent="SpiderRoom"]
+position = Vector2(473, 348)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/SpiderBoss/SweepArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/SweepArea"]
 z_index = 3
 shape = SubResource("RectangleShape2D_bafld")
 debug_color = Color(0.976471, 0.0901961, 0.333333, 0.419608)
 
-[node name="LandingZoneLeft" type="Area2D" parent="SpiderRoom/SpiderBoss"]
-position = Vector2(-67, 55)
+[node name="LandingZoneLeft" type="Area2D" parent="SpiderRoom"]
+position = Vector2(406, 352)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/SpiderBoss/LandingZoneLeft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/LandingZoneLeft"]
 shape = SubResource("RectangleShape2D_u4bnd")
 debug_color = Color(1, 1, 1, 0.419608)
 
-[node name="LandingZoneRight" type="Area2D" parent="SpiderRoom/SpiderBoss"]
-position = Vector2(67, 55)
+[node name="LandingZoneRight" type="Area2D" parent="SpiderRoom"]
+position = Vector2(540, 352)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/SpiderBoss/LandingZoneRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/LandingZoneRight"]
 shape = SubResource("RectangleShape2D_u4bnd")
 debug_color = Color(1, 1, 1, 0.419608)
 
 [node name="Mole" parent="." instance=ExtResource("2_a0sfj")]
 position = Vector2(467, 368)
 collision_mask = 5
-
-[connection signal="area_entered" from="SpiderRoom/SpiderBoss/StompAreaLeft" to="SpiderRoom/SpiderBoss" method="_on_stomp_area_area_entered" binds= [true]]
-[connection signal="area_entered" from="SpiderRoom/SpiderBoss/StompAreaRight" to="SpiderRoom/SpiderBoss" method="_on_stomp_area_area_entered" binds= [false]]

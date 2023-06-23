@@ -1,6 +1,6 @@
 extends ParabolicProjectile
 
-var puddle_scene: PackedScene = preload("res://resources/entity/boss/Cobweb.tscn")
+var puddle_scene: PackedScene = preload("./Cobweb.tscn")
 
 
 func _ready():

@@ -1,18 +1,18 @@
 [gd_scene load_steps=7 format=3 uid="uid://cmbvih8i47fer"]
 
-[ext_resource type="Script" path="res://resources/entity/boss/WebProjectile.gd" id="1_ohid7"]
-[ext_resource type="Texture2D" uid="uid://02ro2orrlv0l" path="res://asset/visual/actor/enemy/worm/ball1.png" id="2_rvejd"]
-[ext_resource type="Texture2D" uid="uid://dnp235a370t4c" path="res://asset/visual/actor/enemy/worm/ball2.png" id="3_u8gng"]
-[ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="4_m04kk"]
+[ext_resource type="Script" path="res://resources/entity/enemy/boss/WebProjectile.gd" id="1_wchbu"]
+[ext_resource type="Texture2D" uid="uid://02ro2orrlv0l" path="res://asset/visual/actor/enemy/worm/ball1.png" id="2_awvjl"]
+[ext_resource type="Texture2D" uid="uid://dnp235a370t4c" path="res://asset/visual/actor/enemy/worm/ball2.png" id="3_kd3gf"]
+[ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="4_p13bi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_11rim"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_rvejd")
+"texture": ExtResource("2_awvjl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_u8gng")
+"texture": ExtResource("3_kd3gf")
 }],
 "loop": true,
 "name": &"default",
@@ -25,7 +25,7 @@ size = Vector2(12, 12)
 [node name="Path2D" type="Path2D"]
 z_index = 3
 y_sort_enabled = true
-script = ExtResource("1_ohid7")
+script = ExtResource("1_wchbu")
 speed_factor = 3.0
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
@@ -35,7 +35,7 @@ loop = false
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollow2D"]
 sprite_frames = SubResource("SpriteFrames_11rim")
 
-[node name="Hitbox" parent="PathFollow2D" instance=ExtResource("4_m04kk")]
+[node name="Hitbox" parent="PathFollow2D" instance=ExtResource("4_p13bi")]
 collision_layer = 16
 
 [node name="CollisionShape2D" parent="PathFollow2D/Hitbox" index="0"]
