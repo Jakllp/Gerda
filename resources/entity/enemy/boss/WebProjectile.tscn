@@ -1,18 +1,18 @@
 [gd_scene load_steps=7 format=3 uid="uid://cmbvih8i47fer"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/boss/WebProjectile.gd" id="1_wchbu"]
-[ext_resource type="Texture2D" uid="uid://02ro2orrlv0l" path="res://asset/visual/actor/enemy/worm/ball1.png" id="2_awvjl"]
-[ext_resource type="Texture2D" uid="uid://dnp235a370t4c" path="res://asset/visual/actor/enemy/worm/ball2.png" id="3_kd3gf"]
+[ext_resource type="Texture2D" uid="uid://xv6bp50g5ufn" path="res://asset/visual/actor/enemy/bosses/spider/ball1.png" id="2_w66fx"]
+[ext_resource type="Texture2D" uid="uid://co28mny67nyaa" path="res://asset/visual/actor/enemy/bosses/spider/ball2.png" id="3_xpks6"]
 [ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="4_p13bi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_11rim"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_awvjl")
+"texture": ExtResource("2_w66fx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_kd3gf")
+"texture": ExtResource("3_xpks6")
 }],
 "loop": true,
 "name": &"default",
