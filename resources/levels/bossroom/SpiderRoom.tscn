@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://caa16pr0rha8w"]
+[gd_scene load_steps=8 format=3 uid="uid://caa16pr0rha8w"]
 
 [ext_resource type="TileSet" uid="uid://botvhodjv237t" path="res://asset/visual/map/Biom1/Tileset-biom1.tres" id="1_fgap1"]
 [ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="2_a0sfj"]
 [ext_resource type="PackedScene" uid="uid://cr8tpgkgfgxkp" path="res://resources/entity/enemy/boss/SpiderBoss.tscn" id="3_fiv68"]
+[ext_resource type="Texture2D" uid="uid://d0hxwytuvpcds" path="res://asset/visual/icon.svg" id="3_gfec1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l140e"]
 size = Vector2(64, 55)
@@ -88,6 +89,24 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/SpiderBoss/LandingZoneRight"]
 shape = SubResource("RectangleShape2D_u4bnd")
 debug_color = Color(1, 1, 1, 0.419608)
+
+[node name="SpawnMarker1" type="Sprite2D" parent="SpiderRoom/SpiderBoss" groups=["spawn_points"]]
+modulate = Color(0, 0, 0, 0)
+position = Vector2(0, -47)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_gfec1")
+
+[node name="SpawnMarker2" type="Sprite2D" parent="SpiderRoom/SpiderBoss" groups=["spawn_points"]]
+modulate = Color(0, 0, 0, 0)
+position = Vector2(-67, 0)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_gfec1")
+
+[node name="SpawnMarker3" type="Sprite2D" parent="SpiderRoom/SpiderBoss" groups=["spawn_points"]]
+modulate = Color(0, 0, 0, 0)
+position = Vector2(67, 0)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_gfec1")
 
 [node name="Mole" parent="." instance=ExtResource("2_a0sfj")]
 position = Vector2(467, 368)

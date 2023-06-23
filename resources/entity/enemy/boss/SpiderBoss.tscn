@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cr8tpgkgfgxkp"]
+[gd_scene load_steps=57 format=3 uid="uid://cr8tpgkgfgxkp"]
 
 [ext_resource type="Texture2D" uid="uid://7xmrgs07i4ax" path="res://asset/visual/actor/enemy/bosses/spider/spider_spit_attack.png" id="1_8ygr1"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="1_bhyfc"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://resources/entity/enemy/boss/SpiderBoss.gd" id="1_yatep"]
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="2_5b7iq"]
 [ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/HealthComponent.tscn" id="2_cdbxo"]
+[ext_resource type="PackedScene" uid="uid://c7wsucit56out" path="res://resources/entity/enemy/spider/Spider.tscn" id="2_nv0qh"]
 [ext_resource type="Texture2D" uid="uid://dsmhdnxxq06ip" path="res://asset/visual/actor/enemy/bosses/spider/spider_stomp_attack_left.png" id="3_u6abb"]
 [ext_resource type="Texture2D" uid="uid://oyg3vri3ynej" path="res://asset/visual/actor/enemy/bosses/spider/spider_stomp_attack_right.png" id="4_0gdpo"]
 [ext_resource type="PackedScene" uid="uid://m457godntx4l" path="res://resources/components/ParabolicShooterComponent.tscn" id="5_frlwr"]
@@ -724,6 +725,7 @@ size = Vector2(3.3039, 9.11431)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_yatep")
+lackey_scene = ExtResource("2_nv0qh")
 metadata/_edit_horizontal_guides_ = [-33.0, 33.0]
 metadata/_edit_vertical_guides_ = [-33.0, 33.0]
 
@@ -773,6 +775,10 @@ script = ExtResource("10_xxald")
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 10.282
+autostart = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 20.0
 autostart = true
 
 [node name="StompParticlesLeft" type="GPUParticles2D" parent="."]
@@ -929,6 +935,7 @@ shape = SubResource("RectangleShape2D_w4yp2")
 
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 
 [editable path="HurtBox"]
 [editable path="LegRight"]

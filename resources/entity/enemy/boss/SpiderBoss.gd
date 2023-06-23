@@ -6,6 +6,8 @@ class_name SpiderBoss
 @export var sweep_react_time: float = 1.5
 @export var sweep_react_time_deviation: float = 0.5
 
+@export var lackey_scene: PackedScene
+
 @onready var player: Player = get_tree().get_first_node_in_group("player")
 
 @onready var animation_tree :AnimationTree = $AnimationTree
@@ -69,6 +71,19 @@ func sweep() -> void:
 		animation_tree["parameters/conditions/sweep"] = false
 		
 
+func spawn_lackey() -> void:
+	var point = get_tree().get_nodes_in_group("spawn_points").pick_random()
+	var lackey = lackey_scene.instantiate()
+	lackey.global_position = point.global_position
+	
+	var tween: Tween = create_tween()
+	tween.tween_property(point, "modulate", Color(0,0,0,1), 2)
+	
+	await tween.finished
+	get_parent().add_child(lackey)
+	point.modulate = Color(0,0,0,0)
+	
+
 func _on_stomp_area_area_entered(_area, is_left):
 	# wait for reaction
 	await get_tree().create_timer(stomp_react_time + randf_range(-stomp_react_time_deviation, stomp_react_time_deviation)).timeout
@@ -91,6 +106,10 @@ func _on_shoot_timer_timeout():
 	animation_tree["parameters/conditions/shoot"] = true
 
 
+func _on_spawn_timer_timeout():
+	spawn_lackey()
+
+
 func _on_sweep_area_area_entered(_area):
 	# wait for reaction
 	get_tree().create_timer(sweep_react_time + randf_range(-sweep_react_time_deviation, sweep_react_time_deviation)).timeout.connect(sweep)
@@ -98,3 +117,5 @@ func _on_sweep_area_area_entered(_area):
 
 func _on_sweep_area_area_exited(_area):
 	animation_tree["parameters/conditions/sweep"] = false
+
+
