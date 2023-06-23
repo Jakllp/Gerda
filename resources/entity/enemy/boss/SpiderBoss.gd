@@ -22,8 +22,10 @@ class_name SpiderBoss
 @onready var shape_front_leg_left: CollisionShape2D = $CollisionShapeFrontLegLeft
 @onready var shape_front_leg_right: CollisionShape2D = $CollisionShapeFrontLegRight
 
+@onready var flash_component :FlashComponent = FlashComponent.new()
 
 func _ready():
+	$SubViewportContainer/SubViewport/AnimatedSprite2D.material.set_shader_parameter("flash_modifier",0)
 	animation_tree.active = true
 	$LegLeft.damage = 1
 	$LegRight.damage = 1

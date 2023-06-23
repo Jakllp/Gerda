@@ -91,7 +91,6 @@ debug_color = Color(1, 1, 1, 0.419608)
 
 [node name="Mole" parent="." instance=ExtResource("2_a0sfj")]
 position = Vector2(467, 368)
-collision_mask = 5
 
 [connection signal="area_entered" from="SpiderRoom/SpiderBoss/StompAreaLeft" to="SpiderRoom/SpiderBoss" method="_on_stomp_area_area_entered" binds= [true]]
 [connection signal="area_exited" from="SpiderRoom/SpiderBoss/StompAreaLeft" to="SpiderRoom/SpiderBoss" method="_on_stomp_area_area_exited" binds= [true]]
