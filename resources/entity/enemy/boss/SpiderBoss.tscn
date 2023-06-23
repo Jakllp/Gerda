@@ -862,7 +862,7 @@ speed_scale = 6.0
 local_coords = true
 
 [node name="HitboxAndBody" parent="." instance=ExtResource("14_e5052")]
-collision_layer = 21
+collision_layer = 20
 
 [node name="CollisionShape2D1" type="CollisionShape2D" parent="HitboxAndBody"]
 position = Vector2(0, -17)

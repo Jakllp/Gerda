@@ -24,3 +24,9 @@ func init(damage: int) -> void:
 func _on_hitbox_body_entered(body):
 	if body is TileMap:
 		queue_free()
+		
+
+func _on_hitbox_area_entered(area):
+	pierce -= 1
+	if pierce <= 0:
+		queue_free()
