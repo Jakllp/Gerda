@@ -1,12 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://bj67m0e2wspkr"]
+[gd_scene load_steps=5 format=3 uid="uid://bj67m0e2wspkr"]
 
 [ext_resource type="Script" path="res://resources/levels/Level.gd" id="1_27bjh"]
 [ext_resource type="TileSet" uid="uid://botvhodjv237t" path="res://asset/visual/map/Biom1/Tileset-biom1.tres" id="2_du5bk"]
-[ext_resource type="Texture2D" uid="uid://bjo4qihuuqbq8" path="res://asset/visual/map/Biom1/biom1_blockTileset.png" id="2_ohl7o"]
-[ext_resource type="Texture2D" uid="uid://bs2qq00uj5g8i" path="res://asset/visual/map/miningoverlay.png" id="3_epmjn"]
-[ext_resource type="Texture2D" uid="uid://qq5fbmv1wjwr" path="res://asset/visual/map/Biom1/ground_set.png" id="4_hw8sc"]
 [ext_resource type="Script" path="res://resources/levels/TileMap.gd" id="5_e3myb"]
-[ext_resource type="Texture2D" uid="uid://dxaavx7yq8ial" path="res://asset/visual/map/nope.png" id="5_jnbg1"]
 [ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="8_15nnc"]
 
 [node name="Level" type="Node2D"]
