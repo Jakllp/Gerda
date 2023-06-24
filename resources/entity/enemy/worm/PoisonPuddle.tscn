@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b20uu5ukrdd53" path="res://asset/visual/actor/enemy/worm/puddle.png" id="2_pyo46"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_16xre"]
+resource_local_to_scene = true
 size = Vector2(22, 18)
 
 [node name="PoisonPuddle" type="Area2D"]

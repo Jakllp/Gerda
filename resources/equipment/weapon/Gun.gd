@@ -42,7 +42,7 @@ func do_rotation(player: Player):
 func trigger_reload():
 	if ammo_stored > 0 and reload_timer.is_stopped():
 		print("Reloading...")
-		var reload_time = base_reload_time - (base_reload_time * reload_time_upgrade_modifier/100) * active_upgrades[Upgrade.Weapon_Upgrade.SPEED]
+		var reload_time = base_reload_time - (base_reload_time * reload_time_upgrade_modifier/100) * active_upgrades[Items.Type.WEAPON_SPEED]
 		reload_timer.wait_time = reload_time
 		reload_timer.start()
 

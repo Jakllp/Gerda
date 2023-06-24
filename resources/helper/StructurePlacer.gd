@@ -89,6 +89,7 @@ static func spawn_pattern(ground_pattern :TileMapPattern, block_pattern :TileMap
 						map.set_ground(cur_cell, 2)
 					else:
 						map.erase_cell(block_layer, cur_cell)
+						map.set_ground(cur_cell, 0)
 
 
 static func spawn_thing_in_scene(scene :PackedScene, pos: Vector2, node_to_spawn_it_in :Node) -> void:

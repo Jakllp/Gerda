@@ -71,15 +71,19 @@ shader = ExtResource("10_o78o6")
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_krn4x"]
+resource_local_to_scene = true
 size = Vector2(16, 11.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ag5k"]
+resource_local_to_scene = true
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6g1c3"]
+resource_local_to_scene = true
 size = Vector2(16, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ku3ox"]
+resource_local_to_scene = true
 radius = 150.28
 
 [node name="Worm" type="StaticBody2D"]

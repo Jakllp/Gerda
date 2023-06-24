@@ -2,9 +2,6 @@ extends StaticBody2D
 
 class_name Chest
 
-@export var item_scene :PackedScene
-
-
 var open := false
 
 
@@ -17,7 +14,6 @@ func do_interaction() -> void:
 
 
 func drop_item() -> void:
-	var item = item_scene.instantiate()
-	ItemCreator.create_chest_item(item)
+	var item = ItemCreator.create_chest_item()
 	item.global_position = position + Vector2(0.0,15.0)
 	get_parent().add_child(item)
