@@ -11,8 +11,8 @@ var description :String
 
 const modifier_dict = {
 	MutatorType.HARDENED_STONE: 	[1.5,2.0,2.5],
-	MutatorType.LESS_ORE: 			[0.1,0.15,0.2],
-	MutatorType.MORE_STONE: 		[0.1,0.15,0.2],
+	MutatorType.LESS_ORE: 			[1.1,1.125,1.15],
+	MutatorType.MORE_STONE: 		[1.25,1.625,2.0],
 	MutatorType.SPAWN_PLUS: 		[1.5,2.0,2.5],
 	MutatorType.DAMAGE_PLUS: 		[1.0,2.0,3.0],
 	MutatorType.HEALTH_PLUS: 		[1.0,2.0,3.0],
@@ -48,6 +48,8 @@ const category_dict = {
 	MutatorCategory.SPEED_MUTATORS: [MutatorType.SPEED_UP, MutatorType.SPEED_DOWN]
 }
 
+# Maybe also store texture here for easy access? Or have a good naming scheme for the textures that has the Type and also the strength in it
+
 enum MutatorCategory {
 	WORLD_MUTATORS,
 	ENEMY_MUTATORS,
@@ -79,7 +81,7 @@ func _init(wanted_type :MutatorType, strength :int):
 ## Returns the category of a type
 static func category_for_type(type :MutatorType) -> MutatorCategory:
 	for cat in category_dict:
-		if cat.has(type): return cat
+		if category_dict[cat].has(type): return cat
 	return 0
 
 

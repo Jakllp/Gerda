@@ -23,6 +23,8 @@ var special_ground :Dictionary
 
 
 func _ready() -> void:
+	# Add Mutators here for testing
+	MutatorManager.add_mutator(Mutator.new(Mutator.MutatorType.SPEED_UP, 2))
 	print("start god")
 	var player_spawn = God.generate_level(self, ground_layer, block_layer, ground_atlas, block_atlas, biome)
 	print("end god")
@@ -36,7 +38,7 @@ func damage_cell(cell: Vector2i, damage: float) -> bool:
 		remaining_hardness_dict[cell] = remaining_hardness_dict[cell] - damage
 	else:
 		# Unknown cell -> New Entry
-		remaining_hardness_dict[cell] = self.get_cell_tile_data(block_layer, cell).get_custom_data("hardness") - damage
+		remaining_hardness_dict[cell] = self.get_cell_tile_data(block_layer, cell).get_custom_data("hardness") * MutatorManager.get_modifier_for_type(Mutator.MutatorType.HARDENED_STONE) - damage
 	self.mine_overlay(cell)
 	
 	var attached_cell = null
@@ -71,7 +73,7 @@ func mine_overlay(cell: Vector2i) -> void:
 			return
 	
 	var origin_atlas_y = self.get_cell_atlas_coords(block_layer,cell).y
-	var percent = 1 - remaining_hardness_dict[cell] / self.get_cell_tile_data(block_layer, cell).get_custom_data("hardness")
+	var percent = 1 - remaining_hardness_dict[cell] / (self.get_cell_tile_data(block_layer, cell).get_custom_data("hardness") * MutatorManager.get_modifier_for_type(Mutator.MutatorType.HARDENED_STONE))
 	if percent < 0.25:
 		if self.get_cell_source_id(mine_overlay_atlas, cell) != -1 and self.get_cell_atlas_coords(mine_overlay_layer,cell).x != 0:
 			self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(0,origin_atlas_y), 0)

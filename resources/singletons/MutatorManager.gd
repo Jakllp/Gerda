@@ -26,11 +26,11 @@ func get_random_mutators(amount :int) -> Array:
 func add_mutator(mutator :Mutator) -> void:
 	match(mutator.category):
 		Mutator.MutatorCategory.WORLD_MUTATORS:
-			world_mutators.add(mutator)
+			world_mutators.append(mutator)
 		Mutator.MutatorCategory.ENEMY_MUTATORS:
-			enemy_mutators.add(mutator)
+			enemy_mutators.append(mutator)
 		Mutator.MutatorCategory.SPEED_MUTATORS:
-			enemy_mutators.add(mutator)
+			speed_mutators.append(mutator)
 		_:
 			pass
 
@@ -39,7 +39,7 @@ func add_mutator(mutator :Mutator) -> void:
 ## for_addition is false by default.
 ## With for_addition = false the function will return a value for multiplication (no mutator -> 1)
 ## With for_addition = true the function will return a value for addition (no mutator -> 0)
-func get_strength_for_type(type :Mutator.MutatorType, for_addition :bool = false):
+func get_modifier_for_type(type :Mutator.MutatorType, for_addition :bool = false):
 	var all_in_the_category
 	match(Mutator.category_for_type(type)):
 		Mutator.MutatorCategory.WORLD_MUTATORS:
@@ -50,11 +50,11 @@ func get_strength_for_type(type :Mutator.MutatorType, for_addition :bool = false
 			all_in_the_category = speed_mutators
 		_:
 			pass
-	var combined_strength = 0 if for_addition else 1
+	var combined_modifier = 0 if for_addition else 1
 	for mutator in all_in_the_category:
 		if mutator.type == type:
 			if for_addition:
-				combined_strength += mutator.strength
+				combined_modifier += mutator.modifier
 			else:
-				combined_strength *= mutator.strength
-	return combined_strength
+				combined_modifier *= mutator.modifier
+	return combined_modifier
