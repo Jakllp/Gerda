@@ -26,10 +26,11 @@ crafting_time = 0.5
 z_index = 2
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_o68up")
+position = Vector2(0, -4)
 texture = ExtResource("2_vf1wx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_dygx7")
 
 [connection signal="start_interaction" from="InteractableBase" to="." method="do_interaction"]

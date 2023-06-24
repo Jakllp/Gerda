@@ -46,7 +46,6 @@ func tick(actor:Node, blackboard:BTBlackboard):
 				if abs(actor.velocity.angle_to(wander_pos - actor.global_position)) < PI/2:
 					break
 			
-	print()
 	blackboard.set_data(wander_pos_key, wander_pos)
 	return BTTickResult.SUCCESS
 	

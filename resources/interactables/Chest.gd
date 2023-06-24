@@ -16,4 +16,4 @@ func do_interaction() -> void:
 func drop_item() -> void:
 	var item = ItemCreator.create_chest_item()
 	item.global_position = position + Vector2(0.0,15.0)
-	owner.add_child(item)
+	get_parent().add_child(item)

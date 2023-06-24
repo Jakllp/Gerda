@@ -17,7 +17,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_koq83"]
 resource_local_to_scene = true
-shader = ExtResource("3_j32ei")
+shader = ExtResource("4_4l3tn")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
@@ -25,10 +25,10 @@ shader_parameter/flash_modifier = 0.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_axsko")
+"texture": ExtResource("5_yiv53")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_lghal")
+"texture": ExtResource("6_y14ec")
 }],
 "loop": true,
 "name": &"walk",
@@ -36,21 +36,23 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xence"]
-shader = ExtResource("8_5qbo2")
+shader = ExtResource("7_m88w7")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_by0eu"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6wbvd"]
-shader = ExtResource("9_tj2ew")
+shader = ExtResource("8_jcj4m")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_o6p7u"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsxsu"]
+resource_local_to_scene = true
 size = Vector2(17, 16)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqoc6"]
+resource_local_to_scene = true
 radius = 7.0
 height = 24.0
 
@@ -90,16 +92,18 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g8p7"]
+resource_local_to_scene = true
 size = Vector2(12, 4)
 
 [node name="Mole" type="CharacterBody2D" groups=["player"]]
 z_index = 1
+y_sort_enabled = true
 collision_layer = 2
 collision_mask = 5
 motion_mode = 1
-script = ExtResource("1_to1al")
-weapon_scene = ExtResource("2_eu53i")
-mining_equipment_scene = ExtResource("3_poauc")
+script = ExtResource("1_f8iwc")
+weapon_scene = ExtResource("2_bsq8a")
+mining_equipment_scene = ExtResource("3_7q604")
 walk_speed_upgrade_modifier = 10
 dash_cooldown_upgrade_modifier = 0.1
 base_speed = 100
@@ -133,15 +137,6 @@ position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_4p0wo")
 animation = &"walk"
 
-[node name="DashEffect" parent="." instance=ExtResource("7_aujcr")]
-z_index = 1
-y_sort_enabled = true
-material = null
-amount = 30
-texture = ExtResource("8_58lmm")
-lifetime = 0.25
-fixed_fps = 60
-
 [node name="Mask" type="Sprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
@@ -154,7 +149,7 @@ material = SubResource("ShaderMaterial_6wbvd")
 texture = SubResource("ViewportTexture_o6p7u")
 
 [node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("11_36qyq")
+script = ExtResource("9_fod5u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -168,7 +163,7 @@ shape = SubResource("RectangleShape2D_xsxsu")
 position = Vector2(-2.5, 2.5)
 scale = Vector2(1.28733, 0.109863)
 
-[node name="HurtBox" parent="." instance=ExtResource("12_ejrhl")]
+[node name="HurtBox" parent="." instance=ExtResource("10_ogfsg")]
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
@@ -180,14 +175,13 @@ libraries = {
 "": SubResource("AnimationLibrary_ek0ot")
 }
 
-[node name="Dash" parent="." instance=ExtResource("13_27f6q")]
+[node name="Dash" parent="." instance=ExtResource("11_gkexl")]
 
-[node name="DashEffect" parent="." instance=ExtResource("7_aujcr")]
-z_index = -1
+[node name="DashEffect" parent="." instance=ExtResource("12_v4axt")]
 y_sort_enabled = true
 material = null
 amount = 30
-texture = ExtResource("8_58lmm")
+texture = ExtResource("13_qwyac")
 lifetime = 0.25
 fixed_fps = 60
 
