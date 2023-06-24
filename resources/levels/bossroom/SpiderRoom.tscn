@@ -18,11 +18,7 @@ size = Vector2(52, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8rwl"]
 size = Vector2(22, 22)
 
-[node name="Node2D" type="Node2D"]
-metadata/_edit_horizontal_guides_ = [297.0]
-metadata/_edit_vertical_guides_ = [473.0]
-
-[node name="SpiderRoom" type="TileMap" parent="."]
+[node name="SpiderRoom" type="TileMap"]
 tile_set = ExtResource("1_fgap1")
 format = 2
 layer_0/name = "ground"
@@ -39,139 +35,139 @@ script = ExtResource("2_7k7fd")
 metadata/_edit_vertical_guides_ = [330.0, 948.0]
 metadata/_edit_horizontal_guides_ = [220.0, 440.0]
 
-[node name="SpiderBoss" parent="SpiderRoom" instance=ExtResource("3_fiv68")]
+[node name="SpiderBoss" parent="." instance=ExtResource("3_fiv68")]
 position = Vector2(473, 297)
 
-[node name="StompAreaLeft" type="Area2D" parent="SpiderRoom/SpiderBoss"]
+[node name="StompAreaLeft" type="Area2D" parent="SpiderBoss"]
 position = Vector2(-67, -36)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/SpiderBoss/StompAreaLeft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderBoss/StompAreaLeft"]
 shape = SubResource("RectangleShape2D_l140e")
 debug_color = Color(0.513726, 0.576471, 0.0196078, 0.419608)
 
-[node name="StompAreaRight" type="Area2D" parent="SpiderRoom/SpiderBoss"]
+[node name="StompAreaRight" type="Area2D" parent="SpiderBoss"]
 position = Vector2(67, -36)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/SpiderBoss/StompAreaRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderBoss/StompAreaRight"]
 shape = SubResource("RectangleShape2D_l140e")
 debug_color = Color(0.513726, 0.576471, 0.0196078, 0.419608)
 
-[node name="SweepArea" type="Area2D" parent="SpiderRoom/SpiderBoss"]
+[node name="SweepArea" type="Area2D" parent="SpiderBoss"]
 position = Vector2(0, 61)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/SpiderBoss/SweepArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderBoss/SweepArea"]
 z_index = 3
 shape = SubResource("RectangleShape2D_bafld")
 debug_color = Color(0.976471, 0.0901961, 0.333333, 0.419608)
 
-[node name="LandingZoneLeft" type="Area2D" parent="SpiderRoom/SpiderBoss"]
+[node name="LandingZoneLeft" type="Area2D" parent="SpiderBoss"]
 position = Vector2(-67, 55)
 collision_layer = 0
 collision_mask = 0
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/SpiderBoss/LandingZoneLeft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderBoss/LandingZoneLeft"]
 shape = SubResource("RectangleShape2D_u4bnd")
 debug_color = Color(1, 1, 1, 0.419608)
 
-[node name="LandingZoneRight" type="Area2D" parent="SpiderRoom/SpiderBoss"]
+[node name="LandingZoneRight" type="Area2D" parent="SpiderBoss"]
 position = Vector2(67, 55)
 collision_layer = 0
 collision_mask = 0
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/SpiderBoss/LandingZoneRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderBoss/LandingZoneRight"]
 shape = SubResource("RectangleShape2D_u4bnd")
 debug_color = Color(1, 1, 1, 0.419608)
 
-[node name="SpawnMarker1" type="Sprite2D" parent="SpiderRoom/SpiderBoss" groups=["spawn_points"]]
+[node name="SpawnMarker1" type="Sprite2D" parent="." groups=["spawn_points"]]
 modulate = Color(0, 0, 0, 0)
-position = Vector2(0, -47)
+position = Vector2(473, 250)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_gfec1")
 
-[node name="SpawnMarker2" type="Sprite2D" parent="SpiderRoom/SpiderBoss" groups=["spawn_points"]]
+[node name="SpawnMarker2" type="Sprite2D" parent="." groups=["spawn_points"]]
 modulate = Color(0, 0, 0, 0)
-position = Vector2(-67, 0)
+position = Vector2(406, 297)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_gfec1")
 
-[node name="SpawnMarker3" type="Sprite2D" parent="SpiderRoom/SpiderBoss" groups=["spawn_points"]]
+[node name="SpawnMarker3" type="Sprite2D" parent="." groups=["spawn_points"]]
 modulate = Color(0, 0, 0, 0)
-position = Vector2(67, 0)
+position = Vector2(540, 297)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_gfec1")
 
-[node name="ClosingBlock1" type="Area2D" parent="SpiderRoom"]
+[node name="ClosingBlock1" type="Area2D" parent="."]
 position = Vector2(473, 451)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/ClosingBlock1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClosingBlock1"]
 shape = SubResource("RectangleShape2D_b8rwl")
 
-[node name="ClosingBlock2" type="Area2D" parent="SpiderRoom"]
+[node name="ClosingBlock2" type="Area2D" parent="."]
 position = Vector2(473, 429)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/ClosingBlock2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClosingBlock2"]
 shape = SubResource("RectangleShape2D_b8rwl")
 
-[node name="ClosingBlock3" type="Area2D" parent="SpiderRoom"]
+[node name="ClosingBlock3" type="Area2D" parent="."]
 position = Vector2(473, 407)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/ClosingBlock3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClosingBlock3"]
 shape = SubResource("RectangleShape2D_b8rwl")
 
-[node name="ClosingBlock4" type="Area2D" parent="SpiderRoom"]
+[node name="ClosingBlock4" type="Area2D" parent="."]
 position = Vector2(473, 385)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/ClosingBlock4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClosingBlock4"]
 shape = SubResource("RectangleShape2D_b8rwl")
 
-[node name="ClosingBlock5" type="Area2D" parent="SpiderRoom"]
+[node name="ClosingBlock5" type="Area2D" parent="."]
 position = Vector2(473, 363)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderRoom/ClosingBlock5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClosingBlock5"]
 shape = SubResource("RectangleShape2D_b8rwl")
 
-[node name="PlayerSpawnPoint" type="Marker2D" parent="SpiderRoom"]
+[node name="PlayerSpawnPoint" type="Marker2D" parent="."]
 position = Vector2(473, 547)
 
 [node name="Mole" parent="." instance=ExtResource("2_a0sfj")]
-position = Vector2(473, 536)
+position = Vector2(473, 521)
 
-[connection signal="area_entered" from="SpiderRoom/SpiderBoss/StompAreaLeft" to="SpiderRoom/SpiderBoss" method="_on_stomp_area_area_entered" binds= [true]]
-[connection signal="area_exited" from="SpiderRoom/SpiderBoss/StompAreaLeft" to="SpiderRoom/SpiderBoss" method="_on_stomp_area_area_exited" binds= [true]]
-[connection signal="area_entered" from="SpiderRoom/SpiderBoss/StompAreaRight" to="SpiderRoom/SpiderBoss" method="_on_stomp_area_area_entered" binds= [false]]
-[connection signal="area_exited" from="SpiderRoom/SpiderBoss/StompAreaRight" to="SpiderRoom/SpiderBoss" method="_on_stomp_area_area_exited" binds= [false]]
-[connection signal="area_entered" from="SpiderRoom/SpiderBoss/SweepArea" to="SpiderRoom/SpiderBoss" method="_on_sweep_area_area_entered"]
-[connection signal="area_exited" from="SpiderRoom/SpiderBoss/SweepArea" to="SpiderRoom/SpiderBoss" method="_on_sweep_area_area_exited"]
-[connection signal="body_entered" from="SpiderRoom/ClosingBlock1" to="SpiderRoom" method="_on_closing_block_1_body_entered" flags=6 binds= [true, false]]
-[connection signal="body_entered" from="SpiderRoom/ClosingBlock2" to="SpiderRoom" method="_on_closing_block_1_body_entered" flags=6 binds= [false, false]]
-[connection signal="body_entered" from="SpiderRoom/ClosingBlock3" to="SpiderRoom" method="_on_closing_block_1_body_entered" flags=6 binds= [false, false]]
-[connection signal="body_entered" from="SpiderRoom/ClosingBlock4" to="SpiderRoom" method="_on_closing_block_1_body_entered" flags=6 binds= [false, false]]
-[connection signal="body_entered" from="SpiderRoom/ClosingBlock5" to="SpiderRoom" method="_on_closing_block_1_body_entered" flags=6 binds= [false, true]]
+[connection signal="area_entered" from="SpiderBoss/StompAreaLeft" to="SpiderBoss" method="_on_stomp_area_area_entered" binds= [true]]
+[connection signal="area_exited" from="SpiderBoss/StompAreaLeft" to="SpiderBoss" method="_on_stomp_area_area_exited" binds= [true]]
+[connection signal="area_entered" from="SpiderBoss/StompAreaRight" to="SpiderBoss" method="_on_stomp_area_area_entered" binds= [false]]
+[connection signal="area_exited" from="SpiderBoss/StompAreaRight" to="SpiderBoss" method="_on_stomp_area_area_exited" binds= [false]]
+[connection signal="area_entered" from="SpiderBoss/SweepArea" to="SpiderBoss" method="_on_sweep_area_area_entered"]
+[connection signal="area_exited" from="SpiderBoss/SweepArea" to="SpiderBoss" method="_on_sweep_area_area_exited"]
+[connection signal="body_entered" from="ClosingBlock1" to="." method="_on_closing_block_1_body_entered" flags=6 binds= [true, false]]
+[connection signal="body_entered" from="ClosingBlock2" to="." method="_on_closing_block_1_body_entered" flags=6 binds= [false, false]]
+[connection signal="body_entered" from="ClosingBlock3" to="." method="_on_closing_block_1_body_entered" flags=6 binds= [false, false]]
+[connection signal="body_entered" from="ClosingBlock4" to="." method="_on_closing_block_1_body_entered" flags=6 binds= [false, false]]
+[connection signal="body_entered" from="ClosingBlock5" to="." method="_on_closing_block_1_body_entered" flags=6 binds= [false, true]]

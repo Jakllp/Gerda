@@ -23,6 +23,8 @@ class_name SpiderBoss
 
 @onready var flash_component :FlashComponent = FlashComponent.new()
 
+signal died
+
 func _ready():
 	$SubViewportContainer/SubViewport/AnimatedSprite2D.material.set_shader_parameter("flash_modifier",0)
 	animation_tree.active = true
@@ -81,6 +83,16 @@ func spawn_lackey() -> void:
 	await tween.finished
 	get_parent().add_child(lackey)
 	point.modulate = Color(0,0,0,0)
+	
+
+
+func die() -> void:
+	animation_tree["parameters/conditions/dead"] = true
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(1,1,1,0), 2)
+	tween.tween_callback(queue_free)
+	await tween.finished
+	died.emit()
 	
 
 func _on_stomp_area_area_entered(_area, is_left):

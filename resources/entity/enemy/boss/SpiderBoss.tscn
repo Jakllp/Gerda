@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cr8tpgkgfgxkp"]
+[gd_scene load_steps=64 format=3 uid="uid://cr8tpgkgfgxkp"]
 
 [ext_resource type="Texture2D" uid="uid://7xmrgs07i4ax" path="res://asset/visual/actor/enemy/bosses/spider/spider_spit_attack.png" id="1_8ygr1"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="1_bhyfc"]
@@ -98,6 +98,9 @@ damping_min = 60.62
 damping_max = 60.62
 color = Color(0, 0, 0, 0.54902)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tvyn2"]
+animation = &"RESET"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7ydgn"]
 animation = &"idle"
 
@@ -149,7 +152,39 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fdark"]
+priority = 0
+advance_mode = 2
+advance_condition = &"dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_htfle"]
+priority = 0
+advance_mode = 2
+advance_condition = &"dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qxien"]
+priority = 0
+advance_mode = 2
+advance_condition = &"dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q7l71"]
+priority = 0
+advance_mode = 2
+advance_condition = &"dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_txwxs"]
+priority = 0
+advance_mode = 2
+advance_condition = &"dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x8ull"]
+switch_mode = 1
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_il6fe"]
+states/End/position = Vector2(1140, 72)
+states/RESET/node = SubResource("AnimationNodeAnimation_tvyn2")
+states/RESET/position = Vector2(1019, 72)
 states/Start/position = Vector2(193, 72)
 states/idle/node = SubResource("AnimationNodeAnimation_7ydgn")
 states/idle/position = Vector2(508, 72)
@@ -161,8 +196,8 @@ states/stomp_right/node = SubResource("AnimationNodeAnimation_f5s6m")
 states/stomp_right/position = Vector2(676, 149)
 states/sweep/node = SubResource("AnimationNodeAnimation_q8cb0")
 states/sweep/position = Vector2(676, -21)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_nmcvq"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_xe5vv"), "idle", "sweep", SubResource("AnimationNodeStateMachineTransition_hhap6"), "idle", "stomp_right", SubResource("AnimationNodeStateMachineTransition_5raof"), "idle", "stomp_left", SubResource("AnimationNodeStateMachineTransition_jbjf2"), "stomp_left", "idle", SubResource("AnimationNodeStateMachineTransition_8u50v"), "stomp_right", "idle", SubResource("AnimationNodeStateMachineTransition_tww2q"), "sweep", "idle", SubResource("AnimationNodeStateMachineTransition_uroj3"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_ex4eo")]
-graph_offset = Vector2(-58.6777, -54)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_nmcvq"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_xe5vv"), "idle", "sweep", SubResource("AnimationNodeStateMachineTransition_hhap6"), "idle", "stomp_right", SubResource("AnimationNodeStateMachineTransition_5raof"), "idle", "stomp_left", SubResource("AnimationNodeStateMachineTransition_jbjf2"), "stomp_left", "idle", SubResource("AnimationNodeStateMachineTransition_8u50v"), "stomp_right", "idle", SubResource("AnimationNodeStateMachineTransition_tww2q"), "sweep", "idle", SubResource("AnimationNodeStateMachineTransition_uroj3"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_ex4eo"), "sweep", "RESET", SubResource("AnimationNodeStateMachineTransition_fdark"), "shoot", "RESET", SubResource("AnimationNodeStateMachineTransition_htfle"), "idle", "RESET", SubResource("AnimationNodeStateMachineTransition_qxien"), "stomp_left", "RESET", SubResource("AnimationNodeStateMachineTransition_q7l71"), "stomp_right", "RESET", SubResource("AnimationNodeStateMachineTransition_txwxs"), "RESET", "End", SubResource("AnimationNodeStateMachineTransition_x8ull")]
+graph_offset = Vector2(-24.6777, -84)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_qdgyh"]
 
@@ -805,6 +840,7 @@ visibility_rect = Rect2(0, 0, 0, 0)
 tree_root = SubResource("AnimationNodeStateMachine_il6fe")
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_qdgyh")
+parameters/conditions/dead = false
 parameters/conditions/shoot = false
 parameters/conditions/stomp_left = false
 parameters/conditions/stomp_right = false
