@@ -21,9 +21,6 @@ class_name SpiderBoss
 @onready var stomp_particles_left: GPUParticles2D = $StompParticlesLeft
 @onready var stomp_particles_right: GPUParticles2D = $StompParticlesRight
 
-@onready var shape_front_leg_left: CollisionShape2D = $CollisionShapeFrontLegLeft
-@onready var shape_front_leg_right: CollisionShape2D = $CollisionShapeFrontLegRight
-
 @onready var flash_component :FlashComponent = FlashComponent.new()
 
 func _ready():
@@ -39,6 +36,7 @@ func shoot_web() -> void:
 	
 
 func stomp_left() -> void:
+	player.get_node("Camera2D").apply_noise_screen_shake(100.0, 3.0, 1.5, 30.0)
 	stomp_particles_left.emitting = true
 	if stomp_area_left.get_overlapping_areas().is_empty():
 		return
@@ -48,6 +46,7 @@ func stomp_left() -> void:
 	
 
 func stomp_right() -> void:
+	player.get_node("Camera2D").apply_noise_screen_shake(100.0, 3.0, 1.5, 30.0)
 	stomp_particles_right.emitting = true
 	if stomp_area_right.get_overlapping_areas().is_empty():
 		return

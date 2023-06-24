@@ -818,7 +818,7 @@ libraries = {
 [node name="LegRight" parent="." instance=ExtResource("14_e5052")]
 position = Vector2(6, 7)
 rotation = -0.785398
-collision_layer = 16
+collision_layer = 20
 monitorable = false
 
 [node name="CollisionShape2D" parent="LegRight" index="0"]
@@ -844,7 +844,7 @@ local_coords = true
 [node name="LegLeft" parent="." instance=ExtResource("14_e5052")]
 position = Vector2(-6, 7)
 rotation = 0.785398
-collision_layer = 16
+collision_layer = 20
 monitorable = false
 
 [node name="CollisionShape2D" parent="LegLeft" index="0"]
