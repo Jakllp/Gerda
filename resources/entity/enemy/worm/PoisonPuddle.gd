@@ -25,7 +25,8 @@ func _on_area_exited(area):
 
 func _on_life_time_timeout():
 	var tween: Tween = create_tween()
-	tween.tween_property(self, "modulate", Color("ffffff", 0), 1.5)
+	tween.parallel().tween_property(self, "modulate", Color("ffffff", 0), 1.5)
+	tween.parallel().tween_property($PointLight2D, "energy", 0.0, 1.5)
 	tween.tween_callback(queue_free)
 
 

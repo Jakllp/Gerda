@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://0pg1nchydlbc"]
+[gd_scene load_steps=8 format=3 uid="uid://0pg1nchydlbc"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/worm/WormProjectile.gd" id="1_uqcrx"]
 [ext_resource type="Texture2D" uid="uid://02ro2orrlv0l" path="res://asset/visual/actor/enemy/worm/ball1.png" id="2_gmbbk"]
+[ext_resource type="Texture2D" uid="uid://bjlekwc125i1c" path="res://asset/visual/light/light.png" id="2_ix57j"]
 [ext_resource type="Texture2D" uid="uid://dnp235a370t4c" path="res://asset/visual/actor/enemy/worm/ball2.png" id="3_tsqxy"]
 [ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="3_x4x2u"]
 
@@ -32,8 +33,16 @@ cubic_interp = false
 loop = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollow2D"]
+light_mask = 513
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_11rim")
+
+[node name="PointLight2D" type="PointLight2D" parent="PathFollow2D/AnimatedSprite2D"]
+light_mask = 513
+energy = 0.2
+range_item_cull_mask = 513
+texture = ExtResource("2_ix57j")
+texture_scale = 0.35
 
 [node name="Hitbox" parent="PathFollow2D" instance=ExtResource("3_x4x2u")]
 collision_layer = 16

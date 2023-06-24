@@ -93,7 +93,7 @@ script = ExtResource("1_edbqo")
 light_mask = 3
 visibility_layer = 3
 position = Vector2(0, -3)
-energy = 0.05
+energy = 0.0
 range_item_cull_mask = 3
 texture = ExtResource("2_l8dxf")
 texture_scale = 0.5
@@ -152,6 +152,7 @@ shape = SubResource("RectangleShape2D_5ag5k")
 debug_color = Color(0.188235, 0.639216, 0.207843, 0.419608)
 
 [node name="Hitbox" parent="." instance=ExtResource("6_mt3oh")]
+visible = false
 collision_layer = 16
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
