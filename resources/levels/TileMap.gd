@@ -24,7 +24,7 @@ var special_ground :Dictionary
 
 func _ready() -> void:
 	# Add Mutators here for testing
-	MutatorManager.add_mutator(Mutator.new(Mutator.MutatorType.SPEED_UP, 2))
+	#MutatorManager.add_mutator(Mutator.new(Mutator.MutatorType.SPEED_UP, 2))
 	print("start god")
 	var player_spawn = God.generate_level(self, ground_layer, block_layer, ground_atlas, block_atlas, biome)
 	print("end god")
