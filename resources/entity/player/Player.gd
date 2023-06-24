@@ -20,7 +20,7 @@ var status_effects: StatusEffectSet = StatusEffectSet.new(self)
 ## How much the dash increases the movement speed
 const dash_multiplier = 3
 const dash_duration = 0.1
-const dash_max_amount = 2
+var dash_max_amount = 2
 var dashes_left = dash_max_amount
 ## How long it takes for dashes to recharge
 var dash_cooldown = 1.0
@@ -51,7 +51,7 @@ func _ready() -> void:
 	current_equipment = weapon
 	
 	# Fill upgrades
-	for x in Upgrade.Player_Upgrade.values():
+	for x in Items.upgrade_category["player"]:
 		active_upgrades[x] = 0
 	
 	dash.get_node("RefillTimer").timeout.connect(_on_dash_refill)
@@ -62,7 +62,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Movement-Code
 	input_component.update(self, delta)
-	var speedup = (base_speed * walk_speed_upgrade_modifier/100) * active_upgrades[Upgrade.Player_Upgrade.WALK_SPEED]
+	var speedup = (base_speed * walk_speed_upgrade_modifier/100) * active_upgrades[Items.Type.WALK_SPEED]
 	var calculated_speed = base_speed + speedup
 	speed = calculated_speed * dash_multiplier if dash.is_dashing() else calculated_speed 
 	
@@ -97,7 +97,7 @@ func use_equipment(delta: float, try_auto_weapon: bool = false) -> void:
 func try_dash() -> void:
 	print(str(dash.allowed_to_dash()))
 	if dashes_left > 0 && dash.allowed_to_dash() && direction.length() > 0:
-		var calculated_cooldown = dash_cooldown - dash_cooldown_upgrade_modifier * active_upgrades[Upgrade.Player_Upgrade.DASH_COOLDOWN]
+		var calculated_cooldown = dash_cooldown - dash_cooldown_upgrade_modifier * active_upgrades[Items.Type.DASH_COOLDOWN]
 		if calculated_cooldown < 0.0: calculated_cooldown = 0
 		dash.start_dash(dash_duration, calculated_cooldown)
 		
@@ -118,9 +118,9 @@ func add_health(amount: int):
 	$HealthComponent.hp += amount
 
 
-func add_upgrade(upgrade :Upgrade.Player_Upgrade):
+func add_upgrade(upgrade: Items.Type):
 	active_upgrades[upgrade] += 1
-	print(str(Upgrade.Player_Upgrade.keys()[upgrade])+" now at "+str(active_upgrades[upgrade]))
+	print(str(Items.Type.keys()[upgrade])+" now at "+str(active_upgrades[upgrade]))
 
 
 func _on_dash_refill() -> void:

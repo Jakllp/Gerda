@@ -7,10 +7,8 @@ class_name HealthComponent
 		if value != hp_max:
 			var difference: int = value - hp_max
 			hp_max = value
-			if difference > 0:
-				hp += difference
-			else:
-				self.hp = hp
+			if difference < 0:
+				hp = hp_max
 @export var hp: int = hp_max:
 	get:
 		return hp
