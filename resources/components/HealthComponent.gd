@@ -7,10 +7,8 @@ class_name HealthComponent
 		if value != hp_max:
 			var difference: int = value - hp_max
 			hp_max = value
-			if difference > 0:
-				hp += difference
-			else:
-				self.hp = hp
+			if difference < 0:
+				hp = hp_max
 @export var hp: int = hp_max:
 	get:
 		return hp
@@ -23,12 +21,16 @@ class_name HealthComponent
 
 
 func die() -> void:
-	owner.queue_free()
+	if owner.has_method("die"):
+		owner.die()
+	else:
+		owner.queue_free()
 	
 
 func receive_damage(damage: int) -> void:
-	self.hp -= damage
-	owner.flash_component.flash(owner)
+	if hp > 0:
+		self.hp -= damage
+		owner.flash_component.flash(owner)
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
