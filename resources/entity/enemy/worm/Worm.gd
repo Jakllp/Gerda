@@ -4,11 +4,11 @@ class_name Worm
 @onready var shooter: ParabolicShooter = $ParabolicShooter
 @onready var attack_timer: Timer = $AttackTimer
 @onready var sprite: AnimatedSprite2D = $SubViewportContainer/SubViewport/AnimatedSprite2D
-@onready var hurtox = $HurtBox
+@onready var hurtbox = $HurtBox
 
 func _ready() -> void:
 	sprite.process_mode = Node.PROCESS_MODE_ALWAYS
-	hurtox.process_mode = Node.PROCESS_MODE_ALWAYS
+	hurtbox.process_mode = Node.PROCESS_MODE_ALWAYS
 	sprite.play("idle")
 	super._ready()
 	$AttackTimer.process_mode = Node.PROCESS_MODE_INHERIT
@@ -24,15 +24,15 @@ func attack() -> void:
 
 func activate() -> void:
 	super.activate()
-	hurtox.get_child(0).shape.size.y += 17
-	hurtox.get_child(0).position.y -= 10
+	hurtbox.get_child(0).shape.size.y += 17
+	hurtbox.get_child(0).position.y -= 10
 	sprite.play("stand")
 	
 
 func deactivate() -> void:
 	super.deactivate()
-	hurtox.get_child(0).shape.size.y -= 17
-	hurtox.get_child(0).position.y += 10
+	hurtbox.get_child(0).shape.size.y -= 17
+	hurtbox.get_child(0).position.y += 10
 	await sprite.animation_looped
 	sprite.play("idle")
 

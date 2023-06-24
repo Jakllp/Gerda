@@ -54,15 +54,19 @@ shader = ExtResource("8_u5bar")
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qye2k"]
+resource_local_to_scene = true
 radius = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkdua"]
+resource_local_to_scene = true
 size = Vector2(28, 18)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_55xr7"]
+resource_local_to_scene = true
 radius = 25.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkay6"]
+resource_local_to_scene = true
 radius = 6.0
 
 [node name="Spider" type="CharacterBody2D" groups=["enemy"]]

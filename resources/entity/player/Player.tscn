@@ -47,9 +47,11 @@ shader = ExtResource("8_jcj4m")
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsxsu"]
+resource_local_to_scene = true
 size = Vector2(17, 16)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqoc6"]
+resource_local_to_scene = true
 radius = 7.0
 height = 24.0
 
@@ -89,6 +91,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g8p7"]
+resource_local_to_scene = true
 size = Vector2(12, 4)
 
 [node name="Mole" type="CharacterBody2D" groups=["player"]]
