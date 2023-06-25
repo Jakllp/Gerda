@@ -123,12 +123,14 @@ texture = SubResource("ViewportTexture_lxteo")
 script = ExtResource("5_ras38")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_rynaa")]
+visible = false
 collision_layer = 16
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_qye2k")
 
 [node name="HurtBox" parent="." instance=ExtResource("4_uo85l")]
+visible = false
 collision_mask = 8
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
@@ -137,6 +139,7 @@ shape = SubResource("RectangleShape2D_tkdua")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="AttackRange" parent="." instance=ExtResource("4_uo85l")]
+visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="AttackRange" index="0"]

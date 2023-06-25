@@ -6,12 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://n855g5htet0y" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="6_lghal"]
 [ext_resource type="PackedScene" uid="uid://b8lir4ggu15da" path="res://resources/particles/DashEffect.tscn" id="7_aujcr"]
 [ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="8_5qbo2"]
-[ext_resource type="Texture2D" uid="uid://bxi2qkwchgo7a" path="res://asset/visual/actor/char/mole/dash_frame.png" id="8_58lmm"]
 [ext_resource type="PackedScene" uid="uid://b5fc7mi5vht5l" path="res://resources/components/Health/PlayerHealthComponent.tscn" id="9_e6pu7"]
 [ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="9_tj2ew"]
 [ext_resource type="Script" path="res://resources/entity/player/PlayerCamera.gd" id="10_c6tfw"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="12_ejrhl"]
 [ext_resource type="PackedScene" uid="uid://b2krhq43q3awp" path="res://resources/components/DashComponent.tscn" id="13_27f6q"]
+[ext_resource type="Texture2D" uid="uid://bxi2qkwchgo7a" path="res://asset/visual/actor/char/mole/dash_frame.png" id="13_qwyac"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_koq83"]
 resource_local_to_scene = true
@@ -46,9 +46,11 @@ shader = ExtResource("9_tj2ew")
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsxsu"]
+resource_local_to_scene = true
 size = Vector2(17, 16)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqoc6"]
+resource_local_to_scene = true
 radius = 7.0
 height = 24.0
 
@@ -88,11 +90,14 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g8p7"]
+resource_local_to_scene = true
 size = Vector2(12, 4)
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Mole" type="CharacterBody2D" groups=["player"]]
 z_index = 1
+y_sort_enabled = true
 collision_layer = 2
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_to1al")
 walk_speed_upgrade_modifier = 10
@@ -168,11 +173,10 @@ libraries = {
 [node name="Dash" parent="." instance=ExtResource("13_27f6q")]
 
 [node name="DashEffect" parent="." instance=ExtResource("7_aujcr")]
-z_index = -1
 y_sort_enabled = true
 material = null
 amount = 30
-texture = ExtResource("8_58lmm")
+texture = ExtResource("13_qwyac")
 lifetime = 0.25
 fixed_fps = 60
 
