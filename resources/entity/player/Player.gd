@@ -49,6 +49,7 @@ signal player_upgrade_received(type)
 signal health_changed(amount)
 signal dash_max_amount_changed(amount)
 signal dashes_left_changed(previous, diff)
+signal pause
 
 
 func _ready() -> void:
@@ -141,3 +142,9 @@ func _on_dash_refill() -> void:
 		print("Refilled Dash - Dashes left: "+str(dashes_left)+"/"+str(dash_max_amount))
 		if dashes_left == dash_max_amount:
 			dash.stop_refill()
+			
+
+func _unhandled_input(event):
+	if event is InputEventKey and event.is_action_pressed("ui_cancel"):
+		pause.emit()
+		get_viewport().set_input_as_handled()

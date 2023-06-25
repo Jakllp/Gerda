@@ -53,7 +53,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = ExtResource("2_ehwt0")
 texture_hover = ExtResource("3_yil30")
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="BadgerButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -61,7 +61,7 @@ size_flags_horizontal = 3
 texture_normal = ExtResource("4_hnvnt")
 texture_hover = ExtResource("5_ynr86")
 texture_disabled = ExtResource("4_c51ct")
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -77,6 +77,5 @@ theme = ExtResource("2_lkgno")
 text = "Back"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MoleButton" to="." method="_on_mole_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/MoleButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/BadgerButton" to="." method="_on_badger_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/Back" to="." method="_on_back_pressed"]

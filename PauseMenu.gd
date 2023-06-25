@@ -2,13 +2,12 @@ extends ColorRect
 
 @onready var animator: AnimationPlayer = $AnimationPlayer
 @onready var play_button: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton
-@onready var options_button: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsButton
 @onready var quit_button: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/QuitButton
 @onready var accept_dialog = $AcceptDialog
 
 func _ready() -> void:
 	visible = false
-	get_tree().get_first_node_in_group("player").input_component.pause.connect(pause)
+	get_tree().get_first_node_in_group("player").pause.connect(pause)
 	play_button.pressed.connect(unpause)
 	accept_dialog.add_cancel_button("Cancel")
 
@@ -23,7 +22,13 @@ func pause():
 	visible = true
 	animator.play("Pause")
 	get_tree().paused = true
+	
 
+func _unhandled_input(event):
+	if visible == true and event is InputEventKey and event.is_action_pressed("ui_cancel"):
+		unpause()
+		get_viewport().set_input_as_handled()
+		
 
 func _on_quit_button_pressed():
 	accept_dialog.visible = true
