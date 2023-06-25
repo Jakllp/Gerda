@@ -39,10 +39,11 @@ sprite_frames = SubResource("SpriteFrames_11rim")
 
 [node name="PointLight2D" type="PointLight2D" parent="PathFollow2D/AnimatedSprite2D"]
 light_mask = 513
-energy = 0.2
+color = Color(0.270588, 0.945098, 0.172549, 1)
+energy = 0.3
 range_item_cull_mask = 513
 texture = ExtResource("2_ix57j")
-texture_scale = 0.35
+texture_scale = 0.3
 
 [node name="Hitbox" parent="PathFollow2D" instance=ExtResource("3_x4x2u")]
 collision_layer = 16
