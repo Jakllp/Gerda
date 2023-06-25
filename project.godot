@@ -17,6 +17,7 @@ config/icon="res://asset/visual/actor/icon.svg"
 
 [autoload]
 
+MutatorManager="*res://resources/singletons/MutatorManager.gd"
 Items="*res://resources/datatypes/Items.gd"
 
 [editor_plugins]

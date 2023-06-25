@@ -30,7 +30,7 @@ func _ready():
 	peak_ratio = get_peak_ratio()
 	alpha_factor = get_alpha_factor()
 	parabolic_factor = get_parabolic_factor()
-	velocity = (curve.point_count/100.0) * speed_factor
+	velocity = (curve.point_count/100.0) * speed_factor * (MutatorManager.get_modifier_for_type(Mutator.MutatorType.SPEED_UP) / MutatorManager.get_modifier_for_type(Mutator.MutatorType.SPEED_DOWN))
 	
 
 func _physics_process(delta) -> void:

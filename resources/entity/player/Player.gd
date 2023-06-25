@@ -63,8 +63,8 @@ func _physics_process(delta: float) -> void:
 	# Movement-Code
 	input_component.update(self, delta)
 	var speedup = (base_speed * walk_speed_upgrade_modifier/100) * active_upgrades[Items.Type.WALK_SPEED]
-	var calculated_speed = base_speed + speedup
-	speed = calculated_speed * dash_multiplier if dash.is_dashing() else calculated_speed 
+	var calculated_speed = (base_speed + speedup) * (MutatorManager.get_modifier_for_type(Mutator.MutatorType.SPEED_UP) / MutatorManager.get_modifier_for_type(Mutator.MutatorType.SPEED_DOWN))
+	speed = calculated_speed * dash_multiplier if dash.is_dashing() else calculated_speed
 	
 	# Animate
 	if self.direction.length() > 0:
