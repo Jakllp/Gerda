@@ -23,6 +23,7 @@ size = Vector2(20, 5)
 script = ExtResource("1_eqc4j")
 
 [node name="InteractableBase" parent="." instance=ExtResource("2_yml7l")]
+position = Vector2(0, 7)
 
 [node name="CollisionShape2D" parent="InteractableBase/DetectionArea" index="0"]
 position = Vector2(0, 12)
@@ -31,20 +32,21 @@ position = Vector2(0, 12)
 z_index = 2
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_o68up")
-position = Vector2(0, 1)
+position = Vector2(0, 8)
 texture = ExtResource("4_4cr8x")
 hframes = 2
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 11.5)
+position = Vector2(0, 18.5)
 shape = SubResource("RectangleShape2D_dygx7")
 
 [node name="Collision2" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5.5)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_tucq1")
 disabled = true
 
 [node name="DroppingIn" type="Area2D" parent="."]
+position = Vector2(0, 7)
 collision_layer = 0
 collision_mask = 2
 monitorable = false

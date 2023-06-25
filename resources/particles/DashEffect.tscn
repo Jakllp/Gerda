@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://b8lir4ggu15da"]
 
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="1_5y7xd"]
 

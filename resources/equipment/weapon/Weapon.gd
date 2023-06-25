@@ -11,16 +11,17 @@ class_name Weapon
 
 signal weapon_upgrade_received(type)
 
+
 func _ready() -> void:
 	# Fill upgrades
-	for x in Upgrade.Weapon_Upgrade.values():
+	for x in Items.upgrade_category["weapon"]:
 		active_upgrades[x] = 0
 
 
-func add_upgrade(upgrade :Upgrade.Weapon_Upgrade):
+func add_upgrade(upgrade: Items.Type):
 	weapon_upgrade_received.emit(upgrade)
 	active_upgrades[upgrade] += 1
-	print(str(Upgrade.Weapon_Upgrade.keys()[upgrade])+" now at "+str(active_upgrades[upgrade]))
+	print(str(Items.Type.keys()[upgrade])+" now at "+str(active_upgrades[upgrade]))
 
 
 func update(player: Player) -> void:

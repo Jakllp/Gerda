@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:resources/entity/player/Mole.tscn
 [gd_scene load_steps=23 format=3 uid="uid://cwpu7hm037n2i"]
 
 [ext_resource type="Script" path="res://resources/entity/player/Mole.gd" id="1_lux0p"]
@@ -15,6 +16,28 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_koq83"]
 resource_local_to_scene = true
 shader = ExtResource("4_tcmlo")
+========
+[gd_scene load_steps=26 format=3 uid="uid://bumgkqge3x8or"]
+
+[ext_resource type="Script" path="res://resources/entity/player/Player.gd" id="1_f8iwc"]
+[ext_resource type="PackedScene" uid="uid://dmexi068iwq4m" path="res://resources/equipment/weapon/Rifle.tscn" id="2_bsq8a"]
+[ext_resource type="PackedScene" uid="uid://c0r4eyfoxc4yg" path="res://resources/equipment/mining/MiningEquipment.tscn" id="3_7q604"]
+[ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="4_4l3tn"]
+[ext_resource type="Texture2D" uid="uid://dx3qnu570p8hx" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="5_yiv53"]
+[ext_resource type="Texture2D" uid="uid://n855g5htet0y" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="6_y14ec"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="7_m88w7"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="8_jcj4m"]
+[ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="9_fod5u"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="10_ogfsg"]
+[ext_resource type="PackedScene" uid="uid://b2krhq43q3awp" path="res://resources/components/DashComponent.tscn" id="11_gkexl"]
+[ext_resource type="PackedScene" uid="uid://b8lir4ggu15da" path="res://resources/particles/DashEffect.tscn" id="12_v4axt"]
+[ext_resource type="Texture2D" uid="uid://bxi2qkwchgo7a" path="res://asset/visual/actor/char/mole/dash_frame.png" id="13_qwyac"]
+[ext_resource type="Script" path="res://resources/entity/player/PlayerCamera.gd" id="14_0b0qq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_koq83"]
+resource_local_to_scene = true
+shader = ExtResource("4_4l3tn")
+>>>>>>>> develop:resources/entity/player/Player.tscn
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
@@ -22,10 +45,17 @@ shader_parameter/flash_modifier = 0.0
 animations = [{
 "frames": [{
 "duration": 1.0,
+<<<<<<<< HEAD:resources/entity/player/Mole.tscn
 "texture": ExtResource("5_g3lrs")
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_8fm2p")
+========
+"texture": ExtResource("5_yiv53")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_y14ec")
+>>>>>>>> develop:resources/entity/player/Player.tscn
 }],
 "loop": true,
 "name": &"walk",
@@ -33,21 +63,31 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xence"]
+<<<<<<<< HEAD:resources/entity/player/Mole.tscn
 shader = ExtResource("9_eq57i")
+========
+shader = ExtResource("7_m88w7")
+>>>>>>>> develop:resources/entity/player/Player.tscn
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_by0eu"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6wbvd"]
+<<<<<<<< HEAD:resources/entity/player/Mole.tscn
 shader = ExtResource("10_fl2ab")
+========
+shader = ExtResource("8_jcj4m")
+>>>>>>>> develop:resources/entity/player/Player.tscn
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_o6p7u"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsxsu"]
+resource_local_to_scene = true
 size = Vector2(17, 16)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqoc6"]
+resource_local_to_scene = true
 radius = 7.0
 height = 24.0
 
@@ -87,13 +127,25 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g8p7"]
+<<<<<<<< HEAD:resources/entity/player/Mole.tscn
+========
+resource_local_to_scene = true
+>>>>>>>> develop:resources/entity/player/Player.tscn
 size = Vector2(12, 4)
 
 [node name="Mole" type="CharacterBody2D" groups=["player"]]
 z_index = 1
+y_sort_enabled = true
 collision_layer = 2
+collision_mask = 5
 motion_mode = 1
+<<<<<<<< HEAD:resources/entity/player/Mole.tscn
 script = ExtResource("1_lux0p")
+========
+script = ExtResource("1_f8iwc")
+weapon_scene = ExtResource("2_bsq8a")
+mining_equipment_scene = ExtResource("3_7q604")
+>>>>>>>> develop:resources/entity/player/Player.tscn
 walk_speed_upgrade_modifier = 10
 dash_cooldown_upgrade_modifier = 0.1
 base_speed = 100
@@ -127,6 +179,7 @@ position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_4p0wo")
 animation = &"walk"
 
+<<<<<<<< HEAD:resources/entity/player/Mole.tscn
 [node name="DashEffect" parent="." instance=ExtResource("7_dlq0a")]
 z_index = 1
 y_sort_enabled = true
@@ -136,6 +189,8 @@ texture = ExtResource("8_n5qhn")
 lifetime = 0.25
 fixed_fps = 60
 
+========
+>>>>>>>> develop:resources/entity/player/Player.tscn
 [node name="Mask" type="Sprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
@@ -147,10 +202,19 @@ z_index = 100
 material = SubResource("ShaderMaterial_6wbvd")
 texture = SubResource("ViewportTexture_o6p7u")
 
+<<<<<<<< HEAD:resources/entity/player/Mole.tscn
 [node name="PlayerHealthComponent" parent="." instance=ExtResource("9_7ev3p")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+========
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("9_fod5u")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+script = ExtResource("14_0b0qq")
+>>>>>>>> develop:resources/entity/player/Player.tscn
 
 [node name="CollisonShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 4)
@@ -160,7 +224,11 @@ shape = SubResource("RectangleShape2D_xsxsu")
 position = Vector2(-2.5, 2.5)
 scale = Vector2(1.28733, 0.109863)
 
+<<<<<<<< HEAD:resources/entity/player/Mole.tscn
 [node name="HurtBox" parent="." instance=ExtResource("12_w2i0k")]
+========
+[node name="HurtBox" parent="." instance=ExtResource("10_ogfsg")]
+>>>>>>>> develop:resources/entity/player/Player.tscn
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
@@ -172,6 +240,7 @@ libraries = {
 "": SubResource("AnimationLibrary_ek0ot")
 }
 
+<<<<<<<< HEAD:resources/entity/player/Mole.tscn
 [node name="Dash" parent="." instance=ExtResource("13_wam4d")]
 
 [node name="DashEffect" parent="." instance=ExtResource("7_dlq0a")]
@@ -180,6 +249,15 @@ y_sort_enabled = true
 material = null
 amount = 30
 texture = ExtResource("8_n5qhn")
+========
+[node name="Dash" parent="." instance=ExtResource("11_gkexl")]
+
+[node name="DashEffect" parent="." instance=ExtResource("12_v4axt")]
+y_sort_enabled = true
+material = null
+amount = 30
+texture = ExtResource("13_qwyac")
+>>>>>>>> develop:resources/entity/player/Player.tscn
 lifetime = 0.25
 fixed_fps = 60
 
@@ -192,6 +270,10 @@ position = Vector2(-2, 11)
 shape = SubResource("RectangleShape2D_5g8p7")
 debug_color = Color(0.992157, 0.0901961, 0, 0.419608)
 
+<<<<<<<< HEAD:resources/entity/player/Mole.tscn
 [connection signal="area_entered" from="HurtBox" to="PlayerHealthComponent" method="_on_hurt_box_area_entered"]
+========
+[connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
+>>>>>>>> develop:resources/entity/player/Player.tscn
 
 [editable path="HurtBox"]

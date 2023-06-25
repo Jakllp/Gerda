@@ -8,6 +8,6 @@ static func create(type: int) -> StatusEffect:
 		StatusEffectType.POISONED:
 			return Poisoned.new(1, 2, 2)
 		StatusEffectType.SLOW_DOWN:
-			return SlowDown.new(0.5)
+			return SlowDown.new(0.5, 0, 1)
 		_:
 			return null

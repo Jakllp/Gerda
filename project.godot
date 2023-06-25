@@ -20,6 +20,11 @@ config/icon="res://asset/visual/actor/icon.svg"
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[autoload]
+
+MutatorManager="*res://resources/singletons/MutatorManager.gd"
+Items="*res://resources/datatypes/Items.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/yet_another_behavior_tree/plugin.cfg")
@@ -84,6 +89,14 @@ interact={
 2d_physics/layer_5="Enemy Attack"
 2d_physics/layer_6="Block Layer"
 2d_physics/layer_7="Ebene 7"
+
+[navigation]
+
+2d/use_edge_connections=false
+
+[physics]
+
+2d/run_on_separate_thread=true
 
 [rendering]
 
