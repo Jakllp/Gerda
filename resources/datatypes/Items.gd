@@ -163,36 +163,44 @@ var hud_item_tex = preload("res://asset/visual/UI/HUD_Elements.png")
 var boss_item_tex = preload("res://asset/visual/other/BossDrops.png")
 ## creates the sprite for the given item type
 func get_item_sprite(type: Type) -> Sprite2D:
-	var sprite := Sprite2D.new()
+	var texture := AtlasTexture.new()
 	if type < Type.HEART:
-		sprite.texture = hud_item_tex
-		sprite.hframes = 4
-		sprite.vframes = 3
+		texture.atlas = hud_item_tex
 	else:
-		sprite.texture = boss_item_tex
-		sprite.hframes = 2
-		sprite.vframes = 1
+		texture.atlas = boss_item_tex
 	
 	match type:
 		Type.ORE:
-			sprite.frame = 3
+			texture.region.position = Vector2(24,0)
+			texture.region.size = Vector2(8,8)
 		Type.HEALTH:
-			sprite.frame = 0
+			texture.region.position = Vector2(0,0)
+			texture.region.size = Vector2(8,8)
 		Type.WALK_SPEED:
-			sprite.frame = 2
+			texture.region.position = Vector2(16,0)
+			texture.region.size = Vector2(8,8)
 		Type.DASH_COOLDOWN:
-			sprite.frame = 6
+			texture.region.position = Vector2(16,8)
+			texture.region.size = Vector2(8,8)
 		Type.MINING_SPEED:
-			sprite.frame = 10
+			texture.region.position = Vector2(16,16)
+			texture.region.size = Vector2(8,8)
 		Type.DAMAGE:
-			sprite.frame = 1
+			texture.region.position = Vector2(8,0)
+			texture.region.size = Vector2(8,8)
 		Type.ATTACK_RATE:
-			sprite.frame = 5
+			texture.region.position = Vector2(8,8)
+			texture.region.size = Vector2(8,8)
 		Type.WEAPON_SPEED:
-			sprite.frame = 9
+			texture.region.position = Vector2(8,16)
+			texture.region.size = Vector2(8,8)
 		Type.HEART:
-			sprite.frame = 0
+			texture.region.position = Vector2(0,0)
+			texture.region.size = Vector2(8,8)
 		Type.DASH:
-			sprite.frame = 1
-	
+			texture.region.position = Vector2(8,0)
+			texture.region.size = Vector2(8,8)
+		
+	var sprite := Sprite2D.new()
+	sprite.texture = texture
 	return sprite

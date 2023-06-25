@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://dj0v8faygmsca"]
+
+[ext_resource type="Script" path="res://resources/menus/CharacterSelectScreen.gd" id="1_dwo5d"]
+[ext_resource type="Texture2D" uid="uid://bjfnpn7lu8hgx" path="res://asset/visual/UI/characterSelect/mole.png" id="2_ehwt0"]
+[ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="2_lkgno"]
+[ext_resource type="Texture2D" uid="uid://i2wfwc7un4nj" path="res://asset/visual/UI/characterSelect/mole_hover.png" id="3_yil30"]
+[ext_resource type="Texture2D" uid="uid://duhdovwxllu7v" path="res://asset/visual/UI/characterSelect/badger_grey.png" id="4_c51ct"]
+[ext_resource type="Texture2D" uid="uid://cuekeq8g4iobu" path="res://asset/visual/UI/characterSelect/badger.png" id="4_hnvnt"]
+[ext_resource type="Texture2D" uid="uid://kxfygymqhaqt" path="res://asset/visual/UI/characterSelect/badger_hover.png" id="5_ynr86"]
+
+[node name="CharacterSelectScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dwo5d")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -186.0
+offset_right = 192.0
+offset_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_lkgno")
+theme_override_font_sizes/font_size = 32
+text = "choose a character"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MoleButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("2_ehwt0")
+texture_hover = ExtResource("3_yil30")
+stretch_mode = 5
+
+[node name="BadgerButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("4_hnvnt")
+texture_hover = ExtResource("5_ynr86")
+texture_disabled = ExtResource("4_c51ct")
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 0
+
+[node name="Back" type="Button" parent="VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("2_lkgno")
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/MoleButton" to="." method="_on_mole_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/BadgerButton" to="." method="_on_badger_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/Back" to="." method="_on_back_pressed"]

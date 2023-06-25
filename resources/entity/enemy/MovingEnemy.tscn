@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="4_f3fdk"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="4_w5hcy"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="5_t611u"]
-[ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="6_r71gy"]
+[ext_resource type="Script" path="res://resources/components/Health/HealthComponent.gd" id="6_r71gy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hie24"]
 shader = ExtResource("2_qfsqc")

@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bj67m0e2wspkr"]
+[gd_scene load_steps=8 format=3 uid="uid://bj67m0e2wspkr"]
 
 [ext_resource type="Script" path="res://resources/levels/Level.gd" id="1_27bjh"]
 [ext_resource type="TileSet" uid="uid://botvhodjv237t" path="res://asset/visual/map/Biom1/Tileset-biom1.tres" id="2_du5bk"]
 [ext_resource type="Script" path="res://resources/levels/TileMap.gd" id="5_e3myb"]
+[ext_resource type="Script" path="res://resources/entity/player/Mole.gd" id="5_gfjft"]
+[ext_resource type="PackedScene" uid="uid://3nw02h1mploy" path="res://resources/menus/Interface.tscn" id="6_ncnat"]
+[ext_resource type="PackedScene" uid="uid://cli3ult3yip5x" path="res://resources/menus/PauseMenu.tscn" id="7_15icr"]
 [ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="8_15nnc"]
 
 [node name="Level" type="Node2D"]
@@ -44,5 +47,10 @@ y_sort_enabled = true
 
 [node name="Mole" parent="." instance=ExtResource("8_15nnc")]
 position = Vector2(17, -6)
+script = ExtResource("5_gfjft")
+
+[node name="Interface" parent="Mole" instance=ExtResource("6_ncnat")]
+
+[node name="PauseMenu" parent="Mole" instance=ExtResource("7_15icr")]
 
 [connection signal="ore_received" from="Mole" to="TileMap" method="_on_player_ore_received"]
