@@ -3,7 +3,7 @@ extends Area2D
 var containing_bodies: Array
 
 
-## Puts the poisoned status effect on the body inside
+## Puts the slow-down status effect on the body inside
 func apply_effect(body) -> void:
 	body.status_effects.add(StatusEffectType.SLOW_DOWN)
 

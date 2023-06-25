@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cuneib78mi8ns"]
 
-[ext_resource type="Script" path="res://resources/entity/enemy/worm/Cobweb.gd" id="1_1vopf"]
+[ext_resource type="Script" path="res://resources/entity/enemy/boss/Cobweb.gd" id="1_1vopf"]
 [ext_resource type="Texture2D" uid="uid://d10iq6t3ugv2t" path="res://asset/visual/actor/enemy/bosses/spider/net.png" id="2_a3u3p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_16xre"]
