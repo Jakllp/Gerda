@@ -15,15 +15,15 @@ run/main_scene="res://resources/menus/StartMenu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://asset/visual/actor/icon.svg"
 
-[display]
-
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
-
 [autoload]
 
 MutatorManager="*res://resources/singletons/MutatorManager.gd"
 Items="*res://resources/datatypes/Items.gd"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 

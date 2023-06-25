@@ -23,7 +23,7 @@ func _on_body_entered(body :Node2D):
 			player.ore_pouch += item_data
 		elif type == Items.Type.HEALTH:
 				#TODO what if it no work?
-				player.add_health(item_data)
+				player.get_node("PlayerHealthComponent").hp += item_data
 		elif type == Items.Type.HEART:
 				player.get_node("HealthComponent").hp_max += item_data
 		elif type == Items.Type.DASH:

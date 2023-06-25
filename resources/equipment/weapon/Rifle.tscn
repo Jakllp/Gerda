@@ -38,14 +38,15 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 script = ExtResource("1_p0rhv")
 full_auto = true
 ammo_needed_per_shot = 1
+base_reload_time = 1.5
 base_fire_delay = 0.2
 max_ammo_stored = 125
 mag_size = 25
 reload_time_upgrade_modifier = 20
 fire_delay_upgrade_modifier = 20
 restore_per_craft = 5
-base_damage = 20
-damage_upgrade_modifier = 20
+base_damage = 1
+damage_upgrade_modifier = 1
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_left = -11.0

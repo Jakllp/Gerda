@@ -60,23 +60,23 @@ func on_ore_changed(amount:int) -> void:
 	ore_label.text = str(amount)
 	
 
-func on_player_upgrade_received(type: Upgrade.Player_Upgrade) -> void:
+func on_player_upgrade_received(type: Items.Type) -> void:
 	match type:
-		Upgrade.Player_Upgrade.WALK_SPEED:
+		Items.Type.WALK_SPEED:
 			walk_speed_label.text = str(walk_speed_label.text.to_int() + 1)
-		Upgrade.Player_Upgrade.DASH_COOLDOWN:
+		Items.Type.DASH_COOLDOWN:
 			dash_cooldown_label.text = str(dash_cooldown_label.text.to_int() + 1)
-		Upgrade.Player_Upgrade.MINING_SPEED:
+		Items.Type.MINING_SPEED:
 			mining_speed_label.text = str(mining_speed_label.text.to_int() + 1)
 		
 
-func on_weapon_upgrade_received(type: Upgrade.Weapon_Upgrade) -> void:
+func on_weapon_upgrade_received(type: Items.Type) -> void:
 	match type:
-		Upgrade.Weapon_Upgrade.DAMAGE:
+		Items.Type.DAMAGE:
 			weapon_speed_label.text = str(weapon_speed_label.text.to_int() + 1)
-		Upgrade.Weapon_Upgrade.ATTACK_RATE:
+		Items.Type.ATTACK_RATE:
 			weapon_rate_label.text = str(weapon_rate_label.text.to_int() + 1)
-		Upgrade.Weapon_Upgrade.SPEED:
+		Items.Type.WEAPON_SPEED:
 			weapon_speed_label.text = str(weapon_speed_label.text.to_int() + 1)
 
 
@@ -136,6 +136,7 @@ func on_max_hp_changed(value) -> void:
 			
 
 func on_hp_changed(previous, diff) -> void:
+	printt(previous,diff)
 	var start = floor(previous/2)
 	var end = floor((previous+diff) / 2)
 	var half := bool((previous+diff) % 2)

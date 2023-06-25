@@ -36,12 +36,6 @@ func do_loading_ring(value: float):
 		loading_ring.value = 100.0*value
 	
 
-## Tells the loading_ring to do something
-func do_loading_ring(value: float):
-	if is_instance_valid(loading_ring):
-		loading_ring.value = 100.0*value
-	
-
 func stop_interaction() -> void:
 	crafting_tween.stop()
 	if is_instance_valid(loading_ring):

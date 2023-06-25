@@ -2,26 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<<< HEAD:asset/visual/UI/Mutators.png.import
-uid="uid://d4ijxgpjcoyyw"
+uid="uid://gqe2j8pobfej"
 path="res://.godot/imported/Mutators.png-94fc167b525cba568f6ab2622c25ba5c.ctex"
-========
-uid="uid://02ro2orrlv0l"
-path="res://.godot/imported/ball1.png-207b05005b30ea02f165bceb5c65fa4b.ctex"
->>>>>>>> develop:asset/visual/actor/enemy/worm/ball1.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<<< HEAD:asset/visual/UI/Mutators.png.import
 source_file="res://asset/visual/UI/Mutators.png"
 dest_files=["res://.godot/imported/Mutators.png-94fc167b525cba568f6ab2622c25ba5c.ctex"]
-========
-source_file="res://asset/visual/actor/enemy/worm/ball1.png"
-dest_files=["res://.godot/imported/ball1.png-207b05005b30ea02f165bceb5c65fa4b.ctex"]
->>>>>>>> develop:asset/visual/actor/enemy/worm/ball1.png.import
 
 [params]
 

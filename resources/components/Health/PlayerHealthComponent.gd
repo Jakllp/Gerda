@@ -8,8 +8,10 @@ func set_max_hp(value):
 	max_hp_changed.emit(value)
 
 func set_hp(value):
-	hp_changed.emit(hp, value - hp)
+	var previous = hp
 	super.set_hp(value)
+	if previous != hp:
+		hp_changed.emit(previous, hp - previous)
 	
 
 func die() -> void:
