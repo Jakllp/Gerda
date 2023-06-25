@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-class_name MovingEnity
+class_name MovingEntity
 
 @export var base_speed: int
 @onready var speed: int = base_speed

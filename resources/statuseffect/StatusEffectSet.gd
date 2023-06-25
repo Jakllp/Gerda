@@ -17,11 +17,11 @@ func process(delta: float):
 	for type in effects:
 		effects[type].process(delta, owner)
 		if effects[type].is_life_time_over():
-			effects.erase(type)
+			erase(type)
 	
 
 ## Add a new status effect if its type doesn't already exist (return true). Otherwise the effect will be refreshed (return false).
-func add(type: int) -> bool:
+func add(type :StatusEffectType.Type) -> bool:
 	if effects.has(type):
 		effects[type].refresh()
 		return false
@@ -31,5 +31,7 @@ func add(type: int) -> bool:
 
 
 ## Erase a status effect.
-func erase(type: StatusEffectType) -> bool:
+func erase(type: StatusEffectType.Type) -> bool:
+	effects[type].disable(self.owner)
+	print("Mhhhhhhhh")
 	return effects.erase(type)

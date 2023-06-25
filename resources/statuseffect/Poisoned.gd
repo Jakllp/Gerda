@@ -17,3 +17,10 @@ func process(delta: float, owner) -> void:
 func trigger(owner) -> void:
 	assert(owner is Node and owner.has_node("PlayerHealthComponent"), "Poisoned status effect connected with incompatible type")
 	owner.get_node("PlayerHealthComponent").receive_damage(damage)
+
+
+## Disable
+func disable(owner) -> void:
+	owner.flash_component.standard_color = Color(1,1,1,1)
+	owner.flash_component.standard_modifier = 0.0
+	owner.flash_component.reset_shader_values(owner)

@@ -1,4 +1,4 @@
-extends MovingEnity
+extends MovingEntity
 
 class_name Player
 
@@ -117,16 +117,9 @@ func try_dash() -> void:
 		dash.start_dash(dash_duration, calculated_cooldown)
 		
 		$DashEffect.emitting = true
-		var dash_flash_tween = self.create_tween()
-		dash_flash_tween.tween_method(set_shader_value, 0.8, 0.0, dash_duration)
-		dash_flash_tween.play()
 		
 		dashes_left -= 1
 		print("Dashed - Dashes left: "+str(dashes_left)+"/"+str(dash_max_amount))
-
-
-func set_shader_value(value: float):
-	$SubViewportContainer/SubViewport/AnimatedSprite2D.material.set_shader_parameter("flash_modifier", value)
 
 
 func add_upgrade(upgrade: Items.Type):

@@ -61,4 +61,6 @@ func is_life_time_over() -> bool:
 func trigger(owner) -> void:
 	pass 
 	
-	
+
+func disable(owner) -> void:
+	pass

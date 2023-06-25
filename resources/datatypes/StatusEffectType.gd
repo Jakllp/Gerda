@@ -1,4 +1,7 @@
-extends Node
+extends Object
+
 class_name StatusEffectType
 
-enum {POISONED, SLOW_DOWN}
+enum Type {
+	POISONED,
+	SLOW_DOWN}
