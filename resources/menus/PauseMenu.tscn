@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://cli3ult3yip5x"]
 
-[ext_resource type="Shader" path="res://blur.gdshader" id="1_31qnw"]
-[ext_resource type="Script" path="res://PauseMenu.gd" id="2_2bv3l"]
+[ext_resource type="Shader" path="res://resources/shaders/blur.gdshader" id="1_0pjpq"]
+[ext_resource type="Script" path="res://resources/menus/PauseMenu.gd" id="2_s3r43"]
 [ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="3_modp8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lve6f"]
-shader = ExtResource("1_31qnw")
+shader = ExtResource("1_0pjpq")
 shader_parameter/blur = 2.5
 shader_parameter/brightness = 1.0
 
@@ -143,7 +143,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_2bv3l")
+script = ExtResource("2_s3r43")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 modulate = Color(1, 1, 1, 0)
