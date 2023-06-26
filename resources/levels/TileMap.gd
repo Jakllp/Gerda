@@ -165,4 +165,4 @@ func _on_player_ore_received(amount: int, pos: Vector2) -> void:
 	var ore_text := ore_text_scene.instantiate()
 	ore_text.get_child(0,false).set_text("+"+str(amount))
 	ore_text.global_position = pos
-	owner.add_child(ore_text)
+	owner.get_node("Unshaded").add_child(ore_text)

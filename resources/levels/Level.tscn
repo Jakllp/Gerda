@@ -1,20 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://bj67m0e2wspkr"]
+[gd_scene load_steps=10 format=3 uid="uid://bj67m0e2wspkr"]
 
 [ext_resource type="Script" path="res://resources/levels/Level.gd" id="1_27bjh"]
 [ext_resource type="TileSet" uid="uid://botvhodjv237t" path="res://asset/visual/map/Biom1/Tileset-biom1.tres" id="2_du5bk"]
+[ext_resource type="Shader" path="res://resources/shaders/tilemap.gdshader" id="2_hmlby"]
 [ext_resource type="Script" path="res://resources/levels/TileMap.gd" id="5_e3myb"]
 [ext_resource type="Script" path="res://resources/entity/player/Mole.gd" id="5_gfjft"]
 [ext_resource type="PackedScene" uid="uid://3nw02h1mploy" path="res://resources/menus/Interface.tscn" id="6_ncnat"]
 [ext_resource type="PackedScene" uid="uid://cli3ult3yip5x" path="res://resources/menus/PauseMenu.tscn" id="7_15icr"]
 [ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="8_15nnc"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ihwk"]
+shader = ExtResource("2_hmlby")
+
 [node name="Level" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_27bjh")
 metadata/_edit_horizontal_guides_ = []
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.32549, 0.32549, 0.32549, 1)
+
 [node name="TileMap" type="TileMap" parent="." groups=["map"]]
+light_mask = 3
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_0ihwk")
 tile_set = ExtResource("2_du5bk")
 cell_quadrant_size = 22
 format = 2
@@ -56,5 +65,8 @@ offset_left = 17.0
 offset_top = -6.0
 offset_right = 17.0
 offset_bottom = -6.0
+
+[node name="Unshaded" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
 [connection signal="ore_received" from="Mole" to="TileMap" method="_on_player_ore_received"]

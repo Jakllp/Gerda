@@ -27,6 +27,7 @@ func activate() -> void:
 	hurtbox.get_child(0).shape.size.y += 17
 	hurtbox.get_child(0).position.y -= 10
 	sprite.play("stand")
+	$PointLight2D.energy = 0.1
 	
 
 func deactivate() -> void:
@@ -35,6 +36,7 @@ func deactivate() -> void:
 	hurtbox.get_child(0).position.y += 10
 	await sprite.animation_looped
 	sprite.play("idle")
+	$PointLight2D.energy = 0.0
 
 func check_line_of_sight() -> bool:
 	var player = get_tree().get_first_node_in_group("player")

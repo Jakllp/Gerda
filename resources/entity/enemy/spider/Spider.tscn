@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://c7wsucit56out"]
+[gd_scene load_steps=26 format=3 uid="uid://c7wsucit56out"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/spider/Spider.gd" id="1_cqhnd"]
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="2_2dvxs"]
 [ext_resource type="Texture2D" uid="uid://ry4w8xt4hdw7" path="res://asset/visual/actor/enemy/spider/spider_frame1.png" id="2_v7u1e"]
+[ext_resource type="Texture2D" uid="uid://bjlekwc125i1c" path="res://asset/visual/light/light.png" id="2_xreva"]
 [ext_resource type="Texture2D" uid="uid://cdomgfgihv102" path="res://asset/visual/actor/enemy/spider/spider_frame2.png" id="3_hunbe"]
 [ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="3_rynaa"]
 [ext_resource type="Texture2D" uid="uid://cc4l2oq5y7vse" path="res://asset/visual/actor/enemy/spider/spider_frame3.png" id="4_ra0ne"]
@@ -80,6 +81,15 @@ attack_speed = 7.0
 attack_cooldown = 0.8
 metadata/_edit_horizontal_guides_ = []
 metadata/_edit_vertical_guides_ = [-10.0]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+color = Color(1, 0, 0, 1)
+energy = 0.05
+range_item_cull_mask = 3
+texture = ExtResource("2_xreva")
+texture_scale = 0.5
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_left = -19.0

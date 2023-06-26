@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://bumgkqge3x8or"]
+[gd_scene load_steps=25 format=3 uid="uid://bumgkqge3x8or"]
 
 [ext_resource type="Script" path="res://resources/entity/player/Player.gd" id="1_to1al"]
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="3_j32ei"]
+[ext_resource type="Texture2D" uid="uid://bjlekwc125i1c" path="res://asset/visual/light/light.png" id="4_fqb7u"]
 [ext_resource type="Texture2D" uid="uid://dx3qnu570p8hx" path="res://asset/visual/actor/char/mole/mole_frame1.png" id="5_axsko"]
 [ext_resource type="Texture2D" uid="uid://n855g5htet0y" path="res://asset/visual/actor/char/mole/mole_frame2.png" id="6_lghal"]
 [ext_resource type="PackedScene" uid="uid://b8lir4ggu15da" path="res://resources/particles/DashEffect.tscn" id="7_aujcr"]
@@ -104,6 +105,22 @@ walk_speed_upgrade_modifier = 10
 dash_cooldown_upgrade_modifier = 0.1
 base_speed = 100
 metadata/_edit_horizontal_guides_ = [-16.0]
+
+[node name="ShadowLight" type="PointLight2D" parent="."]
+light_mask = 9
+position = Vector2(2.5, -8.5)
+color = Color(0.870588, 0.909804, 0.945098, 1)
+energy = 0.4
+shadow_enabled = true
+shadow_color = Color(0.427451, 0.427451, 0.427451, 0)
+texture = ExtResource("4_fqb7u")
+
+[node name="GeneralLight" type="PointLight2D" parent="."]
+light_mask = 9
+position = Vector2(2.5, -8.5)
+energy = 0.2
+range_item_cull_mask = 2
+texture = ExtResource("4_fqb7u")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_left = -16.0
