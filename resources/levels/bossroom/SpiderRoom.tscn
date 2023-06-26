@@ -45,7 +45,6 @@ metadata/_edit_horizontal_guides_ = [220.0, 440.0]
 position = Vector2(473, 297)
 
 [node name="StompAreaLeft" type="Area2D" parent="SpiderBoss"]
-visible = false
 position = Vector2(-67, -36)
 collision_layer = 0
 collision_mask = 2
@@ -56,7 +55,6 @@ shape = SubResource("RectangleShape2D_l140e")
 debug_color = Color(0.513726, 0.576471, 0.0196078, 0.419608)
 
 [node name="StompAreaRight" type="Area2D" parent="SpiderBoss"]
-visible = false
 position = Vector2(67, -36)
 collision_layer = 0
 collision_mask = 2
@@ -67,7 +65,6 @@ shape = SubResource("RectangleShape2D_l140e")
 debug_color = Color(0.513726, 0.576471, 0.0196078, 0.419608)
 
 [node name="SweepArea" type="Area2D" parent="SpiderBoss"]
-visible = false
 position = Vector2(0, 61)
 collision_layer = 0
 collision_mask = 2
@@ -79,7 +76,6 @@ shape = SubResource("RectangleShape2D_bafld")
 debug_color = Color(0.976471, 0.0901961, 0.333333, 0.419608)
 
 [node name="LandingZoneLeft" type="Area2D" parent="SpiderBoss"]
-visible = false
 position = Vector2(-67, 55)
 collision_layer = 0
 collision_mask = 0
@@ -91,7 +87,6 @@ shape = SubResource("RectangleShape2D_u4bnd")
 debug_color = Color(1, 1, 1, 0.419608)
 
 [node name="LandingZoneRight" type="Area2D" parent="SpiderBoss"]
-visible = false
 position = Vector2(67, 55)
 collision_layer = 0
 collision_mask = 0
@@ -121,7 +116,6 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_gfec1")
 
 [node name="ClosingBlock1" type="Area2D" parent="."]
-visible = false
 position = Vector2(473, 451)
 collision_layer = 0
 collision_mask = 2
@@ -131,7 +125,6 @@ monitorable = false
 shape = SubResource("RectangleShape2D_b8rwl")
 
 [node name="ClosingBlock2" type="Area2D" parent="."]
-visible = false
 position = Vector2(473, 429)
 collision_layer = 0
 collision_mask = 2
@@ -141,7 +134,6 @@ monitorable = false
 shape = SubResource("RectangleShape2D_b8rwl")
 
 [node name="ClosingBlock3" type="Area2D" parent="."]
-visible = false
 position = Vector2(473, 407)
 collision_layer = 0
 collision_mask = 2
@@ -151,7 +143,6 @@ monitorable = false
 shape = SubResource("RectangleShape2D_b8rwl")
 
 [node name="ClosingBlock4" type="Area2D" parent="."]
-visible = false
 position = Vector2(473, 385)
 collision_layer = 0
 collision_mask = 2
@@ -161,7 +152,6 @@ monitorable = false
 shape = SubResource("RectangleShape2D_b8rwl")
 
 [node name="ClosingBlock5" type="Area2D" parent="."]
-visible = false
 position = Vector2(473, 363)
 collision_layer = 0
 collision_mask = 2

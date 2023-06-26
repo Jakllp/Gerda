@@ -801,7 +801,6 @@ sprite_frames = SubResource("SpriteFrames_mwnmt")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_0q7vx")
 
@@ -866,7 +865,6 @@ libraries = {
 }
 
 [node name="LegRight" parent="." instance=ExtResource("14_e5052")]
-visible = false
 position = Vector2(6, 7)
 rotation = -0.785398
 collision_layer = 20
@@ -893,7 +891,6 @@ speed_scale = 6.0
 local_coords = true
 
 [node name="LegLeft" parent="." instance=ExtResource("14_e5052")]
-visible = false
 position = Vector2(-6, 7)
 rotation = 0.785398
 collision_layer = 20
@@ -920,7 +917,6 @@ speed_scale = 6.0
 local_coords = true
 
 [node name="HitboxAndBody" parent="." instance=ExtResource("14_e5052")]
-visible = false
 collision_layer = 20
 
 [node name="CollisionShape2D1" type="CollisionShape2D" parent="HitboxAndBody"]
