@@ -5,20 +5,19 @@ var world_mutators = []
 var enemy_mutators = []
 var speed_mutators = []
 
-
 ## Returns an array with unique random mutator and strength-combos of the wanted size
 func get_random_mutators(amount :int) -> Array:
 	var types_with_strength = {}
 	while types_with_strength.size() < amount:
 		var type = randi_range(0, Mutator.MutatorType.size()-1)
 		var strength = randi_range(0,2)
-		if not types_with_strength.has(type) and types_with_strength[type] != strength:
+		if (types_with_strength.has(type) and types_with_strength[type] != strength) or not types_with_strength.has(type):
 			# Not yet picked -> add it to dict
 			types_with_strength[type] = strength
 	
 	var array = []
 	for wanted_mutator in types_with_strength:
-		array.add(Mutator.new(wanted_mutator, types_with_strength[wanted_mutator]))
+		array.append(Mutator.new(wanted_mutator, types_with_strength[wanted_mutator]))
 	return array
 
 
@@ -58,3 +57,7 @@ func get_modifier_for_type(type :Mutator.MutatorType, for_addition :bool = false
 			else:
 				combined_modifier *= mutator.modifier
 	return combined_modifier
+
+
+func get_active_mutators() -> Array:
+	return world_mutators + enemy_mutators + speed_mutators

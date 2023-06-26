@@ -8,6 +8,7 @@ var category :MutatorCategory
 var modifier :float
 var title :String
 var description :String
+var texture :Vector2
 
 const modifier_dict = {
 	MutatorType.HARDENED_STONE: 	[1.5,2.0,2.5],
@@ -39,7 +40,18 @@ const description_dict = {
 	MutatorType.DAMAGE_PLUS: "That's a lot of damage!",
 	MutatorType.HEALTH_PLUS: "Did they buy armor?",
 	MutatorType.SPEED_UP: "Gotta go fast!",
-	MutatorType.SPEED_DOWN: "You gotta slow down sometimes"
+	MutatorType.SPEED_DOWN: "You gotta slow down sometimes."
+}
+
+const tex_dict = {
+	MutatorType.HARDENED_STONE: 30,
+	MutatorType.LESS_ORE: 40,
+	MutatorType.MORE_STONE: 50,
+	MutatorType.SPAWN_PLUS: 0,
+	MutatorType.DAMAGE_PLUS: 10,
+	MutatorType.HEALTH_PLUS: 20,
+	MutatorType.SPEED_UP: 70,
+	MutatorType.SPEED_DOWN: 60
 }
 
 const category_dict = {
@@ -76,6 +88,7 @@ func _init(wanted_type :MutatorType, strength :int):
 	self.modifier = modifier_dict[wanted_type][strength]
 	self.title = title_dict[wanted_type]
 	self.description = description_dict[wanted_type]
+	self.texture = Vector2i(get_tex_x(strength), tex_dict[wanted_type])
 
 
 ## Returns the category of a type
@@ -88,3 +101,15 @@ static func category_for_type(type :MutatorType) -> MutatorCategory:
 ## Returns an array of all MutatorTypes in the given MutatorCategory
 static func types_for_category(category :MutatorCategory) -> Array:
 	return category_dict[category]
+
+
+static func get_tex_x(strength :int) -> int:
+	match strength:
+		0:
+			return 24
+		1:
+			return 12
+		2:
+			return 0
+		_:
+			return 0

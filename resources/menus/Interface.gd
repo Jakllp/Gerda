@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 const atlas := preload("res://asset/visual/UI/HUD_Elements.png")
+const mutator_atlas := preload("res://asset/visual/UI/Mutators.png")
 
 var dash_full_tex := AtlasTexture.new()
 var dash_empty_tex := AtlasTexture.new()
@@ -10,6 +11,7 @@ var heart_full_tex := AtlasTexture.new()
 var heart_half_tex := AtlasTexture.new()
 var heart_empty_tex := AtlasTexture.new()
 const minimum_heart_size := Vector2(40,40)
+const minimum_mutator_size := Vector2(66, 54)
 
 @onready var ore_label = $Right/Ore/Amount/Ore
 @onready var mining_speed_label = $Left/PlayerUpgrades/Upgrade1/Amount/MiningSpeed
@@ -22,6 +24,7 @@ const minimum_heart_size := Vector2(40,40)
 @onready var ammo_label = $Bottom/VBoxContainer/WeaponInfo/Ammo/RemainingAmmo
 @onready var dashes = $Bottom/VBoxContainer/Dashes
 @onready var health = $Left/Health
+@onready var mutators = $Right/Mutators
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -54,6 +57,9 @@ func _ready():
 	player.dashes_left_changed.connect(on_dashes_left_changed)
 	player.get_node("PlayerHealthComponent").max_hp_changed.connect(on_max_hp_changed)
 	player.get_node("PlayerHealthComponent").hp_changed.connect(on_hp_changed)
+	
+	for mutator in MutatorManager.get_active_mutators():#
+		self.add_mutator(mutator)
 	
 
 func on_ore_changed(amount:int) -> void:
@@ -149,7 +155,16 @@ func on_hp_changed(previous, diff) -> void:
 			health.get_child(i).texture = heart_empty_tex
 	if half:
 		health.get_child(end).texture = heart_half_tex
-		
+
+
+func add_mutator(mutator) -> void:
+	var mutator_tex_rec = TextureRect.new()
+	var mutator_tex = AtlasTexture.new()
+	mutator_tex.atlas = mutator_atlas
+	mutator_tex_rec.custom_minimum_size = minimum_mutator_size
+	mutator_tex.region = Rect2(mutator.texture,Vector2(11, 9))
+	mutator_tex_rec.texture = mutator_tex
+	mutators.add_child(mutator_tex_rec)
 
 #var amount = 8
 #var diff = 4
