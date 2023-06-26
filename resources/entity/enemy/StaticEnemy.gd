@@ -6,13 +6,16 @@ class_name StaticEnemy
 func _ready() -> void:
 	$AttackRange.process_mode = Node.PROCESS_MODE_ALWAYS
 	process_mode = Node.PROCESS_MODE_DISABLED
+	$Hitbox.damage = 1
 
 
 func attack() -> void:
 	pass
 
+
 func activate() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
+
 
 func deactivate() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
