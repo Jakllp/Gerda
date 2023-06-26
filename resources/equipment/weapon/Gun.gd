@@ -56,10 +56,26 @@ func do_rotation(player: Player):
 # Starts the Reload-Timer
 func trigger_reload():
 	if ammo_stored > 0 and reload_timer.is_stopped():
-		print("Reloading...")
 		var reload_time = base_reload_time - (base_reload_time * reload_time_upgrade_modifier/100) * active_upgrades[Items.Type.WEAPON_SPEED]
+		
+		# Animation
+		print("animation in")
+		do_animation(reload_time)
+		print("animation out")
+		
 		reload_timer.wait_time = reload_time
 		reload_timer.start()
+
+
+func do_animation(time) -> void:
+	var loading_ring :TextureProgressBar = preload("res://resources/other/LoadingRing.tscn").instantiate()
+	owner.add_child(loading_ring)
+	loading_ring.position.y -= 17
+	loading_ring.position.x -= -2
+	var reload_tween :Tween = loading_ring.create_tween()
+	reload_tween.tween_property(loading_ring, 'value', 100, time)
+	reload_tween.tween_callback(loading_ring.queue_free)
+	reload_tween.play()
 
 
 # Triggered by Reload-Timer
@@ -73,7 +89,6 @@ func reload() -> void:
 		# Not enough to fill completely -> Empty store
 		mag_contents += ammo_stored
 		ammo_stored = 0
-	print("Reloaded! "+str(mag_contents)+"/"+str(ammo_stored))
 
 
 func needs_crafting() -> bool:
