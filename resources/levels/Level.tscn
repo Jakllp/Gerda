@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bj67m0e2wspkr"]
+[gd_scene load_steps=10 format=3 uid="uid://bj67m0e2wspkr"]
 
 [ext_resource type="Script" path="res://resources/levels/Level.gd" id="1_27bjh"]
-[ext_resource type="Shader" path="res://resources/shaders/tilemap.gdshader" id="2_hmlby"]
 [ext_resource type="TileSet" uid="uid://botvhodjv237t" path="res://asset/visual/map/Biom1/Tileset-biom1.tres" id="2_du5bk"]
+[ext_resource type="Shader" path="res://resources/shaders/tilemap.gdshader" id="2_hmlby"]
 [ext_resource type="Script" path="res://resources/levels/TileMap.gd" id="5_e3myb"]
 [ext_resource type="Script" path="res://resources/entity/player/Mole.gd" id="5_gfjft"]
 [ext_resource type="PackedScene" uid="uid://3nw02h1mploy" path="res://resources/menus/Interface.tscn" id="6_ncnat"]
