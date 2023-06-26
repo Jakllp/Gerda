@@ -22,7 +22,6 @@ func attack() -> void:
 		sprite.stop()
 		
 		attack_range_shape.radius = 0.0
-		hitbox_shape.radius = 0.0
 		
 		var direction = velocity.normalized()
 		var jump_to: Vector2 = position + direction * attack_range_radius
@@ -30,6 +29,7 @@ func attack() -> void:
 		
 		attack_tween = self.create_tween()
 		attack_tween.tween_property(self, "position", jump_to, 1/attack_speed).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		hitbox_shape.radius = 0.0
 		attack_tween.tween_property(self, "position", jump_back_to, attack_cooldown).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		attack_tween.tween_callback(stop_attack)
 
