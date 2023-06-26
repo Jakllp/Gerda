@@ -25,12 +25,16 @@ func set_hp(value):
 
 
 func die() -> void:
-	owner.queue_free()
+	if owner.has_method("die"):
+		owner.die()
+	else:
+		owner.queue_free()
 	
 
 func receive_damage(damage: int) -> void:
-	if damage == 0: return
+	if damage == 0 or hp <= 0: return
 	self.hp -= damage
+	printt("damage", damage)
 	owner.flash_component.flash(owner)
 
 

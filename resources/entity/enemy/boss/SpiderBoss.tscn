@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://degtdv32h4l78" path="res://asset/visual/actor/enemy/bosses/spider/spider.png" id="1_p0dbh"]
 [ext_resource type="Script" path="res://resources/entity/enemy/boss/SpiderBoss.gd" id="1_yatep"]
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="2_5b7iq"]
-[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/HealthComponent.tscn" id="2_cdbxo"]
+[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/Health/HealthComponent.tscn" id="2_cdbxo"]
 [ext_resource type="PackedScene" uid="uid://c7wsucit56out" path="res://resources/entity/enemy/spider/Spider.tscn" id="2_nv0qh"]
 [ext_resource type="Texture2D" uid="uid://dsmhdnxxq06ip" path="res://asset/visual/actor/enemy/bosses/spider/spider_stomp_attack_left.png" id="3_u6abb"]
 [ext_resource type="Texture2D" uid="uid://oyg3vri3ynej" path="res://asset/visual/actor/enemy/bosses/spider/spider_stomp_attack_right.png" id="4_0gdpo"]
