@@ -88,3 +88,6 @@ autoplay = "torch"
 libraries = {
 "": SubResource("AnimationLibrary_3tu30")
 }
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-40, -80, 80, 120)
