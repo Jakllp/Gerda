@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://ccw8srwjtopn3" path="res://asset/visual/actor/enemy/bosses/spider/spider_sweep_leg_left.png" id="16_j7q28"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wgioq"]
+resource_local_to_scene = true
 shader = ExtResource("2_5b7iq")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
@@ -758,7 +759,7 @@ height = 17.008
 size = Vector2(3.3039, 9.11431)
 
 [node name="SpiderBoss" type="StaticBody2D"]
-y_sort_enabled = true
+z_index = 2
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_yatep")
@@ -795,6 +796,7 @@ size = Vector2i(68, 68)
 render_target_update_mode = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_wgioq")
 position = Vector2(33, 33)
 sprite_frames = SubResource("SpriteFrames_mwnmt")
