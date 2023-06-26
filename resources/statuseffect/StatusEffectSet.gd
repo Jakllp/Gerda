@@ -33,5 +33,4 @@ func add(type :StatusEffectType.Type) -> bool:
 ## Erase a status effect.
 func erase(type: StatusEffectType.Type) -> bool:
 	effects[type].disable(self.owner)
-	print("Mhhhhhhhh")
 	return effects.erase(type)

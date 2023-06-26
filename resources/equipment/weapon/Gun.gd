@@ -59,9 +59,7 @@ func trigger_reload():
 		var reload_time = base_reload_time - (base_reload_time * reload_time_upgrade_modifier/100) * active_upgrades[Items.Type.WEAPON_SPEED]
 		
 		# Animation
-		print("animation in")
 		do_animation(reload_time)
-		print("animation out")
 		
 		reload_timer.wait_time = reload_time
 		reload_timer.start()

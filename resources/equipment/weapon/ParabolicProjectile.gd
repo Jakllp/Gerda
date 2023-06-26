@@ -26,6 +26,7 @@ var velocity: float
 
 func _ready():
 	$PathFollow2D/Hitbox.damage = damage
+	$PathFollow2D/Hitbox/CollisionShape2D.disabled = true
 	length = curve.get_baked_length()
 	peak_ratio = get_peak_ratio()
 	alpha_factor = get_alpha_factor()
@@ -35,6 +36,10 @@ func _ready():
 
 func _physics_process(delta) -> void:
 	follow.progress += delta_progress_of(follow.progress)
+	
+	# Avoids hitting something mid-air
+	if follow.progress_ratio >= 0.9:
+		$PathFollow2D/Hitbox/CollisionShape2D.disabled = false
 	
 	if follow.progress_ratio == 1:
 		release()
