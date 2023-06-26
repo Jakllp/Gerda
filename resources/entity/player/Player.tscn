@@ -109,7 +109,7 @@ metadata/_edit_horizontal_guides_ = [-16.0]
 [node name="ShadowLight" type="PointLight2D" parent="."]
 light_mask = 9
 position = Vector2(2.5, -8.5)
-color = Color(0.717647, 0.717647, 0.717647, 1)
+color = Color(0.870588, 0.909804, 0.945098, 1)
 energy = 0.4
 shadow_enabled = true
 shadow_color = Color(0.427451, 0.427451, 0.427451, 0)

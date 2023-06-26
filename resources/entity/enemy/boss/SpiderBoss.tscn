@@ -1,12 +1,13 @@
-[gd_scene load_steps=64 format=3 uid="uid://cr8tpgkgfgxkp"]
+[gd_scene load_steps=65 format=3 uid="uid://cr8tpgkgfgxkp"]
 
 [ext_resource type="Texture2D" uid="uid://7xmrgs07i4ax" path="res://asset/visual/actor/enemy/bosses/spider/spider_spit_attack.png" id="1_8ygr1"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="1_bhyfc"]
 [ext_resource type="Texture2D" uid="uid://degtdv32h4l78" path="res://asset/visual/actor/enemy/bosses/spider/spider.png" id="1_p0dbh"]
 [ext_resource type="Script" path="res://resources/entity/enemy/boss/SpiderBoss.gd" id="1_yatep"]
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="2_5b7iq"]
-[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/HealthComponent.tscn" id="2_cdbxo"]
+[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/Health/HealthComponent.tscn" id="2_cdbxo"]
 [ext_resource type="PackedScene" uid="uid://c7wsucit56out" path="res://resources/entity/enemy/spider/Spider.tscn" id="2_nv0qh"]
+[ext_resource type="Texture2D" uid="uid://bjlekwc125i1c" path="res://asset/visual/light/light.png" id="3_gtulu"]
 [ext_resource type="Texture2D" uid="uid://dsmhdnxxq06ip" path="res://asset/visual/actor/enemy/bosses/spider/spider_stomp_attack_left.png" id="3_u6abb"]
 [ext_resource type="Texture2D" uid="uid://oyg3vri3ynej" path="res://asset/visual/actor/enemy/bosses/spider/spider_stomp_attack_right.png" id="4_0gdpo"]
 [ext_resource type="PackedScene" uid="uid://m457godntx4l" path="res://resources/components/ParabolicShooterComponent.tscn" id="5_frlwr"]
@@ -22,7 +23,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wgioq"]
 shader = ExtResource("2_5b7iq")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_modifier = 1.0
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mwnmt"]
 animations = [{
@@ -765,6 +766,17 @@ lackey_scene = ExtResource("2_nv0qh")
 metadata/_edit_horizontal_guides_ = [-33.0, 33.0]
 metadata/_edit_vertical_guides_ = [-33.0, 33.0]
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, -25)
+color = Color(1, 0, 0, 1)
+energy = 0.7
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_color = Color(0.427451, 0.427451, 0.427451, 0)
+texture = ExtResource("3_gtulu")
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_left = -33.0
 offset_top = -33.0
@@ -789,6 +801,7 @@ sprite_frames = SubResource("SpriteFrames_mwnmt")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_0q7vx")
 
@@ -853,6 +866,7 @@ libraries = {
 }
 
 [node name="LegRight" parent="." instance=ExtResource("14_e5052")]
+visible = false
 position = Vector2(6, 7)
 rotation = -0.785398
 collision_layer = 20
@@ -879,6 +893,7 @@ speed_scale = 6.0
 local_coords = true
 
 [node name="LegLeft" parent="." instance=ExtResource("14_e5052")]
+visible = false
 position = Vector2(-6, 7)
 rotation = 0.785398
 collision_layer = 20
@@ -905,6 +920,7 @@ speed_scale = 6.0
 local_coords = true
 
 [node name="HitboxAndBody" parent="." instance=ExtResource("14_e5052")]
+visible = false
 collision_layer = 20
 
 [node name="CollisionShape2D1" type="CollisionShape2D" parent="HitboxAndBody"]
