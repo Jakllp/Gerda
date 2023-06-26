@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bhhe6rsoqype5" path="res://asset/visual/UI/LoadingRing.png" id="1_x3g3b"]
 
 [node name="LoadingRing" type="TextureProgressBar"]
-z_index = 25
+z_index = 200
 offset_left = -7.0
 offset_top = -7.0
 offset_right = 7.0

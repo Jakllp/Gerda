@@ -12,11 +12,26 @@ class_name Gun
 @export var reload_time_upgrade_modifier :int
 ## How many percent (in relation to base_fire_delay) faster you can shoot per upgrade 
 @export var fire_delay_upgrade_modifier :int
-@onready var mag_contents :int = mag_size
-@onready var ammo_stored :int = max_ammo_stored
+@onready var mag_contents :int:
+	set(value):
+		mag_contents_changed.emit(value)
+		mag_contents = value
+@onready var ammo_stored :int:
+	set(value):
+		ammo_stored_changed.emit(value)
+		ammo_stored = value
 
 @onready var reload_timer :Timer = $ReloadTimer
 @onready var fire_rate_timer :Timer = $FireRateTimer
+
+signal mag_contents_changed(value)
+signal ammo_stored_changed(value)
+
+
+func _ready() -> void:
+	super._ready()
+	mag_contents = mag_size
+	ammo_stored = max_ammo_stored
 
 
 func update(player: Player) -> void:
@@ -42,7 +57,7 @@ func do_rotation(player: Player):
 func trigger_reload():
 	if ammo_stored > 0 and reload_timer.is_stopped():
 		print("Reloading...")
-		var reload_time = base_reload_time - (base_reload_time * reload_time_upgrade_modifier/100) * active_upgrades[Upgrade.Weapon_Upgrade.SPEED]
+		var reload_time = base_reload_time - (base_reload_time * reload_time_upgrade_modifier/100) * active_upgrades[Items.Type.WEAPON_SPEED]
 		reload_timer.wait_time = reload_time
 		reload_timer.start()
 

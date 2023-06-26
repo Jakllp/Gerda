@@ -31,7 +31,7 @@ func mine(delta: float, collision: RayCast2D, player:Player=null) -> int:
 		# Actually mine (aka reduce health of that point)
 		var was_ore :bool
 		if(player!=null):
-			var speedup = (base_mining_speed * mining_speed_upgrade_modifier/100) * player.active_upgrades[Upgrade.Player_Upgrade.MINING_SPEED]
+			var speedup = (base_mining_speed * mining_speed_upgrade_modifier/100) * player.active_upgrades[Items.Type.MINING_SPEED]
 			was_ore = map.damage_cell(cell, delta * base_mining_speed + speedup)
 		else:
 			was_ore = map.damage_cell(cell, delta * base_mining_speed)

@@ -147,6 +147,11 @@ static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer 
 						# It's a Top-Block -> Needs special Hitbox (alt) and Ground
 						alt = 1
 						map.set_ground(cur_cell, 1)
+					if y == level_height-1:
+						# Special handling for bottom row - that one must be converted to "middle-block"
+						var bottom_cell = map.get_neighbor_cell(cur_cell,TileSet.CELL_NEIGHBOR_BOTTOM_SIDE)
+						map.set_cell(block_layer,bottom_cell,block_atlas, map.get_cell_atlas_coords(block_layer, bottom_cell), 0)
+						map.erase_cell(ground_layer, bottom_cell)
 					# Set the block with the needed alternative
 					map.set_cell(block_layer,cur_cell,block_atlas, Vector2i(0,0), alt)
 				BlockType.ORE:
@@ -158,6 +163,11 @@ static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer 
 						# It's a Top-Block -> Needs special Hitbox (alt) and Ground
 						alt = 1
 						map.set_ground(cur_cell, 1)
+					if y == level_height-1:
+						# Special handling for bottom row - that one must be converted to "middle-block"
+						var bottom_cell = map.get_neighbor_cell(cur_cell,TileSet.CELL_NEIGHBOR_BOTTOM_SIDE)
+						map.set_cell(block_layer,bottom_cell,block_atlas, map.get_cell_atlas_coords(block_layer, bottom_cell), 0)
+						map.erase_cell(ground_layer, bottom_cell)
 					# Set the block with the needed alternative
 					map.set_cell(block_layer,cur_cell,block_atlas, Vector2i(1,0), alt)
 				_:
@@ -167,9 +177,9 @@ static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer 
 ## Get's the block type of a given height-combination
 static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 	# The lower this number the more blocks you get
-	if height <= -0.075:
+	if height <= -0.075 * MutatorManager.get_modifier_for_type(Mutator.MutatorType.MORE_STONE):
 		return BlockType.GROUND
-	elif height_ore > 0.425:
+	elif height_ore > 0.425 * MutatorManager.get_modifier_for_type(Mutator.MutatorType.LESS_ORE):
 		return BlockType.ORE
 	else:
 		return BlockType.BLOCK

@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="4_uo85l"]
 [ext_resource type="Texture2D" uid="uid://qmej8xpve0gn" path="res://asset/visual/actor/enemy/spider/spider_frame4.png" id="5_avrct"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="5_lr3uh"]
-[ext_resource type="Script" path="res://resources/components/HealthComponent.gd" id="5_ras38"]
+[ext_resource type="Script" path="res://resources/components/Health/HealthComponent.gd" id="5_ras38"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="6_53m54"]
 [ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="7_kdrew"]
 [ext_resource type="PackedScene" path="res://resources/entity/enemy/behaviorTree/movement/NormalEnemyMovement.tscn" id="7_l4mod"]
@@ -55,15 +55,19 @@ shader = ExtResource("8_u5bar")
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qye2k"]
+resource_local_to_scene = true
 radius = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkdua"]
+resource_local_to_scene = true
 size = Vector2(28, 18)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_55xr7"]
+resource_local_to_scene = true
 radius = 25.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkay6"]
+resource_local_to_scene = true
 radius = 6.0
 
 [node name="Spider" type="CharacterBody2D" groups=["enemy"]]

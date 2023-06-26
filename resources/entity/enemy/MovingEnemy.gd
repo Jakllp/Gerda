@@ -2,8 +2,9 @@ extends CharacterBody2D
 
 class_name MovingEnemy
 
-## speed of the enemy
-@export var speed: int = 60
+## base_speed of the enemy
+var base_speed: int = 60
+var speed = base_speed
 ## For melee attacks the time it takes to execute the actual attack
 ## For ranged attacks the velocity of the projectile
 @export var attack_speed: float
@@ -26,9 +27,10 @@ func _ready() -> void:
 	sprite.play()
 	nav_agent.radius = ShapeHelper.get_shape_radius($CollisionShape2D.shape)
 	$BTBlackboard.set_data("walked_distance", 0)
+	$Hitbox.damage = 1
 
 func _physics_process(delta: float) -> void:
-	pass
+	speed = base_speed * (MutatorManager.get_modifier_for_type(Mutator.MutatorType.SPEED_UP) / MutatorManager.get_modifier_for_type(Mutator.MutatorType.SPEED_DOWN))
 	
 
 func attack() -> void:

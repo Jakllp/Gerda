@@ -21,6 +21,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_djmju"]
+resource_local_to_scene = true
 size = Vector2(12, 12)
 
 [node name="Path2D" type="Path2D"]

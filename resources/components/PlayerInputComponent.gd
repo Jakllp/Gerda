@@ -34,3 +34,4 @@ func check_for_equip_use(player: Player, delta: float) -> void:
 func check_dash(player: Player) -> void:
 	if Input.is_action_just_pressed("dash"):
 		player.try_dash()
+		

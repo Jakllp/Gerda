@@ -5,7 +5,11 @@ var containing_bodies: Array
 
 ## Puts the poisoned status effect on the body inside
 func apply_effect(body) -> void:
-	body.status_effects.add(StatusEffectType.POISONED)
+	body.status_effects.add(StatusEffectType.Type.POISONED)
+	body.flash_component.standard_color = Color(0.0955,0.9045,0.0,1)
+	body.flash_component.standard_modifier = 0.2
+	body.flash_component.reset_shader_values(body)
+		
 
 
 func _on_area_entered(area):

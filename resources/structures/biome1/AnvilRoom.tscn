@@ -199,7 +199,6 @@ sources/1 = SubResource("TileSetAtlasSource_0ey7l")
 sources/3 = SubResource("TileSetAtlasSource_ex2jo")
 
 [node name="Map" type="TileMap"]
-y_sort_enabled = true
 tile_set = SubResource("TileSet_u0tmd")
 format = 2
 layer_0/name = "ground"
