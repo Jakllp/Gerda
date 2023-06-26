@@ -51,6 +51,10 @@ script = ExtResource("5_gfjft")
 
 [node name="Interface" parent="Mole" instance=ExtResource("6_ncnat")]
 
-[node name="PauseMenu" parent="Mole" instance=ExtResource("7_15icr")]
+[node name="PauseMenu" parent="Mole/Interface" instance=ExtResource("7_15icr")]
+offset_left = 17.0
+offset_top = -6.0
+offset_right = 17.0
+offset_bottom = -6.0
 
 [connection signal="ore_received" from="Mole" to="TileMap" method="_on_player_ore_received"]
