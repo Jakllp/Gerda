@@ -72,7 +72,7 @@ enum MutatorType {
 ## Strength levels: 0,1,2
 func _init(wanted_type :MutatorType, strength :int):
 	self.type = wanted_type
-	self.category = category_for_type(wanted_type)
+	self.category = Mutator.category_for_type(wanted_type)
 	self.modifier = modifier_dict[wanted_type][strength]
 	self.title = title_dict[wanted_type]
 	self.description = description_dict[wanted_type]
