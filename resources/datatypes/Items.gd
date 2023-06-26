@@ -177,22 +177,22 @@ func get_item_sprite(type: Type) -> Sprite2D:
 			texture.region.position = Vector2(0,0)
 			texture.region.size = Vector2(8,8)
 		Type.WALK_SPEED:
-			texture.region.position = Vector2(16,0)
-			texture.region.size = Vector2(8,8)
-		Type.DASH_COOLDOWN:
 			texture.region.position = Vector2(16,8)
 			texture.region.size = Vector2(8,8)
-		Type.MINING_SPEED:
+		Type.DASH_COOLDOWN:
 			texture.region.position = Vector2(16,16)
 			texture.region.size = Vector2(8,8)
-		Type.DAMAGE:
-			texture.region.position = Vector2(8,0)
+		Type.MINING_SPEED:
+			texture.region.position = Vector2(16,0)
 			texture.region.size = Vector2(8,8)
-		Type.ATTACK_RATE:
+		Type.DAMAGE:
 			texture.region.position = Vector2(8,8)
 			texture.region.size = Vector2(8,8)
-		Type.WEAPON_SPEED:
+		Type.ATTACK_RATE:
 			texture.region.position = Vector2(8,16)
+			texture.region.size = Vector2(8,8)
+		Type.WEAPON_SPEED:
+			texture.region.position = Vector2(8,0)
 			texture.region.size = Vector2(8,8)
 		Type.HEART:
 			texture.region.position = Vector2(0,0)
