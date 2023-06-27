@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://boytwf61lt6q5"]
+
+[ext_resource type="Script" path="res://resources/other/PopUp.gd" id="1_1qcj4"]
+
+[node name="ItemPopUp" type="Node2D"]
+z_index = 200
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_1qcj4")
+
+[node name="Icon" type="TextureRect" parent="."]
+offset_left = -5.33333
+offset_top = -5.33333
+offset_right = 5.66667
+offset_bottom = 5.66667
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 0.35
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_timer_timeout"]

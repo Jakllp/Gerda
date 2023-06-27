@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://ddc6bd52exuw0"]
 
-[ext_resource type="Script" path="res://resources/other/OreText.gd" id="1_okmb0"]
+[ext_resource type="Script" path="res://resources/other/PopUp.gd" id="1_1taj5"]
 
 [node name="ore_text" type="Node2D"]
 z_index = 200
 scale = Vector2(0.75, 0.75)
-script = ExtResource("1_okmb0")
+script = ExtResource("1_1taj5")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -9.33333
