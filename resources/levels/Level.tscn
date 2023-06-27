@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bj67m0e2wspkr"]
 
-[ext_resource type="Script" path="res://resources/levels/Level.gd" id="1_27bjh"]
+[ext_resource type="Script" path="res://resources/levels/GameWorld.gd" id="1_v2agj"]
 [ext_resource type="TileSet" uid="uid://botvhodjv237t" path="res://asset/visual/map/Biom1/Tileset-biom1.tres" id="2_du5bk"]
 [ext_resource type="Shader" path="res://resources/shaders/tilemap.gdshader" id="2_hmlby"]
 [ext_resource type="Script" path="res://resources/levels/TileMap.gd" id="5_e3myb"]
@@ -12,9 +12,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ihwk"]
 shader = ExtResource("2_hmlby")
 
-[node name="Level" type="Node2D"]
+[node name="GameWorld" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_27bjh")
+script = ExtResource("1_v2agj")
 metadata/_edit_horizontal_guides_ = []
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -51,19 +51,19 @@ y_sort_enabled = true
 [node name="Decor" type="Node2D" parent="TileMap" groups=["stuff_on_map"]]
 y_sort_enabled = true
 
-[node name="Enemies" type="Node2D" parent="TileMap" groups=["stuff_on_map"]]
+[node name="Enemies" type="Node2D" parent="TileMap" groups=["enemies", "stuff_on_map"]]
 y_sort_enabled = true
 
 [node name="Projectiles" type="Node2D" parent="TileMap" groups=["stuff_on_map"]]
 y_sort_enabled = true
 
-[node name="Mole" parent="." instance=ExtResource("8_15nnc")]
+[node name="Player" parent="." instance=ExtResource("8_15nnc")]
 position = Vector2(17, -6)
 script = ExtResource("5_gfjft")
 
-[node name="Interface" parent="Mole" instance=ExtResource("6_ncnat")]
+[node name="Interface" parent="Player" instance=ExtResource("6_ncnat")]
 
-[node name="PauseMenu" parent="Mole/Interface" instance=ExtResource("7_15icr")]
+[node name="PauseMenu" parent="Player/Interface" instance=ExtResource("7_15icr")]
 offset_left = 17.0
 offset_top = -6.0
 offset_right = 17.0
@@ -72,4 +72,8 @@ offset_bottom = -6.0
 [node name="Unshaded" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[connection signal="ore_received" from="Mole" to="TileMap" method="_on_player_ore_received"]
+[node name="SpawnTimer" type="Timer" parent="."]
+process_callback = 0
+
+[connection signal="ore_received" from="Player" to="TileMap" method="_on_player_ore_received"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

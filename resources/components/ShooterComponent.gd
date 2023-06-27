@@ -13,4 +13,4 @@ func shoot(damage :int) -> void:
 	var projectile = projectile_scene.instantiate()
 	projectile.init(damage)
 	projectile.transform = global_transform
-	get_node("/root/Level/TileMap/Projectiles").add_child(projectile)
+	get_node("/root/GameWorld/TileMap/Projectiles").add_child(projectile)

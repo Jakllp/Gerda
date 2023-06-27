@@ -14,7 +14,7 @@ const modifier_dict = {
 	MutatorType.HARDENED_STONE: 	[1.5,2.0,2.5],
 	MutatorType.LESS_ORE: 			[1.1,1.125,1.15],
 	MutatorType.MORE_STONE: 		[1.25,1.625,2.0],
-	MutatorType.SPAWN_PLUS: 		[1.5,2.0,2.5],
+	MutatorType.SPAWN_PLUS: 		[1, 2, 3],
 	MutatorType.DAMAGE_PLUS: 		[1.0,2.0,3.0],
 	MutatorType.HEALTH_PLUS: 		[1.0,2.0,3.0],
 	MutatorType.SPEED_UP: 			[1.5,2.0,2.5],
