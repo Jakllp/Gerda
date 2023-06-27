@@ -110,7 +110,6 @@ func use_equipment(delta: float, try_auto_weapon: bool = false) -> void:
 
 
 func try_dash() -> void:
-	print(str(dash.allowed_to_dash()))
 	if dashes_left > 0 && dash.allowed_to_dash() && direction.length() > 0:
 		var calculated_cooldown = dash_cooldown - dash_cooldown_upgrade_modifier * active_upgrades[Items.Type.DASH_COOLDOWN]
 		if calculated_cooldown < 0.0: calculated_cooldown = 0
@@ -119,7 +118,6 @@ func try_dash() -> void:
 		$DashEffect.emitting = true
 		
 		dashes_left -= 1
-		print("Dashed - Dashes left: "+str(dashes_left)+"/"+str(dash_max_amount))
 
 
 func add_upgrade(upgrade: Items.Type):

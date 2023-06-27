@@ -28,8 +28,3 @@ func receive_damage(damage: int) -> void:
 func die() -> void:
 	super.die()
 	get_tree().change_scene_to_file("res://resources/menus/GameOverScreen.tscn")
-	
-
-func _on_hurt_box_area_entered(area: Area2D) -> void:
-	if owner.has_node("Dash") and owner.dash.is_dashing(): return
-	super._on_hurt_box_area_entered(area)

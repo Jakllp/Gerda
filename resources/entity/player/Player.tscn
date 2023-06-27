@@ -176,7 +176,7 @@ shape = SubResource("RectangleShape2D_xsxsu")
 position = Vector2(-2.5, 2.5)
 scale = Vector2(1.28733, 0.109863)
 
-[node name="HurtBox" parent="." instance=ExtResource("12_ejrhl")]
+[node name="HurtBox" parent="." groups=["dash"] instance=ExtResource("12_ejrhl")]
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
@@ -198,7 +198,7 @@ texture = ExtResource("13_qwyac")
 lifetime = 0.25
 fixed_fps = 60
 
-[node name="Feet" type="Area2D" parent="."]
+[node name="Feet" type="Area2D" parent="." groups=["dash"]]
 collision_layer = 2
 collision_mask = 0
 
@@ -206,7 +206,5 @@ collision_mask = 0
 position = Vector2(-2, 11)
 shape = SubResource("RectangleShape2D_5g8p7")
 debug_color = Color(0.992157, 0.0901961, 0, 0.419608)
-
-[connection signal="area_entered" from="HurtBox" to="PlayerHealthComponent" method="_on_hurt_box_area_entered"]
 
 [editable path="HurtBox"]

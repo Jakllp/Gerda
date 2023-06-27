@@ -6,10 +6,21 @@ extends Node2D
 
 var color_before
 var modifier_before
+var affected_nodes := []
 
 func start_dash(duration, dash_cooldown):
+	if affected_nodes.size() < 1:
+		for child in owner.get_children():
+			if child.is_in_group("dash"):
+				affected_nodes.append(child.get_child(0))
 	duration_timer.wait_time = duration
 	duration_timer.start()
+	
+	# Turn off some collisionss
+	for node in affected_nodes:
+		node.disabled = true
+	if owner is Player:
+		owner.collision_mask = 1
 	
 	#Flash
 	owner.get_node("SubViewportContainer/SubViewport/AnimatedSprite2D").material.set_shader_parameter("flash_color", Color(1,1,1,1))
@@ -29,6 +40,10 @@ func set_shader_value(value: float):
 
 
 func end_dash():
+	for node in affected_nodes:
+		node.disabled = false
+	if owner is Player:
+		owner.collision_mask = 5
 	cooldown_timer.start()
 
 
