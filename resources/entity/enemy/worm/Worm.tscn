@@ -147,6 +147,7 @@ position = Vector2(0, 11.75)
 shape = SubResource("RectangleShape2D_krn4x")
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_ghmsk")]
+hp_max = 6
 
 [node name="HurtBox" parent="." instance=ExtResource("5_l8kai")]
 z_index = 250

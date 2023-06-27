@@ -5,12 +5,25 @@ var world_mutators = []
 var enemy_mutators = []
 var speed_mutators = []
 
+const lowest_chance = 50
+const mid_chance = 35
+# Chance for the highest mutator is the rest to 100
+
 ## Returns an array with unique random mutator and strength-combos of the wanted size
 func get_random_mutators(amount :int) -> Array:
 	var types_with_strength = {}
 	while types_with_strength.size() < amount:
 		var type = randi_range(0, Mutator.MutatorType.size()-1)
-		var strength = randi_range(0,2)
+		
+		# Cheap chance system for strength
+		var strength = randi_range(0,100)
+		if strength < lowest_chance:
+			strength = 0
+		elif strength < mid_chance + lowest_chance:
+			strength = 1
+		else:
+			strength = 2
+		
 		if (types_with_strength.has(type) and types_with_strength[type] != strength) or not types_with_strength.has(type):
 			# Not yet picked -> add it to dict
 			types_with_strength[type] = strength

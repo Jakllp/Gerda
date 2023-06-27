@@ -131,6 +131,7 @@ texture = SubResource("ViewportTexture_lxteo")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("5_ras38")
+hp_max = 6
 
 [node name="Hitbox" parent="." instance=ExtResource("3_rynaa")]
 visible = false

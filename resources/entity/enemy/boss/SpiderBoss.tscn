@@ -815,6 +815,7 @@ shape = SubResource("CircleShape2D_kfl43")
 debug_color = Color(0.180392, 0.545098, 0, 0.419608)
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_cdbxo")]
+hp_max = 36
 
 [node name="ParabolicShooter" parent="." instance=ExtResource("5_frlwr")]
 position = Vector2(0, -33)

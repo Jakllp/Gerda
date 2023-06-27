@@ -2,16 +2,17 @@ extends Node
 
 class_name HealthComponent
 
-@export var hp_max: int = 6: set = set_max_hp
+@export var hp_max: int = 0: set = set_max_hp
 @export var hp: int = hp_max: set = set_hp
 
 
 func set_max_hp(value):
 	if value != hp_max:
-		var difference: int = value - hp_max
-		hp_max = value
+		var difference :int
+		difference = value + MutatorManager.get_modifier_for_type(Mutator.MutatorType.HEALTH_PLUS, true) - hp_max
+		hp_max = value + MutatorManager.get_modifier_for_type(Mutator.MutatorType.HEALTH_PLUS, true)
 		if difference > 0:
-			hp += difference
+			self.hp += difference
 		else:
 			self.hp = hp
 
@@ -19,7 +20,8 @@ func set_max_hp(value):
 func set_hp(value):
 	if value != hp:
 		hp = clamp(value, 0, hp_max)
-		print("Health of ", owner.name, " changed to: ", hp)
+		if is_instance_valid(owner):
+			print("Health of ", owner.name, " changed to: ", hp)
 		if hp == 0:
 			die()
 

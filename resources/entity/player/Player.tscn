@@ -162,6 +162,7 @@ material = SubResource("ShaderMaterial_6wbvd")
 texture = SubResource("ViewportTexture_o6p7u")
 
 [node name="PlayerHealthComponent" parent="." instance=ExtResource("9_e6pu7")]
+hp_max = 6
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
