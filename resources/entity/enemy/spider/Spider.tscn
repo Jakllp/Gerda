@@ -176,7 +176,6 @@ debug_enabled = true
 
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
-[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 
 [editable path="Hitbox"]
