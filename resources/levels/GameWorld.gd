@@ -29,7 +29,7 @@ func _ready() -> void:
 
 func start_timer() -> void:
 	var time = randfn(spawn_time, spawn_time_deviation)
-	prints("start timer for", time, "seconds")
+	prints("start spawn timer for", time, "seconds")
 	spawn_timer.start(time)
 	
 
@@ -41,7 +41,7 @@ func update_mutators() -> void:
 	var level = MutatorManager.get_modifier_for_type(Mutator.MutatorType.SPAWN_PLUS, true) - 1
 	if level < 0:
 		return
-	spawn_time *= mutator_effects["time"][level]aaaa
+	spawn_time *= mutator_effects["time"][level]
 	spawn_time_deviation *= mutator_effects["time_deviation"][level]
 	spawn_size *= mutator_effects["size"][level]
 	spawn_size_deviation *= mutator_effects["size_deviation"][level]
