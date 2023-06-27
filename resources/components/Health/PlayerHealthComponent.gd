@@ -1,7 +1,7 @@
 extends HealthComponent
 
 signal max_hp_changed(value)
-signal hp_changed(previos, diff)
+signal hp_changed(previous, diff)
 
 func set_max_hp(value):
 	if value != hp_max:
@@ -28,3 +28,7 @@ func receive_damage(damage: int) -> void:
 func die() -> void:
 	super.die()
 	get_tree().change_scene_to_file("res://resources/menus/GameOverScreen.tscn")
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	super._on_hurt_box_area_entered(area)

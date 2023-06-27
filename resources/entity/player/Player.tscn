@@ -207,4 +207,6 @@ position = Vector2(-2, 11)
 shape = SubResource("RectangleShape2D_5g8p7")
 debug_color = Color(0.992157, 0.0901961, 0, 0.419608)
 
+[connection signal="area_entered" from="HurtBox" to="PlayerHealthComponent" method="_on_hurt_box_area_entered"]
+
 [editable path="HurtBox"]

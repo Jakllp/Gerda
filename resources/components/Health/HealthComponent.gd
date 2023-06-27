@@ -42,7 +42,7 @@ func receive_damage(damage: int) -> void:
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
-		if area.owner is Projectile: 
+		if area.owner is Projectile:
 			if area.owner.pierce < 1:
 				area.owner.queue_free()
 				if area.owner.pierce < 0:
