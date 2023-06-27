@@ -56,8 +56,8 @@ static func spawn_pattern(ground_pattern :TileMapPattern, block_pattern :TileMap
 			# Swap Tops if necessary
 			if map.get_cell_source_id(block_layer, cur_cell) != -1 and map.get_cell_alternative_tile(block_layer, cur_cell) == 0 and map.get_cell_atlas_coords(block_layer, cur_cell).y == 0:
 				# Standard-Top. Need to check if above is free!
-				if map.get_cell_source_id(block_layer, cell_above) == -1:
-					# Nothing above! Swap to different top and new set ground with minimal nav
+				if map.get_cell_source_id(block_layer, cell_above) == -1 or map.get_cell_atlas_coords(block_layer, cell_above).y == 1:
+					# Nothing or wall above! Swap to different top and new set ground with minimal nav
 					map.set_cell(block_layer, cur_cell, block_atlas, map.get_cell_atlas_coords(block_layer, cur_cell), 1)
 					map.set_ground(cur_cell, 1)
 

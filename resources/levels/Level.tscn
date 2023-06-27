@@ -45,13 +45,16 @@ layer_2/z_index = 4
 layer_2/tile_data = PackedInt32Array()
 script = ExtResource("5_e3myb")
 
-[node name="Interactables" type="Node2D" parent="TileMap"]
+[node name="Interactables" type="Node2D" parent="TileMap" groups=["stuff_on_map"]]
 y_sort_enabled = true
 
-[node name="Decor" type="Node2D" parent="TileMap"]
+[node name="Decor" type="Node2D" parent="TileMap" groups=["stuff_on_map"]]
 y_sort_enabled = true
 
-[node name="Enemies" type="Node2D" parent="TileMap"]
+[node name="Enemies" type="Node2D" parent="TileMap" groups=["stuff_on_map"]]
+y_sort_enabled = true
+
+[node name="Projectiles" type="Node2D" parent="TileMap" groups=["stuff_on_map"]]
 y_sort_enabled = true
 
 [node name="Mole" parent="." instance=ExtResource("8_15nnc")]
