@@ -127,17 +127,18 @@ static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer 
 			var cur_cell = Vector2i(start_x + x, start_y + y)
 			match get_block_type(cur_block, cur_block_ore):
 				BlockType.GROUND:
-					if y != 0 and get_block_type(block_above) == BlockType.GROUND:
-						# Just standard ground
-						map.set_ground(cur_cell, 0)
-					else:
-						# There is some type of Block (So BlockType.GROUND or BlockType.ORE) above
-						# Need to make a wall AND ground without nav
-						var above_cell := map.get_neighbor_cell(cur_cell,TileSet.CELL_NEIGHBOR_TOP_SIDE)
-						var above_atlas_x := map.get_cell_atlas_coords(block_layer,above_cell).x
-						map.set_cell(block_layer,cur_cell,block_atlas, Vector2i(above_atlas_x,1), 0)
-						
-						map.set_ground(cur_cell, 0)
+					if y != 0:
+						if get_block_type(block_above) == BlockType.GROUND:
+							# Just standard ground
+							map.set_ground(cur_cell, 0)
+						else:
+							# There is some type of Block (So BlockType.GROUND or BlockType.ORE) above
+							# Need to make a wall AND ground without nav
+							var above_cell := map.get_neighbor_cell(cur_cell,TileSet.CELL_NEIGHBOR_TOP_SIDE)
+							var above_atlas_x := map.get_cell_atlas_coords(block_layer,above_cell).x
+							map.set_cell(block_layer,cur_cell,block_atlas, Vector2i(above_atlas_x,1), 0)
+							
+							map.set_ground(cur_cell, 2)
 				BlockType.BLOCK:
 					var alt = 0
 					if y == 0:
