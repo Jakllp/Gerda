@@ -17,7 +17,7 @@ func _ready() -> void:
 func attack() -> void:
 	var pos: Vector2 = get_tree().get_first_node_in_group("player").global_position
 	sprite.play("attack")
-	await sprite.frame_changed
+	await sprite.animation_finished
 	shooter.shoot(pos)
 	sprite.play("stand")
 	

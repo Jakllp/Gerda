@@ -24,15 +24,16 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3uy4k"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 2.0,
-"texture": ExtResource("3_qcykx")
+"texture": ExtResource("4_u872y")
 }, {
 "duration": 2.0,
-"texture": ExtResource("4_u872y")
+"texture": ExtResource("3_qcykx")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }, {
