@@ -10,6 +10,7 @@ var attack_tween: Tween
 @onready var hitbox_shape_radius = ShapeHelper.get_shape_radius($Hitbox/CollisionShape2D.shape)
 
 func _ready() -> void:
+	hitbox_shape.radius = 0.0
 	super._ready()
 
 
