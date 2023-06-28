@@ -1,7 +1,5 @@
-extends HealthComponent
+extends SupervisedHealthComponent
 
-signal max_hp_changed(value)
-signal hp_changed(previous, diff)
 
 func set_max_hp(value):
 	if value != hp_max:

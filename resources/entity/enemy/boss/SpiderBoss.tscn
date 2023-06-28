@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://degtdv32h4l78" path="res://asset/visual/actor/enemy/bosses/spider/spider.png" id="1_p0dbh"]
 [ext_resource type="Script" path="res://resources/entity/enemy/boss/SpiderBoss.gd" id="1_yatep"]
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="2_5b7iq"]
-[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/Health/HealthComponent.tscn" id="2_cdbxo"]
 [ext_resource type="PackedScene" uid="uid://c7wsucit56out" path="res://resources/entity/enemy/spider/Spider.tscn" id="2_nv0qh"]
 [ext_resource type="Texture2D" uid="uid://bjlekwc125i1c" path="res://asset/visual/light/light.png" id="3_gtulu"]
 [ext_resource type="Texture2D" uid="uid://dsmhdnxxq06ip" path="res://asset/visual/actor/enemy/bosses/spider/spider_stomp_attack_left.png" id="3_u6abb"]
@@ -17,6 +16,7 @@
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="10_xxald"]
 [ext_resource type="Texture2D" uid="uid://i702o00e2lyu" path="res://asset/visual/actor/char/mole/mole_bullet.png" id="11_vfwb1"]
 [ext_resource type="Texture2D" uid="uid://cx1c3g6pxr3f0" path="res://asset/visual/actor/enemy/bosses/spider/spider_sweep_leg_right.png" id="14_7m5se"]
+[ext_resource type="PackedScene" uid="uid://bkobr0j0rc3il" path="res://resources/components/Health/SupervisedHealthComponent.tscn" id="14_bu8t0"]
 [ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="14_e5052"]
 [ext_resource type="Texture2D" uid="uid://ccw8srwjtopn3" path="res://asset/visual/actor/enemy/bosses/spider/spider_sweep_leg_left.png" id="16_j7q28"]
 
@@ -814,12 +814,12 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_kfl43")
 debug_color = Color(0.180392, 0.545098, 0, 0.419608)
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_cdbxo")]
-hp_max = 36
-
 [node name="ParabolicShooter" parent="." instance=ExtResource("5_frlwr")]
 position = Vector2(0, -33)
 projectile_scene = ExtResource("6_eqkwe")
+
+[node name="SupervisedHealthComponent" parent="." instance=ExtResource("14_bu8t0")]
+hp_max = 36
 
 [node name="BTBlackboard" type="Node" parent="."]
 script = ExtResource("10_xxald")
@@ -985,7 +985,6 @@ position = Vector2(15.9999, -15.553)
 rotation = 0.55676
 shape = SubResource("RectangleShape2D_w4yp2")
 
-[connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 
