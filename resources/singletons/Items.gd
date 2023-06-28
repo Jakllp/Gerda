@@ -55,7 +55,7 @@ var upgrade_category: Dictionary = {
 }
 
 ## weighted range table
-var health_table := [Type.HEALTH, Vector2(1,2), Vector2(2,1)]
+var health_table := [Type.HEALTH, Vector2i(1,2), Vector2i(2,1)]
 
 ## Normal distributed range table for ore
 var ore_table := Vector3i(Type.ORE, 1, 4)
