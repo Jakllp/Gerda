@@ -13,7 +13,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ihwk"]
 shader = ExtResource("2_hmlby")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5848"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_65gaq"]
 resource_local_to_scene = true
 shader = ExtResource("9_7ibbi")
 shader_parameter/blur = 2.5
@@ -71,7 +71,7 @@ script = ExtResource("5_gfjft")
 [node name="Interface" parent="Player" instance=ExtResource("6_ncnat")]
 
 [node name="PauseMenu" parent="Player/Interface" instance=ExtResource("7_15icr")]
-material = SubResource("ShaderMaterial_p5848")
+material = SubResource("ShaderMaterial_65gaq")
 
 [node name="Unshaded" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true

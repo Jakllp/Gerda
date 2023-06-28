@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ng3ib61x8e5x" path="res://resources/decor/Torch.tscn" id="7_37kwg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4mukx"]
+resource_local_to_scene = true
 shader = ExtResource("1_0iflk")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l140e"]

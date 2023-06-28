@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cr8tpgkgfgxkp"]
+[gd_scene load_steps=66 format=3 uid="uid://cr8tpgkgfgxkp"]
 
 [ext_resource type="Texture2D" uid="uid://7xmrgs07i4ax" path="res://asset/visual/actor/enemy/bosses/spider/spider_spit_attack.png" id="1_8ygr1"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="1_bhyfc"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bkobr0j0rc3il" path="res://resources/components/Health/SupervisedHealthComponent.tscn" id="14_bu8t0"]
 [ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="14_e5052"]
 [ext_resource type="Texture2D" uid="uid://ccw8srwjtopn3" path="res://asset/visual/actor/enemy/bosses/spider/spider_sweep_leg_left.png" id="16_j7q28"]
+[ext_resource type="PackedScene" uid="uid://cxdil6ifjoq7x" path="res://resources/entity/enemy/boss/BossHealthBar.tscn" id="20_cv6bm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wgioq"]
 resource_local_to_scene = true
@@ -985,6 +986,13 @@ position = Vector2(15.9999, -15.553)
 rotation = 0.55676
 shape = SubResource("RectangleShape2D_w4yp2")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="BbossHealthBar" parent="CanvasLayer" instance=ExtResource("20_cv6bm")]
+
+[connection signal="hp_changed" from="SupervisedHealthComponent" to="CanvasLayer/BbossHealthBar" method="_on_supervised_health_component_hp_changed"]
+[connection signal="max_hp_changed" from="SupervisedHealthComponent" to="CanvasLayer/BbossHealthBar" method="_on_supervised_health_component_max_hp_changed"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 
