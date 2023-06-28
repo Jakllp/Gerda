@@ -53,3 +53,17 @@ func _on_spawn_timer_timeout():
 	if not EnemyCreator.spawn_random_grouped_wave(current_biom, spawn_size):
 		EnemyCreator.spawn_random_wave(current_biom, spawn_size)
 	start_timer()
+	
+
+static func check_line_of_sight(who: Node2D, from: Vector2, to: Vector2, collision_mask: int, exclude: Array[RID]=[]) -> bool:
+	# prepare and execute raycast
+	var space_state :PhysicsDirectSpaceState2D = who.get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(from, to)
+	query.exclude = exclude
+	query.collision_mask = collision_mask
+	var result := space_state.intersect_ray(query)
+	# if nothing was in the way there is a line of sight
+	if result.is_empty():
+		return true
+	else:
+		return false

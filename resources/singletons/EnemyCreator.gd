@@ -3,8 +3,8 @@ extends Node2D
 const max_enemies = 50
 const enemy_spawn_area_size = 20
 const enemy_spawn_area_spacing = 10
-const min_spawn_distance = 30
-const max_spawn_distance = 100
+const min_spawn_distance = 150
+const max_spawn_distance = 260
 const pos_query_collision_mask = 36
 const spawn_tries = 15
 
@@ -45,12 +45,12 @@ func spawn_enemy(enemy: PhysicsBody2D, pos: Vector2) -> void:
 	spawn_point.texture = spawn_point_tex
 	spawn_point.scale = Vector2(0.1, 0.1)
 	spawn_point.global_position = pos
-	spawn_point.z_index = 100
+	spawn_point.z_index = 1
 	spawn_point.modulate = Color(0,0,0,0)
 	enemy_container.add_child(spawn_point)
 	
 	var tween = create_tween()
-	tween.tween_property(spawn_point, "modulate", Color(0,0,0,1), 2)
+	tween.tween_property(spawn_point, "modulate", Color(0,0,0,1), 5)
 	tween.tween_callback(spawn_point.queue_free)
 	
 	await tween.finished

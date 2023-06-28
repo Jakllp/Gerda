@@ -9,14 +9,7 @@ func tick(actor:Node, blackboard:BTBlackboard):
 	if player_pos == null:
 		return BTTickResult.FAILURE
 	
-	# prepare and execute raycast
-	var space_state :PhysicsDirectSpaceState2D = actor.get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(actor.global_position, player_pos)
-	query.exclude = [actor]
-	query.collision_mask = collision_mask
-	var result := space_state.intersect_ray(query)
-	# if nothing was in the way there is a line of sight
-	if result.is_empty():
+	if GameWorld.check_line_of_sight(actor, actor.global_position, player_pos, collision_mask, [actor]):
 		return BTTickResult.SUCCESS
 	else:
 		return BTTickResult.FAILURE

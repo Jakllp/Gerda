@@ -38,26 +38,10 @@ func deactivate() -> void:
 	sprite.play("idle")
 	$PointLight2D.energy = 0.0
 
-func check_line_of_sight() -> bool:
-	var player = get_tree().get_first_node_in_group("player")
+func _on_attack_timer_timeout():
+	var player: Player = get_tree().get_first_node_in_group("player")
 	# if no player exists
 	if player == null:
-		return false
-	
-	var player_pos = player.global_position
-	
-	# prepare and execute raycast
-	var space_state :PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(global_position, player_pos)
-	query.exclude = [self]
-	query.collision_mask = 1
-	var result := space_state.intersect_ray(query)
-	# if nothing was in the way there is a line of sight
-	if result.is_empty():
-		return true
-	else:
-		return false
-
-func _on_attack_timer_timeout():
-	if check_line_of_sight():
+		return
+	if GameWorld.check_line_of_sight(self, global_position, player.global_position, 1, [self]):
 		attack()
