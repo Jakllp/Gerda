@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bj67m0e2wspkr"]
+[gd_scene load_steps=12 format=3 uid="uid://bj67m0e2wspkr"]
 
 [ext_resource type="Script" path="res://resources/levels/GameWorld.gd" id="1_v2agj"]
 [ext_resource type="TileSet" uid="uid://botvhodjv237t" path="res://asset/visual/map/Biom1/Tileset-biom1.tres" id="2_du5bk"]
@@ -8,9 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://3nw02h1mploy" path="res://resources/menus/Interface.tscn" id="6_ncnat"]
 [ext_resource type="PackedScene" uid="uid://cli3ult3yip5x" path="res://resources/menus/PauseMenu.tscn" id="7_15icr"]
 [ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="8_15nnc"]
+[ext_resource type="Shader" path="res://resources/shaders/blur.gdshader" id="9_7ibbi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ihwk"]
 shader = ExtResource("2_hmlby")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8dsyn"]
+resource_local_to_scene = true
+shader = ExtResource("9_7ibbi")
+shader_parameter/blur = 2.5
+shader_parameter/brightness = 1.0
 
 [node name="GameWorld" type="Node2D"]
 y_sort_enabled = true
@@ -64,10 +71,7 @@ script = ExtResource("5_gfjft")
 [node name="Interface" parent="Player" instance=ExtResource("6_ncnat")]
 
 [node name="PauseMenu" parent="Player/Interface" instance=ExtResource("7_15icr")]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
+material = SubResource("ShaderMaterial_8dsyn")
 
 [node name="Unshaded" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true

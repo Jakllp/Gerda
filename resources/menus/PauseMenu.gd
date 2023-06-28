@@ -32,6 +32,7 @@ func _unhandled_input(event):
 
 func _on_quit_button_pressed():
 	accept_dialog.visible = true
+	accept_dialog.position = $Buttons/Marker2D.global_position - Vector2(accept_dialog.size / 2)
 
 
 func _on_accept_dialog_canceled():
