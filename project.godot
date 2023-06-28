@@ -18,7 +18,7 @@ config/icon="res://asset/visual/actor/icon.svg"
 [autoload]
 
 MutatorManager="*res://resources/singletons/MutatorManager.gd"
-Items="*res://resources/datatypes/Items.gd"
+Items="*res://resources/singletons/Items.gd"
 EnemyCreator="*res://resources/singletons/EnemyCreator.gd"
 
 [display]
