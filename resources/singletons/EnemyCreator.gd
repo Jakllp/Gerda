@@ -39,6 +39,7 @@ func spawn_random_enemy(biom: GameWorld.Biom) -> bool:
 		return true
 	
 
+## Spawn enemy with spawn animation
 func spawn_enemy(enemy: PhysicsBody2D, pos: Vector2) -> void:
 	var enemy_container = get_tree().get_first_node_in_group("enemies")
 	var spawn_point := Sprite2D.new()
@@ -56,6 +57,12 @@ func spawn_enemy(enemy: PhysicsBody2D, pos: Vector2) -> void:
 	await tween.finished
 	enemy.global_position = pos
 	enemy_container.add_child(enemy)
+	
+
+## Spawn enemy without animation
+func spawn_enemy_raw(enemy:PhysicsBody2D, pos: Vector2) -> void:
+	enemy.global_position = pos
+	get_tree().get_first_node_in_group("enemies").add_child(enemy)
 	
 
 func spawn_random_wave(biom: GameWorld.Biom, size: int) -> void:
