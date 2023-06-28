@@ -1,4 +1,44 @@
-[gd_scene format=3 uid="uid://sj1l83q0goit"]
+[gd_scene load_steps=8 format=3 uid="uid://sj1l83q0goit"]
+
+[ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="1_cbibc"]
+[ext_resource type="Texture2D" uid="uid://brlm4q7jgs4rm" path="res://asset/visual/UI/controls/WASD_group.png" id="2_00r86"]
+[ext_resource type="Texture2D" uid="uid://doioo46mckxq3" path="res://asset/visual/UI/controls/E_button.png" id="3_vqyhj"]
+[ext_resource type="Texture2D" uid="uid://bl3c5enkxq5k5" path="res://asset/visual/UI/controls/R_button.png" id="4_p7t0f"]
+[ext_resource type="Texture2D" uid="uid://b8acayf4oxsa5" path="res://asset/visual/UI/controls/space_shift_group.png" id="5_qwk4q"]
+
+[sub_resource type="Animation" id="Animation_m8kyw"]
+resource_name = "loading"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LoadingLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["Loading", "Loading.", "Loading..", "Loading"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoadingLabel2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75, 1),
+"transitions": PackedFloat32Array(1e-05, 1e-05, 1e-05),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a4lbv"]
+_data = {
+"loading": SubResource("Animation_m8kyw")
+}
 
 [node name="LoadingScreen" type="Control"]
 layout_mode = 3
@@ -8,17 +48,154 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="LoadingLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -323.0
+offset_top = 313.0
+offset_right = -35.0
+offset_bottom = 348.0
+grow_horizontal = 0
+theme = ExtResource("1_cbibc")
+theme_override_font_sizes/font_size = 32
+text = "Loading.."
+
+[node name="LoadingLabel2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -124.0
-offset_top = -13.0
-offset_right = 124.0
-offset_bottom = 13.0
-grow_horizontal = 2
+offset_left = -34.0
+offset_top = -11.5
+offset_right = 6.0
+offset_bottom = 23.5
+grow_horizontal = 0
 grow_vertical = 2
-text = "I AM A LOADING SCREEN!!!!!!!!!!!!!"
+theme = ExtResource("1_cbibc")
+theme_override_font_sizes/font_size = 32
+text = "."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "loading"
+libraries = {
+"": SubResource("AnimationLibrary_a4lbv")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_cbibc")
+text = "Controls"
+
+[node name="HSeparator" type="HSeparator" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Icons" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer"]
+custom_minimum_size = Vector2(150, 62)
+layout_mode = 2
+texture = ExtResource("2_00r86")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_cbibc")
+text = " Movement"
+
+[node name="HSeparator" type="HSeparator" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer2"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+texture = ExtResource("3_vqyhj")
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_cbibc")
+text = " Interact"
+
+[node name="HSeparator2" type="HSeparator" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer3"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+texture = ExtResource("4_p7t0f")
+stretch_mode = 5
+
+[node name="Label3" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("1_cbibc")
+text = " Reload"
+
+[node name="HSeparator3" type="HSeparator" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons"]
+layout_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer4"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("5_qwk4q")
+stretch_mode = 5
+
+[node name="Label4" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer4"]
+layout_mode = 2
+theme = ExtResource("1_cbibc")
+text = " Dash"

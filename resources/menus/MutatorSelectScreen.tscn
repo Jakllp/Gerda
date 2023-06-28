@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://resources/menus/MutatorSelectScreen.gd" id="1_ivbmo"]
 [ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="2_rfg5h"]
 [ext_resource type="Texture2D" uid="uid://bqi3gouchn6m1" path="res://asset/visual/UI/Mutators.png" id="3_7jiv7"]
-[ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/Godot-Fontpack/fonts/droid-sans/DroidSans.ttf" id="4_cnbye"]
+[ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf" id="4_0ucub"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jipmk"]
 resource_local_to_scene = true
@@ -84,7 +84,7 @@ theme_override_font_sizes/font_size = 32
 [node name="Description" type="Label" parent="VBoxContainer/Mutator1/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("4_cnbye")
+theme_override_fonts/font = ExtResource("4_0ucub")
 theme_override_font_sizes/font_size = 21
 
 [node name="Mutator2" type="Button" parent="VBoxContainer"]
@@ -127,7 +127,7 @@ theme_override_font_sizes/font_size = 32
 [node name="Description" type="Label" parent="VBoxContainer/Mutator2/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("4_cnbye")
+theme_override_fonts/font = ExtResource("4_0ucub")
 theme_override_font_sizes/font_size = 21
 
 [node name="Mutator3" type="Button" parent="VBoxContainer"]
@@ -170,7 +170,7 @@ theme_override_font_sizes/font_size = 32
 [node name="Description" type="Label" parent="VBoxContainer/Mutator3/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("4_cnbye")
+theme_override_fonts/font = ExtResource("4_0ucub")
 theme_override_font_sizes/font_size = 21
 
 [connection signal="pressed" from="VBoxContainer/Mutator1" to="." method="_on_mutator_1_pressed"]

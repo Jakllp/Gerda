@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://cli3ult3yip5x"]
+[gd_scene load_steps=17 format=3 uid="uid://cli3ult3yip5x"]
 
 [ext_resource type="Shader" path="res://resources/shaders/blur.gdshader" id="1_0pjpq"]
 [ext_resource type="Script" path="res://resources/menus/PauseMenu.gd" id="2_s3r43"]
 [ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="3_modp8"]
 [ext_resource type="Texture2D" uid="uid://b023yc0p2750n" path="res://asset/visual/UI/HUD_Elements.png" id="4_57ggr"]
+[ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf" id="5_bxldk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lve6f"]
 resource_local_to_scene = true
@@ -321,6 +322,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("5_bxldk")
 text = "Mining Speed
 "
 
@@ -328,12 +330,14 @@ text = "Mining Speed
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("5_bxldk")
 text = "Walking Speed"
 
 [node name="Label3" type="Label" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayerUpgrades/HBoxContainer/Labels"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("5_bxldk")
 text = "Dash Cooldown"
 
 [node name="WeaponUpgrades" type="VBoxContainer" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -361,6 +365,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("5_bxldk")
 text = "Reload Speed
 "
 
@@ -368,12 +373,14 @@ text = "Reload Speed
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("5_bxldk")
 text = "Damage"
 
 [node name="Label3" type="Label" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/WeaponUpgrades/HBoxContainer/Labels"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("5_bxldk")
 text = "Fire Rate"
 horizontal_alignment = 2
 
