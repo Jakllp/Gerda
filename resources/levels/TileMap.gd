@@ -28,7 +28,7 @@ func _ready() -> void:
 	print("start god")
 	var player_spawn = God.generate_level(self, ground_layer, block_layer, ground_atlas, block_atlas, biome)
 	print("end god")
-	owner.get_node("Mole").position = self.map_to_local(player_spawn)
+	owner.get_node("Player").position = self.map_to_local(player_spawn)
 
 
 # Logic of damaging cells
