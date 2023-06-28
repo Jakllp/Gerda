@@ -8,7 +8,7 @@ var pop_up_scene = preload("res://resources/other/ItemPopUp.tscn")
 
 
 func _ready() -> void:
-	add_child(Items.get_item_sprite(type))
+	add_child(Items.get_item_sprite(type, item_data))
 
 
 # Player is on the item

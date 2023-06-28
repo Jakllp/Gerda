@@ -54,6 +54,9 @@ var upgrade_category: Dictionary = {
 	"weapon" : [Type.DAMAGE, Type.ATTACK_RATE, Type.WEAPON_SPEED]
 }
 
+## weighted range table
+var health_table := [Type.HEALTH, Vector2(1,2), Vector2(2,1)]
+
 ## Normal distributed range table for ore
 var ore_table := Vector3i(Type.ORE, 1, 4)
 
@@ -79,7 +82,7 @@ var boss_drop_table: Dictionary = {
 
 ## Main entry point to all existing items
 var root_table: Dictionary = {
-		Type.HEALTH : 3,
+		health_table : 3,
 		ore_table : 3,
 		player_upgrade_table: 2,
 		weapon_upgrade_table : 2,
@@ -162,7 +165,7 @@ func get_total_weight(table) -> int:
 var hud_item_tex = preload("res://asset/visual/UI/HUD_Elements.png")
 var boss_item_tex = preload("res://asset/visual/other/BossDrops.png")
 ## creates the sprite for the given item type
-func get_item_sprite(type: Type) -> Sprite2D:
+func get_item_sprite(type: Type, quantity: int = 0) -> Sprite2D:
 	var texture := AtlasTexture.new()
 	if type < Type.HEART:
 		texture.atlas = hud_item_tex
@@ -174,8 +177,12 @@ func get_item_sprite(type: Type) -> Sprite2D:
 			texture.region.position = Vector2(24,0)
 			texture.region.size = Vector2(8,8)
 		Type.HEALTH:
-			texture.region.position = Vector2(0,0)
-			texture.region.size = Vector2(8,8)
+			if quantity == 1:
+				texture.region.position = Vector2(0,8)
+				texture.region.size = Vector2(8,8)
+			if quantity == 2:
+				texture.region.position = Vector2(0,0)
+				texture.region.size = Vector2(8,8)
 		Type.WALK_SPEED:
 			texture.region.position = Vector2(16,8)
 			texture.region.size = Vector2(8,8)
