@@ -25,6 +25,9 @@ EnemyCreator="*res://resources/singletons/EnemyCreator.gd"
 
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="res://asset/visual/crosshair2.png"
+mouse_cursor/custom_image_hotspot=Vector2(7.5, 7.5)
+mouse_cursor/tooltip_position_offset=Vector2(0, 0)
 
 [editor_plugins]
 
