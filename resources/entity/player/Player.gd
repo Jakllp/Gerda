@@ -49,7 +49,7 @@ signal player_upgrade_received(type)
 signal health_changed(amount)
 signal dash_max_amount_changed(amount)
 signal dashes_left_changed(previous, diff)
-signal pause
+signal died
 
 
 func _ready() -> void:
@@ -126,6 +126,9 @@ func add_upgrade(upgrade: Items.Type):
 	print(str(Items.Type.keys()[upgrade])+" now at "+str(active_upgrades[upgrade]))
 
 
+func die() -> void:
+	died.emit()
+
 func _on_dash_refill() -> void:
 	if dashes_left < dash_max_amount:
 		dashes_left+=1
@@ -133,8 +136,3 @@ func _on_dash_refill() -> void:
 		if dashes_left == dash_max_amount:
 			dash.stop_refill()
 			
-
-func _unhandled_input(event):
-	if event is InputEventKey and event.is_action_pressed("ui_cancel"):
-		pause.emit()
-		get_viewport().set_input_as_handled()

@@ -5,9 +5,10 @@ extends ColorRect
 @onready var quit_button: Button = $Buttons/PanelContainer/MarginContainer/VBoxContainer/QuitButton
 @onready var accept_dialog = $AcceptDialog
 
+signal game_abandoned
+
 func _ready() -> void:
 	visible = false
-	get_tree().get_first_node_in_group("player").pause.connect(pause)
 	play_button.pressed.connect(unpause)
 	accept_dialog.add_cancel_button("Cancel")
 
@@ -25,10 +26,12 @@ func pause():
 	
 
 func _unhandled_input(event):
-	if visible == true and event is InputEventKey and event.is_action_pressed("ui_cancel"):
-		unpause()
+	if event is InputEventKey and event.is_action_pressed("ui_cancel"):
+		if visible == true:
+			unpause()
+		else:
+			pause()
 		get_viewport().set_input_as_handled()
-		
 
 func _on_quit_button_pressed():
 	accept_dialog.visible = true
@@ -41,4 +44,5 @@ func _on_accept_dialog_canceled():
 
 func _on_accept_dialog_confirmed():
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://resources/menus/StartMenu.tscn")
+	game_abandoned.emit()
+	

@@ -1,37 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://bj67m0e2wspkr"]
+[gd_scene load_steps=5 format=3 uid="uid://c74brdtuca3po"]
 
-[ext_resource type="Script" path="res://resources/levels/GameWorld.gd" id="1_v2agj"]
-[ext_resource type="TileSet" uid="uid://botvhodjv237t" path="res://asset/visual/map/Biom1/Tileset-biom1.tres" id="2_du5bk"]
-[ext_resource type="Shader" path="res://resources/shaders/tilemap.gdshader" id="2_hmlby"]
-[ext_resource type="Script" path="res://resources/levels/TileMap.gd" id="5_e3myb"]
-[ext_resource type="Script" path="res://resources/entity/player/Mole.gd" id="5_gfjft"]
-[ext_resource type="PackedScene" uid="uid://3nw02h1mploy" path="res://resources/menus/Interface.tscn" id="6_ncnat"]
-[ext_resource type="PackedScene" uid="uid://cli3ult3yip5x" path="res://resources/menus/PauseMenu.tscn" id="7_15icr"]
-[ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="8_15nnc"]
-[ext_resource type="Shader" path="res://resources/shaders/blur.gdshader" id="9_7ibbi"]
+[ext_resource type="Shader" path="res://resources/shaders/tilemap.gdshader" id="1_op00p"]
+[ext_resource type="TileSet" uid="uid://botvhodjv237t" path="res://asset/visual/map/Biom1/Tileset-biom1.tres" id="2_dj0hr"]
+[ext_resource type="Script" path="res://resources/levels/Level.gd" id="3_cextu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ihwk"]
-shader = ExtResource("2_hmlby")
+shader = ExtResource("1_op00p")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_65gaq"]
-resource_local_to_scene = true
-shader = ExtResource("9_7ibbi")
-shader_parameter/blur = 2.5
-shader_parameter/brightness = 1.0
-
-[node name="GameWorld" type="Node2D"]
-y_sort_enabled = true
-script = ExtResource("1_v2agj")
-metadata/_edit_horizontal_guides_ = []
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.32549, 0.32549, 0.32549, 1)
-
-[node name="TileMap" type="TileMap" parent="." groups=["map"]]
+[node name="Level" type="TileMap"]
 light_mask = 3
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_0ihwk")
-tile_set = ExtResource("2_du5bk")
+tile_set = ExtResource("2_dj0hr")
 cell_quadrant_size = 22
 format = 2
 layer_0/name = "ground"
@@ -50,34 +30,16 @@ layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 4
 layer_2/tile_data = PackedInt32Array()
-script = ExtResource("5_e3myb")
+script = ExtResource("3_cextu")
 
-[node name="Interactables" type="Node2D" parent="TileMap" groups=["stuff_on_map"]]
+[node name="Interactables" type="Node2D" parent="." groups=["interactables"]]
 y_sort_enabled = true
 
-[node name="Decor" type="Node2D" parent="TileMap" groups=["stuff_on_map"]]
+[node name="Decor" type="Node2D" parent="." groups=["decors"]]
 y_sort_enabled = true
 
-[node name="Enemies" type="Node2D" parent="TileMap" groups=["enemies", "stuff_on_map"]]
+[node name="Enemies" type="Node2D" parent="." groups=["enemies", "stuff_on_map"]]
 y_sort_enabled = true
 
-[node name="Projectiles" type="Node2D" parent="TileMap" groups=["stuff_on_map"]]
+[node name="Projectiles" type="Node2D" parent="." groups=["projectiles"]]
 y_sort_enabled = true
-
-[node name="Player" parent="." instance=ExtResource("8_15nnc")]
-position = Vector2(17, -6)
-script = ExtResource("5_gfjft")
-
-[node name="Interface" parent="Player" instance=ExtResource("6_ncnat")]
-
-[node name="PauseMenu" parent="Player/Interface" instance=ExtResource("7_15icr")]
-material = SubResource("ShaderMaterial_65gaq")
-
-[node name="Unshaded" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
-
-[node name="SpawnTimer" type="Timer" parent="."]
-process_callback = 0
-
-[connection signal="ore_received" from="Player" to="TileMap" method="_on_player_ore_received"]
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

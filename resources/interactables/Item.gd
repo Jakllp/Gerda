@@ -39,6 +39,6 @@ func _on_body_entered(body :Node2D):
 			pop_up.get_child(0,false).texture = self.get_child(1, false).texture
 			var pos = player.position - Vector2(0,15)
 			pop_up.global_position = pos
-			get_node("/root/GameWorld/Unshaded").add_child(pop_up)
+			get_tree().get_first_node_in_group("unshaded").add_child(pop_up)
 		
 		queue_free()

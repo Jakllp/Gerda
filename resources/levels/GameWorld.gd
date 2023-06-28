@@ -1,9 +1,19 @@
 extends Node2D
 class_name GameWorld
 
-enum Biom {
-	BIOM_1
+enum Level {
+	START,
+	BIOM_1,
+	SPIDER_BOSS,
+	BIOM_2
 }
+
+#enum State {
+#	MUTATOR_SELECT,
+#	PAUSE,
+#	GAME,
+#	LOADING
+#}
 
 const mutator_effects = {
 	"time" : [0.95, 0.85, 0.72, 0.7, 0.65, 0.6],
@@ -12,7 +22,13 @@ const mutator_effects = {
 	"size_deviation" : [1, 1, 1, 1, 1, 1],
 	"max_weight" : [1, 1, 1, 1, 1, 1]
 }
-var current_biom = Biom.BIOM_1
+
+var level_scene := preload("res://resources/levels/Level.tscn")
+var boss_scene_path := {
+	Level.SPIDER_BOSS : "res://resources/levels/bossroom/SpiderRoom.tscn"
+}
+
+var current_level = Level.START
 
 var spawn_time: float = 30
 var spawn_time_deviation: float = 4
@@ -20,11 +36,71 @@ var spawn_size = 4
 var spawn_size_deviation = 2
 var max_enemy_weight = 60
 
-@onready var spawn_timer = $SpawnTimer
+@onready var spawn_timer := $SpawnTimer
+@onready var interface := $CanvasLayer/Interface
+@onready var mutator_select_screen := $CanvasLayer/MutatorSelectScreen
+@onready var loading_screen := $CanvasLayer/LoadingScreen
+@onready var player := $Player
+
+signal switch_scene(scene: Main.Scene)
 
 func _ready() -> void:
+	player.died.connect(on_player_died)
+	$CanvasLayer/PauseMenu.game_abandoned.connect(on_game_abandoned)
+	mutator_select_screen.mutator_selected.connect(on_mutator_selected)
+	
+	proceed_level()
 	update_mutators()
+	
+
+func proceed_level() -> void:
+	current_level += 1
+	var level = get_node_or_null("Level")
+	if level != null:
+		level.queue_free()
+	if current_level in boss_scene_path.keys():
+		var boss_room = load(boss_scene_path[current_level]).instantiate()
+		player.global_position = boss_room.get_node("PlayerSpawnPoint").global_position
+		add_child(boss_room)
+		spawn_timer.paused = true
+	else:
+		change_to_mutator_select()
+	
+
+func change_to_mutator_select() -> void:
+	player.process_mode = Node.PROCESS_MODE_DISABLED
+	visible = false
+	interface.visible = false
+	loading_screen.visible = false
+	mutator_select_screen.visible = true
+	
+
+func on_mutator_selected(mutator) -> void:
+	interface.add_mutator(mutator)
+	# show loading screen until world is generated
+	mutator_select_screen.visible = false
+	loading_screen.visible = true
+	var level: Level = level_scene.instantiate()
+	level.biome = current_level
+	add_child(level)
+	
+	# TODO: when a way to tell when the generation is finished is found we can use this to show the loading_screen
+	#await level.generation_finished
+	
+	loading_screen.visible = false
+	visible = true
+	interface.visible = true
+	spawn_timer.paused = false
 	start_timer()
+	player.process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func on_game_abandoned() -> void:
+	switch_scene.emit(Main.Scene.START)
+	
+
+func on_player_died() -> void:
+	switch_scene.emit(Main.Scene.GAME_OVER)
 	
 
 func start_timer() -> void:
@@ -50,8 +126,8 @@ func update_mutators() -> void:
 
 func _on_spawn_timer_timeout():
 	var size = get_spawn_size()
-	if not EnemyCreator.spawn_random_grouped_wave(current_biom, spawn_size):
-		EnemyCreator.spawn_random_wave(current_biom, spawn_size)
+	if not EnemyCreator.spawn_random_grouped_wave(current_level, spawn_size):
+		EnemyCreator.spawn_random_wave(current_level, spawn_size)
 	start_timer()
 	
 

@@ -12,6 +12,7 @@ extends Control
 
 var available_mutators
 
+signal mutator_selected(mutator: Mutator)
 
 func _ready():
 	available_mutators = MutatorManager.get_random_mutators(3)
@@ -32,15 +33,7 @@ func _ready():
 	tex_3.texture.region = Rect2(mutator_3.texture,Vector2(11, 9))
 
 
-func _on_mutator_1_pressed():
-	MutatorManager.add_mutator(available_mutators[0])
-	get_tree().change_scene_to_file("res://resources/levels/Level.tscn")
-
-func _on_mutator_2_pressed():
-	MutatorManager.add_mutator(available_mutators[1])
-	get_tree().change_scene_to_file("res://resources/levels/Level.tscn")
-
-
-func _on_mutator_3_pressed():
-	MutatorManager.add_mutator(available_mutators[2])
-	get_tree().change_scene_to_file("res://resources/levels/Level.tscn")
+func _on_mutator_pressed(id):
+	MutatorManager.add_mutator(available_mutators[id])
+	mutator_selected.emit(available_mutators[id])
+	

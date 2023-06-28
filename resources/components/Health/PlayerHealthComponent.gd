@@ -23,10 +23,5 @@ func receive_damage(damage: int) -> void:
 	super.receive_damage(damage + MutatorManager.get_modifier_for_type(Mutator.MutatorType.DAMAGE_PLUS, true))
 
 
-func die() -> void:
-	super.die()
-	get_tree().change_scene_to_file("res://resources/menus/GameOverScreen.tscn")
-
-
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	super._on_hurt_box_area_entered(area)

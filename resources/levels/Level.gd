@@ -1,12 +1,12 @@
 extends TileMap
-
+class_name Level
 
 var ore_text_scene = preload("res://resources/other/OreText.tscn")
 
 # Damage-Map -> Stores the remaining hardness of cells
 var remaining_hardness_dict = {}
 
-var biome = 1
+var biome: int
 # The layers
 var ground_layer := 0
 var block_layer := 1
@@ -21,6 +21,8 @@ var ground_atlas := 2
 ## Stores the dict with all points that need special ground
 var special_ground :Dictionary
 
+# TODO: find a way to react when the generation is finished
+signal generation_finished
 
 func _ready() -> void:
 	# Add Mutators here for testing
@@ -28,7 +30,8 @@ func _ready() -> void:
 	print("start god")
 	var player_spawn = God.generate_level(self, ground_layer, block_layer, ground_atlas, block_atlas, biome)
 	print("end god")
-	owner.get_node("Player").position = self.map_to_local(player_spawn)
+	get_tree().get_first_node_in_group("player").position = self.map_to_local(player_spawn)
+	
 
 
 # Logic of damaging cells

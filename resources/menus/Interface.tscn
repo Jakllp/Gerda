@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://3nw02h1mploy"]
 
 [ext_resource type="Texture2D" uid="uid://b023yc0p2750n" path="res://asset/visual/UI/HUD_Elements.png" id="1_b65lm"]
-[ext_resource type="Script" path="res://resources/menus/Interface.gd" id="1_nrw5u"]
+[ext_resource type="Script" path="res://resources/menus/Interface.gd" id="1_dnjdd"]
 [ext_resource type="Theme" uid="uid://dcv5nno7k0rpb" path="res://asset/visual/UI/themes/labelHUD.tres" id="2_iwxg6"]
 [ext_resource type="Texture2D" uid="uid://b4ou0oya7s214" path="res://asset/visual/UI/moleWeaponHUD.png" id="10_oaxdx"]
 
@@ -51,19 +51,24 @@ region = Rect2(24, 0, 8, 8)
 atlas = ExtResource("1_b65lm")
 region = Rect2(24, 16, 1, 8)
 
-[node name="Interface" type="CanvasLayer"]
-script = ExtResource("1_nrw5u")
+[node name="Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_dnjdd")
 
 [node name="Bottom" type="HBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -170.0
-offset_top = -84.0
-offset_right = 170.0
-offset_bottom = -10.0
+offset_left = 386.0
+offset_top = 524.0
+offset_right = 726.0
+offset_bottom = 598.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -208,6 +213,7 @@ theme = ExtResource("2_iwxg6")
 text = "0"
 
 [node name="Left" type="HBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 192.0
@@ -303,12 +309,13 @@ theme = ExtResource("2_iwxg6")
 text = "0"
 
 [node name="Right" type="HBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -109.0
+offset_left = 1003.0
 offset_top = 10.0
-offset_right = -10.0
+offset_right = 1102.0
 offset_bottom = 90.0
 grow_horizontal = 0
 size_flags_horizontal = 0

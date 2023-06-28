@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 const atlas := preload("res://asset/visual/UI/HUD_Elements.png")
 const mutator_atlas := preload("res://asset/visual/UI/Mutators.png")
@@ -46,8 +46,8 @@ func _ready():
 	heart_empty_tex.region.position = Vector2(0,16)
 	heart_empty_tex.region.size = Vector2(8,8)
 	
-	# connecting signals
-	var player:Player = get_tree().get_first_node_in_group("player")
+	# connect signals
+	var player = get_tree().get_first_node_in_group("player")
 	player.ore_changed.connect(on_ore_changed)
 	player.player_upgrade_received.connect(on_player_upgrade_received)
 	player.weapon.weapon_upgrade_received.connect(on_weapon_upgrade_received)
@@ -57,9 +57,6 @@ func _ready():
 	player.dashes_left_changed.connect(on_dashes_left_changed)
 	player.get_node("PlayerHealthComponent").max_hp_changed.connect(on_max_hp_changed)
 	player.get_node("PlayerHealthComponent").hp_changed.connect(on_hp_changed)
-	
-	for mutator in MutatorManager.get_active_mutators():#
-		self.add_mutator(mutator)
 	
 
 func on_ore_changed(amount:int) -> void:

@@ -24,7 +24,7 @@ func shoot(target: Vector2) -> void:
 	p.transform = global_transform
 	p.curve = calculate_trajectory()
 	p.alpha = alpha
-	get_node("/root/GameWorld/TileMap/Projectiles").add_child(p)
+	get_tree().get_first_node_in_group("projectiles").add_child(p)
 	
 func calculate_trajectory() -> Curve2D:
 	var dot = Vector2.RIGHT.dot(target.normalized())

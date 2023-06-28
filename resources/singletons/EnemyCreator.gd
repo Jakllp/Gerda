@@ -13,10 +13,10 @@ const spider_scene := preload("res://resources/entity/enemy/spider/Spider.tscn")
 const worm_scene := preload("res://resources/entity/enemy/worm/Worm.tscn")
 
 const spawn_prob_table := {
-	GameWorld.Biom.BIOM_1 : {spider_scene : 3, worm_scene : 1}
+	GameWorld.Level.BIOM_1 : {spider_scene : 3, worm_scene : 1}
 }
 const enemy_weight_table := {
-	GameWorld.Biom.BIOM_1 : {spider_scene : 3, worm_scene: 4}
+	GameWorld.Level.BIOM_1 : {spider_scene : 3, worm_scene: 4}
 }
 
 var prob_sum := {}
@@ -30,7 +30,7 @@ func _ready() -> void:
 			prob_sum[biom] += value
 	
 
-func spawn_random_enemy(biom: GameWorld.Biom) -> bool:
+func spawn_random_enemy(biom: GameWorld.Level) -> bool:
 	var pos = get_random_spawn_pos()
 	if pos == Vector2.INF:
 		return false
@@ -65,7 +65,7 @@ func spawn_enemy_raw(enemy:PhysicsBody2D, pos: Vector2) -> void:
 	get_tree().get_first_node_in_group("enemies").add_child(enemy)
 	
 
-func spawn_random_wave(biom: GameWorld.Biom, size: int) -> void:
+func spawn_random_wave(biom: GameWorld.Level, size: int) -> void:
 	for i in size:
 		spawn_random_enemy(biom)
 	
@@ -90,7 +90,7 @@ func spawn_grouped_wave(enemies: Array, area: Rect2) -> void:
 		spawn_enemy_in_area(enemies[i], area, i)
 		
 
-func spawn_random_grouped_wave(biom: GameWorld.Biom, size: int) -> bool:
+func spawn_random_grouped_wave(biom: GameWorld.Level, size: int) -> bool:
 	var area = get_randpm_spawn_area(size)
 	if area.size == Vector2.ZERO:
 		return false
@@ -99,7 +99,7 @@ func spawn_random_grouped_wave(biom: GameWorld.Biom, size: int) -> bool:
 	
 	return true
 
-func get_random_enemy(biom: GameWorld.Biom):
+func get_random_enemy(biom: GameWorld.Level):
 	var enemy
 	var rand_val = randi_range(0, prob_sum[biom] - 1)
 	for key in spawn_prob_table[biom]:

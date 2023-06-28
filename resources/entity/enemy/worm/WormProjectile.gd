@@ -16,5 +16,5 @@ func release() -> void:
 	var puddle = puddle_scene.instantiate()
 	puddle.position = follow.global_position
 	puddle.z_index = -1
-	get_node("/root/GameWorld/TileMap/Projectiles").add_child(puddle)
+	get_tree().get_first_node_in_group("projectiles").add_child(puddle)
 	super.release()

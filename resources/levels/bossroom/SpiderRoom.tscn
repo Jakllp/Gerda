@@ -173,6 +173,8 @@ position = Vector2(384, 251)
 [node name="Torch2" parent="." instance=ExtResource("7_37kwg")]
 position = Vector2(561, 251)
 
+[node name="Projectiles" type="Node2D" parent="." groups=["projectiles"]]
+
 [connection signal="area_entered" from="SpiderBoss/StompAreaLeft" to="SpiderBoss" method="_on_stomp_area_area_entered" binds= [true]]
 [connection signal="area_exited" from="SpiderBoss/StompAreaLeft" to="SpiderBoss" method="_on_stomp_area_area_exited" binds= [true]]
 [connection signal="area_entered" from="SpiderBoss/StompAreaRight" to="SpiderBoss" method="_on_stomp_area_area_entered" binds= [false]]

@@ -15,4 +15,5 @@ func do_interaction() -> void:
 		$Collision2.disabled = false
 	else:
 		if Input.is_action_just_pressed("interact"):
-			print("BOSS-TIME!")
+			get_node("/root/Main/GameWorld").proceed_level()
+
