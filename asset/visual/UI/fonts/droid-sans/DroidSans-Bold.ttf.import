@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cknggoarcdie1"
-path="res://.godot/imported/SourceCodePro-Medium.ttf-a176f5c4abf696ce5d0146c8cf7a194e.fontdata"
+uid="uid://bu4avl3s5xdpq"
+path="res://.godot/imported/DroidSans-Bold.ttf-0340aaf385b6f7a2daf22a8338b9e1fc.fontdata"
 
 [deps]
 
-source_file="res://asset/visual/UI/fonts/Godot-Fontpack/fonts/source-code-pro/source-code-pro-2.010R-ro-1.030R-it/TTF/SourceCodePro-Medium.ttf"
-dest_files=["res://.godot/imported/SourceCodePro-Medium.ttf-a176f5c4abf696ce5d0146c8cf7a194e.fontdata"]
+source_file="res://asset/visual/UI/fonts/droid-sans/DroidSans-Bold.ttf"
+dest_files=["res://.godot/imported/DroidSans-Bold.ttf-0340aaf385b6f7a2daf22a8338b9e1fc.fontdata"]
 
 [params]
 

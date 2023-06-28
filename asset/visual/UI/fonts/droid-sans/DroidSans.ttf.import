@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bf6hebw1kr4mc"
-path="res://.godot/imported/LinLibertine_RI.otf-4ea425579510f3cc28204a9c346446cc.fontdata"
+uid="uid://dcc5o2xuuk5bl"
+path="res://.godot/imported/DroidSans.ttf-c69fcde459d0ea2d2f0e0ceb8eb23fbe.fontdata"
 
 [deps]
 
-source_file="res://asset/visual/UI/fonts/Godot-Fontpack/fonts/linux-libertine/LinLibertine_5.3.0_2012_07_02/LinLibertineOTF_5.3.0_2012_07_02/LinLibertine_RI.otf"
-dest_files=["res://.godot/imported/LinLibertine_RI.otf-4ea425579510f3cc28204a9c346446cc.fontdata"]
+source_file="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf"
+dest_files=["res://.godot/imported/DroidSans.ttf-c69fcde459d0ea2d2f0e0ceb8eb23fbe.fontdata"]
 
 [params]
 

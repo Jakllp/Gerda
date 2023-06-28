@@ -64,10 +64,10 @@ script = ExtResource("5_gfjft")
 [node name="Interface" parent="Player" instance=ExtResource("6_ncnat")]
 
 [node name="PauseMenu" parent="Player/Interface" instance=ExtResource("7_15icr")]
-offset_left = 17.0
-offset_top = -6.0
-offset_right = 17.0
-offset_bottom = -6.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="Unshaded" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true

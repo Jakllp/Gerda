@@ -25,9 +25,9 @@ const title_dict = {
 	MutatorType.HARDENED_STONE: "Hardened Stone",
 	MutatorType.LESS_ORE: "Less Ore",
 	MutatorType.MORE_STONE: "More Stone",
-	MutatorType.SPAWN_PLUS: "EnemySpawn+",
-	MutatorType.DAMAGE_PLUS: "EnemyDamage+",
-	MutatorType.HEALTH_PLUS: "EnemyHealth+",
+	MutatorType.SPAWN_PLUS: "Enemy Spawn",
+	MutatorType.DAMAGE_PLUS: "Enemy Damage",
+	MutatorType.HEALTH_PLUS: "Enemy Health",
 	MutatorType.SPEED_UP: "Speed Up",
 	MutatorType.SPEED_DOWN: "Speed Down"
 }

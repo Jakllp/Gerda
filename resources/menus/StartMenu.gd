@@ -2,7 +2,7 @@ extends Control
 
 @onready var start_button = $VBoxContainer/StartButton
 @onready var options_button = $VBoxContainer/OptionsMenu
-@onready var credits_button = $VBoxContainer/CreditsButtonnew
+@onready var credits_button = $VBoxContainer/CreditsButton
 @onready var quit_button = $VBoxContainer/QuitMenu
 
 func _ready():

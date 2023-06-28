@@ -1,8 +1,8 @@
 extends ColorRect
 
 @onready var animator: AnimationPlayer = $AnimationPlayer
-@onready var play_button: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton
-@onready var quit_button: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/QuitButton
+@onready var play_button: Button = $Buttons/PanelContainer/MarginContainer/VBoxContainer/ResumeButton
+@onready var quit_button: Button = $Buttons/PanelContainer/MarginContainer/VBoxContainer/QuitButton
 @onready var accept_dialog = $AcceptDialog
 
 func _ready() -> void:
