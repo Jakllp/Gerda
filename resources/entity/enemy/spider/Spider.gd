@@ -18,6 +18,8 @@ func _physics_process(delta :float) -> void:
 
 
 func attack() -> void:
+	if not GameWorld.check_line_of_sight(self, global_position, get_tree().get_first_node_in_group("player").global_position, 1):
+		return
 	if not attack_tween:
 		sprite.stop()
 		
