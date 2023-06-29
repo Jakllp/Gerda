@@ -26,7 +26,9 @@ var player_spawn
 func _ready() -> void:
 	# Add Mutators here for testing
 	#MutatorManager.add_mutator(Mutator.new(Mutator.MutatorType.SPEED_UP, 2))
-	get_tree().get_first_node_in_group("player").position = self.map_to_local(player_spawn)
+	var player :Player = get_tree().get_first_node_in_group("player")
+	player.position = self.map_to_local(player_spawn)
+	player.ore_received.connect(_on_player_ore_received)
 
 
 func generate() -> void:
@@ -169,4 +171,4 @@ func _on_player_ore_received(amount: int, pos: Vector2) -> void:
 	var ore_text := ore_text_scene.instantiate()
 	ore_text.get_child(1,false).set_text("+"+str(amount))
 	ore_text.global_position = pos
-	owner.get_node("Unshaded").add_child(ore_text)
+	get_tree().get_first_node_in_group("unshaded").add_child(ore_text)
