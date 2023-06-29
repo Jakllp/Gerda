@@ -35,17 +35,25 @@ var current_scene: Node
 
 func _ready():
 	on_switch_scene(Scene.START)
-	
+	ready.connect(create_level)
+
+func create_level():
+	self.add_child(load("res://resources/levels/StartMenuLevel.tscn").instantiate())
 
 func on_switch_scene(scene: Scene) -> void:
 	if current_scene != null:
 		if scene != Scene.START:
 			$Level.visible = false
-			$CanvasModulate.visible = false
+			$Level/CanvasModulate.visible = false
+		elif scene == Scene.START and not is_instance_valid($Level):
+			self.add_child(load("res://resources/levels/StartMenuLevel.tscn").instantiate())
+			var tweeny = self.create_tween()
+			$Level/CanvasModulate.visible = false
+			tweeny.tween_property($Level/CanvasModulate, "visible", true, 0.01)
 		else:
 			var tweeny = self.create_tween()
 			# To actually have it active again
-			tweeny.tween_property($CanvasModulate, "visible", true, 0.01)
+			tweeny.tween_property($Level/CanvasModulate, "visible", true, 0.01)
 			$Level.visible = true
 			if not $Level/Enemies/SpecialSpider/Camera2D.is_current():
 				$Level/Enemies/SpecialSpider/Camera2D.make_current()
@@ -63,6 +71,7 @@ func on_switch_scene(scene: Scene) -> void:
 
 func on_character_selected(character: Character) -> void:
 	self.character = character
+	$Level.queue_free()
 	on_switch_scene(Scene.GAME)
 	
 
