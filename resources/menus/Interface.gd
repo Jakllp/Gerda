@@ -76,7 +76,7 @@ func on_player_upgrade_received(type: Items.Type) -> void:
 func on_weapon_upgrade_received(type: Items.Type) -> void:
 	match type:
 		Items.Type.DAMAGE:
-			weapon_speed_label.text = str(weapon_speed_label.text.to_int() + 1)
+			weapon_damage_label.text = str(weapon_damage_label.text.to_int() + 1)
 		Items.Type.ATTACK_RATE:
 			weapon_rate_label.text = str(weapon_rate_label.text.to_int() + 1)
 		Items.Type.WEAPON_SPEED:
