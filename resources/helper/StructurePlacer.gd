@@ -82,9 +82,8 @@ static func spawn_pattern(ground_pattern :TileMapPattern, block_pattern :TileMap
 					map.set_cell(block_layer, cell_below, block_atlas, Vector2i(map.get_cell_atlas_coords(block_layer, cur_cell).x, 1))
 				elif map.get_cell_source_id(block_layer,cell_below) == nope_atlas:
 					# There's a nope! This means we probably carved something out (or did something wrong with the pattern)
-					# In any case -> Needs to be changed to a wall or disappear
-					if map.get_cell_source_id(block_layer, cell_above) != -1:
-						# Something above -> Change to wall!
+					# In any case -> Needs to be changed to a wall if top above or disappear
+					if map.get_cell_source_id(block_layer, cell_above) != -1 and map.get_cell_atlas_coords(block_layer, cell_above).y == 0:
 						map.set_cell(block_layer, cur_cell, block_atlas, Vector2i(map.get_cell_atlas_coords(block_layer, cell_above).x, 1))
 						map.set_ground(cur_cell, 2)
 					else:
