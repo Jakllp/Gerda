@@ -5,7 +5,7 @@ enum Level {
 	START,
 	BIOM_1,
 	SPIDER_BOSS,
-	BIOM_2
+	END
 }
 
 #enum State {
@@ -59,6 +59,9 @@ func _ready() -> void:
 
 func proceed_level() -> void:
 	current_level += 1
+	if current_level == Level.END:
+		switch_scene.emit(Main.Scene.VICTORY)
+		return
 	var level = get_node_or_null("Level")
 	if level != null:
 		level.queue_free()

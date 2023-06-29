@@ -7,7 +7,8 @@ enum Scene {
 	CREDIT,
 	CHARACTER_SELECT,
 	GAME_OVER,
-	GAME
+	GAME,
+	VICTORY
 }
 
 enum Character {
@@ -24,7 +25,8 @@ var scene_dict := {
 	Scene.CREDIT : preload("res://resources/menus/CreditsScreen.tscn"),
 	Scene.CHARACTER_SELECT : preload("res://resources/menus/CharacterSelectScreen.tscn"),
 	Scene.GAME_OVER : preload("res://resources/menus/GameOverScreen.tscn"),
-	Scene.GAME : preload("res://resources/levels/GameWorld.tscn")
+	Scene.GAME : preload("res://resources/levels/GameWorld.tscn"),
+	Scene.VICTORY : preload("res://resources/menus/VictoryScreen.tscn")
 }
 
 var current_scene: Node
