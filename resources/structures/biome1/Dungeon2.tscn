@@ -1,18 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://dnj5vlk4lauu3"]
+[gd_scene load_steps=15 format=3 uid="uid://0t6oeaf2ek6q"]
 
-[ext_resource type="Texture2D" uid="uid://bjo4qihuuqbq8" path="res://asset/visual/map/Biom1/biom1_blockTileset.png" id="1_x6313"]
-[ext_resource type="Texture2D" uid="uid://bs2qq00uj5g8i" path="res://asset/visual/map/miningoverlay.png" id="2_yh5ux"]
-[ext_resource type="Texture2D" uid="uid://r7i65elbeq4u" path="res://asset/visual/map/Biom1/ground.png" id="3_7cmq6"]
-[ext_resource type="Texture2D" uid="uid://dxaavx7yq8ial" path="res://asset/visual/map/nope.png" id="4_qh630"]
-[ext_resource type="PackedScene" uid="uid://0iby5s3778tq" path="res://resources/interactables/Chest.tscn" id="5_bmeyp"]
-[ext_resource type="PackedScene" uid="uid://c7wsucit56out" path="res://resources/entity/enemy/spider/Spider.tscn" id="5_vsylr"]
-[ext_resource type="PackedScene" uid="uid://ng3ib61x8e5x" path="res://resources/decor/Torch.tscn" id="6_7rv2a"]
+[ext_resource type="Texture2D" uid="uid://bjo4qihuuqbq8" path="res://asset/visual/map/Biom1/biom1_blockTileset.png" id="1_81n3f"]
+[ext_resource type="Texture2D" uid="uid://bs2qq00uj5g8i" path="res://asset/visual/map/miningoverlay.png" id="2_s7mdx"]
+[ext_resource type="Texture2D" uid="uid://r7i65elbeq4u" path="res://asset/visual/map/Biom1/ground.png" id="3_osyof"]
+[ext_resource type="Texture2D" uid="uid://dxaavx7yq8ial" path="res://asset/visual/map/nope.png" id="4_ppwit"]
+[ext_resource type="PackedScene" uid="uid://c7wsucit56out" path="res://resources/entity/enemy/spider/Spider.tscn" id="5_0dql6"]
+[ext_resource type="PackedScene" uid="uid://dx0jgljsjudkw" path="res://resources/entity/enemy/worm/Worm.tscn" id="6_42d36"]
+[ext_resource type="PackedScene" uid="uid://0iby5s3778tq" path="res://resources/interactables/Chest.tscn" id="6_axnqx"]
+[ext_resource type="PackedScene" uid="uid://ng3ib61x8e5x" path="res://resources/decor/Torch.tscn" id="7_w06b5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbyfa"]
 bounce = 1.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pxkrx"]
-texture = ExtResource("1_x6313")
+texture = ExtResource("1_81n3f")
 texture_region_size = Vector2i(22, 22)
 0:0/next_alternative_id = 2
 0:0/0 = 0
@@ -106,7 +107,7 @@ texture_region_size = Vector2i(22, 22)
 0:1/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ey7l"]
-texture = ExtResource("2_yh5ux")
+texture = ExtResource("2_s7mdx")
 texture_region_size = Vector2i(22, 22)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -154,7 +155,7 @@ texture_region_size = Vector2i(22, 22)
 3:1/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yk7ub"]
-texture = ExtResource("3_7cmq6")
+texture = ExtResource("3_osyof")
 texture_region_size = Vector2i(22, 22)
 0:0/next_alternative_id = 3
 0:0/0 = 0
@@ -174,7 +175,7 @@ texture_region_size = Vector2i(22, 22)
 0:0/2/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ex2jo"]
-texture = ExtResource("4_qh630")
+texture = ExtResource("4_ppwit")
 texture_region_size = Vector2i(22, 22)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -204,14 +205,14 @@ tile_set = SubResource("TileSet_u0tmd")
 format = 2
 layer_0/name = "ground"
 layer_0/z_index = -1
-layer_0/tile_data = PackedInt32Array(-1, 2, 0, 65535, 2, 0, 131071, 2, 0, -65536, 2, 131072, 0, 2, 0, 65536, 2, 0, -65535, 2, 0, 1, 2, 0, 65537, 2, 0, -2, 2, 0, 65534, 2, 0, 131070, 2, 0, -65534, 2, 0, 2, 2, 0, 65538, 2, 0, 196606, 2, 65536, 196607, 2, 65536, 131072, 2, 65536, 131073, 2, 65536, 131074, 2, 65536, -65538, 2, 131072, -65537, 2, 131072, -131072, 2, 131072, -131071, 2, 131072, -131070, 2, 131072, 131069, 3, 0, 65533, 3, 0, -3, 3, 0, -65539, 3, 0, -131074, 3, 0, -131073, 3, 0, -196608, 3, 0, -196607, 3, 0, -196606, 3, 0, -131069, 3, 0, -65533, 3, 0, 3, 3, 0, 65539, 3, 0)
+layer_0/tile_data = PackedInt32Array(-131074, 2, 0, -131073, 2, 0, -196608, 2, 0, -196607, 2, 0, -196606, 2, 0, -131070, 2, 0, -131071, 2, 0, -131072, 2, 0, -65537, 2, 0, -65538, 2, 0, -2, 2, 0, -1, 2, 0, -65536, 2, 0, -65535, 2, 0, -65534, 2, 0, 2, 2, 0, 1, 2, 0, 0, 2, 0, 65535, 2, 0, 65534, 2, 0, 131070, 2, 0, 131071, 2, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 131074, 2, 0, 131073, 2, 0, 131072, 2, 0, 196607, 2, 0, 196606, 2, 0, 262142, 2, 0, 262143, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 327678, 2, 65536, 327679, 2, 65536, 262144, 2, 65536, 262145, 2, 65536, 262146, 2, 65536, -196610, 2, 131072, -196609, 2, 131072, -262144, 2, 131072, -262143, 2, 131072, -262142, 2, 131072, -131069, 2, 131072, -65539, 2, 131072, 262147, 3, 0, 196611, 3, 0, 131075, 3, 0, 65539, 3, 0, 3, 3, 0, -65533, 3, 0, -196605, 3, 0, -262141, 3, 0, -327677, 3, 0, -327679, 3, 0, -327678, 3, 0, -327680, 3, 0, -262145, 3, 0, -262146, 3, 0, -262147, 3, 0, -196611, 3, 0, -131075, 3, 0, -3, 3, 0, 65533, 3, 0, 131069, 3, 0, 196605, 3, 0, 262141, 3, 0, 327677, 3, 0)
 layer_1/name = "blocks"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 3
-layer_1/tile_data = PackedInt32Array(-1, 3, 0, 65535, 3, 0, 131071, 3, 0, -65536, 3, 0, 0, 3, 0, 65536, 3, 0, -65535, 3, 0, 1, 3, 0, 65537, 3, 0, 131070, 3, 0, 65534, 3, 0, -2, 3, 0, -65534, 3, 0, 2, 3, 0, 65538, 3, 0, 131069, 262144, 0, 65533, 262144, 0, -3, 262144, 0, -65539, 262144, 0, 65539, 262144, 0, 3, 262144, 0, -65533, 262144, 0, -131069, 262144, 0, -131074, 262144, 0, -131073, 262144, 0, -196608, 262144, 0, -196607, 262144, 0, -196606, 262144, 0, 196606, 262144, 65536, 196607, 262144, 65536, 131073, 262144, 65536, 131074, 262144, 65536, 131072, 0, 65536, -65538, 262144, 1, -65537, 262144, 1, -131072, 262144, 1, -131071, 262144, 1, -131070, 262144, 1)
+layer_1/tile_data = PackedInt32Array(-196610, 262144, 1, -196609, 262144, 1, -262143, 262144, 1, -262142, 262144, 1, -262146, 262144, 0, -262145, 262144, 0, -327679, 262144, 0, -327678, 262144, 0, -327677, 262144, 0, -262141, 262144, 0, -196605, 262144, 0, -262147, 262144, 0, -196611, 262144, 0, -131075, 262144, 0, -3, 262144, 65536, 65533, 262144, 0, 131069, 262144, 0, 196605, 262144, 0, 262141, 262144, 0, -65533, 262144, 65536, 3, 262144, 0, 65539, 262144, 0, 131075, 262144, 0, 196611, 262144, 0, 327677, 262144, 0, 327678, 262144, 65536, 327679, 262144, 65536, 262147, 262144, 0, 262146, 262144, 65536, 262145, 262144, 65536, -131069, 262144, 1, -65539, 262144, 1, -327680, 0, 0, -262144, 0, 1, 262144, 0, 65536, -131074, 3, 0, -131073, 3, 0, -196608, 3, 0, -196607, 3, 0, -196606, 3, 0, -131070, 3, 0, -65534, 3, 0, 2, 3, 0, 65538, 3, 0, 131074, 3, 0, 196610, 3, 0, 196609, 3, 0, 196608, 3, 0, 262143, 3, 0, 262142, 3, 0, 196606, 3, 0, 131070, 3, 0, 65534, 3, 0, -2, 3, 0, -65538, 3, 0, -65537, 3, 0, -131072, 3, 0, -131071, 3, 0, -65535, 3, 0, 1, 3, 0, 65537, 3, 0, 131072, 3, 0, 196607, 3, 0, 131071, 3, 0, 65535, 3, 0, -1, 3, 0, -65536, 3, 0, 0, 3, 0, 65536, 3, 0, 131073, 3, 0)
 layer_2/name = "miningOverlay"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
@@ -222,21 +223,27 @@ layer_2/tile_data = PackedInt32Array()
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Spider" parent="Enemies" instance=ExtResource("5_vsylr")]
-position = Vector2(-19, 23)
+[node name="Spider" parent="Enemies" instance=ExtResource("5_0dql6")]
+position = Vector2(39, 12)
 
-[node name="Spider2" parent="Enemies" instance=ExtResource("5_vsylr")]
-position = Vector2(43, 25)
+[node name="Spider2" parent="Enemies" instance=ExtResource("5_0dql6")]
+position = Vector2(-17, 10)
+
+[node name="Worm2" parent="Enemies" instance=ExtResource("6_42d36")]
+position = Vector2(11, 45)
 
 [node name="Interactables" type="Node" parent="."]
 
-[node name="Chest" parent="Interactables" instance=ExtResource("5_bmeyp")]
-position = Vector2(10, -10)
+[node name="Chest" parent="Interactables" instance=ExtResource("6_axnqx")]
+position = Vector2(-11, -51)
+
+[node name="Chest2" parent="Interactables" instance=ExtResource("6_axnqx")]
+position = Vector2(33, -50)
 
 [node name="Decor" type="Node" parent="."]
 
-[node name="Torch" parent="Decor" instance=ExtResource("6_7rv2a")]
-position = Vector2(-33, -5)
+[node name="Torch" parent="Decor" instance=ExtResource("7_w06b5")]
+position = Vector2(57, 103)
 
-[node name="Torch2" parent="Decor" instance=ExtResource("6_7rv2a")]
-position = Vector2(55, -5)
+[node name="Torch2" parent="Decor" instance=ExtResource("7_w06b5")]
+position = Vector2(-35, -66)

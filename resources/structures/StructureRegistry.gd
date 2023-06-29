@@ -9,6 +9,8 @@ enum Structures {
 	TRAPDOOR_B1,
 	ANVIL_B1,
 	DUNGEON_1_B1,
+	DUNGEON_2_B1,
+	DUNGEON_3_B1,
 	SPAWNROOM_B1
 }
 
@@ -21,6 +23,10 @@ static func get_map_for_structure(structure_name) -> TileMap:
 			return preload("res://resources/structures/biome1/AnvilRoom.tscn").instantiate().get_node(".")
 		Structures.DUNGEON_1_B1:
 			return preload("res://resources/structures/biome1/BasicDungeon.tscn").instantiate().get_node(".")
+		Structures.DUNGEON_2_B1:
+			return preload("res://resources/structures/biome1/Dungeon2.tscn").instantiate().get_node(".")
+		Structures.DUNGEON_3_B1:
+			return preload("res://resources/structures/biome1/Dungeon3.tscn").instantiate().get_node(".")
 		Structures.SPAWNROOM_B1:
 			return preload("res://resources/structures/biome1/SpawnRoom.tscn").instantiate().get_node(".")
 		_:
@@ -35,6 +41,10 @@ static func get_pattern_range(structure_name):
 			return [Vector2i(-2,-3),Vector2i(2,2)]
 		Structures.DUNGEON_1_B1:
 			return [Vector2i(-3,-3),Vector2i(3,2)]
+		Structures.DUNGEON_2_B1:
+			return [Vector2i(-3,-5),Vector2i(3,4)]
+		Structures.DUNGEON_3_B1:
+			return [Vector2i(-1,-1),Vector2i(2,2)]
 		Structures.SPAWNROOM_B1:
 			return [Vector2i(-1,-1),Vector2i(0,0)]
 		_:
