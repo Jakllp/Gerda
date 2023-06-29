@@ -27,8 +27,7 @@ scale = Vector2(0.149, 0.149)
 texture = ExtResource("2_lbv5f")
 
 [node name="Hitbox" parent="PathFollow2D" instance=ExtResource("3_ukbnu")]
-collision_mask = 7
-monitoring = true
+collision_layer = 0
 
 [node name="CollisionShape2D" parent="PathFollow2D/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_djmju")
