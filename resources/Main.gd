@@ -39,6 +39,16 @@ func _ready():
 
 func on_switch_scene(scene: Scene) -> void:
 	if current_scene != null:
+		if scene != Scene.START:
+			$Level.visible = false
+			$CanvasModulate.visible = false
+		else:
+			var tweeny = self.create_tween()
+			# To actually have it active again
+			tweeny.tween_property($CanvasModulate, "visible", true, 0.01)
+			$Level.visible = true
+			if not $Level/Enemies/SpecialSpider/Camera2D.is_current():
+				$Level/Enemies/SpecialSpider/Camera2D.make_current()
 		current_scene.queue_free()
 	current_scene = scene_dict[scene].instantiate()
 	if current_scene.has_signal("switch_scene"):
@@ -50,7 +60,6 @@ func on_switch_scene(scene: Scene) -> void:
 		setup_game_world()
 		return
 	canvas_layer.add_child(current_scene)
-	
 
 func on_character_selected(character: Character) -> void:
 	self.character = character

@@ -170,7 +170,6 @@ blackboard = NodePath("../BTBlackboard")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 20.0
 avoidance_enabled = true
-debug_enabled = true
 
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]

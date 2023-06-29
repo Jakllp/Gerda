@@ -29,6 +29,9 @@ func _ready() -> void:
 	var player :Player = get_tree().get_first_node_in_group("player")
 	player.position = self.map_to_local(player_spawn)
 	player.ore_received.connect(_on_player_ore_received)
+	var camera = player.get_node("Camera2D")
+	if not camera.is_current():
+		camera.make_current()
 
 
 func generate() -> void:

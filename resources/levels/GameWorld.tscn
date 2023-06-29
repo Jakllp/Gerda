@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="8_15nnc"]
 [ext_resource type="PackedScene" uid="uid://sj1l83q0goit" path="res://resources/menus/LoadingScreen.tscn" id="8_047hp"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvw0t"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_taxil"]
 resource_local_to_scene = true
 shader = ExtResource("7_0n4fg")
 shader_parameter/blur = 2.5
@@ -31,7 +31,7 @@ color = Color(0.32549, 0.32549, 0.32549, 1)
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_ym1hu")]
 visible = false
-material = SubResource("ShaderMaterial_vvw0t")
+material = SubResource("ShaderMaterial_taxil")
 
 [node name="LoadingScreen" parent="CanvasLayer" instance=ExtResource("8_047hp")]
 
