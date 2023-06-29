@@ -31,7 +31,7 @@ signal ammo_stored_changed(value)
 func _ready() -> void:
 	super._ready()
 	mag_contents = mag_size
-	ammo_stored = max_ammo_stored
+	ammo_stored = max_ammo_stored / 2
 
 
 func update(player: Player) -> void:
