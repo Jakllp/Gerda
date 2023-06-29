@@ -5,7 +5,7 @@ class_name Rifle
 
 func act(player: Player, delta: float) -> void:
 	if mag_contents >= ammo_needed_per_shot and reload_timer.is_stopped() and fire_rate_timer.is_stopped():
-		var damage_plus = (base_damage * damage_upgrade_modifier/100) * active_upgrades[Items.Type.DAMAGE]
+		var damage_plus = damage_upgrade_modifier * active_upgrades[Items.Type.DAMAGE]
 		$Shooter.shoot(base_damage + damage_plus)
 		
 		mag_contents -= ammo_needed_per_shot
