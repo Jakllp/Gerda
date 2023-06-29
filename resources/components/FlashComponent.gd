@@ -20,6 +20,7 @@ func flash(le_owner):
 	
 	shader_mat.set_shader_parameter("flash_color", Color(1,1,1,1))
 	shader_mat.set_shader_parameter("flash_modifier",0.4)
+	prints(le_owner, "flashed")
 	await le_owner.get_tree().create_timer(0.05).timeout
 	
 	flashing = false
