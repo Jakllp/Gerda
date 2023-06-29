@@ -1,41 +1,50 @@
-[gd_scene load_steps=16 format=3 uid="uid://daeqxvv0hhgmu"]
+[gd_scene load_steps=19 format=3 uid="uid://daeqxvv0hhgmu"]
 
 [ext_resource type="Shader" path="res://resources/shaders/tilemap.gdshader" id="1_wwk0h"]
 [ext_resource type="TileSet" uid="uid://botvhodjv237t" path="res://asset/visual/map/Biom1/Tileset-biom1.tres" id="2_6rcqk"]
 [ext_resource type="PackedScene" uid="uid://ng3ib61x8e5x" path="res://resources/decor/Torch.tscn" id="3_ue618"]
 [ext_resource type="PackedScene" uid="uid://c7wsucit56out" path="res://resources/entity/enemy/spider/Spider.tscn" id="4_utug7"]
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="5_n6jfj"]
-[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="6_ugvr2"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="6_0rpn1"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="7_74kc8"]
 [ext_resource type="PackedScene" uid="uid://dx0jgljsjudkw" path="res://resources/entity/enemy/worm/Worm.tscn" id="7_eu06j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ihwk"]
 shader = ExtResource("1_wwk0h")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bodjs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_twds6"]
 resource_local_to_scene = true
 shader = ExtResource("5_n6jfj")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_sewy1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pmy03"]
+resource_local_to_scene = true
+shader = ExtResource("6_0rpn1")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_05uqw"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ekxxq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3k51v"]
+resource_local_to_scene = true
+shader = ExtResource("7_74kc8")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_opvsp"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ltgmk"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_4a7kg"]
 resource_local_to_scene = true
 radius = 16.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_joqff"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1u7ru"]
 resource_local_to_scene = true
 size = Vector2(28, 18)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6y8bv"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_g7gfa"]
 resource_local_to_scene = true
 radius = 25.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_aamku"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_q560d"]
 resource_local_to_scene = true
 radius = 6.0
 
@@ -84,34 +93,33 @@ position = Vector2(758, 161)
 y_sort_enabled = true
 
 [node name="SpecialSpider" parent="Enemies" instance=ExtResource("4_utug7")]
-position = Vector2(345, 342)
+position = Vector2(360, 327)
 
 [node name="PointLight2D" parent="Enemies/SpecialSpider" index="0"]
 energy = 0.5
 
 [node name="AnimatedSprite2D" parent="Enemies/SpecialSpider/SubViewportContainer/SubViewport" index="0"]
-material = SubResource("ShaderMaterial_bodjs")
+material = SubResource("ShaderMaterial_twds6")
 
 [node name="Mask" parent="Enemies/SpecialSpider" index="2"]
-texture = SubResource("ViewportTexture_sewy1")
+material = SubResource("ShaderMaterial_pmy03")
+texture = SubResource("ViewportTexture_05uqw")
 
 [node name="Sprite" parent="Enemies/SpecialSpider" index="3"]
-texture = SubResource("ViewportTexture_ekxxq")
+material = SubResource("ShaderMaterial_3k51v")
+texture = SubResource("ViewportTexture_opvsp")
 
 [node name="CollisionShape2D" parent="Enemies/SpecialSpider/Hitbox" index="0"]
-shape = SubResource("CircleShape2D_ltgmk")
+shape = SubResource("CircleShape2D_4a7kg")
 
 [node name="CollisionShape2D" parent="Enemies/SpecialSpider/HurtBox" index="0"]
-shape = SubResource("RectangleShape2D_joqff")
+shape = SubResource("RectangleShape2D_1u7ru")
 
 [node name="CollisionShape2D" parent="Enemies/SpecialSpider/AttackRange" index="0"]
-shape = SubResource("CircleShape2D_6y8bv")
+shape = SubResource("CircleShape2D_g7gfa")
 
 [node name="CollisionShape2D" parent="Enemies/SpecialSpider" index="8"]
-shape = SubResource("CircleShape2D_aamku")
-
-[node name="26832" type="Node" parent="Enemies/SpecialSpider/BTRoot" index="1"]
-script = ExtResource("6_ugvr2")
+shape = SubResource("CircleShape2D_q560d")
 
 [node name="Camera2D" type="Camera2D" parent="Enemies/SpecialSpider"]
 offset = Vector2(-75, 0)
@@ -133,7 +141,7 @@ position = Vector2(515, 122)
 position = Vector2(-152, 209)
 
 [node name="Spider5" parent="Enemies" instance=ExtResource("4_utug7")]
-position = Vector2(456, 625)
+position = Vector2(456, 626)
 
 [node name="Spider6" parent="Enemies" instance=ExtResource("4_utug7")]
 position = Vector2(832, 368)
