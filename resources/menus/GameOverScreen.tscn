@@ -29,7 +29,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_gkh5n")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 32
 text = "You Died!"
 
 [node name="Button" type="Button" parent="VBoxContainer"]
