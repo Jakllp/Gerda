@@ -57,6 +57,8 @@ func spawn_enemy(enemy: PhysicsBody2D, pos: Vector2) -> void:
 	tween.tween_callback(spawn_point.queue_free)
 	
 	await tween.finished
+	if not is_instance_valid(enemy_container):
+		return
 	enemy.global_position = pos
 	enemy_container.add_child(enemy)
 	
