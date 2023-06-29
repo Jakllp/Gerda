@@ -34,8 +34,9 @@ var current_level = Level.START
 
 var spawn_time: float = 30
 var spawn_time_deviation: float = 4
-var spawn_size = 4
-var spawn_size_deviation = 2
+var spawn_size = 3
+var spawn_size_deviation = 1
+# TODO: implement this
 var max_enemy_weight = 60
 var thready :Thread
 
@@ -54,7 +55,6 @@ func _ready() -> void:
 	mutator_select_screen.mutator_selected.connect(on_mutator_selected)
 	
 	proceed_level()
-	update_mutators()
 	
 
 func proceed_level() -> void:
@@ -83,6 +83,7 @@ func change_to_mutator_select() -> void:
 	
 
 func on_mutator_selected(mutator) -> void:
+	update_mutators()
 	interface.add_mutator(mutator)
 	# show loading screen until world is generated
 	mutator_select_screen.visible = false
