@@ -991,6 +991,7 @@ visible = false
 
 [node name="BbossHealthBar" parent="CanvasLayer" instance=ExtResource("20_cv6bm")]
 
+[connection signal="area_entered" from="HurtBox" to="SupervisedHealthComponent" method="_on_hurt_box_area_entered"]
 [connection signal="hp_changed" from="SupervisedHealthComponent" to="CanvasLayer/BbossHealthBar" method="_on_supervised_health_component_hp_changed"]
 [connection signal="max_hp_changed" from="SupervisedHealthComponent" to="CanvasLayer/BbossHealthBar" method="_on_supervised_health_component_max_hp_changed"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
