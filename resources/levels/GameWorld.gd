@@ -28,6 +28,8 @@ var boss_scene_path := {
 	Level.SPIDER_BOSS : "res://resources/levels/bossroom/SpiderRoom.tscn"
 }
 
+const min_loading_time := 4
+
 var current_level = Level.START
 
 var spawn_time: float = 30
@@ -35,8 +37,10 @@ var spawn_time_deviation: float = 4
 var spawn_size = 4
 var spawn_size_deviation = 2
 var max_enemy_weight = 60
+var thready :Thread
 
 @onready var spawn_timer := $SpawnTimer
+@onready var loading_timer := $LoadingTimer
 @onready var interface := $CanvasLayer/Interface
 @onready var mutator_select_screen := $CanvasLayer/MutatorSelectScreen
 @onready var loading_screen := $CanvasLayer/LoadingScreen
@@ -80,19 +84,36 @@ func on_mutator_selected(mutator) -> void:
 	# show loading screen until world is generated
 	mutator_select_screen.visible = false
 	loading_screen.visible = true
+	
+	thready = Thread.new()
+	thready.start(create_level)
+	# The min amount the loading screen should be there
+	loading_timer.start(min_loading_time)
+
+
+func create_level() -> Node:
 	var level: Level = level_scene.instantiate()
 	level.biome = current_level
-	add_child(level)
+	level.generate()
+	call_deferred("on_level_generated")
+	return level
+
+func on_level_generated() -> void:
+	# Wait for min-amount timer to be stopped if it is still running
+	if not loading_timer.is_stopped():
+		await loading_timer.timeout
 	
-	# TODO: when a way to tell when the generation is finished is found we can use this to show the loading_screen
-	#await level.generation_finished
+	add_child(thready.wait_to_finish())
+	player.process_mode = Node.PROCESS_MODE_INHERIT
 	
-	loading_screen.visible = false
+	# Avoid "jitter"
+	await get_tree().create_timer(0.5).timeout
+	
 	visible = true
 	interface.visible = true
+	loading_screen.visible = false
 	spawn_timer.paused = false
 	start_timer()
-	player.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func on_game_abandoned() -> void:

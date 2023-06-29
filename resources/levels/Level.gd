@@ -20,18 +20,19 @@ var ground_atlas := 2
 
 ## Stores the dict with all points that need special ground
 var special_ground :Dictionary
+var player_spawn
 
-# TODO: find a way to react when the generation is finished
-signal generation_finished
 
 func _ready() -> void:
 	# Add Mutators here for testing
 	#MutatorManager.add_mutator(Mutator.new(Mutator.MutatorType.SPEED_UP, 2))
-	print("start god")
-	var player_spawn = God.generate_level(self, ground_layer, block_layer, ground_atlas, block_atlas, biome)
-	print("end god")
 	get_tree().get_first_node_in_group("player").position = self.map_to_local(player_spawn)
-	
+
+
+func generate() -> void:
+	print("start god")
+	player_spawn = God.generate_level(self, ground_layer, block_layer, ground_atlas, block_atlas, biome)
+	print("end god")
 
 
 # Logic of damaging cells
