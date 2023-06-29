@@ -10,6 +10,7 @@ size = Vector2(22, 18)
 
 [node name="PoisonPuddle" type="Area2D"]
 light_mask = 513
+z_index = 1
 collision_layer = 0
 collision_mask = 2
 input_pickable = false
