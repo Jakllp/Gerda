@@ -13,7 +13,7 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LoadingLabel:text")
+tracks/0/path = NodePath("HBoxContainer/LoadingLabel:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -25,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LoadingLabel2:visible")
+tracks/1/path = NodePath("HBoxContainer/LoadingLabel2:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -47,37 +47,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="LoadingLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -323.0
-offset_top = 313.0
-offset_right = -35.0
-offset_bottom = 348.0
-grow_horizontal = 0
-theme = ExtResource("1_cbibc")
-theme_override_font_sizes/font_size = 32
-text = "Loading.."
-
-[node name="LoadingLabel2" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -34.0
-offset_top = -11.5
-offset_right = 6.0
-offset_bottom = 23.5
-grow_horizontal = 0
-grow_vertical = 2
-theme = ExtResource("1_cbibc")
-theme_override_font_sizes/font_size = 32
-text = "."
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "loading"
@@ -199,3 +168,28 @@ stretch_mode = 5
 layout_mode = 2
 theme = ExtResource("1_cbibc")
 text = " Dash"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -324.0
+offset_top = -340.0
+offset_bottom = -300.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="LoadingLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_cbibc")
+theme_override_font_sizes/font_size = 32
+text = "Loading.."
+
+[node name="LoadingLabel2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_cbibc")
+theme_override_font_sizes/font_size = 32
+text = "."
