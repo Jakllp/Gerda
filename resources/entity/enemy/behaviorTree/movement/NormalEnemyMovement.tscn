@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=14 format=3 uid="uid://dus22u3scedl5"]
 
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSelector.gd" id="1_mp3kr"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/LimitedAlways.gd" id="3_ccuas"]
