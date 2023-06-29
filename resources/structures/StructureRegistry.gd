@@ -44,7 +44,7 @@ static func get_pattern_range(structure_name):
 		Structures.DUNGEON_2_B1:
 			return [Vector2i(-3,-5),Vector2i(3,4)]
 		Structures.DUNGEON_3_B1:
-			return [Vector2i(-1,-1),Vector2i(2,2)]
+			return [Vector2i(-2,-2),Vector2i(2,2)]
 		Structures.SPAWNROOM_B1:
 			return [Vector2i(-1,-1),Vector2i(0,0)]
 		_:
