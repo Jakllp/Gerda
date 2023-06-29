@@ -13,18 +13,18 @@ var heart_empty_tex := AtlasTexture.new()
 const minimum_heart_size := Vector2(40,40)
 const minimum_mutator_size := Vector2(66, 54)
 
-@onready var ore_label = $Right/Ore/Amount/Ore
-@onready var mining_speed_label = $Left/PlayerUpgrades/Upgrade1/Amount/MiningSpeed
-@onready var walk_speed_label = $Left/PlayerUpgrades/Upgrade2/Amount/WalkSpeed
-@onready var dash_cooldown_label = $Left/PlayerUpgrades/Upgrade3/Amount/DashCooldown
-@onready var weapon_speed_label = $Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade1/Amount/Speed
-@onready var weapon_damage_label = $Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade2/Amount/Damage
-@onready var weapon_rate_label = $Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade3/Amount/Rate
-@onready var magazine_label = $Bottom/VBoxContainer/WeaponInfo/Ammo/CurrentMagazine
-@onready var ammo_label = $Bottom/VBoxContainer/WeaponInfo/Ammo/RemainingAmmo
-@onready var dashes = $Bottom/VBoxContainer/Dashes
-@onready var health = $Left/Health
-@onready var mutators = $Right/Mutators
+@onready var ore_label = $Right/Right/Ore/Amount/Ore
+@onready var mining_speed_label = $Left/Left/PlayerUpgrades/Upgrade1/Amount/MiningSpeed
+@onready var walk_speed_label = $Left/Left/PlayerUpgrades/Upgrade2/Amount/WalkSpeed
+@onready var dash_cooldown_label = $Left/Left/PlayerUpgrades/Upgrade3/Amount/DashCooldown
+@onready var weapon_speed_label = $Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade1/Amount/Speed
+@onready var weapon_damage_label = $Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade2/Amount/Damage
+@onready var weapon_rate_label = $Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade3/Amount/Rate
+@onready var magazine_label = $Bottom/Bottom/VBoxContainer/WeaponInfo/Ammo/CurrentMagazine
+@onready var ammo_label = $Bottom/Bottom/VBoxContainer/WeaponInfo/Ammo/RemainingAmmo
+@onready var dashes = $Bottom/Bottom/VBoxContainer/Dashes
+@onready var health = $Left/Left/Health
+@onready var mutators = $Right/Right/Mutators
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
