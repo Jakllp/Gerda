@@ -74,3 +74,9 @@ func get_modifier_for_type(type :Mutator.MutatorType, for_addition :bool = false
 
 func get_active_mutators() -> Array:
 	return world_mutators + enemy_mutators + speed_mutators
+	
+
+func reset_mutators() -> void:
+	world_mutators.clear()
+	enemy_mutators.clear()
+	speed_mutators.clear()

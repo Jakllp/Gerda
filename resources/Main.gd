@@ -44,6 +44,7 @@ func on_switch_scene(scene: Scene) -> void:
 	if current_scene.has_signal("character_selected"):
 		current_scene.character_selected.connect(on_character_selected)
 	if scene == Scene.GAME:
+		MutatorManager.reset_mutators()
 		setup_game_world()
 		return
 	canvas_layer.add_child(current_scene)
