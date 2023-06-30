@@ -45,13 +45,14 @@ var thready :Thread
 @onready var interface := $CanvasLayer/Interface
 @onready var mutator_select_screen := $CanvasLayer/MutatorSelectScreen
 @onready var loading_screen := $CanvasLayer/LoadingScreen
+@onready var pause_menu := $CanvasLayer/PauseMenu
 @onready var player := $Player
 
 signal switch_scene(scene: Main.Scene)
 
 func _ready() -> void:
 	player.died.connect(on_player_died)
-	$CanvasLayer/PauseMenu.game_abandoned.connect(on_game_abandoned)
+	pause_menu.game_abandoned.connect(on_game_abandoned)
 	mutator_select_screen.mutator_selected.connect(on_mutator_selected)
 	
 	proceed_level()
@@ -80,6 +81,7 @@ func change_to_mutator_select() -> void:
 	interface.visible = false
 	loading_screen.visible = false
 	mutator_select_screen.visible = true
+	pause_menu.pausable = false
 	
 
 func on_mutator_selected(mutator) -> void:
@@ -116,8 +118,9 @@ func on_level_generated() -> void:
 	visible = true
 	interface.visible = true
 	loading_screen.visible = false
+	pause_menu.pausable = true
 	spawn_timer.paused = false
-	start_timer()
+	start_spawn_timer()
 
 
 func on_game_abandoned() -> void:
@@ -128,7 +131,7 @@ func on_player_died() -> void:
 	switch_scene.emit(Main.Scene.GAME_OVER)
 	
 
-func start_timer() -> void:
+func start_spawn_timer() -> void:
 	var time = randfn(spawn_time, spawn_time_deviation)
 	prints("start spawn timer for", time, "seconds")
 	spawn_timer.start(time)
@@ -153,7 +156,7 @@ func _on_spawn_timer_timeout():
 	var size = get_spawn_size()
 	if not EnemyCreator.spawn_random_grouped_wave(current_level, spawn_size):
 		EnemyCreator.spawn_random_wave(current_level, spawn_size)
-	start_timer()
+	start_spawn_timer()
 	
 
 static func check_line_of_sight(who: Node2D, from: Vector2, to: Vector2, collision_mask: int, exclude: Array[RID]=[]) -> bool:

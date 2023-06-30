@@ -1,5 +1,7 @@
 extends ColorRect
 
+var pausable = false
+
 @onready var animator: AnimationPlayer = $AnimationPlayer
 @onready var play_button: Button = $Buttons/PanelContainer/MarginContainer/VBoxContainer/ResumeButton
 @onready var quit_button: Button = $Buttons/PanelContainer/MarginContainer/VBoxContainer/QuitButton
@@ -27,11 +29,12 @@ func pause():
 
 func _unhandled_input(event):
 	if event is InputEventKey and event.is_action_pressed("ui_cancel"):
-		if visible == true:
-			unpause()
-		else:
-			pause()
-		get_viewport().set_input_as_handled()
+		if pausable:
+			if visible == true:
+				unpause()
+			else:
+				pause()
+			get_viewport().set_input_as_handled()
 
 func _on_quit_button_pressed():
 	accept_dialog.visible = true
