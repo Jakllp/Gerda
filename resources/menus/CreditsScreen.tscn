@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhxfyscshg1vc"]
+[gd_scene load_steps=4 format=3 uid="uid://bhxfyscshg1vc"]
 
 [ext_resource type="Script" path="res://resources/menus/CreditsScreen.gd" id="1_uq5b0"]
 [ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="2_7gn3e"]
+[ext_resource type="Texture2D" uid="uid://caluqwcxdqqad" path="res://asset/visual/UI/3sacrowd.png" id="2_efii6"]
 
 [node name="CreditsScreen" type="Control"]
 layout_mode = 3
@@ -26,28 +27,58 @@ offset_bottom = 60.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Henry" type="Label" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("2_7gn3e")
-text = "Henry"
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="Janno" type="Label" parent="VBoxContainer"]
+[node name="Logo" type="TextureRect" parent="VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("2_7gn3e")
-text = "Janno"
+texture = ExtResource("2_efii6")
+stretch_mode = 5
 
-[node name="Lea" type="Label" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Henry" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_7gn3e")
+theme_override_font_sizes/font_size = 32
+text = "Henry,"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="Janno" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_7gn3e")
+theme_override_font_sizes/font_size = 32
+text = "Janno,"
+
+[node name="Lea" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_7gn3e")
+theme_override_font_sizes/font_size = 32
 text = "Lea"
 
-[node name="BackButton" type="Button" parent="VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+
+[node name="BackButton" type="Button" parent="VBoxContainer/MarginContainer2"]
 custom_minimum_size = Vector2(170, 50)
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("2_7gn3e")
 text = "Back"
 
-[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/BackButton" to="." method="_on_back_button_pressed"]

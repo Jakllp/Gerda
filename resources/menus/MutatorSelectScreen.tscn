@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://drt5gc5wf3gcr"]
+[gd_scene load_steps=10 format=3 uid="uid://drt5gc5wf3gcr"]
 
 [ext_resource type="Script" path="res://resources/menus/MutatorSelectScreen.gd" id="1_ivbmo"]
 [ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="2_rfg5h"]
 [ext_resource type="Texture2D" uid="uid://bqi3gouchn6m1" path="res://asset/visual/UI/Mutators.png" id="3_7jiv7"]
+[ext_resource type="Texture2D" uid="uid://cmbbj6g542n7h" path="res://asset/visual/UI/controls/Info_Button.png" id="3_g6uih"]
 [ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf" id="4_0ucub"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jipmk"]
@@ -46,10 +47,31 @@ grow_vertical = 2
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 1
 theme = ExtResource("2_rfg5h")
 theme_override_font_sizes/font_size = 32
 text = "CHOOSE A MUTATOR"
 horizontal_alignment = 1
+
+[node name="Info" type="TextureRect" parent="VBoxContainer/Title"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+tooltip_text = "There are three different Intensities.
+(green, yellow, red)"
+texture = ExtResource("3_g6uih")
+stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
