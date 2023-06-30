@@ -9,8 +9,8 @@ signal switch_scene(scene: Main.Scene)
 
 func _ready():
 	#Disable Buttons for Demo-Version
-	options_button.disabled = true
-	quit_button.disabled = true
+	#options_button.disabled = true
+	#quit_button.disabled = true
 	pass
 
 
