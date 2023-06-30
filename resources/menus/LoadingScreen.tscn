@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://sj1l83q0goit"]
+[gd_scene load_steps=10 format=3 uid="uid://sj1l83q0goit"]
 
 [ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="1_cbibc"]
 [ext_resource type="Texture2D" uid="uid://brlm4q7jgs4rm" path="res://asset/visual/UI/controls/WASD_group.png" id="2_00r86"]
 [ext_resource type="Texture2D" uid="uid://doioo46mckxq3" path="res://asset/visual/UI/controls/E_button.png" id="3_vqyhj"]
 [ext_resource type="Texture2D" uid="uid://bl3c5enkxq5k5" path="res://asset/visual/UI/controls/R_button.png" id="4_p7t0f"]
 [ext_resource type="Texture2D" uid="uid://b8acayf4oxsa5" path="res://asset/visual/UI/controls/space_shift_group.png" id="5_qwk4q"]
+[ext_resource type="Texture2D" uid="uid://b5bo7il52j6gr" path="res://asset/visual/UI/controls/Left_Mouse_Button.png" id="6_0c028"]
+[ext_resource type="Texture2D" uid="uid://flajmgfcdhyb" path="res://asset/visual/UI/controls/Right_Mouse_Button.png" id="7_gfcve"]
 
 [sub_resource type="Animation" id="Animation_m8kyw"]
 resource_name = "loading"
@@ -91,83 +93,118 @@ text = "Controls"
 [node name="HSeparator" type="HSeparator" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 
-[node name="Icons" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Left" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left/HBoxContainer"]
 custom_minimum_size = Vector2(150, 62)
 layout_mode = 2
 texture = ExtResource("2_00r86")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer"]
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_cbibc")
 text = " Movement"
 
-[node name="HSeparator" type="HSeparator" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons"]
+[node name="HSeparator" type="HSeparator" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left"]
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer2"]
+[node name="TextureRect2" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left/HBoxContainer2"]
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 texture = ExtResource("3_vqyhj")
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer2"]
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left/HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("1_cbibc")
 text = " Interact"
 
-[node name="HSeparator2" type="HSeparator" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons"]
+[node name="HSeparator2" type="HSeparator" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left"]
 layout_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer3"]
+[node name="TextureRect3" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left/HBoxContainer3"]
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 texture = ExtResource("4_p7t0f")
 stretch_mode = 5
 
-[node name="Label3" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer3"]
+[node name="Label3" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left/HBoxContainer3"]
 layout_mode = 2
 theme = ExtResource("1_cbibc")
 text = " Reload"
 
-[node name="HSeparator3" type="HSeparator" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons"]
+[node name="HSeparator3" type="HSeparator" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left"]
 layout_mode = 2
 
-[node name="TextureRect4" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer4"]
+[node name="TextureRect4" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left/HBoxContainer4"]
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("5_qwk4q")
 stretch_mode = 5
 
-[node name="Label4" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Icons/HBoxContainer4"]
+[node name="Label4" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Left/HBoxContainer4"]
 layout_mode = 2
 theme = ExtResource("1_cbibc")
 text = " Dash"
+
+[node name="Right" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Right"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Right/HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+texture = ExtResource("6_0c028")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Right/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_cbibc")
+text = "Hold to shoot"
+
+[node name="HSeparator" type="HSeparator" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Right"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Right"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Right/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+texture = ExtResource("7_gfcve")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2/Right/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_cbibc")
+text = "Hold to mine"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
