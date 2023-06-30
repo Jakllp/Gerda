@@ -32,31 +32,27 @@ var scene_dict := {
 var current_scene: Node
 
 @onready var canvas_layer := $CanvasLayer
+@onready var start_menu_level := $StartMenuLevel
+
 
 func _ready():
 	on_switch_scene(Scene.START)
-	ready.connect(create_level)
+	#ready.connect(create_start_level)
 
-func create_level():
-	self.add_child(load("res://resources/levels/StartMenuLevel.tscn").instantiate())
+func create_start_level():
+	start_menu_level = preload("res://resources/levels/StartMenuLevel.tscn").instantiate()
+	add_child(start_menu_level)
 
 func on_switch_scene(scene: Scene) -> void:
 	if current_scene != null:
 		if scene != Scene.START:
-			$Level.visible = false
-			$Level/CanvasModulate.visible = false
-		elif scene == Scene.START and not is_instance_valid($Level):
-			self.add_child(load("res://resources/levels/StartMenuLevel.tscn").instantiate())
-			var tweeny = self.create_tween()
-			$Level/CanvasModulate.visible = false
-			tweeny.tween_property($Level/CanvasModulate, "visible", true, 0.01)
-		else:
-			var tweeny = self.create_tween()
-			# To actually have it active again
-			tweeny.tween_property($Level/CanvasModulate, "visible", true, 0.01)
-			$Level.visible = true
-			if not $Level/Enemies/SpecialSpider/Camera2D.is_current():
-				$Level/Enemies/SpecialSpider/Camera2D.make_current()
+			if is_instance_valid(start_menu_level):
+				start_menu_level.visible = false
+		elif scene == Scene.START:
+			if is_instance_valid(start_menu_level):
+				start_menu_level.visible = true
+			else:
+				create_start_level()
 		current_scene.queue_free()
 	current_scene = scene_dict[scene].instantiate()
 	if current_scene.has_signal("switch_scene"):
@@ -71,7 +67,7 @@ func on_switch_scene(scene: Scene) -> void:
 
 func on_character_selected(character: Character) -> void:
 	self.character = character
-	$Level.queue_free()
+	start_menu_level.queue_free()
 	on_switch_scene(Scene.GAME)
 	
 
