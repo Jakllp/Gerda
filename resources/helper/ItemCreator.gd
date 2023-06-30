@@ -1,10 +1,6 @@
 extends Object
-
 class_name ItemCreator
 
-# Values for creation
-const min_ore_from_item = 1
-const max_ore_from_item = 4
 
 static func create_chest_item() -> Item:
 	var item: Item = preload("res://resources/interactables/Item.tscn").instantiate()

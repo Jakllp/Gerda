@@ -37,7 +37,6 @@ extends Node
 
 ## All The Item types
 enum Type {
-	ORE,
 	HEALTH,
 	WALK_SPEED,
 	DASH_COOLDOWN,
@@ -56,9 +55,6 @@ var upgrade_category: Dictionary = {
 
 ## weighted range table
 var health_table := [Type.HEALTH, Vector2i(1,2), Vector2i(2,1)]
-
-## Normal distributed range table for ore
-var ore_table := Vector3i(Type.ORE, 1, 4)
 
 ## Table with player upgrades
 var player_upgrade_table: Dictionary = {
@@ -83,7 +79,6 @@ var boss_drop_table: Dictionary = {
 ## Main entry point to all existing items
 var root_table: Dictionary = {
 		health_table : 3,
-		ore_table : 3,
 		player_upgrade_table: 2,
 		weapon_upgrade_table : 2,
 		boss_drop_table : 0
@@ -141,6 +136,7 @@ func roll_weighted_range_table(table: Array) -> Vector2i:
 		rand_value -= table[i].y
 		if rand_value < 0:
 			result = table[i].x
+			break
 	
 	return Vector2i(table[0], result)
 	
@@ -173,9 +169,6 @@ func get_item_sprite(type: Type, quantity: int = 0) -> Sprite2D:
 		texture.atlas = boss_item_tex
 	
 	match type:
-		Type.ORE:
-			texture.region.position = Vector2(24,0)
-			texture.region.size = Vector2(8,8)
 		Type.HEALTH:
 			if quantity == 1:
 				texture.region.position = Vector2(0,8)

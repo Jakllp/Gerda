@@ -94,7 +94,7 @@ _data = {
 resource_local_to_scene = true
 size = Vector2(12, 4)
 
-[node name="Mole" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 y_sort_enabled = true
 collision_layer = 2

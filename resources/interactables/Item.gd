@@ -15,16 +15,12 @@ func _ready() -> void:
 func _on_body_entered(body :Node2D):
 	if body is Player and item_data != null:
 		var player :Player = body
-		var with_popup := true
 		
 		# Handle what the Item actually does
 		if Items.upgrade_category["player"].has(type):
 			player.add_upgrade(type)
 		elif Items.upgrade_category["weapon"].has(type):
 			player.weapon.add_upgrade(type)
-		elif type == Items.Type.ORE:
-			with_popup = false
-			player.ore_pouch += item_data
 		elif type == Items.Type.HEALTH:
 			var helt_component = player.get_node("PlayerHealthComponent")
 			if helt_component.hp == helt_component.hp_max: return
@@ -34,11 +30,10 @@ func _on_body_entered(body :Node2D):
 		elif type == Items.Type.DASH:
 			player.dash_max_amount += item_data
 		
-		if with_popup:
-			var pop_up := pop_up_scene.instantiate()
-			pop_up.get_child(0,false).texture = self.get_child(1, false).texture
-			var pos = player.position - Vector2(0,15)
-			pop_up.global_position = pos
-			get_tree().get_first_node_in_group("unshaded").add_child(pop_up)
+		var pop_up := pop_up_scene.instantiate()
+		pop_up.get_child(0,false).texture = self.get_child(1, false).texture
+		var pos = player.global_position - Vector2(0,15)
+		pop_up.global_position = pos
+		get_tree().get_first_node_in_group("unshaded").add_child(pop_up)
 		
 		queue_free()
