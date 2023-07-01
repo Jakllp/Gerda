@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7xo0upn3hxou"]
+[gd_scene load_steps=6 format=3 uid="uid://c7xo0upn3hxou"]
 
 [ext_resource type="Script" path="res://resources/levels/SpiderTestArena.gd" id="1_wuj8q"]
 [ext_resource type="PackedScene" uid="uid://c74brdtuca3po" path="res://resources/levels/Level.tscn" id="2_cbcc7"]
 [ext_resource type="PackedScene" uid="uid://c7wsucit56out" path="res://resources/entity/enemy/spider/Spider.tscn" id="3_4i4il"]
+[ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="4_jl6q1"]
+[ext_resource type="Script" path="res://resources/entity/player/Mole.gd" id="5_13wpe"]
 
 [node name="SpiderTestArena" type="Node2D" groups=["unshaded"]]
 script = ExtResource("1_wuj8q")
@@ -20,7 +22,11 @@ position = Vector2(966, 350)
 zoom = Vector2(1.849, 1.849)
 
 [node name="From" type="Marker2D" parent="."]
-position = Vector2(1114.52, 647.417)
+position = Vector2(767, 498)
 
 [node name="To" type="Marker2D" parent="."]
 position = Vector2(616, 198)
+
+[node name="Player" parent="." instance=ExtResource("4_jl6q1")]
+position = Vector2(838, 482)
+script = ExtResource("5_13wpe")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dus22u3scedl5"]
+[gd_scene load_steps=16 format=3 uid="uid://dus22u3scedl5"]
 
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSelector.gd" id="1_mp3kr"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/LimitedAlways.gd" id="3_ccuas"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSequence.gd" id="3_wmr16"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/GetPlayerPosition.gd" id="4_fryry"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/IsPlayerVisible.gd" id="5_b1jxn"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/movement/ChaseTimer.gd" id="6_4jg4l"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/SetNavigationTarget.gd" id="6_dq1yf"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Decorators/BTInverter.gd" id="7_4ui76"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/IsWanderDistanceOver.gd" id="8_2n1d6"]
@@ -13,6 +14,7 @@
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/FollowTarget.gd" id="9_2mvaj"]
 [ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/actions/LoadWanderPos.gd" id="9_ixdye"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Leaves/BTActionBlackboardSet.gd" id="11_lmkrx"]
+[ext_resource type="Script" path="res://resources/entity/enemy/behaviorTree/conditions/IsStuck.gd" id="12_4ls3w"]
 
 [node name="Move" type="Node"]
 script = ExtResource("3_wmr16")
@@ -32,10 +34,16 @@ script = ExtResource("4_fryry")
 player_pos_key = "player_pos"
 player_group_name = "player"
 
-[node name="IsPlayerVisible" type="Node" parent="SelectAction/FollowPlayer"]
+[node name="BTSelector" type="Node" parent="SelectAction/FollowPlayer"]
+script = ExtResource("1_mp3kr")
+
+[node name="IsPlayerVisible" type="Node" parent="SelectAction/FollowPlayer/BTSelector"]
 script = ExtResource("5_b1jxn")
 player_pos_key = "player_pos"
 collision_mask = 32
+
+[node name="ChaseTimer" type="Node" parent="SelectAction/FollowPlayer/BTSelector"]
+script = ExtResource("6_4jg4l")
 
 [node name="SetNavigationTargetPlayer" type="Node" parent="SelectAction/FollowPlayer"]
 script = ExtResource("6_dq1yf")
@@ -74,6 +82,9 @@ script = ExtResource("8_2n1d6")
 [node name="IsTargetReached" type="Node" parent="SelectAction/BTInverter/Wander/ShouldStop/BTSelector2"]
 script = ExtResource("8_dxmhk")
 
+[node name="IsStuck" type="Node" parent="SelectAction/BTInverter/Wander/ShouldStop/BTSelector2"]
+script = ExtResource("12_4ls3w")
+
 [node name="Wait" type="Node" parent="SelectAction/BTInverter/Wander/ShouldStop"]
 script = ExtResource("9_0kycw")
 wait_time_ms = 500
@@ -91,7 +102,6 @@ can_overwrite_value = true
 [node name="LoadWanderPos" type="Node" parent="SelectAction/BTInverter/Wander/SelectWanderPosition"]
 script = ExtResource("9_ixdye")
 wander_pos_key = "wander_pos"
-collision_mask = 32
 
 [node name="SetNavigationTargetWander" type="Node" parent="SelectAction/BTInverter/Wander/SelectWanderPosition"]
 script = ExtResource("6_dq1yf")
