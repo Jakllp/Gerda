@@ -10,11 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="4_uo85l"]
 [ext_resource type="Texture2D" uid="uid://qmej8xpve0gn" path="res://asset/visual/actor/enemy/spider/spider_frame4.png" id="5_avrct"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="5_lr3uh"]
-[ext_resource type="Script" path="res://resources/components/Health/HealthComponent.gd" id="5_ras38"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="6_53m54"]
 [ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="7_kdrew"]
 [ext_resource type="PackedScene" uid="uid://dus22u3scedl5" path="res://resources/entity/enemy/behaviorTree/movement/NormalEnemyMovement.tscn" id="7_l4mod"]
 [ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="8_u5bar"]
+[ext_resource type="Script" path="res://resources/components/Health/EnemyHealthComponent.gd" id="10_34cd5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5hvuo"]
 resource_local_to_scene = true
@@ -130,7 +130,7 @@ material = SubResource("ShaderMaterial_ops3y")
 texture = SubResource("ViewportTexture_lxteo")
 
 [node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("5_ras38")
+script = ExtResource("10_34cd5")
 hp_max = 6
 
 [node name="Hitbox" parent="." instance=ExtResource("3_rynaa")]

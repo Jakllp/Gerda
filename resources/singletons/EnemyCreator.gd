@@ -119,7 +119,7 @@ func get_random_enemy(biom: GameWorld.Level):
 	
 
 func get_random_spawn_pos() -> Vector2:
-	print("try to get random spawn pos")
+	#print("try to get random spawn pos")
 	var player_pos = get_tree().get_first_node_in_group("player").global_position
 	var pos: Vector2
 	var found_smth = false
@@ -131,28 +131,28 @@ func get_random_spawn_pos() -> Vector2:
 		range = randi_range(min_spawn_distance,max_spawn_distance)
 		rot = randf_range(-PI, PI)
 		pos = player_pos + (Vector2.RIGHT * range).rotated(rot)
-		prints("range", range, "rot", rot, "ppos", player_pos, "pos", pos)
+		#prints("range", range, "rot", rot, "ppos", player_pos, "pos", pos)
 		
 		var query := PhysicsPointQueryParameters2D.new()
 		query.position = pos
 		query.collision_mask = pos_query_collision_mask
 		
 		result = space_state.intersect_point(query)
-		printt("result:", result)
+		#printt("result:", result.size())
 		if result.is_empty():
 			found_smth = true
 			break
 	
 	if found_smth:
-		printt("found pos:", pos)
+		#printt("found pos:", pos)
 		return pos
 	else:
-		print("couldn't find anything")
+		#print("couldn't find anything")
 		return Vector2.INF
 	
 
 func get_randpm_spawn_area(enemy_count: int) -> Rect2:
-	print("try to get random spawn area")
+	#print("try to get random spawn area")
 	var player_pos = get_tree().get_first_node_in_group("player").global_position
 	var pos: Vector2
 	var found_smth = false
@@ -169,7 +169,7 @@ func get_randpm_spawn_area(enemy_count: int) -> Rect2:
 		range = randi_range(min_spawn_distance,max_spawn_distance)
 		rot = randf_range(-PI, PI)
 		pos = player_pos + (Vector2.RIGHT * range).rotated(rot)
-		prints("range", range, "rot", rot, "ppos", player_pos, "try_pos", pos)
+		#prints("range", range, "rot", rad_to_deg(rot), "ppos", player_pos, "try_pos", pos)
 		
 		var query := PhysicsShapeQueryParameters2D.new()
 		query.shape_rid = shape_rid
@@ -177,7 +177,7 @@ func get_randpm_spawn_area(enemy_count: int) -> Rect2:
 		query.transform = Transform2D(0, pos)
 		
 		result = space_state.intersect_shape(query)
-		printt("results:", result.size())
+		#printt("results:", result.size())
 		if result.is_empty():
 			found_smth = true
 			break
@@ -186,8 +186,8 @@ func get_randpm_spawn_area(enemy_count: int) -> Rect2:
 	
 	if found_smth:
 		var area := Rect2(pos, size)
-		printt("found area:", area)
+		#printt("found area:", area)
 		return area
 	else:
-		print("couldn't find a fitting spot for the spawning area")
+		#print("couldn't find a fitting spot for the spawning area")
 		return Rect2()

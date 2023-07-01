@@ -27,10 +27,8 @@ extends Node
 ##				For example you want a 50% chance to get 2 of Type.ORE and 25% chance for 3 and for than you would define the ore_table as
 ##				[Type.ORE, Vector2i(2, 2), Vector2i(3, 1), Vector2i(4, 1)]
 ##
-## To get an item from a table use the roll_table(table) method. Possibly nested tables are evaluated recursively. To roll from the root table you can easily use the 
-## roll_root_table(table) method.
-## To add a new item make an entry in the 'Type' enum and either add it to an existing loot table or create a new. When creating a new one make sure to add it somewhere in the hirarchy
-## of the root table or make make sure you have a good reason not to. And make sure to create them in the correct order. If you create a new table that depends on another table
+## To get an item from a table use the roll_table(table) method. Possibly nested tables are evaluated recursively.
+## To add a new item make an entry in the 'Type' enum and either add it to an existing loot table or create a new. When creating a new one make sure to create them in the correct order. If you create a new table that depends on another table
 ## the new one needs to be defined beneath the one it depends on. Additionally when adding a new player or weapon upgrade you need to add it in the corresponing category
 ## of the upgrade_category dictionary.
 
@@ -76,8 +74,12 @@ var boss_drop_table: Dictionary = {
 	Type.DASH : 1
 }
 
+var enemy_drop_table: Dictionary = {
+	health_table : 1
+}
+
 ## Main entry point to all existing items
-var root_table: Dictionary = {
+var chest_drop_table: Dictionary = {
 		health_table : 3,
 		player_upgrade_table: 2,
 		weapon_upgrade_table : 2,
@@ -85,10 +87,6 @@ var root_table: Dictionary = {
 	}
 
 
-## Selects a Random Item from the root table.
-## Return value is of form Vector2i(Type, quantity)
-func roll_root_table() -> Vector2i:
-	return roll_table(root_table)
 
 ## Selects a Random Item from the given table.
 ## Return value is of form Vector2i(Type, quantity)

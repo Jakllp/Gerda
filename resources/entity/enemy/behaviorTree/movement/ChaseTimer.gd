@@ -11,7 +11,6 @@ func tick(actor:Node, blackboard:BTBlackboard) -> int:
 	if blackboard.get_data("player_was_seen"):
 		current_time += blackboard.get_delta()
 		if current_time <= time_to_reach:
-			printt("tick was_seen: sss")
 			return BTTickResult.SUCCESS
 		
 		time_to_reach = randfn(chase_time, chase_time_deviation)

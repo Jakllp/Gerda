@@ -2,11 +2,10 @@ extends BTCondition
 
 var previos_positions: Array[Vector2]
 var count = 0
-var stored_positions = 5
+var stored_positions = 7
 var is_stuck_margin = 1
 
 func tick(actor:Node, blackboard:BTBlackboard):
-	print("check if stuck")
 	var is_stuck = false
 	if previos_positions.size() == stored_positions:
 		var index = count % stored_positions
@@ -24,7 +23,6 @@ func tick(actor:Node, blackboard:BTBlackboard):
 		previos_positions.append(actor.global_position)
 	
 	if is_stuck:
-		print("---------------- is stuck -----------------")
 		previos_positions.clear()
 		return BTTickResult.SUCCESS
 	else:
