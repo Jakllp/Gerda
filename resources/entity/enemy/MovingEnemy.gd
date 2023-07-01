@@ -15,7 +15,7 @@ var speed = base_speed
 ## The maximum radius for selecting a wander position
 @export var max_wander_target_radius: int = 200
 ## The maximum distance this enemy walks on the same wander path
-@export var max_wander_distance: int = 200
+@export var max_wander_distance: int = 400
 ## How much the max_wander_distance can vary
 @export var wander_distance_deviation: int = 100
 
