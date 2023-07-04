@@ -1,6 +1,4 @@
-extends Object
-
-class_name StructureRegistry
+extends Node
 
 
 # Not using dictionaries as we want some naming. Basically our own dictionaries.
@@ -14,23 +12,39 @@ enum Structures {
 	SPAWNROOM_B1
 }
 
+var path_for_structure_scene := {
+		Structures.TRAPDOOR_B1 : "res://resources/structures/biome1/TrapdoorRoom.tscn",
+		Structures.ANVIL_B1 : "res://resources/structures/biome1/AnvilRoom.tscn",
+		Structures.DUNGEON_1_B1 : "res://resources/structures/biome1/BasicDungeon.tscn",
+		Structures.DUNGEON_2_B1 : "res://resources/structures/biome1/Dungeon2.tscn",
+		Structures.DUNGEON_3_B1 : "res://resources/structures/biome1/Dungeon3.tscn",
+		Structures.SPAWNROOM_B1 : "res://resources/structures/biome1/SpawnRoom.tscn"
+}
 
-static func get_map_for_structure(structure_name) -> TileMap:
-	match (structure_name):
-		Structures.TRAPDOOR_B1:
-			return preload("res://resources/structures/biome1/TrapdoorRoom.tscn").instantiate().get_node(".")
-		Structures.ANVIL_B1:
-			return preload("res://resources/structures/biome1/AnvilRoom.tscn").instantiate().get_node(".")
-		Structures.DUNGEON_1_B1:
-			return preload("res://resources/structures/biome1/BasicDungeon.tscn").instantiate().get_node(".")
-		Structures.DUNGEON_2_B1:
-			return preload("res://resources/structures/biome1/Dungeon2.tscn").instantiate().get_node(".")
-		Structures.DUNGEON_3_B1:
-			return preload("res://resources/structures/biome1/Dungeon3.tscn").instantiate().get_node(".")
-		Structures.SPAWNROOM_B1:
-			return preload("res://resources/structures/biome1/SpawnRoom.tscn").instantiate().get_node(".")
-		_:
-			return null
+var structs_for_biome := {
+	GameWorld.Biome.BIOME_1: path_for_structure_scene
+}
+
+var structures := {}
+
+func init(biome: GameWorld.Biome) -> void:
+	print("init structures for biome: ", biome)
+	for struct_type in structs_for_biome[biome]:
+		print("struct: ", Structures.keys()[struct_type])
+		structures[struct_type] = load(path_for_structure_scene[struct_type]).instantiate()
+		
+
+func clear() -> void:
+	for struct in structures:
+		structures[struct].queue_free()
+	structures.clear()
+	print("structures cleared")
+
+func get_map_for_structure(structure_name: Structures) -> TileMap:
+	if structures.has(structure_name):
+		return structures[structure_name]
+	else:
+		return null
 
 
 static func get_pattern_range(structure_name):

@@ -3,9 +3,14 @@ class_name GameWorld
 
 enum Level {
 	START,
-	BIOM_1,
-	SPIDER_BOSS,
+	BIOM,
+	BOSS,
 	END
+}
+
+enum Biome {
+	FILLER, # Filler value to have value 1 for biome 1 
+	BIOME_1
 }
 
 #enum State {
@@ -25,12 +30,13 @@ const mutator_effects = {
 
 var level_scene := preload("res://resources/levels/Level.tscn")
 var boss_scene_path := {
-	Level.SPIDER_BOSS : "res://resources/levels/bossroom/SpiderRoom.tscn"
+	Biome.BIOME_1 : "res://resources/levels/bossroom/SpiderRoom.tscn"
 }
 
 const min_loading_time := 4
 
 var current_level = Level.START
+var current_biome = Biome.BIOME_1
 
 var spawn_time: float = 30
 var spawn_time_deviation: float = 4
@@ -66,11 +72,14 @@ func proceed_level() -> void:
 	var level = get_node_or_null("Level")
 	if level != null:
 		level.queue_free()
-	if current_level in boss_scene_path.keys():
-		var boss_room = load(boss_scene_path[current_level]).instantiate()
+	if current_level == Level.BOSS:
+		var boss_room = load(boss_scene_path[current_biome]).instantiate()
 		player.global_position = boss_room.get_node("PlayerSpawnPoint").global_position
 		add_child(boss_room)
 		spawn_timer.paused = true
+		current_biome += 1
+		if current_biome < Biome.size():
+			current_level -= 2
 	else:
 		change_to_mutator_select()
 	
@@ -99,8 +108,7 @@ func on_mutator_selected(mutator) -> void:
 
 func create_level() -> Node:
 	var level: Level = level_scene.instantiate()
-	level.biome = current_level
-	level.generate()
+	level.generate(current_biome)
 	call_deferred("on_level_generated")
 	return level
 

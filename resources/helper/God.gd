@@ -30,7 +30,7 @@ enum BlockType {
 
 # Note: If there ever should be different trapdoor-rooms for different biomes this method would need a new input and we'd need to implement a biome-checker for other functions down the line
 ## Delegates the generation of the level
-static func generate_level(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int) -> Vector2i:
+static func generate_level(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :GameWorld.Biome) -> Vector2i:
 	var dungeon_spawns = default_dungeon_spawns + randi_range(-1, 1)
 	# 2+ as we need 1 Trapdoor-Room and 1 spawn-room
 	print("posis")
@@ -48,6 +48,9 @@ static func generate_level(map: TileMap,ground_layer :int, block_layer :int, gro
 	print("general")
 	generate_caves_and_ore(map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
+	# initialize structures for the biom
+	StructureRegistry.init(biome)
+	
 	# Spawn TrapdoorRoom
 	StructurePlacer.place_structure(StructureRegistry.Structures.get("TRAPDOOR_B"+str(biome)), trapdoor_pos, map, ground_layer, block_layer, ground_atlas, block_atlas)
 	
@@ -57,6 +60,9 @@ static func generate_level(map: TileMap,ground_layer :int, block_layer :int, gro
 	# Spawn dungeons
 	var spawn_point = spawn_dungeons(map, ground_layer, block_layer, ground_atlas, block_atlas, biome, positions)
 	StructurePlacer.place_structure(StructureRegistry.Structures.get("SPAWNROOM_B"+str(biome)), spawn_point, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	
+	# clear structures
+	StructureRegistry.clear()
 	
 	return spawn_point
 

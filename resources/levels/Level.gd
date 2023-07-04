@@ -6,7 +6,6 @@ var ore_text_scene = preload("res://resources/other/OreText.tscn")
 # Damage-Map -> Stores the remaining hardness of cells
 var remaining_hardness_dict = {}
 
-var biome: int
 # The layers
 var ground_layer := 0
 var block_layer := 1
@@ -34,8 +33,9 @@ func _ready() -> void:
 		camera.make_current()
 
 
-func generate() -> void:
+func generate(biome: GameWorld.Biome) -> void:
 	print("start god")
+	print("generate biome: ", biome)
 	player_spawn = God.generate_level(self, ground_layer, block_layer, ground_atlas, block_atlas, biome)
 	print("end god")
 

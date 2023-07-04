@@ -17,8 +17,6 @@ static func place_structure(structure_name :StructureRegistry.Structures, pos :V
 	
 	# Create the physical boundaries
 	spawn_pattern(ground_pattern, block_pattern, new_pos, ground_offset, map, ground_layer, block_layer, ground_atlas, block_atlas)
-	ground_pattern.free()
-	block_pattern.free()
 	
 	# Gotta spawn in interactables
 	for interactable in StructureHelper.get_static_things(structure_name, "Interactables"):
