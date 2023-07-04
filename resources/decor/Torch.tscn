@@ -65,6 +65,7 @@ _data = {
 }
 
 [node name="Torch" type="Node2D"]
+z_index = 1
 y_sort_enabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
