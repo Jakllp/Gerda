@@ -9,6 +9,7 @@ class_name Worm
 func _ready() -> void:
 	sprite.process_mode = Node.PROCESS_MODE_ALWAYS
 	hurtbox.process_mode = Node.PROCESS_MODE_ALWAYS
+	hurtbox.get_child(0).set_deferred("disabled", false)
 	sprite.play("idle")
 	super._ready()
 	$AttackTimer.process_mode = Node.PROCESS_MODE_INHERIT
@@ -24,15 +25,15 @@ func attack() -> void:
 
 func activate() -> void:
 	super.activate()
-	hurtbox.get_child(0).disabled = false
+	hurtbox.get_child(0).set_deferred("disabled", false)
 	sprite.play("stand")
 	$PointLight2D.energy = 0.1
 	
 
 func deactivate() -> void:
 	super.deactivate()
-	hurtbox.get_child(0).disabled = true
 	await sprite.animation_looped
+	hurtbox.get_child(0).set_deferred("disabled", true)
 	sprite.play("idle")
 	$PointLight2D.energy = 0.0
 
