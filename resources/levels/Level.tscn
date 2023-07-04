@@ -42,4 +42,3 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="Projectiles" type="Node2D" parent="." groups=["projectiles"]]
-y_sort_enabled = true
