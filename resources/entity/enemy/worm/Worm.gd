@@ -24,16 +24,14 @@ func attack() -> void:
 
 func activate() -> void:
 	super.activate()
-	hurtbox.get_child(0).shape.size.y += 17
-	hurtbox.get_child(0).position.y -= 10
+	hurtbox.get_child(0).disabled = false
 	sprite.play("stand")
 	$PointLight2D.energy = 0.1
 	
 
 func deactivate() -> void:
 	super.deactivate()
-	hurtbox.get_child(0).shape.size.y -= 17
-	hurtbox.get_child(0).position.y += 10
+	hurtbox.get_child(0).disabled = true
 	await sprite.animation_looped
 	sprite.play("idle")
 	$PointLight2D.energy = 0.0
