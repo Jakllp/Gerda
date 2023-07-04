@@ -5,11 +5,11 @@ func set_max_hp(value):
 	if value != hp_max:
 		var difference :int = value - hp_max
 		hp_max = value
+		max_hp_changed.emit(value)
 		if difference > 0:
 			self.hp += difference
 		else:
 			self.hp = hp
-		max_hp_changed.emit(value)
 
 
 func receive_damage(damage: int) -> void:

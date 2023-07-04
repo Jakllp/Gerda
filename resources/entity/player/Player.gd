@@ -23,6 +23,7 @@ var dash_max_amount = 2:
 		assert(value >= 0, "you cannot have a negative amount of dashes!")
 		dash_max_amount_changed.emit(value)
 		dash_max_amount = value
+		dashes_left = value
 var dashes_left = dash_max_amount:
 	set(value):
 		assert(value >= 0, "you cannot dash with less than one dash")

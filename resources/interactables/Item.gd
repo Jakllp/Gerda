@@ -26,7 +26,7 @@ func _on_body_entered(body :Node2D):
 			if helt_component.hp == helt_component.hp_max: return
 			helt_component.hp += item_data
 		elif type == Items.Type.HEART:
-			player.get_node("PlayerHealthComponent").hp_max += item_data
+			player.get_node("PlayerHealthComponent").hp_max += item_data * 2
 		elif type == Items.Type.DASH:
 			player.dash_max_amount += item_data
 		
