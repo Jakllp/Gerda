@@ -80,7 +80,6 @@ script = ExtResource("1_cqhnd")
 attack_speed = 7.0
 attack_cooldown = 0.8
 metadata/_edit_horizontal_guides_ = []
-metadata/_edit_vertical_guides_ = [-10.0]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 light_mask = 3
@@ -170,6 +169,9 @@ blackboard = NodePath("../BTBlackboard")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 20.0
 avoidance_enabled = true
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-400, -225, 800, 450)
 
 [connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
