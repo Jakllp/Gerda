@@ -93,6 +93,12 @@ func spawn_lackey() -> void:
 
 func die() -> void:
 	animation_tree["parameters/conditions/dead"] = true
+	
+	# No more damage - this is the easiest way
+	$LegLeft.damage = 0
+	$LegRight.damage = 0
+	$HitboxAndBody.damage = 0
+	
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(1,1,1,0), 2)
 	tween.tween_callback(queue_free)
