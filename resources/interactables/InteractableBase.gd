@@ -28,5 +28,6 @@ func _on_detection_area_body_entered(body :Node2D):
 
 
 func _on_detection_area_body_exited(body):
-	set_process(false)
-	stop_interaction.emit()
+	if body is Player:
+		set_process(false)
+		stop_interaction.emit()
