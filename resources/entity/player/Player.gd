@@ -123,7 +123,6 @@ func try_dash() -> void:
 func add_upgrade(upgrade: Items.Type):
 	player_upgrade_received.emit(upgrade)
 	active_upgrades[upgrade] += 1
-	print(str(Items.Type.keys()[upgrade])+" now at "+str(active_upgrades[upgrade]))
 
 
 func die() -> void:
@@ -132,7 +131,6 @@ func die() -> void:
 func _on_dash_refill() -> void:
 	if dashes_left < dash_max_amount:
 		dashes_left+=1
-		print("Refilled Dash - Dashes left: "+str(dashes_left)+"/"+str(dash_max_amount))
 		if dashes_left == dash_max_amount:
 			dash.stop_refill()
 			
