@@ -13,10 +13,10 @@ const spider_scene := preload("res://resources/entity/enemy/spider/Spider.tscn")
 const worm_scene := preload("res://resources/entity/enemy/worm/Worm.tscn")
 
 const spawn_prob_table := {
-	GameWorld.Level.BIOM_1 : {spider_scene : 3, worm_scene : 1}
+	GameWorld.Biome.BIOME_1 : {spider_scene : 3, worm_scene : 1}
 }
 const enemy_weight_table := {
-	GameWorld.Level.BIOM_1 : {spider_scene : 3, worm_scene: 4}
+	GameWorld.Biome.BIOME_1 : {spider_scene : 3, worm_scene: 4}
 }
 
 var prob_sum := {}

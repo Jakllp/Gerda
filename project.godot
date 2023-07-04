@@ -26,6 +26,7 @@ StructureRegistry="*res://resources/structures/StructureRegistry.gd"
 
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://asset/visual/crosshair2.png"
 mouse_cursor/custom_image_hotspot=Vector2(7.5, 7.5)
 mouse_cursor/tooltip_position_offset=Vector2(0, 0)
@@ -106,4 +107,18 @@ interact={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_repeat=1
 renderer/rendering_method="gl_compatibility"
+driver/threads/thread_model=0
+lights_and_shadows/directional_shadow/size=256
+lights_and_shadows/directional_shadow/size.mobile=256
+2d/shadow_atlas/size=64
+global_illumination/gi/use_half_resolution=true
+shading/overrides/force_vertex_shading=true
+shading/overrides/force_lambert_over_burley=true
+environment/ssao/quality=0
+global_illumination/sdfgi/probe_ray_count=0
+global_illumination/sdfgi/frames_to_converge=0
+global_illumination/sdfgi/frames_to_update_lights=4
+lights_and_shadows/positional_shadow/atlas_size=256
+lights_and_shadows/positional_shadow/atlas_size.mobile=256
