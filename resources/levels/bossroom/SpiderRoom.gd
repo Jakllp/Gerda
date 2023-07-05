@@ -10,11 +10,6 @@ func _ready():
 	$SpiderBoss.died.connect(on_spider_boss_died)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
-
 func on_spider_boss_died() -> void:
 	var trap_door = trap_door_scene.instantiate()
 	trap_door.global_position = trap_door_pos
@@ -34,7 +29,7 @@ func on_spider_boss_died() -> void:
 	add_child(item2)
 
 
-func _on_closing_block_body_entered(body, id):
+func _on_closing_block_body_entered(_body, id):
 	var pos = local_to_map(get_node("ClosingBlock"+str(id)).global_position) + Vector2i(0,1)
 	set_cell(1, pos, 0, Vector2(2,0), 1)
 	

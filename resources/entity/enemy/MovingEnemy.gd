@@ -29,7 +29,7 @@ func _ready() -> void:
 	$BTBlackboard.set_data("walked_distance", 0)
 	$Hitbox.damage = 1
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	speed = base_speed * (MutatorManager.get_modifier_for_type(Mutator.MutatorType.SPEED_UP) / MutatorManager.get_modifier_for_type(Mutator.MutatorType.SPEED_DOWN))
 	
 

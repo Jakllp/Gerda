@@ -34,7 +34,7 @@ func _ready():
 	velocity = (curve.point_count/100.0) * speed_factor * (MutatorManager.get_modifier_for_type(Mutator.MutatorType.SPEED_UP) / MutatorManager.get_modifier_for_type(Mutator.MutatorType.SPEED_DOWN))
 	
 
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	follow.progress += delta_progress_of(follow.progress)
 	
 	# Avoids hitting something mid-air

@@ -73,7 +73,6 @@ func spawn_wave(enemies: Array, coordinates: Array) -> void:
 
 func spawn_enemy_in_area(enemy, area: Rect2, index: int) -> void:
 	var row_count = area.size.y / (enemy_spawn_area_size + enemy_spawn_area_spacing)
-	var col_count = area.size.x / (enemy_spawn_area_size + enemy_spawn_area_spacing)
 	var row = floor(index / row_count)
 	var col = index - row * row_count
 	var shift = Vector2(col + 0.5, row + 0.5) * Vector2(randi_range(enemy_spawn_area_size, enemy_spawn_area_size+enemy_spawn_area_spacing),randi_range(enemy_spawn_area_size, enemy_spawn_area_size+enemy_spawn_area_spacing))

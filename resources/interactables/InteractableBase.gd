@@ -13,7 +13,7 @@ func _ready() -> void:
 	set_process(false)
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed("interact"):
 		start_interaction.emit()
 	if Input.is_action_just_released("interact"):

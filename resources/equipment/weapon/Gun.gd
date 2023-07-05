@@ -46,7 +46,7 @@ func update(player: Player) -> void:
 			trigger_reload()
 
 
-func act(player: Player, delta: float) -> void:
+func act(_player: Player, _delta: float) -> void:
 	pass
 
 func do_rotation(player: Player):

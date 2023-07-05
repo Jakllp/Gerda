@@ -1,6 +1,6 @@
 extends BTCondition
 
-func tick(actor:Node, blackboard:BTBlackboard):
+func tick(_actor:Node, blackboard:BTBlackboard):
 	## Walk the path till the end when was following the player
 	if blackboard.has_data("is_following_player") and blackboard.get_data("is_following_player"):
 		return BTTickResult.FAILURE

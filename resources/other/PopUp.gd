@@ -12,7 +12,7 @@ func _ready():
 	in_tween.play()
 
 
-func _process(delta):
+func _process(_delta):
 	# Move it up a bit
 	position.y -= 0.2
 	

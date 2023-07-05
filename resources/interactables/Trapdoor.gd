@@ -12,5 +12,5 @@ func do_interaction() -> void:
 	$DroppingIn/CollisionShape2D.disabled = false
 
 
-func _on_dropping_in_body_entered(body):
+func _on_dropping_in_body_entered(_body):
 	get_node("/root/Main/GameWorld").proceed_level()

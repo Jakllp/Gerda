@@ -33,10 +33,6 @@ func _ready():
 	$HitboxAndBody.damage = 1
 	$SupervisedHealthComponent.max_hp_changed.emit($SupervisedHealthComponent.hp_max)
 
-func _process(delta):
-	if Input.is_action_just_pressed("interact"):
-		$SupervisedHealthComponent.hp -= 1
-	
 
 func shoot_web() -> void:
 	shooter.shoot(player.global_position)

@@ -3,7 +3,7 @@ extends Node2D
 class_name Projectile
 
 @export var speed: int = 800
-@export var range: int = 400
+@export var range: float = 400
 @export var infinite_range: bool = false
 @export var pierce: int = 0
 
@@ -26,7 +26,7 @@ func _on_hitbox_body_entered(body):
 		queue_free()
 		
 
-func _on_hitbox_area_entered(area):
+func _on_hitbox_area_entered(_area):
 	pierce -= 1
 	if pierce <= 0:
 		queue_free()

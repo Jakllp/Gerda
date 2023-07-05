@@ -24,15 +24,15 @@ func add_upgrade(upgrade: Items.Type):
 	print(str(Items.Type.keys()[upgrade])+" now at "+str(active_upgrades[upgrade]))
 
 
-func update(player: Player) -> void:
+func update(_player: Player) -> void:
 	pass
 
 
-func act(player: Player, delta: float) -> void:
+func act(_player: Player, _delta: float) -> void:
 	pass
 	
 
-func do_rotation(player: Player) -> void:
+func do_rotation(_player: Player) -> void:
 	pass
 
 

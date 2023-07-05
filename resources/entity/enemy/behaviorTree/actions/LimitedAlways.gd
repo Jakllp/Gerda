@@ -18,7 +18,7 @@ func _ready() -> void:
 		BlockResult.FAILURE:
 			tick_result = BTTickResult.FAILURE
 
-func tick(actor:Node, blackboard:BTBlackboard):
+func tick(_actor:Node, _blackboard:BTBlackboard):
 	iterations -= 1
 	if iterations <= 0:
 		queue_free()

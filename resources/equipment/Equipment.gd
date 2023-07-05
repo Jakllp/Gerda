@@ -2,12 +2,12 @@ extends Node
 
 class_name Equipment
 
-func update(player: Player) -> void:
+func update(_player: Player) -> void:
 	pass
 
-func act(player: Player, delta: float) -> void:
+func act(_player: Player, _delta: float) -> void:
 	pass
 
 
-func do_rotation(player: Player) -> void:
+func do_rotation(_player: Player) -> void:
 	pass

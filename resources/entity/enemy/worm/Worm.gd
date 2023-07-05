@@ -37,5 +37,5 @@ func _on_attack_timer_timeout():
 	# if not active or no player exists
 	if not active or player == null:
 		return
-#	if GameWorld.check_line_of_sight(self, global_position, player.global_position, 1):
-#		attack()
+	if GameWorld.check_line_of_sight(self, global_position, player.global_position, 1):
+		attack()

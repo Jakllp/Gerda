@@ -23,7 +23,7 @@ size = Vector2(52, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8rwl"]
 size = Vector2(22, 22)
 
-[node name="SpiderRoom" type="TileMap"]
+[node name="SpiderRoom" type="TileMap" groups=["interactables"]]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_4mukx")
 tile_set = ExtResource("1_fgap1")

@@ -3,7 +3,7 @@ extends Gun
 class_name Rifle
 
 
-func act(player: Player, delta: float) -> void:
+func act(_player: Player, _delta: float) -> void:
 	if mag_contents >= ammo_needed_per_shot and reload_timer.is_stopped() and fire_rate_timer.is_stopped():
 		var damage_plus = damage_upgrade_modifier * active_upgrades[Items.Type.DAMAGE]
 		$Shooter.shoot(base_damage + damage_plus)

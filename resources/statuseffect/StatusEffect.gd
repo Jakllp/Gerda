@@ -58,9 +58,9 @@ func is_life_time_over() -> bool:
 	return passed_life_time > life_time and life_time > 0
 
 ## Execute the actual behaviour of this status effect. Method to override in deriving classes.
-func trigger(owner) -> void:
+func trigger(_owner) -> void:
 	pass 
 	
 
-func disable(owner) -> void:
+func disable(_owner) -> void:
 	pass

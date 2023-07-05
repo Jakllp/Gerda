@@ -7,7 +7,7 @@ var current_time: float = 0
 @onready var time_to_reach: float = randfn(chase_time, chase_time_deviation)
 
 
-func tick(actor:Node, blackboard:BTBlackboard) -> int:
+func tick(_actor:Node, blackboard:BTBlackboard) -> int:
 	if blackboard.get_data("player_was_seen"):
 		current_time += blackboard.get_delta()
 		if current_time <= time_to_reach:

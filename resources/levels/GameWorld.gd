@@ -146,7 +146,7 @@ func start_spawn_timer() -> void:
 	
 
 func get_spawn_size() -> int:
-	return randfn(spawn_size, spawn_size_deviation)
+	return round(randfn(spawn_size, spawn_size_deviation))
 	
 
 func update_mutators() -> void:
@@ -162,8 +162,8 @@ func update_mutators() -> void:
 
 func _on_spawn_timer_timeout():
 	var size = get_spawn_size()
-	if not EnemyCreator.spawn_random_grouped_wave(current_level, spawn_size):
-		EnemyCreator.spawn_random_wave(current_level, spawn_size)
+	if not EnemyCreator.spawn_random_grouped_wave(current_level, size):
+		EnemyCreator.spawn_random_wave(current_level, size)
 	start_spawn_timer()
 	
 
@@ -179,3 +179,7 @@ static func check_line_of_sight(who: Node2D, from: Vector2, to: Vector2, collisi
 		return true
 	else:
 		return false
+
+func _physics_process(delta):
+	if Input.is_action_just_pressed("ui_left"):
+		proceed_level()

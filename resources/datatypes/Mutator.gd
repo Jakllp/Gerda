@@ -88,7 +88,7 @@ func _init(wanted_type :MutatorType, strength :int):
 	self.modifier = modifier_dict[wanted_type][strength]
 	self.title = title_dict[wanted_type]
 	self.description = description_dict[wanted_type]
-	self.texture = Vector2i(get_tex_x(strength), tex_dict[wanted_type])
+	self.texture = Vector2i(Mutator.get_tex_x(strength), tex_dict[wanted_type])
 
 
 ## Returns the category of a type
