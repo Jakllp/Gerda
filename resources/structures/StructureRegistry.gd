@@ -12,17 +12,17 @@ enum Structures {
 	SPAWNROOM_B1
 }
 
-var path_for_structure_scene := {
-		Structures.TRAPDOOR_B1 : "res://resources/structures/biome1/TrapdoorRoom.tscn",
-		Structures.ANVIL_B1 : "res://resources/structures/biome1/AnvilRoom.tscn",
-		Structures.DUNGEON_1_B1 : "res://resources/structures/biome1/BasicDungeon.tscn",
-		Structures.DUNGEON_2_B1 : "res://resources/structures/biome1/Dungeon2.tscn",
-		Structures.DUNGEON_3_B1 : "res://resources/structures/biome1/Dungeon3.tscn",
-		Structures.SPAWNROOM_B1 : "res://resources/structures/biome1/SpawnRoom.tscn"
+var scene_for_biome1_structure := {
+		Structures.TRAPDOOR_B1 : preload("res://resources/structures/biome1/TrapdoorRoom.tscn"),
+		Structures.ANVIL_B1 : preload("res://resources/structures/biome1/AnvilRoom.tscn"),
+		Structures.DUNGEON_1_B1 : preload("res://resources/structures/biome1/BasicDungeon.tscn"),
+		Structures.DUNGEON_2_B1 : preload("res://resources/structures/biome1/Dungeon2.tscn"),
+		Structures.DUNGEON_3_B1 : preload("res://resources/structures/biome1/Dungeon3.tscn"),
+		Structures.SPAWNROOM_B1 : preload("res://resources/structures/biome1/SpawnRoom.tscn")
 }
 
 var structs_for_biome := {
-	GameWorld.Biome.BIOME_1: path_for_structure_scene
+	GameWorld.Biome.BIOME_1: scene_for_biome1_structure
 }
 
 var structures := {}
@@ -31,7 +31,7 @@ func init(biome: GameWorld.Biome) -> void:
 	print("init structures for biome: ", biome)
 	for struct_type in structs_for_biome[biome]:
 		print("struct: ", Structures.keys()[struct_type])
-		structures[struct_type] = load(path_for_structure_scene[struct_type]).instantiate()
+		structures[struct_type] = structs_for_biome[biome][struct_type].instantiate().get_node(".")
 		
 
 func clear() -> void:
