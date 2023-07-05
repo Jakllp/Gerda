@@ -2,7 +2,7 @@ extends Node2D
 
 const max_enemies = 50
 const enemy_spawn_area_size = 20
-const enemy_spawn_area_spacing = 10
+const enemy_spawn_area_spacing = 7
 const min_spawn_distance = 150
 const max_spawn_distance = 260
 const pos_query_collision_mask = 36
@@ -130,7 +130,9 @@ func get_random_spawn_area(enemy_count: int) -> Rect2:
 	var result
 	var space_state := get_world_2d().direct_space_state
 	# make horizontal rectangle size
-	var size := Vector2(ceil(sqrt(enemy_count)), floor(sqrt(enemy_count))) * (enemy_spawn_area_size + enemy_spawn_area_spacing)
+	var width = ceil(sqrt(enemy_count))
+	var height = ceil(enemy_count/width)
+	var size := Vector2(width, height) * (enemy_spawn_area_size + enemy_spawn_area_spacing)
 	shape.size = size
 	print("shape size: ", size)
 	
