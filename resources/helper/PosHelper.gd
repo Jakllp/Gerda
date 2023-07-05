@@ -40,7 +40,6 @@ static func generate_random_positions(amount :int, field_size :Vector2i, inner_r
 	var grid = []
 	var output = []
 	var active_list =  []
-	print(amount)
 
 	var cells_x = int(new_field.x / cell_size) + 1
 	var cells_y = int(new_field.y / cell_size) + 1
