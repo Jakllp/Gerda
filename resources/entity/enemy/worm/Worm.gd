@@ -7,12 +7,9 @@ class_name Worm
 @onready var hurtbox = $HurtBox
 
 func _ready() -> void:
-	sprite.process_mode = Node.PROCESS_MODE_ALWAYS
-	hurtbox.process_mode = Node.PROCESS_MODE_ALWAYS
-	hurtbox.get_child(0).set_deferred("disabled", false)
+	hurtbox.get_child(0).set_deferred("disabled", true)
 	sprite.play("idle")
 	super._ready()
-	$AttackTimer.process_mode = Node.PROCESS_MODE_INHERIT
 	
 
 func attack() -> void:
@@ -23,24 +20,22 @@ func attack() -> void:
 	sprite.play("stand")
 	
 
-func activate() -> void:
-	super.activate()
-	hurtbox.get_child(0).set_deferred("disabled", false)
-	sprite.play("stand")
-	$PointLight2D.energy = 0.1
-	
-
-func deactivate() -> void:
-	super.deactivate()
-	await sprite.animation_looped
-	hurtbox.get_child(0).set_deferred("disabled", true)
-	sprite.play("idle")
-	$PointLight2D.energy = 0.0
+func set_active(value: bool) -> void:
+	super.set_active(value)
+	if value:
+		hurtbox.get_child(0).set_deferred("disabled", false)
+		sprite.play("stand")
+		$PointLight2D.energy = 0.1
+	else:
+		hurtbox.get_child(0).set_deferred("disabled", true)
+		#await sprite.animation_looped
+		sprite.play("idle")
+		$PointLight2D.energy = 0.0
 
 func _on_attack_timer_timeout():
 	var player: Player = get_tree().get_first_node_in_group("player")
-	# if no player exists
-	if player == null:
+	# if not active or no player exists
+	if not active or player == null:
 		return
-	if GameWorld.check_line_of_sight(self, global_position, player.global_position, 1):
-		attack()
+#	if GameWorld.check_line_of_sight(self, global_position, player.global_position, 1):
+#		attack()

@@ -1,31 +1,28 @@
 extends StaticBody2D
 class_name StaticEnemy
 
-@onready var flash_component :FlashComponent = FlashComponent.new()
+var flash_component :FlashComponent = FlashComponent.new()
+var active = false : set = set_active
 
 func _ready() -> void:
-	$AttackRange.process_mode = Node.PROCESS_MODE_ALWAYS
-	process_mode = Node.PROCESS_MODE_DISABLED
 	$Hitbox.damage = 1
+	
 
+func set_active(value: bool) -> void:
+	active = value
+	
 
 func attack() -> void:
 	pass
 
 
-func activate() -> void:
-	process_mode = Node.PROCESS_MODE_INHERIT
-
-
-func deactivate() -> void:
-	process_mode = Node.PROCESS_MODE_DISABLED
-	
-
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body is Player:
-		activate()
+		print("enter")
+		active = true
 	
 
 func _on_attack_range_body_exited(body):
 	if body is Player:
-		deactivate()
+		print("exit")
+		active = false
