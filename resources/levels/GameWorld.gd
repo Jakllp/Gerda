@@ -142,7 +142,7 @@ func on_player_died() -> void:
 func start_spawn_timer() -> void:
 	var time = randfn(spawn_time, spawn_time_deviation)
 	prints("start spawn timer for", time, "seconds")
-	spawn_timer.start(time)
+	#spawn_timer.start(time)
 	
 
 func get_spawn_size() -> int:
@@ -179,3 +179,8 @@ static func check_line_of_sight(who: Node2D, from: Vector2, to: Vector2, collisi
 		return true
 	else:
 		return false
+
+
+func _physics_process(delta):
+	if Input.is_action_just_pressed("ui_left"):
+		EnemyCreator.spawn_random_enemy(current_biome)

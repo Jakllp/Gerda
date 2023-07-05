@@ -13,6 +13,7 @@ func set_max_hp(value):
 
 
 func receive_damage(damage: int) -> void:
+	return
 	super.receive_damage(damage + MutatorManager.get_modifier_for_type(Mutator.MutatorType.DAMAGE_PLUS, true))
 
 

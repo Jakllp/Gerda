@@ -3,17 +3,18 @@ extends Node2D
 const max_enemies = 50
 const enemy_spawn_area_size = 20
 const enemy_spawn_area_spacing = 7
-const min_spawn_distance = 150
-const max_spawn_distance = 260
+const min_spawn_distance = 50#150
+const max_spawn_distance = 60#260
 const pos_query_collision_mask = 36
 const spawn_tries = 15
 
 const spawn_point_tex := preload("res://asset/visual/icon.svg")
 const spider_scene := preload("res://resources/entity/enemy/spider/Spider.tscn")
 const worm_scene := preload("res://resources/entity/enemy/worm/Worm.tscn")
+const buddy_scene := preload("res://Buddy.tscn")
 
 const spawn_prob_table := {
-	GameWorld.Biome.BIOME_1 : {spider_scene : 3, worm_scene : 1}
+	GameWorld.Biome.BIOME_1 : {spider_scene : 3, worm_scene : 1, buddy_scene : 10000}
 }
 const enemy_weight_table := {
 	GameWorld.Biome.BIOME_1 : {spider_scene : 3, worm_scene: 4}
@@ -45,7 +46,7 @@ func spawn_enemy(enemy: PhysicsBody2D, pos: Vector2) -> void:
 	enemy_container.add_child(spawn_point)
 	
 	var tween = create_tween()
-	tween.tween_property(spawn_point, "modulate", Color(0,0,0,1), 5)
+	tween.tween_property(spawn_point, "modulate", Color(0,0,0,1), 0.05)
 	tween.tween_callback(spawn_point.queue_free)
 	
 	await tween.finished

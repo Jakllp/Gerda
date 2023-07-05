@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://bkoubbne52fk8"]
+
+[ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="1_epbgl"]
+[ext_resource type="Texture2D" uid="uid://dcgkufegix73r" path="res://asset/visual/actor/enemy/worm/worm_attack1.png" id="2_pyy3s"]
+[ext_resource type="Texture2D" uid="uid://cqdd230tocghb" path="res://asset/visual/actor/enemy/worm/worm_attack2.png" id="3_3autj"]
+[ext_resource type="Texture2D" uid="uid://bnhm0d7oj6hy7" path="res://asset/visual/actor/enemy/worm/worm_idle1.png" id="4_ttuou"]
+[ext_resource type="Texture2D" uid="uid://d20eeue555fbj" path="res://asset/visual/actor/enemy/worm/worm_idle2.png" id="5_hhwek"]
+[ext_resource type="Texture2D" uid="uid://bdqlqe3p4d46s" path="res://asset/visual/actor/enemy/worm/worm1.png" id="6_xtx14"]
+[ext_resource type="Texture2D" uid="uid://cl3ikykny2aqd" path="res://asset/visual/actor/enemy/worm/worm2.png" id="7_ugxym"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hx215"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qa7sg"]
+resource_local_to_scene = true
+shader = ExtResource("1_epbgl")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b4hmt"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("2_pyy3s")
+}, {
+"duration": 2.0,
+"texture": ExtResource("3_3autj")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("4_ttuou")
+}, {
+"duration": 2.0,
+"texture": ExtResource("5_hhwek")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("6_xtx14")
+}, {
+"duration": 1.5,
+"texture": ExtResource("7_ugxym")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hx215")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -32.0
+offset_top = -42.0
+offset_right = 1888.0
+offset_bottom = 1038.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4294966273
+size = Vector2i(64, 64)
+size_2d_override = Vector2i(64, 64)
+render_target_update_mode = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_qa7sg")
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_b4hmt")
+animation = &"idle"
