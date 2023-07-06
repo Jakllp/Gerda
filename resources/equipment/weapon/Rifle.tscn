@@ -88,7 +88,7 @@ position = Vector2(5, 1)
 texture = SubResource("ViewportTexture_p3sec")
 
 [node name="Shooter" parent="." instance=ExtResource("5_hfewx")]
-position = Vector2(19, 0)
+position = Vector2(17, 0)
 projectile_scene = ExtResource("6_yggun")
 
 [node name="Anglepoint" parent="." instance=ExtResource("7_hupc5")]
@@ -98,6 +98,11 @@ position = Vector2(0, -1)
 one_shot = true
 
 [node name="FireRateTimer" type="Timer" parent="."]
+process_callback = 0
 one_shot = true
+
+[node name="Wallchecker" type="RayCast2D" parent="."]
+position = Vector2(12, 0)
+target_position = Vector2(5, 0)
 
 [connection signal="timeout" from="ReloadTimer" to="." method="reload"]
