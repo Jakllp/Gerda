@@ -130,7 +130,7 @@ func on_max_hp_changed(value) -> void:
 					health_tex_rec.custom_minimum_size = minimum_heart_size
 					health.add_child(health_tex_rec)
 				else:
-					health.add_child(health.get_child(0).duplicate())
+					health.add_child(health.get_child(health.get_child_count()-1).duplicate())
 	else:
 		while(health.get_child_count() != value/2):
 			var child = health.get_child(0)
