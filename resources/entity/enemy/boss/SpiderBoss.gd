@@ -1,17 +1,23 @@
 extends StaticBody2D
 class_name SpiderBoss
 
-@export var stomp_react_time: float = 1.5
-@export var stomp_react_time_deviation: float = 0.5
-@export var sweep_react_time: float = 1.5
-@export var sweep_react_time_deviation: float = 0.5
-
 @export var lackey_scene: PackedScene
+
+const stomp_react_time: float = 1.0
+const stomp_react_time_deviation: float = 0.5
+const sweep_react_time: float = 1.0
+const sweep_react_time_deviation: float = 0.5
+const shoot_cooldown: float = 8
+const shoot_cooldown_deviation: float = 2
+const spawn_cooldown: float = 16
+const spawn_cooldown_deviation: float = 3
 
 @onready var player: Player = get_tree().get_first_node_in_group("player")
 
 @onready var animation_tree :AnimationTree = $AnimationTree
 
+@onready var shoot_timer: Timer = $ShootTimer
+@onready var spawn_timer: Timer = $SpawnTimer
 @onready var shooter: ParabolicShooter = $ParabolicShooter
 @onready var sweep_area: Area2D = $SweepArea
 @onready var stomp_area_left: Area2D = $StompAreaLeft
@@ -122,10 +128,14 @@ func _on_stomp_area_area_exited(_area, is_left):
 
 func _on_shoot_timer_timeout():
 	animation_tree["parameters/conditions/shoot"] = true
+	shoot_timer.wait_time = randfn(shoot_cooldown, shoot_cooldown_deviation)
+	shoot_timer.start()
 
 
 func _on_spawn_timer_timeout():
 	spawn_lackey()
+	spawn_timer.wait_time = randfn(spawn_cooldown, spawn_cooldown_deviation)
+	spawn_timer.start()
 
 
 func _on_sweep_area_area_entered(_area):

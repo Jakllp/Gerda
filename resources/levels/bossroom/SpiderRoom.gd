@@ -33,9 +33,11 @@ func _on_closing_block_body_entered(_body, id):
 	var pos = local_to_map(get_node("ClosingBlock"+str(id)).global_position) + Vector2i(0,1)
 	set_cell(1, pos, 0, Vector2(2,0), 1)
 	
+	# the first one. Set a wall
 	if id == 1:
 		set_cell(1, pos+Vector2i(0,1), 0, Vector2(2,1))
 	
+	# the last one activate the boss
 	if id == 5:
 		$SpiderBoss/CanvasLayer.visible = true
 		var player_cam = get_tree().get_first_node_in_group("player").get_node("Camera2D")
