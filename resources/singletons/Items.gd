@@ -80,7 +80,7 @@ var enemy_drop_table: Dictionary = {
 
 ## Main entry point to all existing items
 var chest_drop_table: Dictionary = {
-		health_table : 3,
+		health_table : 2,
 		player_upgrade_table: 2,
 		weapon_upgrade_table : 2,
 		boss_drop_table : 0
