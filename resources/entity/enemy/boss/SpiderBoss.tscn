@@ -780,10 +780,12 @@ shadow_color = Color(0.427451, 0.427451, 0.427451, 0)
 texture = ExtResource("3_gtulu")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_left = -33.0
+offset_left = -45.0
 offset_top = -33.0
-offset_right = 58.0
-offset_bottom = 33.0
+offset_right = 45.0
+offset_bottom = 35.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 disable_3d = true
@@ -793,13 +795,12 @@ snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
 canvas_item_default_texture_filter = 0
 canvas_cull_mask = 4294966273
-size = Vector2i(68, 68)
-render_target_update_mode = 4
+size = Vector2i(90, 68)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_wgioq")
-position = Vector2(33, 33)
+position = Vector2(45, 33)
 sprite_frames = SubResource("SpriteFrames_mwnmt")
 animation = &"idle"
 
@@ -877,6 +878,7 @@ collision_layer = 20
 monitorable = false
 
 [node name="CollisionShape2D" parent="LegRight" index="0"]
+visible = false
 position = Vector2(13.3009, 36.3598)
 rotation = -0.319004
 shape = SubResource("RectangleShape2D_a8e6k")
@@ -903,6 +905,7 @@ collision_layer = 20
 monitorable = false
 
 [node name="CollisionShape2D" parent="LegLeft" index="0"]
+visible = false
 position = Vector2(-12.7279, 35.3553)
 rotation = 0.309161
 shape = SubResource("RectangleShape2D_a8e6k")

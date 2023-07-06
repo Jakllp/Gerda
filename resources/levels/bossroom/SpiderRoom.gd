@@ -39,8 +39,8 @@ func _on_closing_block_body_entered(_body, id):
 	
 	# the last one activate the boss
 	if id == 5:
-		$SpiderBoss/CanvasLayer.visible = true
 		var player_cam = get_tree().get_first_node_in_group("player").get_node("Camera2D")
 		player_cam.apply_noise_screen_shake()
 		await player_cam.shake_finished
+		$SpiderBoss/CanvasLayer.visible = true
 		$SpiderBoss.process_mode = Node.PROCESS_MODE_INHERIT
