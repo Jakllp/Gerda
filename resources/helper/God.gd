@@ -44,9 +44,9 @@ static func generate_level(map: TileMap,ground_layer :int, block_layer :int, gro
 	print("end special "+str(map.special_ground.size()))
 	
 	print("bound")
-	generate_boundaries(map, ground_layer, block_layer, ground_atlas, block_atlas)
+	generate_boundaries(map, block_layer, block_atlas)
 	print("general")
-	generate_caves_and_ore(map, ground_layer, block_layer, ground_atlas, block_atlas)
+	generate_caves_and_ore(map, ground_layer, block_layer, block_atlas)
 	
 	# initialize structures for the biom
 	StructureRegistry.init(biome)
@@ -66,7 +66,7 @@ static func generate_level(map: TileMap,ground_layer :int, block_layer :int, gro
 	
 	return spawn_point
 
-static func generate_boundaries(map: TileMap, ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
+static func generate_boundaries(map: TileMap, block_layer :int, block_atlas :int) -> void:
 	# Let's fill in the sides (already filling the corners)
 	var horizontal_boundary_width = (general_width - level_width) / 2
 	# This does not need to take the coordinate-stuff described above into account as the first run will have i=0 -> -100
@@ -115,7 +115,7 @@ static func generate_boundaries(map: TileMap, ground_layer :int, block_layer :in
 				map.set_cell(block_layer,Vector2i(starting_point_x+i,starting_point_y+j),block_atlas, Vector2i(4,0), 0)
 
 
-static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
+static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer :int, block_atlas :int) -> void:
 	var block_heightmap :FastNoiseLite = PerlinHelper.generate_heightmap(0.1, 4, 0.25, 0.5)
 	# Lower gain to get bigger chunks, higher frequency to get... more
 	var ore_heightmap :FastNoiseLite = PerlinHelper.generate_heightmap(0.35, 2, 5.0, 0.3)
@@ -184,7 +184,7 @@ static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer 
 ## Get's the block type of a given height-combination
 static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 	# The lower this number the more blocks you get
-	if height <= -0.075 * MutatorManager.get_modifier_for_type(Mutator.MutatorType.MORE_STONE):
+	if height <= -0.1 * MutatorManager.get_modifier_for_type(Mutator.MutatorType.MORE_STONE):
 		return BlockType.GROUND
 	elif height_ore > 0.475 * MutatorManager.get_modifier_for_type(Mutator.MutatorType.LESS_ORE):
 		return BlockType.ORE
