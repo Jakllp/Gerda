@@ -186,7 +186,7 @@ static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 	# The lower this number the more blocks you get
 	if height <= -0.075 * MutatorManager.get_modifier_for_type(Mutator.MutatorType.MORE_STONE):
 		return BlockType.GROUND
-	elif height_ore > 0.425 * MutatorManager.get_modifier_for_type(Mutator.MutatorType.LESS_ORE):
+	elif height_ore > 0.475 * MutatorManager.get_modifier_for_type(Mutator.MutatorType.LESS_ORE):
 		return BlockType.ORE
 	else:
 		return BlockType.BLOCK

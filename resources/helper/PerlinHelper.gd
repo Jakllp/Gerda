@@ -13,5 +13,6 @@ static func generate_heightmap(frequency :float, octaves :int, lacunarity :float
 	heightmap.frequency = frequency
 	heightmap.fractal_lacunarity = lacunarity
 	heightmap.fractal_gain = gain
+	heightmap.fractal_octaves = octaves
 	
 	return heightmap
