@@ -36,7 +36,7 @@ func _ready() -> void:
 func generate(biome: GameWorld.Biome) -> void:
 	print("start god")
 	print("generate biome: ", biome)
-	player_spawn = God.generate_level(self, ground_layer, block_layer, ground_atlas, block_atlas, biome)
+	player_spawn = God.generate_level(self, ground_layer, block_layer, block_atlas, biome)
 	print("end god")
 
 
@@ -51,18 +51,13 @@ func damage_cell(cell: Vector2i, damage: float) -> bool:
 	self.mine_overlay(cell)
 	
 	var attached_cell = null
-	var cell_was_top :bool
 	# Gotta check if cell itself is a wall
 	if self.get_cell_atlas_coords(block_layer,cell,false).y == 1:
 		attached_cell = self.get_neighbor_cell(cell,TileSet.CELL_NEIGHBOR_TOP_SIDE)
-		cell_was_top = false
 	# Same goes for it being the top of a wall
 	elif self.get_cell_atlas_coords(block_layer,self.get_neighbor_cell(cell,TileSet.CELL_NEIGHBOR_BOTTOM_SIDE),false).y == 1:
 		attached_cell = self.get_neighbor_cell(cell,TileSet.CELL_NEIGHBOR_BOTTOM_SIDE)
-		cell_was_top = true
-	else:
-		# Just a random cell minding it's own business
-		cell_was_top = true
+	
 	if attached_cell != null:
 		remaining_hardness_dict[attached_cell] = remaining_hardness_dict[cell]
 		self.mine_overlay(attached_cell)

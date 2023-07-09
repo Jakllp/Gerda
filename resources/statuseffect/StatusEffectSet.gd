@@ -7,8 +7,8 @@ class_name StatusEffectSet
 var owner
 var effects: Dictionary
 
-func _init(owner):
-	self.owner = owner
+func _init(wanted_owner):
+	self.owner = wanted_owner
 	
 
 ## Process all of the status effects with the current delta time and their owner.

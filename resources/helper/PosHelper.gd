@@ -35,7 +35,7 @@ static func get_corner_pos(corner_num :int, field_size :Vector2i, corner_range :
 ## Radius defines the minimum distance between the points. Is 10 per default
 ## If with_negative (default) the field will be around the 0 point
 static func generate_random_positions(amount :int, field_size :Vector2i, inner_range :float, radius := 10, with_negative :bool = true) -> Array:
-	var new_field := Vector2i(field_size.x * inner_range, field_size.y * inner_range)
+	var new_field := Vector2i(floor(field_size.x * inner_range), floor(field_size.y * inner_range))
 	var cell_size = radius / sqrt(2)
 	var grid = []
 	var output = []
@@ -118,8 +118,8 @@ static func generate_random_point_around(center: Vector2i, radius) -> Vector2i:
 	return center + Vector2i(offset_x, offset_y)
 
 
-static func point_in_range(point :Vector2i, range :Vector2i) -> bool:
-	if point.x >= 0 and point.x < range.x and point.y >= 0 and point.y < range.y:
+static func point_in_range(point :Vector2i, wanted_range :Vector2i) -> bool:
+	if point.x >= 0 and point.x < wanted_range.x and point.y >= 0 and point.y < wanted_range.y:
 		return true
 	return false
 

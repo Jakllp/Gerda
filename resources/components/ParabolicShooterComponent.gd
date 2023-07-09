@@ -17,9 +17,9 @@ var gravity: float = 10.0
 ## Shooting angle relative to Vector2.RIGHT
 var alpha
 
-func shoot(target: Vector2) -> void:
+func shoot(wanted_target: Vector2) -> void:
 	# add some spacing (18) to target the players feet
-	self.target = target - global_position + Vector2(0,18)
+	self.target = wanted_target - global_position + Vector2(0,18)
 	var p: ParabolicProjectile = projectile_scene.instantiate()
 	p.transform = global_transform
 	p.curve = calculate_trajectory()

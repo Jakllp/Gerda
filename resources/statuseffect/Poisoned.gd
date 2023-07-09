@@ -4,9 +4,9 @@ class_name Poisoned
 ## Damage per trigger
 var damage: int = 0
 
-func _init(damage: int, trigger_time:float = 0, life_time: float = -1) -> void:
-	super._init(trigger_time, life_time)
-	self.damage = damage
+func _init(wanted_damage: int, wanted_trigger_time:float = 0, wanted_life_time: float = -1) -> void:
+	super._init(wanted_trigger_time, wanted_life_time)
+	self.damage = wanted_damage
 	
 
 func process(delta: float, owner) -> void:

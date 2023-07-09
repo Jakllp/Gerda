@@ -4,6 +4,8 @@ class_name Weapon
 
 
 @export var restore_per_craft :int
+## How many ores can be crafted at once
+@export var stack_size := 5
 @export var base_damage :int
 ## Percent of base_damage added for every upgrade
 @export var damage_upgrade_modifier :int
@@ -36,9 +38,9 @@ func do_rotation(_player: Player) -> void:
 	pass
 
 
-func needs_crafting() -> bool:
+func needs_crafting(_stack :bool) -> bool:
 	return false
 
 
-func crafted() -> void:
+func crafted(_stack :bool) -> void:
 	pass

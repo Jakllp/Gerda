@@ -7,16 +7,17 @@ const nope_atlas = 3
 
 
 
-static func place_structure(structure_name :StructureRegistry.Structures, pos :Vector2i, map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
+static func place_structure(structure_name :StructureRegistry.Structures, pos :Vector2i, map: TileMap,ground_layer :int, block_layer :int, block_atlas :int) -> void:
 	# First: Gotta get the patterns
 	var ground_pattern = StructureHelper.get_structure_pattern(structure_name, ground_layer)
 	var block_pattern = StructureHelper.get_structure_pattern(structure_name, block_layer)
 	var ground_offset = StructureRegistry.get_ground_offset(structure_name)
 
+	# This will complain about loosing precision. It is allowed to do that.
 	var new_pos = pos - Vector2i(block_pattern.get_size().x / 2, block_pattern.get_size().y / 2.0)
 	
 	# Create the physical boundaries
-	spawn_pattern(ground_pattern, block_pattern, new_pos, ground_offset, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	spawn_pattern(ground_pattern, block_pattern, new_pos, ground_offset, map, ground_layer, block_layer, block_atlas)
 	
 	# Gotta spawn in interactables
 	for interactable in StructureHelper.get_static_things(structure_name, "Interactables"):
@@ -29,7 +30,7 @@ static func place_structure(structure_name :StructureRegistry.Structures, pos :V
 		spawn_thing_in_scene(enemy[0], enemy[1] + (map.map_to_local(pos) - Vector2(11,11)), map.get_node("Enemies"))
 
 
-static func spawn_pattern(ground_pattern :TileMapPattern, block_pattern :TileMapPattern, pos :Vector2i, ground_offset :Vector2i, map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int) -> void:
+static func spawn_pattern(ground_pattern :TileMapPattern, block_pattern :TileMapPattern, pos :Vector2i, ground_offset :Vector2i, map: TileMap,ground_layer :int, block_layer :int, block_atlas :int) -> void:
 	var ground_pos = pos + ground_offset
 	# -1 to also get row above
 	var cleanup_pos = Vector2i(min(pos.x, ground_pos.x),min(pos.y, ground_pos.y) - 1)

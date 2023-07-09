@@ -89,12 +89,14 @@ func reload() -> void:
 		ammo_stored = 0
 
 
-func needs_crafting() -> bool:
-	if max_ammo_stored - ammo_stored >= restore_per_craft:
+func needs_crafting(stack := false) -> bool:
+	if stack and max_ammo_stored - ammo_stored >= restore_per_craft * stack_size:
+		return true
+	elif max_ammo_stored - ammo_stored >= restore_per_craft:
 		return true
 	return false
 
 
-func crafted() -> void:
-	ammo_stored += restore_per_craft
+func crafted(stack :bool) -> void:
+	ammo_stored += restore_per_craft * stack_size if stack else restore_per_craft
 	print("Total ammo replenished: "+str(mag_contents)+"/"+str(ammo_stored))

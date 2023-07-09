@@ -17,6 +17,8 @@ static func create_item(table) -> Item:
 	var item: Item = preload("res://resources/interactables/Item.tscn").instantiate()
 	var type := Items.roll_table(table)
 	
+	# This throws "integer where enum is expected". It would be ugly to cast that and it works.
+	# The decision was made to leave it as is
 	item.type = type.x
 	item.item_data = type.y
 	

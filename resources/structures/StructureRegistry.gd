@@ -47,7 +47,7 @@ func get_map_for_structure(structure_name: Structures) -> TileMap:
 		return null
 
 
-static func get_pattern_range(structure_name):
+func get_pattern_range(structure_name):
 	match (structure_name):
 		Structures.TRAPDOOR_B1:
 			return [Vector2i(-5,-5),Vector2i(4,4)]
@@ -66,7 +66,7 @@ static func get_pattern_range(structure_name):
 
 
 ## Returns the ground_offset of a given pattern aka how much you have to move the ground_pattern for it to align with the block_pattern
-static func get_ground_offset(structure_name) -> Vector2i:
+func get_ground_offset(structure_name) -> Vector2i:
 	match (structure_name):
 		# Only need to point to special cases, default is 0,0
 		_:

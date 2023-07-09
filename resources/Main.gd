@@ -65,8 +65,8 @@ func on_switch_scene(scene: Scene) -> void:
 		return
 	canvas_layer.add_child(current_scene)
 
-func on_character_selected(character: Character) -> void:
-	self.character = character
+func on_character_selected(wanted_character: Character) -> void:
+	self.character = wanted_character
 	start_menu_level.queue_free()
 	on_switch_scene(Scene.GAME)
 	

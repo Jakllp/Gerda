@@ -30,7 +30,7 @@ enum BlockType {
 
 # Note: If there ever should be different trapdoor-rooms for different biomes this method would need a new input and we'd need to implement a biome-checker for other functions down the line
 ## Delegates the generation of the level
-static func generate_level(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :GameWorld.Biome) -> Vector2i:
+static func generate_level(map: TileMap,ground_layer :int, block_layer :int, block_atlas :int, biome :GameWorld.Biome) -> Vector2i:
 	var dungeon_spawns = default_dungeon_spawns + randi_range(-1, 1)
 	# 2+ as we need 1 Trapdoor-Room and 1 spawn-room
 	print("posis")
@@ -52,14 +52,14 @@ static func generate_level(map: TileMap,ground_layer :int, block_layer :int, gro
 	StructureRegistry.init(biome)
 	
 	# Spawn TrapdoorRoom
-	StructurePlacer.place_structure(StructureRegistry.Structures.get("TRAPDOOR_B"+str(biome)), trapdoor_pos, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	StructurePlacer.place_structure(StructureRegistry.Structures.get("TRAPDOOR_B"+str(biome)), trapdoor_pos, map, ground_layer, block_layer, block_atlas)
 	
 	# Spawn AnvilRooms
-	positions = spawn_anvil_rooms(map, ground_layer, block_layer, ground_atlas, block_atlas, biome, positions)
+	positions = spawn_anvil_rooms(map, ground_layer, block_layer, block_atlas, biome, positions)
 	
 	# Spawn dungeons
-	var spawn_point = spawn_dungeons(map, ground_layer, block_layer, ground_atlas, block_atlas, biome, positions)
-	StructurePlacer.place_structure(StructureRegistry.Structures.get("SPAWNROOM_B"+str(biome)), spawn_point, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	var spawn_point = spawn_dungeons(map, ground_layer, block_layer, block_atlas, biome, positions)
+	StructurePlacer.place_structure(StructureRegistry.Structures.get("SPAWNROOM_B"+str(biome)), spawn_point, map, ground_layer, block_layer, block_atlas)
 	
 	# clear structures
 	StructureRegistry.clear()
@@ -192,7 +192,7 @@ static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 		return BlockType.BLOCK
 
 
-static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int, pos_list :Array) -> Array:
+static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, block_atlas :int, biome :int, pos_list :Array) -> Array:
 	var field_size = Vector2i(level_width,level_height)
 	
 	# Corner-Rooms 0: Top-Left, 1: Top-Right, 2: Bottom-Right, 3: Bottom-Left
@@ -200,26 +200,26 @@ static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, 
 	var corner_2 = randi_range(0, 3)
 	while corner_1 == corner_2: corner_2 = randi_range(0, 3)
 	var pos1 = PosHelper.get_corner_pos(corner_1, field_size, corner_anvil_range, 6)
-	StructurePlacer.place_structure(StructureRegistry.Structures.get("ANVIL_B"+str(biome)), pos1, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	StructurePlacer.place_structure(StructureRegistry.Structures.get("ANVIL_B"+str(biome)), pos1, map, ground_layer, block_layer, block_atlas)
 	var pos2 = PosHelper.get_corner_pos(corner_2, field_size, corner_anvil_range, 6)
-	StructurePlacer.place_structure(StructureRegistry.Structures.get("ANVIL_B"+str(biome)), pos2, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	StructurePlacer.place_structure(StructureRegistry.Structures.get("ANVIL_B"+str(biome)), pos2, map, ground_layer, block_layer, block_atlas)
 	
 	# Anvilroom in the middle (random)
 	var pos3 = pos_list[randi_range(0,pos_list.size()-1)]
 	pos_list.erase(pos3)
-	StructurePlacer.place_structure(StructureRegistry.Structures.get("ANVIL_B"+str(biome)), pos3, map, ground_layer, block_layer, ground_atlas, block_atlas)
+	StructurePlacer.place_structure(StructureRegistry.Structures.get("ANVIL_B"+str(biome)), pos3, map, ground_layer, block_layer, block_atlas)
 	
 	# Return array of pos to store them
 	return pos_list
 
 
-static func spawn_dungeons(map: TileMap,ground_layer :int, block_layer :int, ground_atlas :int, block_atlas :int, biome :int, pos_list :Array) -> Vector2i:
+static func spawn_dungeons(map: TileMap,ground_layer :int, block_layer :int, block_atlas :int, biome :int, pos_list :Array) -> Vector2i:
 	# -1 to still have a spawn-point
 	for i in range(pos_list.size()-1):
 		var pos = pos_list[randi_range(0,pos_list.size()-1)]
 		pos_list.erase(pos)
 		var available_dungeons = StructureHelper.get_dungeons_for_biome(biome)
 		var dungeon = StructureRegistry.Structures.get(available_dungeons[randi_range(0, available_dungeons.size()-1)])
-		StructurePlacer.place_structure(dungeon, pos, map, ground_layer, block_layer, ground_atlas, block_atlas)
+		StructurePlacer.place_structure(dungeon, pos, map, ground_layer, block_layer, block_atlas)
 	
 	return pos_list[0]

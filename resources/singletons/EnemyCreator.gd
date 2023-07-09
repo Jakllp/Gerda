@@ -124,7 +124,7 @@ func get_random_spawn_area(enemy_count: int) -> Rect2:
 	print("\ntry to get random spawn area")
 	var player_pos = get_tree().get_first_node_in_group("player").global_position
 	var pos: Vector2
-	var range: int
+	var spawn_range: int
 	var rot: float
 	var result
 	var space_state := get_world_2d().direct_space_state
@@ -136,10 +136,10 @@ func get_random_spawn_area(enemy_count: int) -> Rect2:
 	print("shape size: ", size)
 	
 	for try in spawn_tries:
-		range = randi_range(min_spawn_distance,max_spawn_distance)
+		spawn_range = randi_range(min_spawn_distance,max_spawn_distance)
 		rot = randf_range(-PI, PI)
 		# here is the position the middle of the rectangle
-		pos = player_pos + (Vector2.RIGHT * range).rotated(rot)
+		pos = player_pos + (Vector2.RIGHT * spawn_range).rotated(rot)
 		
 		var query := PhysicsShapeQueryParameters2D.new()
 		query.shape = shape

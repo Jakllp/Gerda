@@ -25,9 +25,9 @@ var one_time_trigger = false
 ## To let the effect only trigger once assign the desired trigger_time as negative value.
 ## For infinite life_time set it to -1.
 ## If instant_trigger is set to false, the effect will not trigger until trigger_time is over the first time.
-func _init(trigger_time: float = -1, life_time: float = -1, instant_trigger: bool = true):
-	self.trigger_time = trigger_time
-	self.life_time = life_time
+func _init(wanted_trigger_time: float = -1, wanted_life_time: float = -1, instant_trigger: bool = true):
+	self.trigger_time = wanted_trigger_time
+	self.life_time = wanted_life_time
 	if trigger_time < 0:
 		one_time_trigger = true
 		trigger_time *= -1

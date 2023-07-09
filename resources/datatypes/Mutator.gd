@@ -92,15 +92,16 @@ func _init(wanted_type :MutatorType, strength :int):
 
 
 ## Returns the category of a type
-static func category_for_type(type :MutatorType) -> MutatorCategory:
+static func category_for_type(wanted_type :MutatorType) -> MutatorCategory:
 	for cat in category_dict:
-		if category_dict[cat].has(type): return cat
-	return 0
+		if category_dict[cat].has(wanted_type): return cat
+	# Random default as fallback
+	return MutatorCategory.WORLD_MUTATORS
 
 
 ## Returns an array of all MutatorTypes in the given MutatorCategory
-static func types_for_category(category :MutatorCategory) -> Array:
-	return category_dict[category]
+static func types_for_category(wanted_category :MutatorCategory) -> Array:
+	return category_dict[wanted_category]
 
 
 static func get_tex_x(strength :int) -> int:

@@ -9,8 +9,8 @@ static func get_structure_pattern(structure_name, layer :int) -> TileMapPattern:
 	var map = StructureRegistry.get_map_for_structure(structure_name)
 	if map == null: return null
 	
-	var range = StructureRegistry.get_pattern_range(structure_name)
-	return map.get_pattern(layer, get_coord_array(range[0],range[1], map, layer))
+	var pattern_range = StructureRegistry.get_pattern_range(structure_name)
+	return map.get_pattern(layer, get_coord_array(pattern_range[0],pattern_range[1], map, layer))
 
 
 ## Returns an array of all on-tile things in a structure

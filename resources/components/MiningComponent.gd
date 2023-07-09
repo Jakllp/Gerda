@@ -4,7 +4,7 @@ class_name MiningComponent
 
 var rng = RandomNumberGenerator.new()
 var min_ore_from_ore := 1
-var max_ore_from_ore := 4
+var max_ore_from_ore := 2
 ## How much percent the mining speed goes up (from the base mining speed)
 var mining_speed_upgrade_modifier := 0.2
 

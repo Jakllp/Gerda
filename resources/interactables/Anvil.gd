@@ -26,7 +26,11 @@ func do_interaction() -> void:
 		self.add_child(loading_ring)
 		loading_ring.position.y -= 15
 		crafting_tween.tween_method(do_loading_ring, 0.0, 1.0, crafting_time)
-		crafting_tween.tween_callback(craft)
+		if player.ore_pouch >= 5 and player.weapon.needs_crafting(true):
+			# Stack crafting
+			crafting_tween.tween_callback(craft.bind(true))
+		else:
+			crafting_tween.tween_callback(craft)
 		crafting_tween.play()
 
 
@@ -42,8 +46,8 @@ func stop_interaction() -> void:
 		loading_ring.queue_free()
 
 
-func craft() -> void:
-	player.weapon.crafted()
-	player.ore_pouch -= 1
+func craft(stack := false) -> void:
+	player.weapon.crafted(stack)
+	player.ore_pouch -= 5 if stack else 1
 	do_loading_ring(0.0)
 	new_tween()
