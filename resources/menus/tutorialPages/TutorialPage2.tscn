@@ -1,0 +1,168 @@
+[gd_scene load_steps=11 format=3 uid="uid://cd0rds8c4a4o1"]
+
+[ext_resource type="Texture2D" uid="uid://dqayk5fjw3ov4" path="res://asset/visual/UI/tutorial/page.png" id="1_3gbq5"]
+[ext_resource type="Script" path="res://resources/menus/tutorialPages/TutorialPage2.gd" id="1_pq3u2"]
+[ext_resource type="Texture2D" uid="uid://caluqwcxdqqad" path="res://asset/visual/UI/3sacrowd.png" id="2_7aqmw"]
+[ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="3_hbe5m"]
+[ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf" id="4_mo5fo"]
+[ext_resource type="Texture2D" uid="uid://i273vegwg71g" path="res://asset/visual/UI/tutorial/right.png" id="5_h2lp3"]
+[ext_resource type="Texture2D" uid="uid://dyjke1q3f4wut" path="res://asset/visual/UI/tutorial/right_hover.png" id="6_ajvg1"]
+[ext_resource type="Texture2D" uid="uid://c4st4dgd3jhil" path="res://asset/visual/UI/tutorial/left.png" id="7_hdvs3"]
+[ext_resource type="Texture2D" uid="uid://d01sy22g0gbqr" path="res://asset/visual/UI/tutorial/left_hover.png" id="8_jp1ea"]
+
+[sub_resource type="GDScript" id="GDScript_800ke"]
+script/source = "extends Label
+
+func _on_right_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_back_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_left_button_pressed():
+	pass # Replace with function body.
+"
+
+[node name="TutorialPage2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pq3u2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_right = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Page" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = ExtResource("1_3gbq5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Page"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Page/MarginContainer"]
+layout_mode = 2
+
+[node name="Top" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Logo2" type="TextureRect" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Top"]
+custom_minimum_size = Vector2(72, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_7aqmw")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Top"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme = ExtResource("3_hbe5m")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Gerda"
+horizontal_alignment = 2
+
+[node name="Seperator" type="MarginContainer" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Seperator"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_hbe5m")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Mutators"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_mo5fo")
+text = "Mutators can make the game more difficult and change the way you play. Before each new Biome, you get the choice between three diffenrent Mutators in different colors. Those colors represent different intensities. Green ones are the weakest, red ones the strongest.
+But be careful: once chosen, a mutator cannot be changed for the rest of the round."
+fit_content = true
+
+[node name="Bottom" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("3_hbe5m")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "2/4"
+horizontal_alignment = 1
+vertical_alignment = 2
+script = SubResource("GDScript_800ke")
+
+[node name="RightButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Bottom"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+texture_normal = ExtResource("5_h2lp3")
+texture_hover = ExtResource("6_ajvg1")
+stretch_mode = 4
+
+[node name="LeftButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Bottom"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+texture_normal = ExtResource("7_hdvs3")
+texture_hover = ExtResource("8_jp1ea")
+stretch_mode = 4
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(170, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_hbe5m")
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Bottom/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Bottom/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
