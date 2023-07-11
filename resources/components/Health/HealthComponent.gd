@@ -5,6 +5,11 @@ class_name HealthComponent
 @export var hp_max: int = 0: set = set_max_hp
 @export var hp: int = hp_max: set = set_hp
 
+enum DamageType {
+	BASIC,
+	POISON
+}
+
 
 func set_max_hp(value):
 	if value != hp_max:
@@ -33,11 +38,11 @@ func die() -> void:
 		owner.queue_free()
 	
 
-func receive_damage(damage: int) -> void:
+func receive_damage(damage: int, damage_type := DamageType.BASIC) -> void:
 	if damage == 0 or hp <= 0: return
 	self.hp -= damage
 	printt("damage", damage)
-	owner.flash_component.flash(owner)
+	owner.flash_component.flash(owner, damage_type)
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:

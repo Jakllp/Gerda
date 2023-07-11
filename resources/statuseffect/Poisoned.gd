@@ -16,7 +16,7 @@ func process(delta: float, owner) -> void:
 ## Damage the owner
 func trigger(owner) -> void:
 	assert(owner is Node and owner.has_node("PlayerHealthComponent"), "Poisoned status effect connected with incompatible type")
-	owner.get_node("PlayerHealthComponent").receive_damage(damage)
+	owner.get_node("PlayerHealthComponent").receive_damage(damage, HealthComponent.DamageType.POISON)
 	prints(owner, "receieved poison damage")
 
 
@@ -29,3 +29,4 @@ func disable(owner) -> void:
 		owner.flash_component.standard_vignette_enabled = false
 		owner.flash_component.standard_vignette_softness = 3.0
 		owner.flash_component.standard_vignette_color = Color(1.0,0.0,0.0,1.0)
+	owner.flash_component.reset_shader_values(owner)

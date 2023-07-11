@@ -6,8 +6,8 @@ var standard_vignette_enabled := false
 var standard_vignette_color := Color(1.0,0,0,1)
 var standard_vignette_softness := 3.0
 
-func flash(le_owner):
-	super.flash(le_owner)
+func flash(le_owner :Player, damage_type :HealthComponent.DamageType):
+	super.flash(le_owner, damage_type)
 	var vig_node = le_owner.get_node("Camera2D/CanvasLayer/VignetteEffekt")
 	var vig_shader_mat = vig_node.material
 	var tweeny :Tween = le_owner.create_tween()
@@ -16,10 +16,19 @@ func flash(le_owner):
 	vig_shader_mat.set_shader_parameter("softness", self.standard_vignette_softness)
 	vig_node.visible = true
 	tweeny.tween_method(set_vig_softness.bind(le_owner), self.standard_vignette_softness, 1.0, 0.03)
+	
+	# Screen-Shake when poisoned
+	match(damage_type):
+		HealthComponent.DamageType.POISON:
+			le_owner.get_node("Camera2D").apply_noise_screen_shake(7.5, 5.0, 1.0, 20.0)
+		_:
+			le_owner.get_node("Camera2D").apply_noise_screen_shake(25, 5.0, 1.0, 30.0)
+	
 
 
 func reset_shader_values(le_owner):
 	super.reset_shader_values(le_owner)
+	if not is_instance_valid(le_owner): return
 	var vig_node = le_owner.get_node("Camera2D/CanvasLayer/VignetteEffekt")
 	var vig_shader_mat = vig_node.material
 	var tweeny :Tween = le_owner.create_tween()

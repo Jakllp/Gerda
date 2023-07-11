@@ -12,8 +12,8 @@ func set_max_hp(value):
 			self.hp = hp
 
 
-func receive_damage(damage: int) -> void:
-	super.receive_damage(damage + MutatorManager.get_modifier_for_type(Mutator.MutatorType.DAMAGE_PLUS, true))
+func receive_damage(damage: int, damage_type := DamageType.BASIC) -> void:
+	super.receive_damage(damage + MutatorManager.get_modifier_for_type(Mutator.MutatorType.DAMAGE_PLUS, true), damage_type)
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
