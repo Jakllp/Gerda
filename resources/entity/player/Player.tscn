@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bumgkqge3x8or"]
+[gd_scene load_steps=27 format=3 uid="uid://bumgkqge3x8or"]
 
 [ext_resource type="Script" path="res://resources/entity/player/Player.gd" id="1_to1al"]
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="3_j32ei"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="8_5qbo2"]
 [ext_resource type="PackedScene" uid="uid://b5fc7mi5vht5l" path="res://resources/components/Health/PlayerHealthComponent.tscn" id="9_e6pu7"]
 [ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="9_tj2ew"]
+[ext_resource type="Shader" path="res://resources/shaders/damage_shader.gdshader" id="10_7xnma"]
 [ext_resource type="Script" path="res://resources/entity/player/PlayerCamera.gd" id="10_c6tfw"]
 [ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="12_ejrhl"]
 [ext_resource type="PackedScene" uid="uid://b2krhq43q3awp" path="res://resources/components/DashComponent.tscn" id="13_27f6q"]
@@ -45,6 +46,11 @@ shader = ExtResource("9_tj2ew")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_o6p7u"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xitgc"]
+shader = ExtResource("10_7xnma")
+shader_parameter/pixel_size = 50.0
+shader_parameter/vignette_intensity = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsxsu"]
 resource_local_to_scene = true
@@ -167,6 +173,20 @@ hp_max = 6
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 script = ExtResource("10_c6tfw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="Vignette-Effekt" type="ColorRect" parent="Camera2D/CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_xitgc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(9, -2)
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [node name="CollisonShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 4)
