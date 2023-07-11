@@ -24,4 +24,8 @@ func trigger(owner) -> void:
 func disable(owner) -> void:
 	owner.flash_component.standard_flash_color = Color(1,1,1,1)
 	owner.flash_component.standard_modifier = 0.0
-	owner.flash_component.reset_shader_values(owner)
+	
+	if owner is Player:
+		owner.flash_component.standard_vignette_enabled = false
+		owner.flash_component.standard_vignette_softness = 3.0
+		owner.flash_component.standard_vignette_color = Color(1.0,0.0,0.0,1.0)
