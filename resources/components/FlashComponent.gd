@@ -4,7 +4,7 @@ class_name FlashComponent
 
 # Avoid staying white after flash if two flashes are triggered to close to each other
 var flashing := false
-var standard_color := Color(1,1,1,1)
+var standard_flash_color := Color(1,1,1,1)
 var standard_modifier := 0.0
 
 func flash(le_owner):
@@ -37,4 +37,4 @@ func reset_shader_values(le_owner):
 	
 	var shader_mat = le_owner.get_node("SubViewportContainer/SubViewport/AnimatedSprite2D").material
 	shader_mat.set_shader_parameter("flash_modifier",standard_modifier)
-	shader_mat.set_shader_parameter("flash_color", standard_color)
+	shader_mat.set_shader_parameter("flash_color", standard_flash_color)

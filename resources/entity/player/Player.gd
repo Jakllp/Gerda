@@ -54,6 +54,8 @@ signal died
 
 
 func _ready() -> void:
+	flash_component = PlayerDamageIndicatorComponent.new()
+	
 	weapon.position = equipment_angle_point.position
 	add_child(weapon)
 	weapon.owner = self

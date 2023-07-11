@@ -22,6 +22,6 @@ func trigger(owner) -> void:
 
 ## Disable
 func disable(owner) -> void:
-	owner.flash_component.standard_color = Color(1,1,1,1)
+	owner.flash_component.standard_flash_color = Color(1,1,1,1)
 	owner.flash_component.standard_modifier = 0.0
 	owner.flash_component.reset_shader_values(owner)
