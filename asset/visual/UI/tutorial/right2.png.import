@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cntjon281nux4"
-path="res://.godot/imported/right_hover.png-ae0bdb028ca471b444f40452c73c86cc.ctex"
+uid="uid://dlav5hfspars8"
+path="res://.godot/imported/right2.png-e796c767b4969336d1d12117664d02e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/visual/UI/tutorial/right_hover.png"
-dest_files=["res://.godot/imported/right_hover.png-ae0bdb028ca471b444f40452c73c86cc.ctex"]
+source_file="res://asset/visual/UI/tutorial/right2.png"
+dest_files=["res://.godot/imported/right2.png-e796c767b4969336d1d12117664d02e9.ctex"]
 
 [params]
 

@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://resources/menus/tutorialPages/TutorialPage1.gd" id="1_7jatf"]
 [ext_resource type="Texture2D" uid="uid://dqayk5fjw3ov4" path="res://asset/visual/UI/tutorial/page.png" id="1_rk7ym"]
 [ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="2_8cfjv"]
-[ext_resource type="Texture2D" uid="uid://i273vegwg71g" path="res://asset/visual/UI/tutorial/right.png" id="2_sup6j"]
-[ext_resource type="Texture2D" uid="uid://dyjke1q3f4wut" path="res://asset/visual/UI/tutorial/right_hover.png" id="3_82dj2"]
 [ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf" id="4_hquf7"]
 [ext_resource type="Texture2D" uid="uid://caluqwcxdqqad" path="res://asset/visual/UI/3sacrowd.png" id="4_xdu6k"]
+[ext_resource type="Texture2D" uid="uid://dlav5hfspars8" path="res://asset/visual/UI/tutorial/right2.png" id="6_7u2ju"]
+[ext_resource type="Texture2D" uid="uid://djxa23ymvp7n2" path="res://asset/visual/UI/tutorial/right_hover2.png" id="7_278r8"]
 
 [sub_resource type="GDScript" id="GDScript_800ke"]
 script/source = "extends Label
@@ -49,9 +49,10 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 
 [node name="Page" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 590)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 3
+size_flags_vertical = 4
 texture = ExtResource("1_rk7ym")
 expand_mode = 3
 stretch_mode = 5
@@ -76,7 +77,7 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="Logo2" type="TextureRect" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Top"]
-custom_minimum_size = Vector2(72, 48)
+custom_minimum_size = Vector2(96, 64)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -124,21 +125,21 @@ horizontal_alignment = 1
 vertical_alignment = 2
 script = SubResource("GDScript_800ke")
 
-[node name="RightButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Bottom"]
-custom_minimum_size = Vector2(40, 40)
+[node name="RightButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Page"]
+custom_minimum_size = Vector2(75.5, 75.5)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
+offset_left = -80.0
+offset_top = -80.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8
-texture_normal = ExtResource("2_sup6j")
-texture_hover = ExtResource("3_82dj2")
+texture_normal = ExtResource("6_7u2ju")
+texture_hover = ExtResource("7_278r8")
 stretch_mode = 4
 
 [node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -148,5 +149,5 @@ size_flags_horizontal = 4
 theme = ExtResource("2_8cfjv")
 text = "Back"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Bottom/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Page/RightButton" to="." method="_on_right_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

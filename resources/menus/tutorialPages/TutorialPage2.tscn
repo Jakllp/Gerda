@@ -6,7 +6,7 @@
 [ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="3_hbe5m"]
 [ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf" id="4_mo5fo"]
 [ext_resource type="Texture2D" uid="uid://i273vegwg71g" path="res://asset/visual/UI/tutorial/right.png" id="5_h2lp3"]
-[ext_resource type="Texture2D" uid="uid://dyjke1q3f4wut" path="res://asset/visual/UI/tutorial/right_hover.png" id="6_ajvg1"]
+[ext_resource type="Texture2D" uid="uid://cntjon281nux4" path="res://asset/visual/UI/tutorial/right_hover.png" id="6_ajvg1"]
 [ext_resource type="Texture2D" uid="uid://c4st4dgd3jhil" path="res://asset/visual/UI/tutorial/left.png" id="7_hdvs3"]
 [ext_resource type="Texture2D" uid="uid://d01sy22g0gbqr" path="res://asset/visual/UI/tutorial/left_hover.png" id="8_jp1ea"]
 
@@ -51,9 +51,10 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 
 [node name="Page" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 590)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 3
+size_flags_vertical = 6
 texture = ExtResource("1_3gbq5")
 expand_mode = 3
 stretch_mode = 5
