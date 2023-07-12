@@ -38,6 +38,14 @@ func do_rotation(_player: Player) -> void:
 	pass
 
 
+func get_max_restorable() -> int:
+	return -1
+
+
+func get_current_restorable() -> int:
+	return -1
+
+
 func needs_crafting(_stack :bool) -> bool:
 	return false
 

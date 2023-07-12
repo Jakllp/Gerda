@@ -89,6 +89,14 @@ func reload() -> void:
 		ammo_stored = 0
 
 
+func get_max_restorable() -> int:
+	return max_ammo_stored
+
+
+func get_current_restorable() -> int:
+	return ammo_stored
+
+
 func needs_crafting(stack := false) -> bool:
 	if stack and max_ammo_stored - ammo_stored >= restore_per_craft * stack_size:
 		return true

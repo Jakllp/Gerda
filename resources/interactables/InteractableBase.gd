@@ -20,6 +20,10 @@ func _process(_delta):
 		stop_interaction.emit()
 
 
+func should_show_hint() -> bool:
+	return false
+
+
 # We only want to process this when the player is near the interactable
 func _on_detection_area_body_entered(body :Node2D):
 	if player == null and body is Player:

@@ -7,7 +7,7 @@ var flashing := false
 var standard_flash_color := Color(1,1,1,1)
 var standard_modifier := 0.0
 
-func flash(le_owner, damage_type :HealthComponent.DamageType):
+func flash(le_owner, _damage_type :HealthComponent.DamageType):
 	while flashing:
 		if is_instance_valid(le_owner):
 			await le_owner.get_tree().create_timer(0.01).timeout
