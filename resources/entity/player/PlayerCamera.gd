@@ -10,6 +10,9 @@ extends Camera2D
 @export var NOISE_SHAKE_SPEED: float = 60.0
 
 var is_shaking = false
+var current_shake_shake_strength :float = 0.0
+var current_decay_rate :float = 0.0
+var current_shake_speed :float = 0.0
 var _decay: float = 0.0
 var _shake_strength: float = 0.0
 # Used to keep track of where we are in the noise
@@ -42,8 +45,8 @@ func _process(delta: float) -> void:
 		stop_shake()
 	
 	# Fade out the intensity over time
-	_decay += SHAKE_DECAY_RATE * delta
-	_shake_strength = max(0, lerp(SHAKE_STRENGTH, 0.0, _decay))
+	_decay += current_decay_rate * delta
+	_shake_strength = max(0, lerp(current_shake_shake_strength, 0.0, _decay))
 	
 	match shake_type:
 		ShakeType.RANDOM:
@@ -54,9 +57,9 @@ func _process(delta: float) -> void:
 
 func apply_random_screen_shake(strength: float = SHAKE_STRENGTH, decay_rate: float = SHAKE_DECAY_RATE, duration: float = SHAKE_DURATION) -> void:
 	shake_type = ShakeType.RANDOM
-	SHAKE_STRENGTH = strength
+	current_shake_shake_strength = strength
 	_shake_strength = strength
-	SHAKE_DECAY_RATE = decay_rate
+	current_decay_rate = decay_rate
 	_decay = 0
 	is_shaking = true
 	get_tree().create_timer(duration, false).timeout.connect(shake_over)
@@ -64,11 +67,11 @@ func apply_random_screen_shake(strength: float = SHAKE_STRENGTH, decay_rate: flo
 
 func apply_noise_screen_shake(strength: float = SHAKE_STRENGTH, decay_rate: float = SHAKE_DECAY_RATE, duration: float = SHAKE_DURATION, speed: float = NOISE_SHAKE_SPEED) -> void:
 	shake_type = ShakeType.NOISY
-	SHAKE_STRENGTH = strength
+	current_shake_shake_strength = strength
 	_shake_strength = strength
-	SHAKE_DECAY_RATE = decay_rate
+	current_decay_rate = decay_rate
 	_decay = 0
-	NOISE_SHAKE_SPEED = speed
+	current_shake_speed = speed
 	is_shaking = true
 	get_tree().create_timer(duration, false).timeout.connect(shake_over)
 	
@@ -86,7 +89,7 @@ func stop_shake() -> void:
 	
 
 func get_noise_offset(delta: float) -> Vector2:
-	noise_i += delta * NOISE_SHAKE_SPEED
+	noise_i += delta * current_shake_speed
 	# Set the x values of each call to 'get_noise_2d' to a different value
 	# so that our x and y vectors will be reading from unrelated areas of noise
 	return Vector2(
