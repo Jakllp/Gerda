@@ -19,8 +19,8 @@ func do_interaction() -> void:
 			loading_ring.set_deferred("visible", true)
 		crafting_timer.wait_time = crafting_time
 		crafting_timer.start()
-	elif loading_ring.visible:
-		loading_ring.set_deferred("visible", false)
+	elif not (player.ore_pouch > 0 and player.weapon.needs_crafting()) and loading_ring.visible:
+			loading_ring.set_deferred("visible", false)
 
 
 func stop_interaction() -> void:
