@@ -100,7 +100,7 @@ func get_current_restorable() -> int:
 func needs_crafting(stack := false) -> bool:
 	if stack and max_ammo_stored - ammo_stored >= restore_per_craft * stack_size:
 		return true
-	elif max_ammo_stored - ammo_stored >= restore_per_craft:
+	elif not stack and max_ammo_stored - ammo_stored >= restore_per_craft:
 		return true
 	return false
 
