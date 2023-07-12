@@ -13,4 +13,4 @@ func do_interaction() -> void:
 
 
 func _on_dropping_in_body_entered(_body):
-	get_node("/root/Main/GameWorld").proceed_level()
+	get_node("/root/Main/GameWorld").call_deferred("proceed_level")
