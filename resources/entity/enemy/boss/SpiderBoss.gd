@@ -102,9 +102,18 @@ func die() -> void:
 	$LegRight.damage = 0
 	$HitboxAndBody.damage = 0
 	
+	$CanvasLayer.visible = false
 	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color(1,1,1,0), 2)
+	tween.parallel().tween_property(self, "modulate", Color(1,1,1,0), 2)
+	tween.parallel().tween_property($PointLight2D, "energy", 0.0, 2)
 	tween.tween_callback(queue_free)
+	if particle_spawner.emitting:
+		particle_spawner.emitting = false
+	particle_spawner.lifetime = 0.6
+	particle_spawner.explosiveness = 0.0
+	particle_spawner.randomness = 0.0
+	particle_spawner.amount *= 10
+	particle_spawner.emitting = true
 	await tween.finished
 	died.emit()
 	

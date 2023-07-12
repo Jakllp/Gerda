@@ -80,7 +80,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0q7vx"]
-radius = 5.0
+radius = 10.0499
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kfl43"]
 radius = 8.06226
@@ -764,7 +764,7 @@ size = Vector2(3.3039, 9.11431)
 resource_local_to_scene = true
 lifetime_randomness = 0.66
 emission_shape = 1
-emission_sphere_radius = 50.0
+emission_sphere_radius = 30.0
 particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
 spread = 60.0
@@ -1019,6 +1019,7 @@ visible = false
 [node name="ParticleSpawner" type="GPUParticles2D" parent="."]
 z_index = 2
 y_sort_enabled = true
+position = Vector2(0, -14)
 emitting = false
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_d6rwp")
