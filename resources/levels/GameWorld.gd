@@ -179,7 +179,3 @@ static func check_line_of_sight(who: Node2D, from: Vector2, to: Vector2, collisi
 		return true
 	else:
 		return false
-
-func _physics_process(_delta):
-	if Input.is_action_just_pressed("ui_left"):
-		proceed_level()
