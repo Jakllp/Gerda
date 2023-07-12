@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://caluqwcxdqqad" path="res://asset/visual/UI/3sacrowd.png" id="2_ggxwd"]
 [ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="3_7u0ik"]
 [ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf" id="4_18hcj"]
-[ext_resource type="Texture2D" uid="uid://i273vegwg71g" path="res://asset/visual/UI/tutorial/right.png" id="5_p3r4y"]
-[ext_resource type="Texture2D" uid="uid://cntjon281nux4" path="res://asset/visual/UI/tutorial/right_hover.png" id="6_m2j5b"]
-[ext_resource type="Texture2D" uid="uid://c4st4dgd3jhil" path="res://asset/visual/UI/tutorial/left.png" id="7_37sd6"]
-[ext_resource type="Texture2D" uid="uid://d01sy22g0gbqr" path="res://asset/visual/UI/tutorial/left_hover.png" id="8_jfimw"]
+[ext_resource type="Texture2D" uid="uid://m5prwr4cdn0e" path="res://asset/visual/UI/tutorial/right.png" id="5_p3r4y"]
+[ext_resource type="Texture2D" uid="uid://cp8e6i0mknn1f" path="res://asset/visual/UI/tutorial/right_hover.png" id="6_m2j5b"]
+[ext_resource type="Texture2D" uid="uid://crl0g7d25y4lk" path="res://asset/visual/UI/tutorial/left.png" id="7_37sd6"]
+[ext_resource type="Texture2D" uid="uid://brxdkii8k88vc" path="res://asset/visual/UI/tutorial/left_hover.png" id="8_jfimw"]
 
 [sub_resource type="GDScript" id="GDScript_800ke"]
 script/source = "extends Label
@@ -118,7 +118,7 @@ Upgrades that improve yourself, are represented by different colored triangles. 
 Don't worry, you can always chack what upgrade is represented by what color by simply pausing the game and checking the table there."
 fit_content = true
 
-[node name="Bottom" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+[node name="PageNumbering" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 theme = ExtResource("3_7u0ik")
@@ -128,7 +128,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 script = SubResource("GDScript_800ke")
 
-[node name="RightButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Bottom"]
+[node name="RightButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Page"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
 anchors_preset = 3
@@ -136,8 +136,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
+offset_left = -80.0
+offset_top = -80.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8
@@ -145,14 +145,13 @@ texture_normal = ExtResource("5_p3r4y")
 texture_hover = ExtResource("6_m2j5b")
 stretch_mode = 4
 
-[node name="LeftButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Bottom"]
-custom_minimum_size = Vector2(40, 40)
+[node name="LeftButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Page"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_top = -80.0
+offset_right = 80.0
 grow_vertical = 0
 texture_normal = ExtResource("7_37sd6")
 texture_hover = ExtResource("8_jfimw")
@@ -165,6 +164,6 @@ size_flags_horizontal = 4
 theme = ExtResource("3_7u0ik")
 text = "Back"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Bottom/RightButton" to="." method="_on_right_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Bottom/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Page/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Page/LeftButton" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

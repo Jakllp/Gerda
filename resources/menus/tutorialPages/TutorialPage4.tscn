@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://caluqwcxdqqad" path="res://asset/visual/UI/3sacrowd.png" id="2_3v6by"]
 [ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="3_xol8m"]
 [ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf" id="4_rftsb"]
-[ext_resource type="Texture2D" uid="uid://c4st4dgd3jhil" path="res://asset/visual/UI/tutorial/left.png" id="7_xasvl"]
-[ext_resource type="Texture2D" uid="uid://d01sy22g0gbqr" path="res://asset/visual/UI/tutorial/left_hover.png" id="8_jbngy"]
+[ext_resource type="Texture2D" uid="uid://crl0g7d25y4lk" path="res://asset/visual/UI/tutorial/left.png" id="7_xasvl"]
+[ext_resource type="Texture2D" uid="uid://brxdkii8k88vc" path="res://asset/visual/UI/tutorial/left_hover.png" id="8_jbngy"]
 
 [node name="TutorialPage4" type="Control"]
 layout_mode = 3
@@ -100,7 +100,7 @@ text = "During your mining you will probably find ressouces in the walls. You ca
 So finding an anvil is crucial for your survival, but it can be tricky sometimes. So make sure to always have enough ammo with you or you might not "
 fit_content = true
 
-[node name="Bottom" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+[node name="PageNumbering" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 theme = ExtResource("3_xol8m")
@@ -109,14 +109,13 @@ text = "4/4"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="LeftButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Bottom"]
-custom_minimum_size = Vector2(40, 40)
+[node name="LeftButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Page"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_top = -80.0
+offset_right = 80.0
 grow_vertical = 0
 texture_normal = ExtResource("7_xasvl")
 texture_hover = ExtResource("8_jbngy")
@@ -129,5 +128,5 @@ size_flags_horizontal = 4
 theme = ExtResource("3_xol8m")
 text = "Back"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Bottom/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Page/LeftButton" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
