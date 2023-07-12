@@ -1029,6 +1029,8 @@ explosiveness = 0.5
 randomness = 0.26
 
 [connection signal="area_entered" from="HurtBox" to="SupervisedHealthComponent" method="_on_hurt_box_area_entered"]
+[connection signal="hp_changed" from="SupervisedHealthComponent" to="CanvasLayer/BbossHealthBar" method="_on_supervised_health_component_hp_changed"]
+[connection signal="max_hp_changed" from="SupervisedHealthComponent" to="CanvasLayer/BbossHealthBar" method="_on_supervised_health_component_max_hp_changed"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 
