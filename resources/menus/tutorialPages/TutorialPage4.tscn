@@ -62,7 +62,7 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="Logo2" type="TextureRect" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Top"]
-custom_minimum_size = Vector2(72, 48)
+custom_minimum_size = Vector2(96, 64)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0

@@ -5,8 +5,8 @@
 [ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="2_8cfjv"]
 [ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf" id="4_hquf7"]
 [ext_resource type="Texture2D" uid="uid://caluqwcxdqqad" path="res://asset/visual/UI/3sacrowd.png" id="4_xdu6k"]
-[ext_resource type="Texture2D" uid="uid://dlav5hfspars8" path="res://asset/visual/UI/tutorial/right2.png" id="6_7u2ju"]
-[ext_resource type="Texture2D" uid="uid://djxa23ymvp7n2" path="res://asset/visual/UI/tutorial/right_hover2.png" id="7_278r8"]
+[ext_resource type="Texture2D" uid="uid://d0ra88an64ndv" path="res://asset/visual/UI/tutorial/right4.png" id="6_gfudo"]
+[ext_resource type="Texture2D" uid="uid://caotnml4omle1" path="res://asset/visual/UI/tutorial/right_hover4.png" id="7_n6fdy"]
 
 [sub_resource type="GDScript" id="GDScript_800ke"]
 script/source = "extends Label
@@ -126,7 +126,6 @@ vertical_alignment = 2
 script = SubResource("GDScript_800ke")
 
 [node name="RightButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Page"]
-custom_minimum_size = Vector2(75.5, 75.5)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -138,8 +137,8 @@ offset_top = -80.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8
-texture_normal = ExtResource("6_7u2ju")
-texture_hover = ExtResource("7_278r8")
+texture_normal = ExtResource("6_gfudo")
+texture_hover = ExtResource("7_n6fdy")
 stretch_mode = 4
 
 [node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]

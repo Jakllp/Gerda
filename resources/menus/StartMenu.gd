@@ -28,3 +28,7 @@ func _on_credits_button_pressed():
 	
 func _on_quit_menu_pressed():
 	get_tree().quit()
+
+
+func _on_tutorial_button_pressed():
+	switch_scene.emit(Main.Scene.TUT1)

@@ -30,17 +30,17 @@ theme = ExtResource("2_bltog")
 theme_override_font_sizes/font_size = 48
 text = "Start"
 
-[node name="OptionsMenu" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-theme = ExtResource("2_bltog")
-text = "Options"
-
 [node name="TutorialButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme = ExtResource("2_bltog")
 text = "Tutorial"
+
+[node name="OptionsMenu" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("2_bltog")
+text = "Options"
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
@@ -55,7 +55,7 @@ theme = ExtResource("2_bltog")
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsMenu" to="." method="_on_options_menu_pressed"]
-[connection signal="pressed" from="VBoxContainer/TutorialButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitMenu" to="." method="_on_quit_menu_pressed"]

@@ -8,7 +8,11 @@ enum Scene {
 	CHARACTER_SELECT,
 	GAME_OVER,
 	GAME,
-	VICTORY
+	VICTORY,
+	TUT1,
+	TUT2,
+	TUT3,
+	TUT4
 }
 
 enum Character {
@@ -26,7 +30,11 @@ var scene_dict := {
 	Scene.CHARACTER_SELECT : preload("res://resources/menus/CharacterSelectScreen.tscn"),
 	Scene.GAME_OVER : preload("res://resources/menus/GameOverScreen.tscn"),
 	Scene.GAME : preload("res://resources/levels/GameWorld.tscn"),
-	Scene.VICTORY : preload("res://resources/menus/VictoryScreen.tscn")
+	Scene.VICTORY : preload("res://resources/menus/VictoryScreen.tscn"),
+	Scene.TUT1 : preload("res://resources/menus/tutorialPages/TutorialPage1.tscn"),
+	Scene.TUT2 : preload("res://resources/menus/tutorialPages/TutorialPage2.tscn"),
+	Scene.TUT3 : preload("res://resources/menus/tutorialPages/TutorialPage3.tscn"),
+	Scene.TUT4 : preload("res://resources/menus/tutorialPages/TutorialPage4.tscn")
 }
 
 var current_scene: Node
