@@ -9,6 +9,7 @@ var attack_tween: Tween
 @onready var attack_range_radius = ShapeHelper.get_shape_radius($AttackRange/CollisionShape2D.shape)
 @onready var hitbox_shape_radius = ShapeHelper.get_shape_radius($Hitbox/CollisionShape2D.shape)
 @onready var hitbox: Hitbox = $Hitbox
+@onready var particle_spawner := $ParticleSpawner
 
 func _ready() -> void:
 	hitbox_shape.radius = 0.0

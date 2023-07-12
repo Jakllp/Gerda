@@ -33,8 +33,19 @@ func set_hp(value):
 
 func die() -> void:
 	if owner.has_method("die"):
+		# Emitting the particles is done there in that case
 		owner.die()
 	else:
+		if "particle_spawner" in owner:
+			var part_spawner :GPUParticles2D = owner.particle_spawner
+			if part_spawner.emitting:
+				part_spawner.emitting = false
+			part_spawner.lifetime *= 1.5
+			part_spawner.amount *= 2
+			part_spawner.emitting = true
+			owner.get_node("SubViewportContainer/SubViewport/AnimatedSprite2D").set_deferred("visible",false)
+			owner.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+			await get_tree().create_timer(part_spawner.lifetime).timeout
 		owner.queue_free()
 	
 
@@ -43,6 +54,11 @@ func receive_damage(damage: int, damage_type := DamageType.BASIC) -> void:
 	self.hp -= damage
 	printt("damage", damage)
 	owner.flash_component.flash(owner, damage_type)
+	if "particle_spawner" in owner:
+		if not owner.particle_spawner.emitting:
+			owner.particle_spawner.emitting = true
+		else:
+			owner.particle_spawner.restart()
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:

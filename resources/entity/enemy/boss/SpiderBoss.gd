@@ -28,6 +28,7 @@ const spawn_cooldown_deviation: float = 3
 @onready var stomp_particles_right: GPUParticles2D = $StompParticlesRight
 
 @onready var flash_component :FlashComponent = FlashComponent.new()
+@onready var particle_spawner := $ParticleSpawner
 
 signal died
 

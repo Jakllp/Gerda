@@ -5,6 +5,7 @@ class_name Worm
 @onready var attack_timer: Timer = $AttackTimer
 @onready var sprite: AnimatedSprite2D = $SubViewportContainer/SubViewport/AnimatedSprite2D
 @onready var hurtbox = $HurtBox
+@onready var particle_spawner := $ParticleSpawner
 
 func _ready() -> void:
 	hurtbox.get_child(0).set_deferred("disabled", true)
