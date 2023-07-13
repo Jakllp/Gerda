@@ -1,18 +1,24 @@
 extends Node2D
 
-@onready var duration_timer = $DurationTimer
-@onready var refill_timer = $RefillTimer
-@onready var cooldown_timer = $CooldownTimer
+@onready var duration_timer :Timer = $DurationTimer
+@onready var refill_timer :Timer = $RefillTimer
+@onready var cooldown_timer :Timer = $CooldownTimer
 
-var color_before
-var modifier_before
+var current_refill_time
 var affected_nodes := []
 
-func start_dash(duration, dash_cooldown):
+func start_dash(duration, dash_refill):
 	if affected_nodes.size() < 1:
 		for child in owner.get_children():
 			if child.is_in_group("dash"):
 				affected_nodes.append(child.get_child(0))
+	
+	if !refill_timer.is_stopped():
+		print("Pause")
+		refill_timer.paused = true
+	print("Store Time")
+	current_refill_time = dash_refill
+	
 	duration_timer.wait_time = duration
 	duration_timer.start()
 	
@@ -28,11 +34,6 @@ func start_dash(duration, dash_cooldown):
 	dash_flash_tween.tween_method(set_shader_value, 0.8, 0.2, duration)
 	dash_flash_tween.play()
 	dash_flash_tween.tween_callback(owner.flash_component.reset_shader_values.bind(owner))
-	
-	
-	if refill_timer.is_stopped():
-		refill_timer.wait_time = dash_cooldown
-		refill_timer.start()
 
 
 func set_shader_value(value: float):
@@ -45,6 +46,15 @@ func end_dash():
 	if owner is Player:
 		owner.collision_mask = 5
 	cooldown_timer.start()
+	
+	# 
+	if refill_timer.paused:
+		refill_timer.paused = false
+		print("Unpaused")
+	elif refill_timer.is_stopped():
+		refill_timer.wait_time = current_refill_time
+		refill_timer.start()
+		print("New Timer")
 
 
 func is_dashing() -> bool:
@@ -54,6 +64,13 @@ func is_dashing() -> bool:
 # Checks if a new dash can be executed from a timing-perspective
 func allowed_to_dash() -> bool:
 	return cooldown_timer.is_stopped() and !is_dashing()
+
+
+## Called in between refills if there are multiple. Checks if the refill-speed was changed 
+func update_refill(dash_refill) -> void:
+	if current_refill_time > dash_refill:
+		current_refill_time = dash_refill
+		refill_timer.wait_time = dash_refill
 
 
 func stop_refill() -> void:
