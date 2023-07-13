@@ -48,10 +48,10 @@ var thready :Thread
 
 @onready var spawn_timer := $SpawnTimer
 @onready var loading_timer := $LoadingTimer
-@onready var interface := $CanvasLayer/Interface
-@onready var mutator_select_screen := $CanvasLayer/MutatorSelectScreen
-@onready var loading_screen := $CanvasLayer/LoadingScreen
-@onready var pause_menu := $CanvasLayer/PauseMenu
+@onready var interface := $InterfaceLayer/Interface
+@onready var mutator_select_screen := $InterfaceLayer/MutatorSelectScreen
+@onready var loading_screen := $InterfaceLayer/LoadingScreen
+@onready var pause_menu := $InterfaceLayer/PauseMenu
 @onready var player := $Player
 
 signal switch_scene(scene: Main.Scene)
