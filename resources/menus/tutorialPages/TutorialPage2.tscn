@@ -118,8 +118,8 @@ z_index = 1
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_mo5fo")
-text = "Mutators can make the game more difficult and change the way you play. Before each new Biome, you get the choice between three diffenrent Mutators in different colors. Those colors represent different intensities. Green ones are the weakest, red ones the strongest.
-But be careful: once chosen, a mutator cannot be changed for the rest of the round."
+text = "Mutators can make the game more difficult and change the way you play. Before each new Biome, you get to choose between three different Mutators in different colors. Those colors represent different intensities. Green ones are the weakest, red ones the strongest.
+But be careful: once chosen, a mutator cannot be changed for the rest of your run."
 fit_content = true
 
 [node name="PageNumbering" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]

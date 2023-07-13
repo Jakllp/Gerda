@@ -116,8 +116,8 @@ z_index = 1
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_hquf7")
-text = "Your goal is to fight your way through five different biomes, each with seperate enemies and special difficulties. 
-To get to the next biome, you have to find a Trapdoor, leading even further down. To do that, you have to search for a special room. Look at the ground, you may find some hints there."
+text = "Your goal is to fight your way through five different biomes, each with specific enemies and special difficulties. 
+To advance to the next biome, you have to find a Trapdoor, leading even further down. This trapdoor can only be found in a special room. Look at the ground, you may find some hints there."
 fit_content = true
 
 [node name="PageNumbering" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
