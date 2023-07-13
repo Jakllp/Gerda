@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://0iby5s3778tq"]
 
 [ext_resource type="Script" path="res://resources/interactables/Chest.gd" id="1_fsuus"]
-[ext_resource type="PackedScene" path="res://resources/interactables/InteractableBase.tscn" id="2_yml7l"]
+[ext_resource type="PackedScene" uid="uid://blirbtgwrrvr4" path="res://resources/interactables/InteractableBase.tscn" id="2_yml7l"]
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="3_slim1"]
 [ext_resource type="Texture2D" uid="uid://q6gopjwp8d21" path="res://asset/visual/map/Biom1/chest.png" id="4_iuafc"]
 

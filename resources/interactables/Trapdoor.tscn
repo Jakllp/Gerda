@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bxxlguxjr4g7f"]
 
 [ext_resource type="Script" path="res://resources/interactables/Trapdoor.gd" id="1_eqc4j"]
-[ext_resource type="PackedScene" path="res://resources/interactables/InteractableBase.tscn" id="2_yml7l"]
+[ext_resource type="PackedScene" uid="uid://blirbtgwrrvr4" path="res://resources/interactables/InteractableBase.tscn" id="2_yml7l"]
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="3_slim1"]
 [ext_resource type="Texture2D" uid="uid://xyy2346l77tu" path="res://asset/visual/map/Biom1/trapdoor.png" id="4_4cr8x"]
 
@@ -24,7 +24,7 @@ size = Vector2(14, 14)
 script = ExtResource("1_eqc4j")
 
 [node name="InteractableBase" parent="." instance=ExtResource("2_yml7l")]
-position = Vector2(0, 7)
+position = Vector2(-0.5, 10)
 
 [node name="CollisionShape2D" parent="InteractableBase/DetectionArea" index="0"]
 position = Vector2(0, 12)
@@ -33,21 +33,21 @@ position = Vector2(0, 12)
 z_index = 2
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_o68up")
-position = Vector2(0, 8)
+position = Vector2(-0.5, 11)
 texture = ExtResource("4_4cr8x")
 hframes = 2
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 18.5)
+position = Vector2(-0.5, 21.5)
 shape = SubResource("RectangleShape2D_dygx7")
 
 [node name="Collision2" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
+position = Vector2(-0.5, 4.5)
 shape = SubResource("RectangleShape2D_tucq1")
 disabled = true
 
 [node name="DroppingIn" type="Area2D" parent="."]
-position = Vector2(0, 7)
+position = Vector2(-0.5, 10)
 collision_layer = 0
 collision_mask = 2
 monitorable = false

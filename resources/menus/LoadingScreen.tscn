@@ -225,6 +225,7 @@ offset_bottom = 215.0
 [node name="DamageLoader" type="ColorRect" parent="ColorRect"]
 z_index = -2
 material = SubResource("ShaderMaterial_2bwsx")
+layout_mode = 0
 offset_left = 1000.0
 offset_top = 153.0
 offset_right = 1029.0

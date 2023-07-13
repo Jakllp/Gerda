@@ -18,11 +18,9 @@ func attack() -> void:
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body is Player:
-		print("enter")
 		active = true
 	
 
 func _on_attack_range_body_exited(body):
 	if body is Player:
-		print("exit")
 		active = false
