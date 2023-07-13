@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://sj1l83q0goit"]
+[gd_scene load_steps=12 format=3 uid="uid://sj1l83q0goit"]
 
 [ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="1_cbibc"]
 [ext_resource type="Texture2D" uid="uid://brlm4q7jgs4rm" path="res://asset/visual/UI/controls/WASD_group.png" id="2_00r86"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b8acayf4oxsa5" path="res://asset/visual/UI/controls/space_shift_group.png" id="5_qwk4q"]
 [ext_resource type="Texture2D" uid="uid://b5bo7il52j6gr" path="res://asset/visual/UI/controls/Left_Mouse_Button.png" id="6_0c028"]
 [ext_resource type="Texture2D" uid="uid://flajmgfcdhyb" path="res://asset/visual/UI/controls/Right_Mouse_Button.png" id="7_gfcve"]
+[ext_resource type="Shader" path="res://resources/shaders/damage_shader.gdshader" id="8_20oqg"]
 
 [sub_resource type="Animation" id="Animation_m8kyw"]
 resource_name = "loading"
@@ -41,6 +42,12 @@ tracks/1/keys = {
 _data = {
 "loading": SubResource("Animation_m8kyw")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2bwsx"]
+shader = ExtResource("8_20oqg")
+shader_parameter/pixel_size = 50.0
+shader_parameter/softness = 1.0
+shader_parameter/vignette_color = Color(1, 0, 0, 1)
 
 [node name="LoadingScreen" type="Control"]
 layout_mode = 3
@@ -205,6 +212,23 @@ stretch_mode = 5
 layout_mode = 2
 theme = ExtResource("1_cbibc")
 text = "Hold to mine"
+
+[node name="BlurLoader" type="ColorRect" parent="ColorRect"]
+z_index = -2
+material = SubResource("ShaderMaterial_2bwsx")
+layout_mode = 0
+offset_left = 916.0
+offset_top = 181.0
+offset_right = 945.0
+offset_bottom = 215.0
+
+[node name="DamageLoader" type="ColorRect" parent="ColorRect"]
+z_index = -2
+material = SubResource("ShaderMaterial_2bwsx")
+offset_left = 1000.0
+offset_top = 153.0
+offset_right = 1029.0
+offset_bottom = 187.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
