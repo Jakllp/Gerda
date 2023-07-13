@@ -31,7 +31,7 @@ var dashes_left = dash_max_amount:
 		dashes_left_changed.emit(dashes_left, value - dashes_left)
 		dashes_left = value
 ## How long it takes for dashes to recharge
-var dash_refill_time = 1.5
+var dash_refill_time = 1.3
 
 var input_component = PlayerInputComponent.new()
 
