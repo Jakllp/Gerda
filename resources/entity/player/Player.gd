@@ -31,7 +31,7 @@ var dashes_left = dash_max_amount:
 		dashes_left_changed.emit(dashes_left, value - dashes_left)
 		dashes_left = value
 ## How long it takes for dashes to recharge
-var dash_cooldown = 1.0
+var dash_refill_time = 1.0
 
 var input_component = PlayerInputComponent.new()
 
@@ -114,7 +114,7 @@ func use_equipment(delta: float, try_auto_weapon: bool = false) -> void:
 
 func try_dash() -> void:
 	if dashes_left > 0 && dash.allowed_to_dash() && direction.length() > 0:
-		var calculated_refill = dash_cooldown - dash_cooldown_upgrade_modifier * active_upgrades[Items.Type.DASH_COOLDOWN]
+		var calculated_refill = dash_refill_time - dash_cooldown_upgrade_modifier * active_upgrades[Items.Type.DASH_COOLDOWN]
 		if calculated_refill < 0.0: calculated_refill = 0
 		dash.start_dash(dash_duration, calculated_refill)
 		
@@ -134,7 +134,7 @@ func die() -> void:
 func _on_dash_refill() -> void:
 	if dashes_left < dash_max_amount:
 		dashes_left+=1
-		var calculated_refill = dash_cooldown - dash_cooldown_upgrade_modifier * active_upgrades[Items.Type.DASH_COOLDOWN]
+		var calculated_refill = dash_refill_time - dash_cooldown_upgrade_modifier * active_upgrades[Items.Type.DASH_COOLDOWN]
 		if calculated_refill < 0.0: calculated_refill = 0
 		dash.update_refill(calculated_refill)
 		if dashes_left == dash_max_amount:
