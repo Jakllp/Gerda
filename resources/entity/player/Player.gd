@@ -18,7 +18,7 @@ var status_effects: StatusEffectSet = StatusEffectSet.new(self)
 ## How much the dash increases the movement speed
 const dash_multiplier = 3
 const dash_duration = 0.1
-var dash_max_amount = 2:
+var dash_max_amount = 1:
 	set(value):
 		assert(value >= 0, "you cannot have a negative amount of dashes!")
 		dash_max_amount_changed.emit(value)
@@ -31,7 +31,7 @@ var dashes_left = dash_max_amount:
 		dashes_left_changed.emit(dashes_left, value - dashes_left)
 		dashes_left = value
 ## How long it takes for dashes to recharge
-var dash_refill_time = 1.0
+var dash_refill_time = 1.5
 
 var input_component = PlayerInputComponent.new()
 
