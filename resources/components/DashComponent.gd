@@ -14,9 +14,7 @@ func start_dash(duration, dash_refill):
 				affected_nodes.append(child.get_child(0))
 	
 	if !refill_timer.is_stopped():
-		print("Pause")
 		refill_timer.paused = true
-	print("Store Time")
 	current_refill_time = dash_refill
 	
 	duration_timer.wait_time = duration
@@ -50,11 +48,9 @@ func end_dash():
 	# 
 	if refill_timer.paused:
 		refill_timer.paused = false
-		print("Unpaused")
 	elif refill_timer.is_stopped():
 		refill_timer.wait_time = current_refill_time
 		refill_timer.start()
-		print("New Timer")
 
 
 func is_dashing() -> bool:
