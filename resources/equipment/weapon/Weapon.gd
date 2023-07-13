@@ -46,9 +46,13 @@ func get_current_restorable() -> int:
 	return -1
 
 
-func needs_crafting(_stack :bool) -> bool:
+## Returns wether or not the crafting is needed
+## If `stack` is true (false by default) it can tell wether or not a whole stack can be crafted
+func needs_crafting(_stack := false) -> bool:
 	return false
 
 
+## Called after crafting
+## `stack` handles if a whole stack has been crafted
 func crafted(_stack :bool) -> void:
 	pass

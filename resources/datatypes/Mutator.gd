@@ -43,6 +43,7 @@ const description_dict = {
 	MutatorType.SPEED_DOWN: "You gotta slow down sometimes."
 }
 
+## Contains the y-texture-coordinate for the Mutator
 const tex_dict = {
 	MutatorType.HARDENED_STONE: 30,
 	MutatorType.LESS_ORE: 40,
@@ -59,8 +60,6 @@ const category_dict = {
 	MutatorCategory.ENEMY_MUTATORS: [MutatorType.SPAWN_PLUS, MutatorType.DAMAGE_PLUS, MutatorType.HEALTH_PLUS],
 	MutatorCategory.SPEED_MUTATORS: [MutatorType.SPEED_UP, MutatorType.SPEED_DOWN]
 }
-
-# Maybe also store texture here for easy access? Or have a good naming scheme for the textures that has the Type and also the strength in it
 
 enum MutatorCategory {
 	WORLD_MUTATORS,
@@ -104,6 +103,7 @@ static func types_for_category(wanted_category :MutatorCategory) -> Array:
 	return category_dict[wanted_category]
 
 
+## Get's the x-texture-coordinate of the mutator-strength
 static func get_tex_x(strength :int) -> int:
 	match strength:
 		0:

@@ -9,6 +9,7 @@ func update(player: Player) -> void:
 	owner.do_rotation(player)
 
 
+## Checks on which side of the player the mouse is and flips the entire player to look there
 func check_for_flip(player: Player):
 	var mousePos := player.get_local_mouse_position()
 	# Check if flip is needed, if so -> Flip (also tell the player to flip)
@@ -20,14 +21,14 @@ func check_for_flip(player: Player):
 			player.scale.x *= -1
 
 
-# Just point the item in hand towards the mouse
+## Just point the item in hand towards the mouse
 func aim_at_mouse_basic(player: Player):
 	var mouse_pos := player.get_local_mouse_position() - player.equipment_angle_point.position
 	owner.rotation = mouse_pos.angle()
 	owner.position = mouse_pos.normalized() * position.length() + player.equipment_angle_point.position
 
 
-# If you want to point something towards the mouse that is held at a right angle
+## If you want to point something towards the mouse that is held at a right angle
 func aim_at_mouse_with_right_angled_grip(player: Player):
 	var mouse_pos := player.get_local_mouse_position() - player.equipment_angle_point.position
 	# Calculate some angles

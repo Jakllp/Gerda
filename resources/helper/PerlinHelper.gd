@@ -1,5 +1,6 @@
 extends Object
 
+## Handles PerlinNoise
 class_name PerlinHelper
 
 

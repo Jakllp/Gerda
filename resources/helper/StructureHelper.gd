@@ -31,6 +31,7 @@ static func get_non_static_things(structure_name, node_name :String):
 	return array
 
 
+## Returns an array of all the biomes for a biome
 static func get_dungeons_for_biome(biome :int):
 	var array = []
 	for val in StructureRegistry.Structures.keys():
@@ -39,6 +40,8 @@ static func get_dungeons_for_biome(biome :int):
 
 # From here on: Only used internally
 
+## Returns an array with all the coordinates of cells of a TileMap-Layer that actually contain something
+## Used for runtime tilemap-pattern creation
 static func get_coord_array(top_left :Vector2i, bottom_right :Vector2i, map :TileMap, layer :int):
 	var array = []
 	for y in range(abs(top_left.y)+abs(bottom_right.y) + 1):

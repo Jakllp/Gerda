@@ -7,6 +7,7 @@ var flashing := false
 var standard_flash_color := Color(1,1,1,1)
 var standard_modifier := 0.0
 
+## Handles the visual flashing
 func flash(le_owner, _damage_type :HealthComponent.DamageType):
 	while flashing:
 		if is_instance_valid(le_owner):
@@ -27,6 +28,7 @@ func flash(le_owner, _damage_type :HealthComponent.DamageType):
 	reset_shader_values(le_owner)
 
 
+## Resets the flash to whatever it was before -> e.g. you can flash whilst staying visually poisoned
 func reset_shader_values(le_owner):
 	while flashing:
 		if is_instance_valid(le_owner):

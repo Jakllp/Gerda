@@ -15,7 +15,6 @@ func _ready():
 func _process(_delta):
 	# Move it up a bit
 	position.y -= 0.2
-	
 
 
 func _on_timer_timeout():

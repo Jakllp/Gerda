@@ -40,7 +40,7 @@ func generate(biome: GameWorld.Biome) -> void:
 	print("end god")
 
 
-# Logic of damaging cells
+## Logic of damaging cells
 func damage_cell(cell: Vector2i, damage: float) -> bool:
 	if remaining_hardness_dict.has(cell):
 		# We know the cell -> Further reduce damage
@@ -70,7 +70,7 @@ func damage_cell(cell: Vector2i, damage: float) -> bool:
 	return was_ore
 
 
-# Puts an overlay on the specified cell
+## Puts an overlay on the specified cell
 func mine_overlay(cell: Vector2i) -> void:
 	# Sometimes this function get's called out of sync...
 	if(self.get_cell_tile_data(block_layer, cell) == null):
@@ -92,7 +92,8 @@ func mine_overlay(cell: Vector2i) -> void:
 			self.set_cell(mine_overlay_layer,cell,mine_overlay_atlas, Vector2i(3,origin_atlas_y), 0)
 
 
-# Clears the cell
+## Clears the cell
+## Does all the necessary calculations for correct wall-placement etc
 func clear_cell(cell: Vector2i, attached_cell) -> void:
 	# The cell above the current cell AND an attached_cell if present
 	var cell_above_everything :Vector2i
@@ -164,7 +165,7 @@ func set_ground(cell :Vector2i, alt :int) -> void:
 		self.set_cell(ground_layer,cell,ground_atlas, Vector2i(0,0), alt)
 
 
-# Handles the pop-up when the player receives ore
+## Handles the pop-up when the player receives ore
 func _on_player_ore_received(amount: int, pos: Vector2) -> void:
 	var ore_text := ore_text_scene.instantiate()
 	ore_text.get_child(1,false).set_text("+"+str(amount))

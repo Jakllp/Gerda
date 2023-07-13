@@ -14,7 +14,7 @@ func get_player_direction() -> Vector2:
 	return Input.get_vector("left","right","up","down")
 
 
-# Checks if we need to switch between equipments (and also triggers that switch)
+## Checks if we need to switch between equipments (and also triggers that switch)
 func check_for_equip_switch(player: Player) -> void:
 	if Input.is_action_just_pressed("RMB"):
 		player.change_equipment(player.mining_equipment)
@@ -22,7 +22,7 @@ func check_for_equip_switch(player: Player) -> void:
 		player.change_equipment(player.weapon)
 
 
-# Checks if we need to use the equipment (and also triggers the equip-use)
+## Checks if we need to use the equipment (and also triggers the equip-use)
 func check_for_equip_use(player: Player, delta: float) -> void:
 	if Input.is_action_just_pressed("LMB") or Input.is_action_pressed("RMB"):
 		player.use_equipment(delta)
@@ -30,7 +30,7 @@ func check_for_equip_use(player: Player, delta: float) -> void:
 		player.use_equipment(delta, true)
 
 
-# Dashes
+## Calls the entire dash-mechanic
 func check_dash(player: Player) -> void:
 	if Input.is_action_just_pressed("dash"):
 		player.try_dash()

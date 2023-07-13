@@ -6,6 +6,7 @@ var standard_vignette_enabled := false
 var standard_vignette_color := Color(1.0,0,0,1)
 var standard_vignette_softness := 3.0
 
+## Handles Screenshake and Vignette, also calls the normal flash
 func flash(le_owner :Player, damage_type :HealthComponent.DamageType):
 	super.flash(le_owner, damage_type)
 	var vig_node = le_owner.get_node("Camera2D/CanvasLayer/VignetteEffekt")
@@ -26,6 +27,7 @@ func flash(le_owner :Player, damage_type :HealthComponent.DamageType):
 	
 
 
+## Resets the vignette to what it was before, also calls the normal reset
 func reset_shader_values(le_owner):
 	super.reset_shader_values(le_owner)
 	if not is_instance_valid(le_owner): return

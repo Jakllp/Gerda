@@ -1,5 +1,6 @@
 extends Object
 
+## Helps with generating positions (for map generation)
 class_name PosHelper
 
 
@@ -109,8 +110,9 @@ static func generate_random_positions(amount :int, field_size :Vector2i, inner_r
 	
 	return output
 
+
+## Generate a random point within a ring around the center
 static func generate_random_point_around(center: Vector2i, radius) -> Vector2i:
-	# Generate a random point within a ring around the center
 	var angle = randf() * 2 * PI
 	var distance = randf() * radius + radius
 	var offset_x = cos(angle) * distance
@@ -118,13 +120,14 @@ static func generate_random_point_around(center: Vector2i, radius) -> Vector2i:
 	return center + Vector2i(offset_x, offset_y)
 
 
+## Checks if a point is in the desired range
 static func point_in_range(point :Vector2i, wanted_range :Vector2i) -> bool:
 	if point.x >= 0 and point.x < wanted_range.x and point.y >= 0 and point.y < wanted_range.y:
 		return true
 	return false
 
 
-## Returns a dict of points increasing in density towarsd the epicenter
+## Returns a dict of points increasing in density towards the epicenter
 ## Dict because of lookup-efficiency (better than a list and gdscript does not have sets)
 static func generate_points_with_increasing_density(width :int, height :int, epicenter: Vector2i, amount: int) -> Dictionary:
 	var max_distance = Vector2i(width, height).length()  # Maximum distance from the desired point

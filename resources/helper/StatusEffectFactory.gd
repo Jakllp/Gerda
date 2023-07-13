@@ -1,7 +1,8 @@
 extends Object
-class_name StatusEffectFactory
 
 ## Factory class to create instances of status effects by type and with predefined values.
+class_name StatusEffectFactory
+
 
 static func create(type :StatusEffectType.Type) -> StatusEffect:
 	match type:

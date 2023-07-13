@@ -66,6 +66,8 @@ static func generate_level(map: TileMap,ground_layer :int, block_layer :int, blo
 	
 	return spawn_point
 
+
+## Generates a boundary around the actually playable map
 static func generate_boundaries(map: TileMap, block_layer :int, block_atlas :int) -> void:
 	# Let's fill in the sides (already filling the corners)
 	var horizontal_boundary_width = (general_width - level_width) / 2
@@ -115,6 +117,7 @@ static func generate_boundaries(map: TileMap, block_layer :int, block_atlas :int
 				map.set_cell(block_layer,Vector2i(starting_point_x+i,starting_point_y+j),block_atlas, Vector2i(4,0), 0)
 
 
+## Generates the caves and places ore
 static func generate_caves_and_ore(map: TileMap, ground_layer :int, block_layer :int, block_atlas :int) -> void:
 	var block_heightmap :FastNoiseLite = PerlinHelper.generate_heightmap(0.1, 4, 0.25, 0.5)
 	# Lower gain to get bigger chunks, higher frequency to get... more
@@ -192,6 +195,7 @@ static func get_block_type(height :float, height_ore :float = 0.0) -> BlockType:
 		return BlockType.BLOCK
 
 
+## Spawns the corner anvil rooms and all random anvil rooms
 static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, block_atlas :int, biome :int, pos_list :Array) -> Array:
 	var field_size = Vector2i(level_width,level_height)
 	
@@ -204,15 +208,17 @@ static func spawn_anvil_rooms(map: TileMap,ground_layer :int, block_layer :int, 
 	var pos2 = PosHelper.get_corner_pos(corner_2, field_size, corner_anvil_range, 6)
 	StructurePlacer.place_structure(StructureRegistry.Structures.get("ANVIL_B"+str(biome)), pos2, map, ground_layer, block_layer, block_atlas)
 	
-	# Anvilroom in the middle (random)
-	var pos3 = pos_list[randi_range(0,pos_list.size()-1)]
-	pos_list.erase(pos3)
-	StructurePlacer.place_structure(StructureRegistry.Structures.get("ANVIL_B"+str(biome)), pos3, map, ground_layer, block_layer, block_atlas)
+	# Anvilroom(s) in the middle (random)
+	for i in range(inner_anvil_spawns):
+		var pos3 = pos_list[randi_range(0,pos_list.size()-1)]
+		pos_list.erase(pos3)
+		StructurePlacer.place_structure(StructureRegistry.Structures.get("ANVIL_B"+str(biome)), pos3, map, ground_layer, block_layer, block_atlas)
 	
 	# Return array of pos to store them
 	return pos_list
 
 
+## Spawns all dungeons
 static func spawn_dungeons(map: TileMap,ground_layer :int, block_layer :int, block_atlas :int, biome :int, pos_list :Array) -> Vector2i:
 	# -1 to still have a spawn-point
 	for i in range(pos_list.size()-1):

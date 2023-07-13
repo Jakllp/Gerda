@@ -7,6 +7,7 @@ extends Node2D
 var current_refill_time
 var affected_nodes := []
 
+## Handles the actual dash-timings and parts of the visuals
 func start_dash(duration, dash_refill):
 	if affected_nodes.size() < 1:
 		for child in owner.get_children():
@@ -34,10 +35,12 @@ func start_dash(duration, dash_refill):
 	dash_flash_tween.tween_callback(owner.flash_component.reset_shader_values.bind(owner))
 
 
+## Sets the flash-modifier
 func set_shader_value(value: float):
 	owner.get_node("SubViewportContainer/SubViewport/AnimatedSprite2D").material.set_shader_parameter("flash_modifier", value)
 
 
+## Ends the dash, starts the cooldown-timer and refill-timer (or unpauses the latter if already running)
 func end_dash():
 	for node in affected_nodes:
 		node.disabled = false
@@ -45,7 +48,6 @@ func end_dash():
 		owner.collision_mask = 5
 	cooldown_timer.start()
 	
-	# 
 	if refill_timer.paused:
 		refill_timer.paused = false
 	elif refill_timer.is_stopped():
@@ -57,7 +59,7 @@ func is_dashing() -> bool:
 	return !duration_timer.is_stopped()
 
 
-# Checks if a new dash can be executed from a timing-perspective
+## Checks if a new dash can be executed from a timing-perspective
 func allowed_to_dash() -> bool:
 	return cooldown_timer.is_stopped() and !is_dashing()
 

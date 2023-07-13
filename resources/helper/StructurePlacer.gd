@@ -6,7 +6,8 @@ class_name StructurePlacer
 const nope_atlas = 3
 
 
-
+## Delegates the placing of a structure
+## TileMap-Pattern -> Interactables -> Decor -> Enemies
 static func place_structure(structure_name :StructureRegistry.Structures, pos :Vector2i, map: TileMap,ground_layer :int, block_layer :int, block_atlas :int) -> void:
 	# First: Gotta get the patterns
 	var ground_pattern = StructureHelper.get_structure_pattern(structure_name, ground_layer)
@@ -30,6 +31,7 @@ static func place_structure(structure_name :StructureRegistry.Structures, pos :V
 		spawn_thing_in_scene(enemy[0], enemy[1] + (map.map_to_local(pos) - Vector2(11,11)), map.get_node("Enemies"))
 
 
+## Handles the placing of a tilemap-pattern with all the cleanup around it
 static func spawn_pattern(ground_pattern :TileMapPattern, block_pattern :TileMapPattern, pos :Vector2i, ground_offset :Vector2i, map: TileMap,ground_layer :int, block_layer :int, block_atlas :int) -> void:
 	var ground_pos = pos + ground_offset
 	# -1 to also get row above
@@ -93,6 +95,7 @@ static func spawn_pattern(ground_pattern :TileMapPattern, block_pattern :TileMap
 						map.set_ground(cur_cell, 0)
 
 
+## Spawns a new instance of a scene at a specific position inside a node
 static func spawn_thing_in_scene(scene :PackedScene, pos: Vector2, node_to_spawn_it_in :Node) -> void:
 	var thing = scene.instantiate()
 	thing.position = pos

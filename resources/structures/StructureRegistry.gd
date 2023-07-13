@@ -40,6 +40,8 @@ func clear() -> void:
 	structures.clear()
 	print("structures cleared")
 
+
+## Returns the TileMap for a wanted structure
 func get_map_for_structure(structure_name: Structures) -> TileMap:
 	if structures.has(structure_name):
 		return structures[structure_name]
@@ -47,6 +49,8 @@ func get_map_for_structure(structure_name: Structures) -> TileMap:
 		return null
 
 
+## How big the pattern is
+## Top-Left-Corner, Bottom-Right-Corner
 func get_pattern_range(structure_name):
 	match (structure_name):
 		Structures.TRAPDOOR_B1:

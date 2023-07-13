@@ -53,7 +53,7 @@ func do_rotation(player: Player):
 	$Anglepoint.aim_at_mouse_with_right_angled_grip(player)
 
 
-# Starts the Reload-Timer
+## Starts the Reload-Timer
 func trigger_reload():
 	if ammo_stored > 0 and reload_timer.is_stopped():
 		var reload_time = base_reload_time - (base_reload_time * reload_time_upgrade_modifier/100) * active_upgrades[Items.Type.WEAPON_SPEED]
@@ -65,6 +65,7 @@ func trigger_reload():
 		reload_timer.start()
 
 
+## Does the Reload-Animation
 func do_animation(time) -> void:
 	var loading_ring :TextureProgressBar = preload("res://resources/other/LoadingRing.tscn").instantiate()
 	owner.add_child(loading_ring)
@@ -76,7 +77,7 @@ func do_animation(time) -> void:
 	reload_tween.play()
 
 
-# Triggered by Reload-Timer
+## Triggered after Reload-Timer
 func reload() -> void:
 	var mag_diff = mag_size - mag_contents
 	if ammo_stored >= mag_diff:
