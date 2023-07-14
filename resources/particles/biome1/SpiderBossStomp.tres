@@ -1,0 +1,18 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://dbw0f5f6jxdk"]
+
+[resource]
+lifetime_randomness = 0.73
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 70.0
+orbit_velocity_min = -0.3
+orbit_velocity_max = 0.3
+linear_accel_min = -100.0
+linear_accel_max = -85.7
+tangential_accel_min = -30.0
+tangential_accel_max = 30.0
+damping_min = 60.62
+damping_max = 60.62
+color = Color(0, 0, 0, 0.54902)

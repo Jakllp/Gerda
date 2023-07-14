@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://sj1l83q0goit"]
+[gd_scene load_steps=13 format=3 uid="uid://sj1l83q0goit"]
 
 [ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="1_cbibc"]
 [ext_resource type="Texture2D" uid="uid://brlm4q7jgs4rm" path="res://asset/visual/UI/controls/WASD_group.png" id="2_00r86"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b5bo7il52j6gr" path="res://asset/visual/UI/controls/Left_Mouse_Button.png" id="6_0c028"]
 [ext_resource type="Texture2D" uid="uid://flajmgfcdhyb" path="res://asset/visual/UI/controls/Right_Mouse_Button.png" id="7_gfcve"]
 [ext_resource type="Shader" path="res://resources/shaders/damage_shader.gdshader" id="8_20oqg"]
+[ext_resource type="Script" path="res://resources/helper/ParticleLoader.gd" id="9_4q3us"]
 
 [sub_resource type="Animation" id="Animation_m8kyw"]
 resource_name = "loading"
@@ -230,6 +231,9 @@ offset_left = 1000.0
 offset_top = 153.0
 offset_right = 1029.0
 offset_bottom = 187.0
+
+[node name="ParticleLoader" type="Node2D" parent="ColorRect"]
+script = ExtResource("9_4q3us")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1

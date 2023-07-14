@@ -18,9 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://cx1c3g6pxr3f0" path="res://asset/visual/actor/enemy/bosses/spider/spider_sweep_leg_right.png" id="14_7m5se"]
 [ext_resource type="PackedScene" uid="uid://bkobr0j0rc3il" path="res://resources/components/Health/SupervisedHealthComponent.tscn" id="14_bu8t0"]
 [ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="14_e5052"]
+[ext_resource type="Material" uid="uid://dbw0f5f6jxdk" path="res://resources/particles/biome1/SpiderBossStomp.tres" id="16_45dyn"]
 [ext_resource type="Texture2D" uid="uid://ccw8srwjtopn3" path="res://asset/visual/actor/enemy/bosses/spider/spider_sweep_leg_left.png" id="16_j7q28"]
 [ext_resource type="PackedScene" uid="uid://cxdil6ifjoq7x" path="res://resources/entity/enemy/boss/BossHealthBar.tscn" id="20_cv6bm"]
+[ext_resource type="Material" uid="uid://dqb1jay8racw" path="res://resources/particles/biome1/SpiderBossLegRight.tres" id="20_p7rjg"]
 [ext_resource type="Texture2D" uid="uid://fuq4vobsk2w1" path="res://asset/visual/other/dust.png" id="21_6b4w7"]
+[ext_resource type="Material" uid="uid://c5byk1r3k8we3" path="res://resources/particles/biome1/SpiderBossLegLeft.tres" id="22_tprt2"]
+[ext_resource type="Material" uid="uid://cmkbhbscmyrhs" path="res://resources/particles/biome1/SpiderBossHit.tres" id="24_lwxie"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wgioq"]
 resource_local_to_scene = true
@@ -84,23 +88,6 @@ radius = 10.0499
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kfl43"]
 radius = 8.06226
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kr03s"]
-lifetime_randomness = 0.73
-particle_flag_disable_z = true
-spread = 180.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 50.0
-initial_velocity_max = 70.0
-orbit_velocity_min = -0.3
-orbit_velocity_max = 0.3
-linear_accel_min = -100.0
-linear_accel_max = -85.7
-tangential_accel_min = -30.0
-tangential_accel_max = 30.0
-damping_min = 60.62
-damping_max = 60.62
-color = Color(0, 0, 0, 0.54902)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tvyn2"]
 animation = &"RESET"
@@ -712,28 +699,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8e6k"]
 size = Vector2(5.97879, 76.6621)
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8sv4i"]
-particle_flag_disable_z = true
-direction = Vector3(1, -1, 0)
-spread = 0.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 15.0
-initial_velocity_max = 15.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-color = Color(0.498039, 0.498039, 0.498039, 0.231373)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2xl04"]
-particle_flag_disable_z = true
-direction = Vector3(-1, -1, 0)
-spread = 0.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 15.0
-initial_velocity_max = 15.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-color = Color(0.498039, 0.498039, 0.498039, 0.231373)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abg41"]
 radius = 13.0
 height = 32.0
@@ -759,24 +724,6 @@ height = 17.008
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w4yp2"]
 size = Vector2(3.3039, 9.11431)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d6rwp"]
-resource_local_to_scene = true
-lifetime_randomness = 0.66
-emission_shape = 1
-emission_sphere_radius = 30.0
-particle_flag_disable_z = true
-direction = Vector3(0, 1, 0)
-spread = 60.0
-gravity = Vector3(0, 98, 0)
-initial_velocity_min = 5.0
-initial_velocity_max = 30.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-angle_max = 360.0
-color = Color(0.580392, 0, 0, 1)
-hue_variation_min = -0.1
-hue_variation_max = 0.1
 
 [node name="SpiderBoss" type="StaticBody2D"]
 z_index = 2
@@ -860,7 +807,7 @@ autostart = true
 position = Vector2(-30, -3)
 emitting = false
 amount = 200
-process_material = SubResource("ParticleProcessMaterial_kr03s")
+process_material = ExtResource("16_45dyn")
 texture = ExtResource("11_vfwb1")
 one_shot = true
 explosiveness = 0.79
@@ -870,7 +817,7 @@ visibility_rect = Rect2(0, 0, 0, 0)
 position = Vector2(29, -2)
 emitting = false
 amount = 200
-process_material = SubResource("ParticleProcessMaterial_kr03s")
+process_material = ExtResource("16_45dyn")
 texture = ExtResource("11_vfwb1")
 one_shot = true
 explosiveness = 0.79
@@ -912,7 +859,7 @@ texture = ExtResource("14_7m5se")
 visible = false
 emitting = false
 amount = 3
-process_material = SubResource("ParticleProcessMaterial_8sv4i")
+process_material = ExtResource("20_p7rjg")
 texture = ExtResource("14_7m5se")
 lifetime = 2.0
 speed_scale = 6.0
@@ -939,7 +886,7 @@ texture = ExtResource("16_j7q28")
 visible = false
 emitting = false
 amount = 3
-process_material = SubResource("ParticleProcessMaterial_2xl04")
+process_material = ExtResource("22_tprt2")
 texture = ExtResource("16_j7q28")
 lifetime = 2.0
 speed_scale = 6.0
@@ -1022,7 +969,7 @@ y_sort_enabled = true
 position = Vector2(0, -14)
 emitting = false
 amount = 30
-process_material = SubResource("ParticleProcessMaterial_d6rwp")
+process_material = ExtResource("24_lwxie")
 texture = ExtResource("21_6b4w7")
 lifetime = 0.3
 one_shot = true

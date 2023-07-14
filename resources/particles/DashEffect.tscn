@@ -1,23 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8lir4ggu15da"]
+[gd_scene load_steps=4 format=3 uid="uid://b8lir4ggu15da"]
 
 [ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="1_5y7xd"]
+[ext_resource type="Material" uid="uid://88m21dquq2b1" path="res://resources/particles/DashEffect.tres" id="2_qtwsx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qew3l"]
 shader = ExtResource("1_5y7xd")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 1.0
 
-[sub_resource type="Gradient" id="Gradient_8ntrd"]
-colors = PackedColorArray(1, 1, 1, 1, 0.423529, 0.423529, 0.423529, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_tvdh7"]
-gradient = SubResource("Gradient_8ntrd")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wnbe0"]
-gravity = Vector3(0, 0, 0)
-color_ramp = SubResource("GradientTexture1D_tvdh7")
-
 [node name="DashEffect" type="GPUParticles2D"]
 material = SubResource("ShaderMaterial_qew3l")
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_wnbe0")
+process_material = ExtResource("2_qtwsx")

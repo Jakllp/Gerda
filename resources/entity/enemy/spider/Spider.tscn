@@ -72,7 +72,6 @@ resource_local_to_scene = true
 radius = 6.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xeaon"]
-resource_local_to_scene = true
 lifetime_randomness = 0.66
 emission_shape = 1
 emission_sphere_radius = 10.0
