@@ -85,7 +85,7 @@ script = ExtResource("8_dxmhk")
 [node name="IsStuck" type="Node" parent="SelectAction/BTInverter/Wander/ShouldStop/BTSelector2"]
 script = ExtResource("12_4ls3w")
 
-[node name="Wait" type="Node" parent="SelectAction/BTInverter/Wander/ShouldStop"]
+[node name="Lookaround" type="Node" parent="SelectAction/BTInverter/Wander/ShouldStop"]
 script = ExtResource("9_0kycw")
 wait_time_ms = 500
 random_deviation_ms = 2000
@@ -121,6 +121,3 @@ can_overwrite_value = true
 
 [node name="FollowTarget" type="Node" parent="."]
 script = ExtResource("9_2mvaj")
-path_index_key = "path_index"
-move_path_key = "move_path"
-point_reached_margin = 5

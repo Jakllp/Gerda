@@ -1,5 +1,8 @@
 extends BTAction
 
+## Select a random position to wander around. 
+## The direction of this position is normal distributed around 0 with a standard deviation of PI
+
 ## Key to store the wander position in the blackboard
 @export var wander_pos_key: String
 

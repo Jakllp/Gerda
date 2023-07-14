@@ -1,5 +1,7 @@
 extends BTCondition
 
+## Check if the walked wander distacne reached the current limit
+
 func tick(_actor:Node, blackboard:BTBlackboard):
 	## Walk the path till the end when was following the player
 	if blackboard.has_data("is_following_player") and blackboard.get_data("is_following_player"):

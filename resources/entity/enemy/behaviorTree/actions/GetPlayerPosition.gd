@@ -1,5 +1,7 @@
 extends BTAction
 
+## Retrive the position of the player and write it to the blackboard.
+
 @export var player_pos_key: String
 @export var player_group_name: String
 

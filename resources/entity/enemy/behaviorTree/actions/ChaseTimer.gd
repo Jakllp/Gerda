@@ -1,5 +1,8 @@
 extends BTAction
 
+## Time based action Node. The idea is that the enemy chases the player for a bit after he loses sight.
+## The time is defined by chase_time and chase_time_deviation.
+
 @export var chase_time: float = 4
 @export var chase_time_deviation: float = 0.5
 

@@ -1,5 +1,7 @@
 extends BTAction
 
+## Set the actors navagent target to the target stored in the blackboard
+
 @export var target_pos_key: String
 
 func tick(actor:Node, blackboard:BTBlackboard):

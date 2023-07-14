@@ -1,5 +1,7 @@
 extends BTCondition
 
+## Check if the actor is stuck by comparing the last few positions.
+
 var previos_positions: Array[Vector2]
 var count = 0
 var stored_positions = 7

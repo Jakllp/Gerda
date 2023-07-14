@@ -1,9 +1,6 @@
 extends BTAction
 
-@export var path_index_key: String
-@export var move_path_key: String
-@export var point_reached_margin: int
-var flag = true
+## Let the enemy follow its given target by querying the next path position and setting the velocity respectivly
 
 func tick(actor:Node, _blackboard:BTBlackboard):
 	var target = actor.nav_agent.get_next_path_position()
