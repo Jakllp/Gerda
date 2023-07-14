@@ -27,11 +27,13 @@ func set_active(value: bool) -> void:
 		hurtbox.get_child(0).set_deferred("disabled", false)
 		sprite.play("stand")
 		$PointLight2D.energy = 0.1
+		attack_timer.paused = false
 	else:
 		hurtbox.get_child(0).set_deferred("disabled", true)
 		await sprite.animation_looped
 		sprite.play("idle")
 		$PointLight2D.energy = 0.0
+		attack_timer.paused = true
 
 func _on_attack_timer_timeout():
 	var player: Player = get_tree().get_first_node_in_group("player")
