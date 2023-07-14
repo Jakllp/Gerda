@@ -45,7 +45,7 @@ func die() -> void:
 			part_spawner.emitting = true
 			owner.get_node("SubViewportContainer/SubViewport/AnimatedSprite2D").set_deferred("visible",false)
 			owner.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
-			await get_tree().create_timer(part_spawner.lifetime).timeout
+			await get_tree().create_timer(part_spawner.lifetime, false).timeout
 		owner.queue_free()
 	
 

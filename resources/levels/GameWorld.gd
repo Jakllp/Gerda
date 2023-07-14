@@ -121,7 +121,7 @@ func on_level_generated() -> void:
 	player.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	# Avoid "jitter"
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5, false).timeout
 	
 	visible = true
 	interface.visible = true

@@ -75,7 +75,7 @@ func yeet_player(target_location: Vector2) -> void:
 func sweep() -> void:
 	if not sweep_area.get_overlapping_areas().is_empty():
 		animation_tree["parameters/conditions/sweep"] = true
-		get_tree().create_timer(sweep_react_time + randf_range(-sweep_react_time_deviation, sweep_react_time_deviation)).timeout.connect(sweep)
+		get_tree().create_timer(sweep_react_time + randf_range(-sweep_react_time_deviation, sweep_react_time_deviation), false).timeout.connect(sweep)
 	else:
 		animation_tree["parameters/conditions/sweep"] = false
 		
@@ -120,7 +120,7 @@ func die() -> void:
 
 func _on_stomp_area_area_entered(_area, is_left):
 	# wait for reaction
-	await get_tree().create_timer(stomp_react_time + randf_range(-stomp_react_time_deviation, stomp_react_time_deviation)).timeout
+	await get_tree().create_timer(stomp_react_time + randf_range(-stomp_react_time_deviation, stomp_react_time_deviation), false).timeout
 	if is_left and stomp_area_left.get_overlapping_areas().is_empty() or !is_left and stomp_area_right.get_overlapping_areas().is_empty():
 		return
 	if is_left:
@@ -150,7 +150,7 @@ func _on_spawn_timer_timeout():
 
 func _on_sweep_area_area_entered(_area):
 	# wait for reaction
-	get_tree().create_timer(sweep_react_time + randf_range(-sweep_react_time_deviation, sweep_react_time_deviation)).timeout.connect(sweep)
+	get_tree().create_timer(sweep_react_time + randf_range(-sweep_react_time_deviation, sweep_react_time_deviation), false).timeout.connect(sweep)
 	
 
 func _on_sweep_area_area_exited(_area):
