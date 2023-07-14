@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="8_15nnc"]
 [ext_resource type="PackedScene" uid="uid://sj1l83q0goit" path="res://resources/menus/LoadingScreen.tscn" id="8_047hp"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5sqf1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wvufy"]
 resource_local_to_scene = true
 shader = ExtResource("7_0n4fg")
 shader_parameter/blur = 2.5
@@ -34,7 +34,7 @@ follow_viewport_enabled = true
 
 [node name="PauseMenu" parent="InterfaceLayer" instance=ExtResource("6_ym1hu")]
 visible = false
-material = SubResource("ShaderMaterial_5sqf1")
+material = SubResource("ShaderMaterial_wvufy")
 
 [node name="LoadingScreen" parent="InterfaceLayer" instance=ExtResource("8_047hp")]
 

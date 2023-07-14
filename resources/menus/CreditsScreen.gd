@@ -4,3 +4,7 @@ signal switch_scene(scene: Main.Scene)
 
 func _on_back_button_pressed():
 	switch_scene.emit(Main.Scene.START)
+
+
+func _on_button_pressed():
+	switch_scene.emit(Main.Scene.LICENSE)

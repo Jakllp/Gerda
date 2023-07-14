@@ -12,7 +12,8 @@ enum Scene {
 	TUT1,
 	TUT2,
 	TUT3,
-	TUT4
+	TUT4,
+	LICENSE
 }
 
 enum Character {
@@ -34,7 +35,8 @@ var scene_dict := {
 	Scene.TUT1 : preload("res://resources/menus/tutorialPages/TutorialPage1.tscn"),
 	Scene.TUT2 : preload("res://resources/menus/tutorialPages/TutorialPage2.tscn"),
 	Scene.TUT3 : preload("res://resources/menus/tutorialPages/TutorialPage3.tscn"),
-	Scene.TUT4 : preload("res://resources/menus/tutorialPages/TutorialPage4.tscn")
+	Scene.TUT4 : preload("res://resources/menus/tutorialPages/TutorialPage4.tscn"),
+	Scene.LICENSE : preload("res://resources/menus/LicenseScreen.tscn")
 }
 
 var current_scene: Node
