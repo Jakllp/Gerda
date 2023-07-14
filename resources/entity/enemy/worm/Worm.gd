@@ -29,7 +29,7 @@ func set_active(value: bool) -> void:
 		$PointLight2D.energy = 0.1
 	else:
 		hurtbox.get_child(0).set_deferred("disabled", true)
-		#await sprite.animation_looped
+		await sprite.animation_looped
 		sprite.play("idle")
 		$PointLight2D.energy = 0.0
 
