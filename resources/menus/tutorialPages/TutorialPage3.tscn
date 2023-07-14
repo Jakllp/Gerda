@@ -120,7 +120,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_18hcj")
 text = "During your run you can stumble upon some chests. In those you may find upgrade-parts, to help you survive and fight.
 Upgrades that improve yourself, are represented by different colored triangles. Upgrades that improve your weapon by different colored circles.
-Don't worry, you can always chack what upgrade is represented by what color by simply pausing the game and checking the table there."
+Don't worry, you can always check what upgrade is represented by what color by simply pausing the game and checking the table there."
 fit_content = true
 
 [node name="PageNumbering" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]

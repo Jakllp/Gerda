@@ -101,7 +101,7 @@ z_index = 1
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_rftsb")
-text = "During your mining you will probably find ressources in the walls. You can use that to craft yourself some more ammo using an anvil. 
+text = "During your mining you will probably find resources in the walls. You can use that to craft yourself some more ammo using an anvil. 
 This means finding an anvil is crucial for your survival, but it can be tricky sometimes. So make sure to always have enough ammo with you or you just might not make it out alive. "
 fit_content = true
 
