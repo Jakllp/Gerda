@@ -222,6 +222,7 @@ offset_left = 916.0
 offset_top = 181.0
 offset_right = 945.0
 offset_bottom = 215.0
+script = ExtResource("9_4q3us")
 
 [node name="DamageLoader" type="ColorRect" parent="ColorRect"]
 z_index = -2
@@ -231,9 +232,6 @@ offset_left = 1000.0
 offset_top = 153.0
 offset_right = 1029.0
 offset_bottom = 187.0
-
-[node name="ParticleLoader" type="CanvasLayer" parent="ColorRect"]
-script = ExtResource("9_4q3us")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
