@@ -232,7 +232,7 @@ offset_top = 153.0
 offset_right = 1029.0
 offset_bottom = 187.0
 
-[node name="ParticleLoader" type="Node2D" parent="ColorRect"]
+[node name="ParticleLoader" type="CanvasLayer" parent="ColorRect"]
 script = ExtResource("9_4q3us")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

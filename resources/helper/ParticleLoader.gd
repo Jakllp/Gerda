@@ -1,4 +1,4 @@
-extends Node
+extends CanvasLayer
 
 
 var materials = [
@@ -17,5 +17,6 @@ func _ready():
 		particles_instance.process_material = material
 		particles_instance.one_shot = true
 		particles_instance.modulate = Color(1,1,1,0)
-		particles_instance.set_emitting(true)
+		particles_instance.texture = load("res://asset/visual/other/dust.png")
 		self.add_child(particles_instance)
+		particles_instance.emitting = true
