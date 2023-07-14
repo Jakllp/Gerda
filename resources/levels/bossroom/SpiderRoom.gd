@@ -15,13 +15,13 @@ func on_spider_boss_died() -> void:
 	trap_door.global_position = trap_door_pos
 	add_child(trap_door)
 	
-	var boss_drop = ItemCreator.create_boss_item()
+	var boss_drop = Items.create_boss_item()
 	boss_drop.global_position = trap_door_pos + Vector2(0, -30)
 	
-	var item1 = ItemCreator.create_chest_item()
+	var item1 = Items.create_chest_item()
 	item1.global_position = trap_door_pos + Vector2(30, 0)
 	
-	var item2 = ItemCreator.create_chest_item()
+	var item2 = Items.create_chest_item()
 	item2.global_position = trap_door_pos + Vector2(-30, 0)
 	
 	add_child(boss_drop)

@@ -1,4 +1,5 @@
-extends Node
+extends Object
+class_name Items
 ## extends Node cause for what reason ever this is the only way to make this class an autoload.
 
 ## *************************************************************************************************************************************************************
@@ -46,40 +47,40 @@ enum Type {
 	DASH
 }
 
-var upgrade_category: Dictionary = {
+const upgrade_category: Dictionary = {
 	"player" : [Type.WALK_SPEED, Type.DASH_COOLDOWN, Type.MINING_SPEED],
 	"weapon" : [Type.DAMAGE, Type.ATTACK_RATE, Type.WEAPON_SPEED]
 }
 
 ## weighted range table
-var health_table := [Type.HEALTH, Vector2i(1,2), Vector2i(2,1)]
+const health_table := [Type.HEALTH, Vector2i(1,2), Vector2i(2,1)]
 
 ## Table with player upgrades
-var player_upgrade_table: Dictionary = {
+const player_upgrade_table: Dictionary = {
 	Type.WALK_SPEED : 1,
 	Type.DASH_COOLDOWN: 1,
 	Type.MINING_SPEED : 1
 }
 
 ## Table with weapon upgrades
-var weapon_upgrade_table: Dictionary = {
+const weapon_upgrade_table: Dictionary = {
 	Type.DAMAGE : 1,
 	Type.ATTACK_RATE : 1,
 	Type.WEAPON_SPEED : 1
 }
 
 ## Table with items droped by bosses
-var boss_drop_table: Dictionary = {
+const boss_drop_table: Dictionary = {
 	Type.HEART : 1,
 	Type.DASH : 1
 }
 
-var enemy_drop_table: Dictionary = {
+const enemy_drop_table: Dictionary = {
 	health_table : 1
 }
 
 ## Main entry point to all existing items
-var chest_drop_table: Dictionary = {
+const chest_drop_table: Dictionary = {
 		health_table : 2,
 		player_upgrade_table: 2,
 		weapon_upgrade_table : 2,
@@ -90,7 +91,7 @@ var chest_drop_table: Dictionary = {
 
 ## Selects a Random Item from the given table.
 ## Return value is of form Vector2i(Type, quantity)
-func roll_table(table) -> Vector2i:
+static func roll_table(table) -> Vector2i:
 	if table is Vector3i:
 		return roll_normal_distributed_range_table(table)
 	elif table is Array:
@@ -117,14 +118,14 @@ func roll_table(table) -> Vector2i:
 ## Select random quantity for the given type in the vector
 ## The vector has to be of the form Vector3i(Type, min_value, max_value).
 ## min_value and max_value are both inclusive
-func roll_normal_distributed_range_table(table: Vector3i) -> Vector2i:
+static func roll_normal_distributed_range_table(table: Vector3i) -> Vector2i:
 	assert(table.x is int and table.x >=0 and table.x < Type.size(), "invalid 'Type' value for normal distributed range table. Expected 'int' in range [0,"+str(Type.size())+"] but was '"+str(table.x))
 	return Vector2i(table.x, randi_range(table.y, table.z))
 	
 
 ## Select a random quantity for the given 'Type' in the array
 ## The array has to be of the form [Type, Vector2i(quantity1, weight), Vector2i(quantity2, weight), ...]
-func roll_weighted_range_table(table: Array) -> Vector2i:
+static func roll_weighted_range_table(table: Array) -> Vector2i:
 	assert(table[0] is int and table[0] >=0 and table[0] < Type.size(), "invalid 'Type' value for weighted range table. Expected 'int' in range [0,"+str(Type.size())+"] but was '"+str(table[0]))
 	var rand_value = randi_range(0, get_total_weight(table) - 1)
 	var result
@@ -140,7 +141,7 @@ func roll_weighted_range_table(table: Array) -> Vector2i:
 	
 
 ## Calculates the total weight of the given table
-func get_total_weight(table) -> int:
+static func get_total_weight(table) -> int:
 	assert(table is Array or table is Dictionary, "Can't calculate total weight of unkown table")
 	var sum: int = 0
 	if table is Dictionary:
@@ -156,10 +157,10 @@ func get_total_weight(table) -> int:
 	return sum
 	
 
-var hud_item_tex = preload("res://asset/visual/UI/HUD_Elements.png")
-var boss_item_tex = preload("res://asset/visual/other/BossDrops.png")
+const hud_item_tex = preload("res://asset/visual/UI/HUD_Elements.png")
+const boss_item_tex = preload("res://asset/visual/other/BossDrops.png")
 ## creates the sprite for the given item type
-func get_item_sprite(type: Type, quantity: int = 0) -> Sprite2D:
+static func get_item_sprite(type: Type, quantity: int = 0) -> Sprite2D:
 	var texture := AtlasTexture.new()
 	if type < Type.HEART:
 		texture.atlas = hud_item_tex
@@ -202,3 +203,27 @@ func get_item_sprite(type: Type, quantity: int = 0) -> Sprite2D:
 	var sprite := Sprite2D.new()
 	sprite.texture = texture
 	return sprite
+
+
+static func create_chest_item() -> Item:
+	return create_item(chest_drop_table)
+	
+
+static func create_boss_item() -> Item:
+	return create_item(boss_drop_table)
+	
+
+static func create_enemy_drop_item() -> Item:
+	return create_item(enemy_drop_table)
+
+
+static func create_item(table) -> Item:
+	var item: Item = preload("res://resources/interactables/Item.tscn").instantiate()
+	var type := roll_table(table)
+	
+	# This throws "integer where enum is expected". It would be ugly to cast that and it works.
+	# The decision was made to leave it as is
+	item.type = type.x
+	item.item_data = type.y
+	
+	return item
