@@ -29,7 +29,7 @@ position = Vector2(0, -4)
 texture = ExtResource("2_vf1wx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_dygx7")
 
 [node name="CraftingTimer" type="Timer" parent="."]
