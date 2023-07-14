@@ -12,7 +12,7 @@ var materials = [
 ]
 
 func _ready():
-	for material in materials:
+	for part_material in materials:
 		var particles_instance = GPUParticles2D.new()
 		particles_instance.process_material = material
 		particles_instance.one_shot = true
