@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=3 uid="uid://dmexi068iwq4m"]
+
+[ext_resource type="Script" path="res://resources/equipment/weapon/Rifle.gd" id="1_p0rhv"]
+[ext_resource type="Texture2D" uid="uid://calp5g02iee7o" path="res://asset/visual/actor/char/mole/mole_weapon.png" id="2_x5l80"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="3_g1832"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="4_7lm84"]
+[ext_resource type="PackedScene" uid="uid://x7cqfcw0srnq" path="res://resources/components/ShooterComponent.tscn" id="5_hfewx"]
+[ext_resource type="PackedScene" uid="uid://bqi7lhci05dr1" path="res://resources/equipment/weapon/Projectile.tscn" id="6_yggun"]
+[ext_resource type="PackedScene" uid="uid://dqtqcxxtdpnnh" path="res://resources/components/WearableComponent.tscn" id="7_hupc5"]
+
+[sub_resource type="GDScript" id="GDScript_ctalr"]
+script/source = "extends SubViewport
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tuob6"]
+shader = ExtResource("3_g1832")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5p4ka"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gce8s"]
+shader = ExtResource("4_7lm84")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_p3sec"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[node name="Rifle" type="Node2D"]
+script = ExtResource("1_p0rhv")
+full_auto = true
+ammo_needed_per_shot = 1
+base_reload_time = 1.5
+base_fire_delay = 0.2
+max_ammo_stored = 250
+mag_size = 25
+reload_time_upgrade_modifier = 20
+fire_delay_upgrade_modifier = 20
+restore_per_craft = 5
+base_damage = 1
+damage_upgrade_modifier = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -11.0
+offset_top = -15.0
+offset_right = 21.0
+offset_bottom = 17.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4294966273
+size = Vector2i(32, 32)
+size_2d_override = Vector2i(32, 32)
+render_target_update_mode = 4
+script = SubResource("GDScript_ctalr")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+y_sort_enabled = true
+texture = ExtResource("2_x5l80")
+offset = Vector2(16, 16)
+
+[node name="Mask" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_tuob6")
+position = Vector2(5, 1)
+texture = SubResource("ViewportTexture_5p4ka")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 100
+material = SubResource("ShaderMaterial_gce8s")
+position = Vector2(5, 1)
+texture = SubResource("ViewportTexture_p3sec")
+
+[node name="Shooter" parent="." instance=ExtResource("5_hfewx")]
+position = Vector2(17, 0)
+projectile_scene = ExtResource("6_yggun")
+
+[node name="Anglepoint" parent="." instance=ExtResource("7_hupc5")]
+position = Vector2(0, -1)
+
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FireRateTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="Wallchecker" type="RayCast2D" parent="."]
+position = Vector2(12, 0)
+target_position = Vector2(5, 0)
+
+[connection signal="timeout" from="ReloadTimer" to="." method="reload"]

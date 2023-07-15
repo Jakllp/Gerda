@@ -1,0 +1,369 @@
+[gd_scene load_steps=17 format=3 uid="uid://3nw02h1mploy"]
+
+[ext_resource type="Texture2D" uid="uid://b023yc0p2750n" path="res://asset/visual/UI/HUD_Elements.png" id="1_b65lm"]
+[ext_resource type="Script" path="res://resources/menus/Interface.gd" id="1_dnjdd"]
+[ext_resource type="Theme" uid="uid://dcv5nno7k0rpb" path="res://asset/visual/UI/themes/labelHUD.tres" id="2_iwxg6"]
+[ext_resource type="Texture2D" uid="uid://b4ou0oya7s214" path="res://asset/visual/UI/moleWeaponHUD.png" id="10_oaxdx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b26ee"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(0, 32, 32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtje4"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(24, 16, 1, 8)
+
+[sub_resource type="Theme" id="Theme_vo87j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef14t"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_037f2"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tewe"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(8, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_benp0"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fqpq"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(24, 16, 1, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vctjw"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(24, 16, 1, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxcmx"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyube"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(16, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6wc4"]
+atlas = ExtResource("1_b65lm")
+region = Rect2(16, 16, 8, 8)
+
+[node name="Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dnjdd")
+
+[node name="Bottom" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -166.5
+offset_top = -74.0
+offset_right = 166.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="Bottom" type="HBoxContainer" parent="Bottom"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Bottom/Bottom"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Dashes" type="HBoxContainer" parent="Bottom/Bottom/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="WeaponInfo" type="HBoxContainer" parent="Bottom/Bottom/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Ammo" type="VBoxContainer" parent="Bottom/Bottom/VBoxContainer/WeaponInfo"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CurrentMagazine" type="Label" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/Ammo"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_iwxg6")
+text = "##"
+
+[node name="RemainingAmmo" type="Label" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/Ammo"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_iwxg6")
+text = "##"
+
+[node name="WeaponBackground" type="TextureRect" parent="Bottom/Bottom/VBoxContainer/WeaponInfo"]
+custom_minimum_size = Vector2(166, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_b26ee")
+stretch_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponBackground"]
+custom_minimum_size = Vector2(122, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_oaxdx")
+stretch_mode = 4
+
+[node name="Line" type="TextureRect" parent="Bottom/Bottom/VBoxContainer/WeaponInfo"]
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_vtje4")
+
+[node name="WeaponUpgrades" type="HBoxContainer" parent="Bottom/Bottom/VBoxContainer/WeaponInfo"]
+layout_mode = 2
+theme = SubResource("Theme_vo87j")
+
+[node name="Upgrade1" type="VBoxContainer" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade1"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_ef14t")
+stretch_mode = 4
+
+[node name="Amount" type="HBoxContainer" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade1"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="x" type="Label" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade1/Amount"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "x"
+
+[node name="Speed" type="Label" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade1/Amount"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "0"
+
+[node name="Upgrade2" type="VBoxContainer" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_037f2")
+stretch_mode = 4
+
+[node name="Amount" type="HBoxContainer" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="x" type="Label" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade2/Amount"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "x"
+
+[node name="Damage" type="Label" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade2/Amount"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "0"
+
+[node name="Upgrade3" type="VBoxContainer" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_4tewe")
+stretch_mode = 4
+
+[node name="Amount" type="HBoxContainer" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade3"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="x" type="Label" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade3/Amount"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "x"
+
+[node name="Rate" type="Label" parent="Bottom/Bottom/VBoxContainer/WeaponInfo/WeaponUpgrades/Upgrade3/Amount"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "0"
+
+[node name="Right" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -54.0
+offset_bottom = 70.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="Right" type="HBoxContainer" parent="Right"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Ore" type="VBoxContainer" parent="Right/Right"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Icon" type="TextureRect" parent="Right/Right/Ore"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_benp0")
+stretch_mode = 4
+
+[node name="Amount" type="HBoxContainer" parent="Right/Right/Ore"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="x" type="Label" parent="Right/Right/Ore/Amount"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "x"
+
+[node name="Ore" type="Label" parent="Right/Right/Ore/Amount"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "0"
+
+[node name="Line" type="TextureRect" parent="Right/Right"]
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_3fqpq")
+
+[node name="Mutators" type="VBoxContainer" parent="Right/Right"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Left" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="Left" type="HBoxContainer" parent="Left"]
+layout_mode = 2
+
+[node name="Health" type="VBoxContainer" parent="Left/Left"]
+layout_mode = 2
+
+[node name="Line" type="TextureRect" parent="Left/Left"]
+custom_minimum_size = Vector2(6, 5)
+layout_mode = 2
+texture = SubResource("AtlasTexture_vctjw")
+
+[node name="PlayerUpgrades" type="HBoxContainer" parent="Left/Left"]
+layout_mode = 2
+
+[node name="Upgrade1" type="VBoxContainer" parent="Left/Left/PlayerUpgrades"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Left/Left/PlayerUpgrades/Upgrade1"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_pxcmx")
+stretch_mode = 4
+
+[node name="Amount" type="HBoxContainer" parent="Left/Left/PlayerUpgrades/Upgrade1"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="x" type="Label" parent="Left/Left/PlayerUpgrades/Upgrade1/Amount"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "x"
+
+[node name="MiningSpeed" type="Label" parent="Left/Left/PlayerUpgrades/Upgrade1/Amount"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "0"
+
+[node name="Upgrade2" type="VBoxContainer" parent="Left/Left/PlayerUpgrades"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Left/Left/PlayerUpgrades/Upgrade2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_gyube")
+stretch_mode = 4
+
+[node name="Amount" type="HBoxContainer" parent="Left/Left/PlayerUpgrades/Upgrade2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="x" type="Label" parent="Left/Left/PlayerUpgrades/Upgrade2/Amount"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "x"
+
+[node name="WalkSpeed" type="Label" parent="Left/Left/PlayerUpgrades/Upgrade2/Amount"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "0"
+
+[node name="Upgrade3" type="VBoxContainer" parent="Left/Left/PlayerUpgrades"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Left/Left/PlayerUpgrades/Upgrade3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_c6wc4")
+stretch_mode = 4
+
+[node name="Amount" type="HBoxContainer" parent="Left/Left/PlayerUpgrades/Upgrade3"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="x" type="Label" parent="Left/Left/PlayerUpgrades/Upgrade3/Amount"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "x"
+
+[node name="DashCooldown" type="Label" parent="Left/Left/PlayerUpgrades/Upgrade3/Amount"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_iwxg6")
+text = "0"

@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://uek4jppvomxi"]
+[gd_scene load_steps=10 format=3 uid="uid://dam6ckjydidc1"]
 
 [ext_resource type="Script" path="res://resources/entity/enemy/StaticEnemy.gd" id="1_8r3ho"]
-[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="1_ywxbt"]
-[ext_resource type="PackedScene" path="res://resources/components/HealthComponent.tscn" id="2_b622b"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="2_cm1mb"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="3_pmtix"]
-[ext_resource type="PackedScene" uid="uid://pamt1nvftqba" path="res://resources/overlap/hitbox.tscn" id="3_ucx4i"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="1_ywxbt"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="2_cm1mb"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="3_pmtix"]
+[ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="3_ucx4i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2j1cv"]
 shader = ExtResource("2_cm1mb")
@@ -58,11 +57,6 @@ texture = SubResource("ViewportTexture_fxmqo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_b622b")]
-
-[node name="HurtBox" parent="." instance=ExtResource("1_ywxbt")]
-collision_mask = 8
-
 [node name="Hitbox" parent="." instance=ExtResource("3_ucx4i")]
 collision_layer = 16
 
@@ -70,5 +64,5 @@ collision_layer = 16
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

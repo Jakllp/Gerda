@@ -1,0 +1,158 @@
+[gd_scene load_steps=9 format=3 uid="uid://oyum3ygs1jqf"]
+
+[ext_resource type="Script" path="res://resources/menus/tutorialPages/TutorialPage1.gd" id="1_7jatf"]
+[ext_resource type="Texture2D" uid="uid://dqayk5fjw3ov4" path="res://asset/visual/UI/tutorial/page.png" id="1_rk7ym"]
+[ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="2_8cfjv"]
+[ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf" id="4_hquf7"]
+[ext_resource type="Texture2D" uid="uid://caluqwcxdqqad" path="res://asset/visual/UI/3sacrowd.png" id="4_xdu6k"]
+[ext_resource type="Texture2D" uid="uid://m5prwr4cdn0e" path="res://asset/visual/UI/tutorial/right.png" id="6_5bs8q"]
+[ext_resource type="Texture2D" uid="uid://cp8e6i0mknn1f" path="res://asset/visual/UI/tutorial/right_hover.png" id="7_yhpt7"]
+
+[sub_resource type="GDScript" id="GDScript_800ke"]
+script/source = "extends Label
+
+func _on_right_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_back_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_left_button_pressed():
+	pass # Replace with function body.
+"
+
+[node name="TutorialPage1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7jatf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -337.0
+offset_right = 210.0
+offset_bottom = 337.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Page" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 590)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_rk7ym")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Page"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Page/MarginContainer"]
+layout_mode = 2
+
+[node name="Top" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Logo2" type="TextureRect" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Top"]
+custom_minimum_size = Vector2(96, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("4_xdu6k")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Top"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme = ExtResource("2_8cfjv")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Gerda"
+horizontal_alignment = 2
+
+[node name="Seperator" type="MarginContainer" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Seperator"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_8cfjv")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Objective"
+
+[node name="Text" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_hquf7")
+text = "Your goal is to fight your way through five different biomes, each with specific enemies and special difficulties. 
+To advance to the next biome, you have to find a trapdoor, leading even further down. This trapdoor can only be found in a special room. Look at the ground, you may find some hints there."
+fit_content = true
+
+[node name="PageNumbering" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("2_8cfjv")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1/4"
+horizontal_alignment = 1
+vertical_alignment = 2
+script = SubResource("GDScript_800ke")
+
+[node name="RightButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Page"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -80.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+texture_normal = ExtResource("6_5bs8q")
+texture_hover = ExtResource("7_yhpt7")
+stretch_mode = 4
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(170, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_8cfjv")
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Page/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

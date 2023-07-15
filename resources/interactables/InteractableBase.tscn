@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5yqxkxsg6xo4"]
+[gd_scene load_steps=4 format=3 uid="uid://blirbtgwrrvr4"]
 
 [ext_resource type="Script" path="res://resources/interactables/InteractableBase.gd" id="1_i74gk"]
-[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="2_dnwhi"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="2_dnwhi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_534wy"]
 radius = 24.0

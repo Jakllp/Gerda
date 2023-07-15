@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxdil6ifjoq7x"]
+
+[ext_resource type="Script" path="res://resources/entity/enemy/boss/BossHealthBar.gd" id="1_p51mp"]
+[ext_resource type="Texture2D" uid="uid://6il43qcg8yy" path="res://asset/visual/actor/enemy/bosses/spider/health_bar_emptyl_scaled.png" id="1_vqvjd"]
+[ext_resource type="Texture2D" uid="uid://r4pw24mnboy8" path="res://asset/visual/actor/enemy/bosses/spider/health_bar_full_scaled.png" id="2_0djxc"]
+
+[node name="BossHealthBar" type="BoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = 15.0
+offset_right = 240.0
+offset_bottom = 111.0
+grow_horizontal = 2
+script = ExtResource("1_p51mp")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+value = 100.0
+texture_under = ExtResource("1_vqvjd")
+texture_progress = ExtResource("2_0djxc")

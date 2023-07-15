@@ -1,0 +1,213 @@
+[gd_scene load_steps=28 format=3 uid="uid://c7wsucit56out"]
+
+[ext_resource type="Script" path="res://resources/entity/enemy/spider/Spider.gd" id="1_cqhnd"]
+[ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="2_2dvxs"]
+[ext_resource type="Texture2D" uid="uid://ry4w8xt4hdw7" path="res://asset/visual/actor/enemy/spider/spider_frame1.png" id="2_v7u1e"]
+[ext_resource type="Texture2D" uid="uid://bjlekwc125i1c" path="res://asset/visual/light/light.png" id="2_xreva"]
+[ext_resource type="Texture2D" uid="uid://cdomgfgihv102" path="res://asset/visual/actor/enemy/spider/spider_frame2.png" id="3_hunbe"]
+[ext_resource type="PackedScene" path="res://resources/overlap/Hitbox.tscn" id="3_rynaa"]
+[ext_resource type="Texture2D" uid="uid://cc4l2oq5y7vse" path="res://asset/visual/actor/enemy/spider/spider_frame3.png" id="4_ra0ne"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="4_uo85l"]
+[ext_resource type="Texture2D" uid="uid://qmej8xpve0gn" path="res://asset/visual/actor/enemy/spider/spider_frame4.png" id="5_avrct"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="5_lr3uh"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="6_53m54"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="7_kdrew"]
+[ext_resource type="PackedScene" uid="uid://dus22u3scedl5" path="res://resources/entity/enemy/behaviorTree/movement/NormalEnemyMovement.tscn" id="7_l4mod"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="8_u5bar"]
+[ext_resource type="Script" path="res://resources/components/Health/EnemyHealthComponent.gd" id="10_34cd5"]
+[ext_resource type="Texture2D" uid="uid://fuq4vobsk2w1" path="res://asset/visual/other/dust.png" id="16_ssh7x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5hvuo"]
+resource_local_to_scene = true
+shader = ExtResource("2_2dvxs")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_chory"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_v7u1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hunbe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ra0ne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_avrct")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 20.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_getsk"]
+shader = ExtResource("7_kdrew")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qao34"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ops3y"]
+shader = ExtResource("8_u5bar")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lxteo"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qye2k"]
+resource_local_to_scene = true
+radius = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkdua"]
+resource_local_to_scene = true
+size = Vector2(28, 18)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_55xr7"]
+resource_local_to_scene = true
+radius = 25.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tkay6"]
+resource_local_to_scene = true
+radius = 6.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xeaon"]
+lifetime_randomness = 0.66
+emission_shape = 1
+emission_sphere_radius = 10.0
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 20.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 30.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 360.0
+color = Color(1, 0, 0, 1)
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
+[node name="Spider" type="CharacterBody2D" groups=["enemy"]]
+z_index = 1
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_cqhnd")
+attack_speed = 7.0
+attack_cooldown = 0.8
+metadata/_edit_horizontal_guides_ = []
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+color = Color(1, 0, 0, 1)
+energy = 0.05
+range_item_cull_mask = 3
+texture = ExtResource("2_xreva")
+texture_scale = 0.5
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -19.0
+offset_top = -16.0
+offset_right = 19.0
+offset_bottom = 16.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4294966273
+size = Vector2i(38, 32)
+size_2d_override = Vector2i(36, 32)
+render_target_update_mode = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport"]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_5hvuo")
+position = Vector2(19, 16)
+sprite_frames = SubResource("SpriteFrames_chory")
+animation = &"walk"
+
+[node name="Mask" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_getsk")
+texture = SubResource("ViewportTexture_qao34")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 100
+material = SubResource("ShaderMaterial_ops3y")
+texture = SubResource("ViewportTexture_lxteo")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("10_34cd5")
+hp_max = 6
+
+[node name="Hitbox" parent="." instance=ExtResource("3_rynaa")]
+collision_layer = 16
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_qye2k")
+
+[node name="HurtBox" parent="." instance=ExtResource("4_uo85l")]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_tkdua")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="AttackRange" parent="." instance=ExtResource("4_uo85l")]
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="AttackRange" index="0"]
+shape = SubResource("CircleShape2D_55xr7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.57079
+shape = SubResource("CircleShape2D_tkay6")
+
+[node name="BTBlackboard" type="Node" parent="."]
+script = ExtResource("5_lr3uh")
+
+[node name="BTRoot" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
+script = ExtResource("6_53m54")
+actor_path = NodePath("..")
+blackboard = NodePath("../BTBlackboard")
+
+[node name="Move" parent="BTRoot" instance=ExtResource("7_l4mod")]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 20.0
+avoidance_enabled = true
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-400, -225, 800, 450)
+
+[node name="ParticleSpawner" type="GPUParticles2D" parent="."]
+process_mode = 3
+z_index = 2
+y_sort_enabled = true
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_xeaon")
+texture = ExtResource("16_ssh7x")
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.5
+randomness = 0.26
+
+[connection signal="area_entered" from="HurtBox" to="HealthComponent" method="_on_hurt_box_area_entered"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+
+[editable path="Hitbox"]
+[editable path="HurtBox"]
+[editable path="AttackRange"]

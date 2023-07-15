@@ -1,0 +1,138 @@
+[gd_scene load_steps=8 format=3 uid="uid://bl2s3sx8yc1nv"]
+
+[ext_resource type="Script" path="res://resources/menus/tutorialPages/TutorialPage4.gd" id="1_gjq7y"]
+[ext_resource type="Texture2D" uid="uid://dqayk5fjw3ov4" path="res://asset/visual/UI/tutorial/page.png" id="1_wbmyp"]
+[ext_resource type="Texture2D" uid="uid://caluqwcxdqqad" path="res://asset/visual/UI/3sacrowd.png" id="2_3v6by"]
+[ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="3_xol8m"]
+[ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf" id="4_rftsb"]
+[ext_resource type="Texture2D" uid="uid://crl0g7d25y4lk" path="res://asset/visual/UI/tutorial/left.png" id="7_xasvl"]
+[ext_resource type="Texture2D" uid="uid://brxdkii8k88vc" path="res://asset/visual/UI/tutorial/left_hover.png" id="8_jbngy"]
+
+[node name="TutorialPage4" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gjq7y")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -337.0
+offset_right = 210.0
+offset_bottom = 337.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Page" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(420, 590)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_wbmyp")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Page"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Page/MarginContainer"]
+layout_mode = 2
+
+[node name="Top" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Logo2" type="TextureRect" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Top"]
+custom_minimum_size = Vector2(96, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_3v6by")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Top"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme = ExtResource("3_xol8m")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Gerda"
+horizontal_alignment = 2
+
+[node name="Seperator" type="MarginContainer" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer/Seperator"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_xol8m")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Ore"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_rftsb")
+text = "During your mining you will probably find resources in the walls. You can use that to craft yourself some more ammo using an anvil. 
+This means finding an anvil is crucial for your survival, but it can be tricky sometimes. So make sure to always have enough ammo with you or you just might not make it out alive. "
+fit_content = true
+
+[node name="PageNumbering" type="Label" parent="MarginContainer/VBoxContainer/Page/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("3_xol8m")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "4/4"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LeftButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Page"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+offset_right = 80.0
+grow_vertical = 0
+texture_normal = ExtResource("7_xasvl")
+texture_hover = ExtResource("8_jbngy")
+stretch_mode = 4
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(170, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_xol8m")
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Page/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

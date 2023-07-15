@@ -1,0 +1,413 @@
+[gd_scene load_steps=17 format=3 uid="uid://dgqaxalku1tsk"]
+
+[ext_resource type="Shader" path="res://resources/shaders/blur.gdshader" id="1_ofabi"]
+[ext_resource type="Script" path="res://resources/menus/PauseMenu.gd" id="2_2ml2v"]
+[ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="3_g7ink"]
+[ext_resource type="Texture2D" uid="uid://b023yc0p2750n" path="res://asset/visual/UI/HUD_Elements.png" id="4_ej3hj"]
+[ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf" id="5_8wolu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lve6f"]
+resource_local_to_scene = true
+shader = ExtResource("1_ofabi")
+shader_parameter/blur = 2.5
+shader_parameter/brightness = 1.0
+
+[sub_resource type="Animation" id="Animation_sracv"]
+resource_name = "Pause"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/blur")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [null, 2.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [1.0, 0.9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Buttons:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kyhcu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/blur")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Buttons:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6y236"]
+resource_name = "Unpause"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/blur")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Buttons:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iv0dq"]
+_data = {
+"Pause": SubResource("Animation_sracv"),
+"RESET": SubResource("Animation_kyhcu"),
+"Unpause": SubResource("Animation_6y236")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioinu"]
+atlas = ExtResource("4_ej3hj")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2v7j"]
+atlas = ExtResource("4_ej3hj")
+region = Rect2(16, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwgrk"]
+atlas = ExtResource("4_ej3hj")
+region = Rect2(16, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyydo"]
+atlas = ExtResource("4_ej3hj")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r0uq"]
+atlas = ExtResource("4_ej3hj")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe0jq"]
+atlas = ExtResource("4_ej3hj")
+region = Rect2(8, 16, 8, 8)
+
+[node name="PauseMenu" type="ColorRect"]
+process_mode = 3
+material = SubResource("ShaderMaterial_lve6f")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_2ml2v")
+
+[node name="Buttons" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -174.0
+offset_right = 256.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Buttons"]
+custom_minimum_size = Vector2(512, 256)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Buttons/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Buttons/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_g7ink")
+theme_override_font_sizes/font_size = 32
+text = "Pause"
+
+[node name="HSeparator" type="HSeparator" parent="Buttons/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="Buttons/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_g7ink")
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="Buttons/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_g7ink")
+text = "Abandon"
+
+[node name="Marker2D" type="Marker2D" parent="Buttons"]
+position = Vector2(258, 165)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Unpause"
+libraries = {
+"": SubResource("AnimationLibrary_iv0dq")
+}
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+title = ""
+size = Vector2i(230, 109)
+dialog_text = "Do you really want to quit?
+The game will not be saved."
+
+[node name="Legend" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -220.0
+offset_right = 256.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Legend"]
+custom_minimum_size = Vector2(512, 200)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Legend/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Legend/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Legend/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_g7ink")
+theme_override_font_sizes/font_size = 21
+text = "Upgrade Legend"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Legend/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayerUpgrades" type="VBoxContainer" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayerUpgrades"]
+layout_mode = 2
+theme = ExtResource("3_g7ink")
+theme_override_font_sizes/font_size = 16
+text = "Player"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayerUpgrades"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Icons" type="VBoxContainer" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayerUpgrades/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Blue" type="TextureRect" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayerUpgrades/HBoxContainer/Icons"]
+custom_minimum_size = Vector2(33, 0)
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_ioinu")
+stretch_mode = 4
+
+[node name="Green" type="TextureRect" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayerUpgrades/HBoxContainer/Icons"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_r2v7j")
+stretch_mode = 4
+
+[node name="Violett" type="TextureRect" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayerUpgrades/HBoxContainer/Icons"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_fwgrk")
+stretch_mode = 4
+
+[node name="Labels" type="VBoxContainer" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayerUpgrades/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayerUpgrades/HBoxContainer/Labels"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("5_8wolu")
+text = "Mining Speed
+"
+
+[node name="Label2" type="Label" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayerUpgrades/HBoxContainer/Labels"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("5_8wolu")
+text = "Walking Speed"
+
+[node name="Label3" type="Label" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayerUpgrades/HBoxContainer/Labels"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("5_8wolu")
+text = "Dash Cooldown"
+
+[node name="WeaponUpgrades" type="VBoxContainer" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/WeaponUpgrades"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("3_g7ink")
+theme_override_font_sizes/font_size = 16
+text = "Weapon"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/WeaponUpgrades"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+
+[node name="Labels" type="VBoxContainer" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/WeaponUpgrades/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/WeaponUpgrades/HBoxContainer/Labels"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("5_8wolu")
+text = "Reload Speed
+"
+
+[node name="Label2" type="Label" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/WeaponUpgrades/HBoxContainer/Labels"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("5_8wolu")
+text = "Damage"
+
+[node name="Label3" type="Label" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/WeaponUpgrades/HBoxContainer/Labels"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("5_8wolu")
+text = "Fire Rate"
+horizontal_alignment = 2
+
+[node name="Icons" type="VBoxContainer" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/WeaponUpgrades/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Blue" type="TextureRect" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/WeaponUpgrades/HBoxContainer/Icons"]
+custom_minimum_size = Vector2(33, 0)
+layout_direction = 3
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_iyydo")
+stretch_mode = 4
+
+[node name="Green" type="TextureRect" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/WeaponUpgrades/HBoxContainer/Icons"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_1r0uq")
+stretch_mode = 4
+
+[node name="Violett" type="TextureRect" parent="Legend/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/WeaponUpgrades/HBoxContainer/Icons"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_oe0jq")
+stretch_mode = 4
+
+[connection signal="pressed" from="Buttons/PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="canceled" from="AcceptDialog" to="." method="_on_accept_dialog_canceled"]
+[connection signal="confirmed" from="AcceptDialog" to="." method="_on_accept_dialog_confirmed"]

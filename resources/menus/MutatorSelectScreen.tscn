@@ -1,0 +1,217 @@
+[gd_scene load_steps=10 format=3 uid="uid://drt5gc5wf3gcr"]
+
+[ext_resource type="Script" path="res://resources/menus/MutatorSelectScreen.gd" id="1_ivbmo"]
+[ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="2_rfg5h"]
+[ext_resource type="Texture2D" uid="uid://bqi3gouchn6m1" path="res://asset/visual/UI/Mutators.png" id="3_7jiv7"]
+[ext_resource type="Texture2D" uid="uid://cmbbj6g542n7h" path="res://asset/visual/UI/controls/Info_Button.png" id="3_g6uih"]
+[ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf" id="4_0ucub"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jipmk"]
+resource_local_to_scene = true
+atlas = ExtResource("3_7jiv7")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvim7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2vh0"]
+resource_local_to_scene = true
+atlas = ExtResource("3_7jiv7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyn46"]
+resource_local_to_scene = true
+atlas = ExtResource("3_7jiv7")
+region = Rect2(0, 0, 11, 9)
+
+[node name="MutatorSelectScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ivbmo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(840, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -50.5
+offset_right = 106.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_rfg5h")
+theme_override_font_sizes/font_size = 32
+text = "CHOOSE A MUTATOR"
+horizontal_alignment = 1
+
+[node name="Info" type="TextureRect" parent="VBoxContainer/Title"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+tooltip_text = "There are three different Intensities.
+(green, yellow, red)"
+texture = ExtResource("3_g6uih")
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Mutator1" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("2_rfg5h")
+
+[node name="Tex" type="TextureRect" parent="VBoxContainer/Mutator1"]
+custom_minimum_size = Vector2(66, 54)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -27.0
+offset_right = 86.0
+offset_bottom = 27.0
+grow_vertical = 2
+texture = SubResource("AtlasTexture_jipmk")
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Mutator1"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = -35.0
+offset_right = 472.0
+offset_bottom = 35.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hvim7")
+
+[node name="Title" type="Label" parent="VBoxContainer/Mutator1/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+
+[node name="Description" type="Label" parent="VBoxContainer/Mutator1/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("4_0ucub")
+theme_override_font_sizes/font_size = 21
+
+[node name="Mutator2" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("2_rfg5h")
+
+[node name="Tex" type="TextureRect" parent="VBoxContainer/Mutator2"]
+custom_minimum_size = Vector2(66, 54)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -27.0
+offset_right = 86.0
+offset_bottom = 27.0
+grow_vertical = 2
+texture = SubResource("AtlasTexture_k2vh0")
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Mutator2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = -35.0
+offset_right = 472.0
+offset_bottom = 35.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hvim7")
+
+[node name="Title" type="Label" parent="VBoxContainer/Mutator2/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+
+[node name="Description" type="Label" parent="VBoxContainer/Mutator2/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("4_0ucub")
+theme_override_font_sizes/font_size = 21
+
+[node name="Mutator3" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("2_rfg5h")
+
+[node name="Tex" type="TextureRect" parent="VBoxContainer/Mutator3"]
+custom_minimum_size = Vector2(66, 54)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -27.0
+offset_right = 86.0
+offset_bottom = 27.0
+grow_vertical = 2
+texture = SubResource("AtlasTexture_qyn46")
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Mutator3"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = -35.0
+offset_right = 472.0
+offset_bottom = 35.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hvim7")
+
+[node name="Title" type="Label" parent="VBoxContainer/Mutator3/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+
+[node name="Description" type="Label" parent="VBoxContainer/Mutator3/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("4_0ucub")
+theme_override_font_sizes/font_size = 21
+
+[connection signal="pressed" from="VBoxContainer/Mutator1" to="." method="_on_mutator_pressed" binds= [0]]
+[connection signal="pressed" from="VBoxContainer/Mutator2" to="." method="_on_mutator_pressed" binds= [1]]
+[connection signal="pressed" from="VBoxContainer/Mutator3" to="." method="_on_mutator_pressed" binds= [2]]

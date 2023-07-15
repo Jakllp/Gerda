@@ -1,25 +1,25 @@
-[gd_scene load_steps=12 format=3 uid="uid://c30hosb1vsi56"]
+[gd_scene load_steps=12 format=3 uid="uid://c0bhb8c4y6ewp"]
 
 [ext_resource type="Script" path="res://resources/entity/MovingEntity.gd" id="1_gifeo"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_mask.gdshader" id="2_fi5jc"]
-[ext_resource type="PackedScene" path="res://resources/components/HealthComponent.tscn" id="2_tgv08"]
-[ext_resource type="Shader" path="res://resources/shaders/flash.gdshader" id="2_x3cmw"]
-[ext_resource type="Shader" path="res://resources/shaders/entity_sprite.gdshader" id="3_63tax"]
-[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/detectionArea.tscn" id="3_qadwa"]
+[ext_resource type="Shader" path="res://resources/shaders/Flash.gdshader" id="2_fc6j2"]
+[ext_resource type="PackedScene" uid="uid://xyf6s1q85yf2" path="res://resources/components/Health/HealthComponent.tscn" id="2_tgv08"]
+[ext_resource type="PackedScene" uid="uid://dovx62msjlv1e" path="res://resources/overlap/DetectionArea.tscn" id="3_qadwa"]
+[ext_resource type="Shader" path="res://resources/shaders/EntityMask.gdshader" id="3_ruu02"]
+[ext_resource type="Shader" path="res://resources/shaders/EntitySprite.gdshader" id="4_jnlvh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jumne"]
-shader = ExtResource("2_x3cmw")
+shader = ExtResource("2_fc6j2")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3ef38"]
-shader = ExtResource("2_fi5jc")
+shader = ExtResource("3_ruu02")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_xf10u"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s6m7m"]
-shader = ExtResource("3_63tax")
+shader = ExtResource("4_jnlvh")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_o43fe"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")

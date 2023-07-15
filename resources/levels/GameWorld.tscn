@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://bj67m0e2wspkr"]
+
+[ext_resource type="Script" path="res://resources/levels/GameWorld.gd" id="1_v2agj"]
+[ext_resource type="PackedScene" uid="uid://3nw02h1mploy" path="res://resources/menus/Interface.tscn" id="4_2khco"]
+[ext_resource type="Script" path="res://resources/entity/player/Mole.gd" id="5_gfjft"]
+[ext_resource type="PackedScene" uid="uid://drt5gc5wf3gcr" path="res://resources/menus/MutatorSelectScreen.tscn" id="5_m52cl"]
+[ext_resource type="PackedScene" uid="uid://cli3ult3yip5x" path="res://resources/menus/PauseMenu.tscn" id="6_ym1hu"]
+[ext_resource type="Shader" path="res://resources/shaders/blur.gdshader" id="7_0n4fg"]
+[ext_resource type="PackedScene" uid="uid://bumgkqge3x8or" path="res://resources/entity/player/Player.tscn" id="8_15nnc"]
+[ext_resource type="PackedScene" uid="uid://sj1l83q0goit" path="res://resources/menus/LoadingScreen.tscn" id="8_047hp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e1e7i"]
+resource_local_to_scene = true
+shader = ExtResource("7_0n4fg")
+shader_parameter/blur = 2.5
+shader_parameter/brightness = 1.0
+
+[node name="GameWorld" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_v2agj")
+metadata/_edit_horizontal_guides_ = []
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.32549, 0.32549, 0.32549, 1)
+
+[node name="Unshaded" type="CanvasLayer" parent="." groups=["unshaded"]]
+follow_viewport_enabled = true
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="."]
+
+[node name="Interface" parent="InterfaceLayer" instance=ExtResource("4_2khco")]
+
+[node name="MutatorSelectScreen" parent="InterfaceLayer" instance=ExtResource("5_m52cl")]
+
+[node name="PauseMenu" parent="InterfaceLayer" instance=ExtResource("6_ym1hu")]
+visible = false
+material = SubResource("ShaderMaterial_e1e7i")
+
+[node name="LoadingScreen" parent="InterfaceLayer" instance=ExtResource("8_047hp")]
+
+[node name="Player" parent="." instance=ExtResource("8_15nnc")]
+position = Vector2(17, -6)
+script = ExtResource("5_gfjft")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+process_callback = 0
+
+[node name="LoadingTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

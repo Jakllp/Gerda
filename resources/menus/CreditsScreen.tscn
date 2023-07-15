@@ -1,0 +1,104 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhxfyscshg1vc"]
+
+[ext_resource type="Script" path="res://resources/menus/CreditsScreen.gd" id="1_uq5b0"]
+[ext_resource type="Theme" uid="uid://2d7ldniq7dpi" path="res://asset/visual/UI/themes/Buttons.tres" id="2_7gn3e"]
+[ext_resource type="Texture2D" uid="uid://caluqwcxdqqad" path="res://asset/visual/UI/3sacrowd.png" id="2_efii6"]
+[ext_resource type="FontFile" uid="uid://dcc5o2xuuk5bl" path="res://asset/visual/UI/fonts/droid-sans/DroidSans.ttf" id="4_65n4c"]
+[ext_resource type="Theme" uid="uid://dcuslu6b5khtl" path="res://asset/visual/UI/themes/InvisibleButton.tres" id="4_rmpoo"]
+
+[node name="CreditsScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_uq5b0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.5
+offset_top = -60.5
+offset_right = 23.5
+offset_bottom = 60.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Logo" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="Logo" type="TextureRect" parent="VBoxContainer/Logo"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture = ExtResource("2_efii6")
+stretch_mode = 5
+
+[node name="Devs" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_7gn3e")
+text = "Development:"
+
+[node name="DevsContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DevsContainer"]
+layout_mode = 2
+
+[node name="HR" type="Label" parent="VBoxContainer/DevsContainer/VBoxContainer"]
+layout_mode = 2
+text = "Henry Ruß"
+
+[node name="JJ" type="Label" parent="VBoxContainer/DevsContainer/VBoxContainer"]
+layout_mode = 2
+text = "Janno Jens"
+
+[node name="LJ" type="Label" parent="VBoxContainer/DevsContainer/VBoxContainer"]
+layout_mode = 2
+text = "Lea Junker"
+
+[node name="Addons" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_7gn3e")
+text = "Addons:"
+
+[node name="AddonsContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/AddonsContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/AddonsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_65n4c")
+text = "Adrien Quillet:"
+
+[node name="Button" type="Button" parent="VBoxContainer/AddonsContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_rmpoo")
+theme_override_fonts/font = ExtResource("4_65n4c")
+text = "  - yet another behavior tree"
+
+[node name="BackButton" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="BackButton" type="Button" parent="VBoxContainer/BackButton"]
+custom_minimum_size = Vector2(170, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_7gn3e")
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/AddonsContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BackButton/BackButton" to="." method="_on_back_button_pressed"]

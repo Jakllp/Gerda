@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
-class_name MovingEnity
+class_name MovingEntity
 
 @export var base_speed: int
 @onready var speed: int = base_speed
+@onready var flash_component :FlashComponent = FlashComponent.new()
 
 
 var direction := Vector2.ZERO:
@@ -15,20 +16,13 @@ func _ready():
 	pass
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move()
 	
 
 func move():
 	velocity = speed * direction
 	move_and_slide()
-
-
-func flash():
-	var shader_mat = get_node("SubViewportContainer/SubViewport/AnimatedSprite2D").material
-	shader_mat.set_shader_parameter("flash_modifier",0.4)
-	await get_tree().create_timer(0.05).timeout
-	shader_mat.set_shader_parameter("flash_modifier",0)
 
 
 # base_dir of sprite: -1 for left, +1 for right
